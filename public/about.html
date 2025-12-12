@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Signature Homes</title>
+  <link rel="icon" href="/img/logo2.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+        /* 更新全局变量为更高级的配色方案 */
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #6366f1;
+            --accent-color: #f59e0b;
+            --light-color: #f8fafc;
+            --dark-color: #1e293b;
+            --light-text: #64748b;
+            --medium-text: #475569;
+            --border-color: #e2e8f0;
+            --border-radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.12);
+            --shadow-deep: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+        }
+        
+        /* 右侧固定语言切换按钮样式 */
+        .fixed-language-switcher {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+        
+        .language-button {
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+        
+        .language-button:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+    body {
+      line-height: 1.7;
+      color: var(--primary-color);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--light-color);
+    }
+
+    /* 导航栏 */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      transition: var(--transition);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--medium-text);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: var(--transition-fast);
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-primary);
+      transition: var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* 页面内容 */
+    .about-page {
+      padding-top: 100px;
+      min-height: 100vh;
+    }
+
+    /* 关于我们头部 */
+    .about-header {
+      background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('/images_new/about/snapedit_17446406911301.jpeg');
+      background-size: cover;
+      background-position: center;
+      padding: 10rem 2rem 8rem;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(99, 102, 241, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+      animation: shimmer 15s infinite linear;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .about-header h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-header p {
+      font-size: 1.3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      opacity: 0.95;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 关于我们内容 */
+    .about-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    .about-mission {
+      display: flex;
+      gap: 4rem;
+      align-items: center;
+      margin-bottom: 8rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .about-mission:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .about-mission:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+
+    .about-mission:nth-child(4) {
+      animation-delay: 0.3s;
+    }
+
+    .about-mission-image {
+      flex: 1;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-deep);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .about-mission-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 1;
+    }
+
+    .about-mission-image:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .about-mission-image:hover::before {
+      opacity: 1;
+    }
+
+    .about-mission-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .about-mission-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-mission-text {
+      flex: 1;
+    }
+
+    .about-mission-text h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .about-mission-text h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+    }
+
+    .about-mission-text p {
+      font-size: 1.15rem;
+      color: var(--medium-text);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    /* 公司价值观 */
+    .about-values {
+      text-align: center;
+      margin-bottom: 8rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.4s;
+    }
+
+    .about-values h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 4rem;
+      color: var(--primary-color);
+      position: relative;
+    }
+
+    .about-values h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+    }
+
+    .value-card {
+      padding: 3rem 2.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      background-color: white;
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transition: var(--transition);
+    }
+
+    .value-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--border-color);
+    }
+
+    .value-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .value-icon {
+      font-size: 3rem;
+      color: var(--secondary-color);
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+
+    .value-card:hover .value-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .value-card h3 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .value-card p {
+      color: var(--medium-text);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    /* 团队介绍 */
+    .about-team {
+      text-align: center;
+      margin-top: 8rem;
+    }
+
+    .about-team h2 {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      color: var(--primary-color);
+    }
+
+    .team-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* 第一个成员特殊布局：左边梯形卡片，右边文本，同一长方形内 */
+    .team-member:nth-child(1) {
+      display: flex;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+      background-color: white;
+      border-radius: var(--border-radius);
+    }
+
+    .team-member:nth-child(1):hover {
+      transform: scale(1.02);
+    }
+
+    /* 所有团队成员通用样式 */
+    .team-member {
+      display: flex;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+      background-color: white;
+      border-radius: var(--border-radius);
+      margin: 0 auto;
+      max-width: 1400px;
+      height: 300px;
+    }
+
+    .team-member:hover {
+      transform: scale(1.02);
+    }
+
+    /* 梯形设计 - 所有成员 */
+    /* 奇数位置成员：图片在左，右梯形 */
+    .team-member:nth-child(odd) .team-member-image {
+      clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+      width: auto;
+      height: 300px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    /* 偶数位置成员：图片在右，左梯形 */
+    .team-member:nth-child(even) .team-member-image {
+      clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+      width: auto;
+      height: 300px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    /* 图片样式 */
+    .team-member-image img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .team-member:hover .team-member-image img {
+      transform: scale(1.05);
+    }
+
+    /* 文本区域样式 - 所有成员 */
+    .team-member-text {
+      flex: 1;
+      padding: 2rem;
+      background-color: transparent;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* 成员信息样式 - 所有成员 */
+    .team-member-info {
+      padding: 0;
+      height: auto;
+      margin-bottom: 1.5rem;
+    }
+
+    /* 描述文本样式 - 所有成员 */
+    .team-member-description {
+      color: var(--medium-text);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      text-align: left;
+      opacity: 1;
+      position: relative;
+      background: none;
+      backdrop-filter: none;
+      padding: 0;
+      overflow: hidden;
+      max-height: 120px; /* 限制最大高度，显示约8行 */
+      transition: all 0.3s ease;
+    }
+
+    /* 鼠标悬浮时显示滚动条 */
+    .team-member-description:hover {
+      overflow-y: auto;
+      max-height: 200px; /* 增加最大高度，允许更多内容显示 */
+    }
+
+    /* 自定义滚动条样式 */
+    .team-member-description::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .team-member-description::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 3px;
+    }
+
+    .team-member-description::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 3px;
+    }
+
+    .team-member-description::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8;
+    }
+    
+    /* 语言下拉菜单样式 */
+    .language-dropdown {
+      position: absolute;
+      right: 0;
+      top: 100%;
+      margin-top: 10px;
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      display: none;
+      min-width: 120px;
+    }
+    
+    .language-dropdown.show {
+      display: block;
+    }
+    
+    .language-option {
+      width: 100%;
+      border: none;
+      background: none;
+      padding: 10px 15px;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 14px;
+    }
+    
+    .language-option:hover {
+      background-color: #f8f9fa;
+    }
+
+    .team-member-info h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    .team-member-info p {
+      color: var(--light-text);
+      font-size: 0.9rem;
+    }
+
+    /* 页脚 */
+    .footer {
+      background-color: #ffffff;
+      color: #000000;
+      padding: 3rem 2rem;
+    }
+
+    .footer-simple-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .footer-simple-links span {
+      color: #000000;
+    }
+    
+    .footer-simple-links a {
+      color: #000000;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-simple-links a:hover {
+      color: #6c63ff;
+    }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 2rem auto 0;
+      padding-top: 2rem;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+    }
+    
+    .footer-terms {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .footer-terms a {
+      color: #666;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-terms a:hover {
+      color: #6c63ff;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-brand {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo img {
+      height: 40px;
+    }
+
+    .footer-logo span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #000000;
+    }
+
+    .footer-tagline {
+      color: rgba(0, 0, 0, 0.7);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links-container {
+      flex: 2;
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-column h4 {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 1200px) {
+      .about-mission {
+        flex-direction: column;
+      }
+
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      /* 所有成员在中等屏幕上改为垂直布局 */
+      .team-member {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        height: auto;
+      }
+
+      .team-member .team-member-image {
+        width: 100%;
+        height: 350px;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem 2rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .about-header h1 {
+        font-size: 2.5rem;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* 所有成员在小屏幕上的调整 */
+      .team-member .team-member-image {
+        width: 100%;
+        height: 300px;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      .team-member-text {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      /* 所有成员在手机屏幕上的进一步调整 */
+      .team-member .team-member-image {
+        width: 100%;
+        height: 250px;
+      }
+
+      .team-member {
+        max-width: 100%;
+        margin: 0 1rem;
+      }
+    }
+
+    /* 团队荣誉墙样式 */
+    .about-awards {
+      padding: 6rem 2rem;
+    }
+
+    .about-awards h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 4rem;
+      color: var(--primary-color);
+      text-align: center;
+      position: relative;
+    }
+
+    .about-awards h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+    }
+
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .award-item {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      background-color: white;
+      border: 1px solid transparent;
+    }
+
+    .award-item:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--border-color);
+    }
+
+    .award-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .award-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .about-awards {
+        padding: 4rem 1rem;
+      }
+
+      .about-awards h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .awards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .award-item img {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .awards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .award-item img {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+  <body>
+    <!-- 导航栏 -->
+    <header class="header">
+        <nav class="navbar" style="background-color: transparent; backdrop-filter: blur(10px); box-shadow: none;">
+            <div class="logo" style="display: flex; align-items: center;">
+                <a href="/" style="display: flex; align-items: center;">
+                    <img src="/img/logo.png" alt="Logo" class="logo-image" style="width: 100px; height: auto;">
+                </a>
+            </div>
+            <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
+                <a href="/featured-properties.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Buy</a>
+                <a href="/communities.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">communities</a>
+                <a href="/developers.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Developers</a>
+                <a href="/services.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Services</a>
+                <a href="/about.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">About Us</a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- 关于我们头部 -->
+    <section class="about-header">
+    <h1>About Us</h1>
+    <p>Premium real estate platform in Dubai and UAE</p>
+  </section>
+
+  <!-- 关于我们内容 -->
+  <section class="about-content">
+    <!-- 公司使命 -->
+    <div class="about-mission">
+      <div class="about-mission-image">
+        <img src="/aboutus/1.png" alt="Our Mission">
+      </div>
+      <div class="about-mission-text">
+        <h2>Our Mission</h2>
+        <p>At Signature Reality Homes, our mission is to exceed the expectations of our clients at every turn. We are committed to delivering exceptional service, fostering long-lasting relationships, and achieving superior results.</p>
+        <p>With integrity, professionalism, and a relentless focus on client satisfaction, we aim to make every real estate transaction a seamless and rewarding experience.</p>
+      </div>
+    </div>
+    
+    <!-- 公司愿景 -->
+    <div class="about-mission" style="flex-direction: row-reverse;">
+      <div class="about-mission-image">
+        <img src="/aboutus/2.png" alt="Our Vision">
+      </div>
+      <div class="about-mission-text">
+        <h2>Our Vision</h2>
+        <p>Our vision at Signature Reality Homes is to redefine the real estate experience in the UAE by providing unmatched service, expert guidance, and access to the most exclusive properties in the region.</p>
+        <p>We strive to be the trusted partner of choice for individuals and families seeking their dream home or investment opportunity in this dynamic market.</p>
+      </div>
+    </div>
+    
+    <!-- 致谢部分 -->
+    <div class="about-mission">
+      <div class="about-mission-image">
+        <img src="/aboutus/3.png" alt="Our Team">
+      </div>
+      <div class="about-mission-text">
+        <h2>Our Team</h2>
+        <p>We extend our heartfelt gratitude to Emaar for their continued partnership, and to our esteemed clients for their unwavering trust and support.</p>
+        <p>Congratulations to the remarkable team at Signature Realty Homes for this outstanding achievement, and here's to many more milestones ahead.</p>
+      </div>
+    </div>
+
+    <!-- 公司价值观 -->
+    <div class="about-values">
+      <h2>Our Values</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h3>Integrity</h3>
+          <p>We uphold the highest standards of honesty, transparency, and ethical business practices in all our real estate dealings.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <h3>Client Excellence</h3>
+          <p>We exceed client expectations at every turn, fostering long-lasting relationships built on trust and satisfaction.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </div>
+          <h3>Innovative Service</h3>
+          <p>We redefine the real estate experience through unmatched service, expert guidance, and access to exclusive properties.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3>Strategic Partnerships</h3>
+          <p>We collaborate closely with trusted partners like Emaar to deliver superior results for our clients.</p>
+        </div>
+
+      </div>
+
+    </div>
+    
+    <!-- 高级员工照片墙 -->
+    <div class="about-team">
+      <h2>Our Senior Team</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="team-member-image">
+            <img src="/aboutus/ryuan/1.jpg" alt="Senior Team Member 1">
+          </div>
+          <div class="team-member-text">
+            <div class="team-member-info">
+              <h3>Ran Deng - 69453</h3>
+              <p>Real Estate Agent</p>
+            </div>
+            <p class="team-member-description">Originally from China, Ran Deng is a passionate Real Estate Agent known for her friendly approach and ability to build trust with clients. Her hard work, reliability, and focused mindset ensure exceptional service and excellent outcomes for every client. Specializing in both Off-Plan and Secondary properties, Ran has deep knowledge of property types, community features, and market prices. She provides valuable insights and professional guidance, helping clients make confident decisions. Her dedication to quick, efficient results and client satisfaction makes her a respected advisor in the real estate field.</p>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-member-text">
+            <div class="team-member-info">
+              <h3>Maria</h3>
+              <p>Real Estate Professional</p>
+            </div>
+            <p class="team-member-description">Originally from Denmark, Maria is a dedicated real estate expert with a genuine passion for helping clients find their perfect property. Known for her warm personality and strong client relationships, she builds trust through honesty, commitment, and results-driven service. Specializing in both Off-Plan and Secondary Market properties, Maria delivers exceptional guidance with deep market knowledge. Her attention to detail and efficiency ensure clients receive personalized support while making confident, well-informed decisions. Whether assisting with new developments or resale properties, she consistently exceeds expectations.</p>
+          </div>
+          <div class="team-member-image">
+            <img src="/aboutus/ryuan/2.jpg" alt="Senior Team Member 2">
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-member-image">
+            <img src="/aboutus/ryuan/3.jpg" alt="Senior Team Member 3">
+          </div>
+          <div class="team-member-text">
+            <div class="team-member-info">
+              <h3>Kevin Hua</h3>
+              <p>Property Advisor</p>
+            </div>
+            <p class="team-member-description">Originally from China, Kevin Hua is a dedicated Property Consultant in Dubai with a strong passion for real estate and a results-driven mindset. Known for his professionalism, integrity, and clear communication, he helps clients feel confident throughout their property journey. Specializing in both Off-Plan and Secondary Market transactions, Kevin has deep knowledge of apartments, villas, and high-growth investment communities. His analytical approach allows him to assess market trends, rental performance, and appreciation potential, providing data-driven advice focused on long-term value and strategic asset planning.</p>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-member-text">
+            <div class="team-member-info">
+              <h3>Tingqing Liu</h3>
+              <p>Real Estate Agent</p>
+            </div>
+            <p class="team-member-description">Tingqing Liu, originally from China, brings a strong passion for real estate and a commitment to excellence to his role as a dedicated Real Estate Agent. His friendly personality and ability to build genuine connections with clients create a comfortable and trusting environment from the very first interaction. Known for his hard work, honesty, and determination, Tingqing is focused on delivering exceptional service and achieving the best possible results for his clients. Specializing in both Off-Plan and Secondary properties, Tingqing has a solid understanding of market trends, community profiles, and pricing strategies. His expertise allows him to provide valuable insights and clear guidance, ensuring clients make informed and confident decisions throughout their real estate journey. Tingqing takes pride in his efficient and results-driven approach, always striving to exceed expectations and maintain the highest level of client satisfaction. His combination of strong market knowledge and a personal touch makes him a trusted and respected advisor. Whether supporting clients with new developments or established properties, Tingqing Liu's dedication ensures a smooth experience and successful outcomes in every transaction.</p>
+          </div>
+          <div class="team-member-image">
+            <img src="/aboutus/ryuan/4.jpg" alt="Senior Team Member 4">
+          </div>
+        </div>
+        <!-- New Team Member 5 -->
+        <div class="team-member">
+          <div class="team-member-image">
+            <img src="/aboutus/ryuan/5.jpg" alt="Senior Team Member 5">
+          </div>
+          <div class="team-member-text">
+            <div class="team-member-info">
+              <h3>Irfan Pervaiz</h3>
+              <p>Real Estate Professional</p>
+            </div>
+            <p class="team-member-description">Irfan Pervaiz, originally from Pakistan, is a highly skilled and experienced real estate professional with several years of expertise across Dubai’s dynamic property market, specializing in residential, commercial, and investment properties. His in-depth knowledge of market trends, property management, and client relations allows him to provide tailored solutions that meet the unique goals of each client. Fluent in English, Urdu, and Hindi, Irfan offers a personalized and seamless experience, ensuring clear communication and complete understanding throughout every stage of the transaction. Known for his professionalism, integrity, and client-focused approach, he consistently delivers exceptional service that empowers clients to make informed decisions. With strong connections to top developers such as Emaar, DAMAC, and Nakheel, Irfan’s expertise spans Off-Plan and Secondary markets alike, helping buyers, sellers, and investors navigate Dubai’s ever-evolving real estate landscape. Whether guiding clients to their dream home or securing high-yield investments, Irfan Pervaiz ensures a smooth, confident, and successful real estate journey.</p>
+          </div>
+        </div>
+        <!-- New Team Member 6 -->
+        <div class="team-member">
+          <div class="team-member-text">
+            <div class="team-member-info">
+              <h3>Zhong Yanfeng</h3>
+              <p>Real Estate Agent</p>
+            </div>
+            <p class="team-member-description">Zhong Yanfeng, originally from China, brings a deep-seated passion for real estate to her role as a dedicated Real Estate Agent. Her personable nature and ability to build strong relationships with clients instantly put them at ease, fostering an environment of trust and open communication. Known for her hard work, trustworthiness, and determination, Zhong is committed to delivering exceptional service and results. Specializing in both Off-Plan and Secondary properties, she has a comprehensive understanding of various property types and market prices. Her expertise allows her to provide valuable insights and guidance, ensuring that clients make well-informed decisions in their real estate ventures. Zhong takes pride in her ability to achieve results quickly and efficiently, reflecting her dedication to client satisfaction. Her combination of professional knowledge and personal touch makes her a trusted advisor in the real estate market. Whether navigating new developments or the secondary market, Zhong Yanfeng’s commitment to excellence ensures that clients receive outstanding service and achieve their property goals.</p>
+          </div>
+          <div class="team-member-image">
+            <img src="/aboutus/ryuan/6.jpg" alt="Senior Team Member 6">
+          </div>
+        </div>
+        <!-- New Team Member 7 -->
+        <div class="team-member">
+          <div class="team-member-image">
+            <img src="/aboutus/ryuan/7.jpg" alt="Senior Team Member 7">
+          </div>
+          <div class="team-member-text">
+            <div class="team-member-info">
+              <h3>Saba Aamir</h3>
+              <p>Real Estate Professional</p>
+            </div>
+            <p class="team-member-description">Saba Aamir, originally from Pakistan, brings several years of experience in Dubai’s real estate market, specializing in residential, commercial, and luxury properties. Her strong market knowledge, analytical approach, and refined negotiation skills enable her to guide clients toward the best opportunities, whether they are searching for a dream home or a high-potential investment. Fluent in both English and Urdu, Saba offers a personalized and seamless experience to clients from diverse backgrounds, ensuring clear communication and complete understanding throughout every step of the transaction. Known for her professionalism, dedication, and client-focused mindset, she consistently delivers exceptional service tailored to each client’s unique goals. Saba’s expertise across multiple property segments, combined with her commitment to building long-term relationships, makes her a trusted advisor in Dubai’s dynamic real estate market. Whether assisting buyers, sellers, or investors, she ensures a smooth, informed, and confident real estate journey.</p>
+          </div>
+        </div>
+        <!-- New Team Member 8 -->
+        <div class="team-member">
+          <div class="team-member-text">
+            <div class="team-member-info">
+              <h3>Duleeshan Panandura Aryasinghage Don</h3>
+              <p>Senior Real Estate Specialist</p>
+            </div>
+            <p class="team-member-description">Duleeshan Panandura Aryasinghage Don, originally from Sri Lanka, is a Senior Real Estate Specialist in Dubai with over 11 years of experience living and working in the city’s dynamic property market. His long-standing journey in real estate has fueled his passion for the industry and provided him with essential knowledge, deep insight, and a strong understanding of Dubai’s ever-evolving market trends. Duleeshan finds immense fulfillment in helping people secure the home of their dreams, considering it the most rewarding part of his career. He is equally committed to guiding investors who are seeking strong rental yields or long-term capital growth, ensuring they receive the right advice to maximize their returns. Known for his professionalism, dedication, and honest guidance, Duleeshan also supports clients by managing and taking care of their property portfolios, offering continuous market education and timely updates. His expertise, combined with a client-first mindset, makes him a trusted advisor for homeowners and investors looking for clarity, confidence, and exceptional service in Dubai’s real estate market.</p>
+          </div>
+          <div class="team-member-image">
+            <img src="/aboutus/ryuan/8.jpg" alt="Senior Team Member 8">
+          </div>
+        </div>
+        <!-- New Team Member 9 -->
+        <div class="team-member">
+          <div class="team-member-image">
+            <img src="/aboutus/ryuan/9.jpg" alt="Senior Team Member 9">
+          </div>
+          <div class="team-member-text">
+            <div class="team-member-info">
+              <h3>Muhammad Rehan</h3>
+              <p>Real Estate Professional</p>
+            </div>
+            <p class="team-member-description">Muhammad Rehan, originally from India, brings several years of experience in Dubai’s dynamic real estate market, specializing in residential, commercial, and investment properties. His deep market knowledge, analytical approach, and strong understanding of property regulations enable him to guide clients toward the best opportunities, whether they are looking for their dream home or a strategic investment. Fluent in English, Hindi, and Urdu, Rehan offers a personalized and seamless experience to clients, ensuring clear communication and complete understanding throughout every step of the transaction. Known for his professionalism, dedication, and client-focused mindset, he consistently delivers exceptional service tailored to each client’s unique goals. Rehan’s expertise across multiple property segments, combined with his commitment to building long-term relationships, makes him a trusted advisor in Dubai’s competitive real estate market. Whether assisting buyers, sellers, or investors, he ensures a smooth, informed, and confident real estate journey.</p>
+          </div>
+        </div>
+        <!-- New Team Member 10 -->
+        <div class="team-member">
+          <div class="team-member-text">
+            <div class="team-member-info">
+              <h3>Aiperi Nurlanbekova</h3>
+              <p>Real Estate Professional</p>
+            </div>
+            <p class="team-member-description">Aiperi Nurlanbekova is an experienced real estate professional specializing in both Off-Plan and Secondary markets, known for her integrity, market insight, and strong relationship-building skills. With a deep understanding of market trends, project developments, and negotiation strategies, she provides tailored guidance to first-time buyers, seasoned investors, and families seeking their ideal home. Aiperi focuses on understanding each client’s unique goals, ensuring they receive transparent, committed, and results-driven support throughout their real estate journey. Her clients value her personalized approach, genuine communication, and ability to deliver long-term value through informed decisions. With a reputation built on trust and consistency, Aiperi Nurlanbekova offers a seamless, professional, and client-focused real estate experience in Dubai’s dynamic property market.</p>
+          </div>
+          <div class="team-member-image">
+            <img src="/aboutus/ryuan/10.jpg" alt="Senior Team Member 10">
+          </div>
+        </div>
+        <!-- New Team Member 11 -->
+        <div class="team-member">
+          <div class="team-member-image">
+            <img src="/aboutus/ryuan/11.jpg" alt="Senior Team Member 11">
+          </div>
+          <div class="team-member-text">
+            <div class="team-member-info">
+              <h3>Sherry Liu</h3>
+              <p>Senior Real Estate Advisor</p>
+            </div>
+            <p class="team-member-description">Sherry Liu brings fifteen years of extensive experience in Dubai’s real estate market, with deep involvement across both residential and commercial sectors, giving her a comprehensive understanding of the UAE’s property dynamics and policy direction. Leveraging her on-the-ground expertise and strong insight into community development, she provides clients with reliable evaluations on investment value, appreciation potential, and lifestyle quality. Backed by a leading real estate platform and a highly experienced professional team, Sherry uses systematic data analysis, rigorous project selection standards, and broad market resources to identify the strongest opportunities for her clients. Whether assisting with personal residence planning or global portfolio allocation, she maintains a forward-looking approach and delivers high-end, customized service. Her strategic mindset, market knowledge, and commitment to excellence make Sherry Liu a trusted advisor who helps clients position themselves confidently within Dubai’s rapidly evolving market.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 团队荣誉墙 -->
+    <section class="about-awards">
+      <div class="about-content">
+        <h2>Team Honors</h2>
+        <div class="awards-grid">
+          <div class="award-item">
+            <img src="/aboutus/team with awards-20251210T075906Z-3-001/team with awards/17ea6109-0e6a-4f04-941b-9f15d8e5d08c.jpg" alt="Team Award">
+          </div>
+          <div class="award-item">
+            <img src="/aboutus/team with awards-20251210T075906Z-3-001/team with awards/4D5A8220.jpg" alt="Team Award">
+          </div>
+          <div class="award-item">
+            <img src="/aboutus/team with awards-20251210T075906Z-3-001/team with awards/51a569fc-6842-42ff-a9a1-d49ff4ef65b0.jpg" alt="Team Award">
+          </div>
+          <div class="award-item">
+            <img src="/aboutus/team with awards-20251210T075906Z-3-001/team with awards/Screenshot 2023-10-25 at 14.02.25 (1).png" alt="Team Award">
+          </div>
+          <div class="award-item">
+            <img src="/aboutus/team with awards-20251210T075906Z-3-001/team with awards/Screenshot 2023-10-27 at 09.43.23 (2).png" alt="Team Award">
+          </div>
+          <div class="award-item">
+            <img src="/aboutus/team with awards-20251210T075906Z-3-001/team with awards/_86A6969.jpg" alt="Team Award">
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- 左侧Logo区域 -->
+        <div class="footer-brand">
+          <div class="footer-logo" style="display: flex; align-items: center; gap: 10px;">
+            <img src="/img/logo.png" alt="HOUSE Logo" style="height: 40px;">
+          </div>
+        </div>
+        
+        <!-- 中间简化链接区域 -->
+        <div class="footer-simple-links">
+          <span><a href="/featured-properties.html">Buy</a></span>
+          <span>•</span>
+          <span><a href="/communities.html">communities</a></span>
+          <span>•</span>
+          <span><a href="/developers.html">Developers</a></span>
+          <span>•</span>
+          <span><a href="/services.html">Services</a></span>
+          <span>•</span>
+          <span><a href="/about.html">About Us</a></span>
+        </div>
+      </div>
+      
+      <!-- 底部条款区域 -->
+      <div class="footer-bottom">
+        <div class="footer-terms">
+          <a href="#" data-translate="footerPrivacyPolicy">Privacy Policy</a>
+          <a href="#" data-translate="footerTermsOfService">Terms of Service</a>
+          <a href="#" data-translate="footerCookiePolicy">Cookie Policy</a>
+        </div>
+      </div>
+    </footer>
+    
+    <script>
+      // 导航栏滚动效果
+      window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+          navbar.style.padding = '1rem 4rem';
+          navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+        } else {
+          navbar.style.padding = '1.5rem 4rem';
+          navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+        }
+      });
+      
+      // 添加平滑滚动效果
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+      
+      // 为所有可交互元素添加微交互效果
+      document.querySelectorAll('.value-card, .about-mission-image, .social-link').forEach(element => {
+        element.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-5px)';
+        });
+        element.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+      
+      // 添加页面加载动画
+      window.addEventListener('load', function() {
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.5s ease';
+        setTimeout(function() {
+          document.body.style.opacity = '1';
+        }, 100);
+      });
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        // 定义各语言的翻译内容
+        const aboutTranslations = {
+          en: {
+            pageTitle: 'About Us',
+            pageSubtitle: 'Our team and story',
+            companyDesc: 'Welcome to our real estate platform. We are dedicated to providing high-quality real estate services in Dubai and the UAE. With years of experience in the industry, we have built a professional team committed to helping clients find their dream properties.',
+            companyDescDetail1: 'With years of experience in the industry, we have built a reputation for excellence, integrity, and customer satisfaction.',
+            companyDescDetail2: 'Our team of experts is dedicated to helping you find your dream property or sell your current one with ease.',
+            companyDescDetail3: 'We believe in putting our customers first, and we work tirelessly to ensure that every transaction is smooth, efficient, and profitable for all parties involved.',
+            missionTitle: 'Our Mission',
+            valuesTitle: 'Our Values',
+            // 价值观卡片翻译
+            integrityTitle: 'Integrity',
+            integrityDesc: 'We uphold the highest standards of honesty, transparency, and ethical business practices in all our real estate dealings.',
+            customerFirstTitle: 'Client Excellence',
+            customerFirstDesc: 'We exceed client expectations at every turn, fostering long-lasting relationships built on trust and satisfaction.',
+            innovationTitle: 'Innovative Service',
+            innovationDesc: 'We redefine the real estate experience through unmatched service, expert guidance, and access to exclusive properties.',
+            collaborationTitle: 'Strategic Partnerships',
+            collaborationDesc: 'We collaborate closely with trusted partners like Emaar to deliver superior results for our clients.',
+            excellenceTitle: 'Excellence',
+            excellenceDesc: 'We pursue excellence in everything we do, from our services to our customer support.',
+            // 页脚链接翻译
+            footerTagline: 'Premium real estate platform in Dubai and UAE',
+            quickLinks: 'Quick Links',
+            services: 'Services',
+            contactUs: 'Contact Us',
+            followUs: 'Follow Us',
+            backToHome: 'Back to Home',
+            // 页脚链接文本
+            footerHome: 'Home',
+            footerProperties: 'Properties',
+            footerAboutUs: 'About Us',
+            footerContact: 'Contact',
+            footerBuyProperty: 'Buy Property',
+            footerSellProperty: 'Sell Property',
+            footerRentProperty: 'Rent Property',
+            footerPropertyManagement: 'Property Management',
+            // 导航栏翻译
+            navHome: 'Home',
+            navBuy: 'Buy',
+            navProjects: 'Projects',
+            navServices: 'Services',
+            navContact: 'Contact',
+            navAbout: 'About Us',
+            logoText: 'HOUSE'
+          },
+          zh: {
+            pageTitle: '关于我们',
+            pageSubtitle: '我们的团队和故事',
+            companyDesc: '欢迎来到我们的房地产平台。我们致力于在迪拜和阿联酋提供高质量的房地产服务。凭借多年的行业经验，我们组建了一支专业团队，致力于帮助客户找到他们梦想中的房产。',
+            companyDescDetail1: '凭借多年的行业经验，我们建立了卓越、诚信和客户满意度的声誉。',
+            companyDescDetail2: '我们的专家团队致力于帮助您轻松找到理想的房产或出售当前房产。',
+            companyDescDetail3: '我们坚持以客户为中心，不懈努力确保每一笔交易对所有相关方都顺利、高效且有利可图。',
+            missionTitle: '我们的使命',
+            valuesTitle: '我们的价值观',
+            // 价值观卡片翻译
+            integrityTitle: '诚信正直',
+            integrityDesc: '我们在所有房地产交易中秉持最高标准的诚实、透明和道德商业实践。',
+            customerFirstTitle: '卓越客户服务',
+            customerFirstDesc: '我们在每一个环节都超越客户期望，培养基于信任和满意度的长期关系。',
+            innovationTitle: '创新服务',
+            innovationDesc: '我们通过无与伦比的服务、专业指导和独家房产访问权重新定义房地产体验。',
+            collaborationTitle: '战略合作伙伴关系',
+            collaborationDesc: '我们与Emaar等值得信赖的合作伙伴密切合作，为客户提供卓越成果。',
+            excellenceTitle: '追求卓越',
+            excellenceDesc: '我们在所有工作中追求卓越，从服务到客户支持都力求完美。',
+            // 页脚链接翻译
+            footerTagline: '迪拜和阿联酋的高端房地产平台',
+            quickLinks: '快速链接',
+            services: '服务',
+            contactUs: '联系我们',
+            followUs: '关注我们',
+            backToHome: '返回首页',
+            // 页脚链接文本
+            footerHome: '首页',
+            footerProperties: '房产',
+            footerAboutUs: '关于我们',
+            footerContact: '联系我们',
+            footerBuyProperty: '购买房产',
+            footerSellProperty: '出售房产',
+            footerRentProperty: '租赁房产',
+            footerPropertyManagement: '房产管理',
+            // 导航栏翻译
+            navHome: '首页',
+            navBuy: '购买',
+            navProjects: '项目',
+            navServices: '服务',
+            navContact: '联系我们',
+            navAbout: '关于我们',
+            logoText: '豪森房产'
+          },
+          ar: {
+            pageTitle: 'من نحن',
+            pageSubtitle: 'فريقنا وقصتنا',
+            companyDesc: 'مرحبا بك في منصتنا العقارية. نحن متخصصون في تقديم خدمات عقارية عالية الجودة في دبي والإمارات العربية المتحدة. مع سنوات من الخبرة في الصناعة، قمنا بإنشاء فريق احترافي متخصص في مساعدة العملاء في العثور على عقاراتهم المثالية.',
+            companyDescDetail1: 'مع سنوات من الخبرة في الصناعة، قدمنا سمعة للتميز والنزاهة وشبونة العميل.',
+            companyDescDetail2: 'فريقنا من الخبراء متخصص في مساعدتك على العثور على عقارك الأحلام أو بيع عقارك الحالي بسهولة.',
+            companyDescDetail3: 'نحن نؤمن بوضع العملاء في المقام الأول، ونحن نعمل بلا كلل لضمان أن يكون كل صفقة سلسة وفعالة ومكسبية للجميع المشاركين فيها.',
+            missionTitle: 'رسالتنا',
+            valuesTitle: 'قيمنا',
+            teamSectionTitle: 'فريقنا',
+            // 价值观卡片翻译
+            integrityTitle: 'النزاهة',
+            integrityDesc: 'نحن نرفع أعلى معايير الصدق والشفافية والممارسات التجارية الأخلاقية في جميع معاملاتنا العقارية.',
+            customerFirstTitle: 'تميز العملاء',
+            customerFirstDesc: 'نحن نتفوق على توقعات العملاء في كل خطوة، ونعزز العلاقات الدائمة المبنية على الثقة والرضا.',
+            innovationTitle: 'خدمة مبتكرة',
+            innovationDesc: 'نحن نعيد تعريف تجربة العقارات من خلال خدمة لا مثيل لها، وتوجيه مهني، والوصول إلى عقارات حصرية.',
+            collaborationTitle: 'شراكات استراتيجية',
+            collaborationDesc: 'نحن نعمل معًا بشكل وثيق مع شركاء موثوقين مثل Emaar لتقديم نتائج فائقة لعملائنا.',
+            excellenceTitle: 'التميز',
+            excellenceDesc: 'نحن نسعى للتميز في كل ما نقوم به، من خدماتنا إلى دعم العملاء.',
+            // 页脚链接翻译
+            footerTagline: 'منصة عقارية رائدة في دبي والإمارات العربية المتحدة',
+            quickLinks: 'روابط سريعة',
+            services: 'الخدمات',
+            contactUs: 'اتصل بنا',
+            followUs: 'تابعنا',
+            backToHome: 'العودة إلى الرئيسية',
+            // 页脚链接文本
+            footerHome: 'الرئيسية',
+            footerProperties: 'العقارات',
+            footerAboutUs: 'من نحن',
+            footerContact: 'اتصل بنا',
+            footerBuyProperty: 'شراء عقار',
+            footerSellProperty: 'بيع عقار',
+            footerRentProperty: 'إيجار عقار',
+            footerPropertyManagement: 'إدارة العقارات',
+            // 导航栏翻译
+            navHome: 'الرئيسية',
+            navBuy: 'شراء',
+            navProjects: 'المشاريع',
+            navServices: 'الخدمات',
+            navContact: 'اتصل بنا',
+            navAbout: 'من نحن',
+            logoText: '豪森房产'
+          }
+        };
+        
+        // 获取当前语言设置，从localStorage或window中获取
+        let currentLanguage = localStorage.getItem('preferredLanguage') || 'en';
+        
+        // 定义语言切换函数
+        window.switchAboutLanguage = function(lang) {
+          console.log('切换About页面语言到:', lang);
+          currentLanguage = lang;
+          window.currentLanguage = lang;
+          localStorage.setItem('preferredLanguage', lang);
+          
+          // 更新页面内容
+          updateAboutPageContent(lang);
+        };
+        
+        // 定义全局语言更新函数，供其他页面调用
+        window.updateCurrentLanguage = function(lang) {
+          window.switchAboutLanguage(lang);
+        };
+        
+        // 更新页面内容函数
+        function updateAboutPageContent(lang) {
+          const translations = aboutTranslations[lang];
+          
+          if (translations) {
+            // 更新页面标题和副标题
+            const pageTitle = document.querySelector('.about-header h1');
+            const pageSubtitle = document.querySelector('.about-header p');
+            if (pageTitle) pageTitle.textContent = translations.pageTitle;
+            if (pageSubtitle) pageSubtitle.textContent = translations.pageSubtitle;
+            
+            // 更新公司介绍和使命价值观标题
+            const companyDescParagraphs = document.querySelectorAll('.about-mission-text p');
+            if (companyDescParagraphs.length > 0) {
+              companyDescParagraphs[0].textContent = translations.companyDesc;
+            }
+            if (companyDescParagraphs.length > 1) {
+              companyDescParagraphs[1].textContent = translations.companyDescDetail1;
+            }
+            if (companyDescParagraphs.length > 2) {
+              companyDescParagraphs[2].textContent = translations.companyDescDetail2;
+            }
+            if (companyDescParagraphs.length > 3) {
+              companyDescParagraphs[3].textContent = translations.companyDescDetail3;
+            }
+            
+            // 更新使命和价值观标题
+            const missionTitle = document.querySelector('.about-mission-text h2');
+            const valuesTitle = document.querySelector('.about-values h2');
+            if (missionTitle) missionTitle.textContent = translations.missionTitle;
+            if (valuesTitle) valuesTitle.textContent = translations.valuesTitle;
+            
+            // 更新语言按钮显示
+            const languageButton = document.querySelector('.language-button');
+            if (languageButton) {
+              const langMap = {
+                'en': 'EN',
+                'zh': '中',
+                'ar': 'ع'
+              };
+              languageButton.textContent = langMap[lang] || 'EN';
+            }
+            
+            // 更新价值观卡片内容
+            const valueCards = document.querySelectorAll('.value-card');
+            if (valueCards.length >= 4) {
+              // Integrity卡片
+              const integrityCard = valueCards[0];
+              const integrityTitle = integrityCard.querySelector('h3');
+              const integrityDesc = integrityCard.querySelector('p');
+              if (integrityTitle) integrityTitle.textContent = translations.integrityTitle;
+              if (integrityDesc) integrityDesc.textContent = translations.integrityDesc;
+              
+              // Customer First卡片
+              const customerFirstCard = valueCards[1];
+              const customerFirstTitle = customerFirstCard.querySelector('h3');
+              const customerFirstDesc = customerFirstCard.querySelector('p');
+              if (customerFirstTitle) customerFirstTitle.textContent = translations.customerFirstTitle;
+              if (customerFirstDesc) customerFirstDesc.textContent = translations.customerFirstDesc;
+              
+              // Innovation卡片
+              const innovationCard = valueCards[2];
+              const innovationTitle = innovationCard.querySelector('h3');
+              const innovationDesc = innovationCard.querySelector('p');
+              if (innovationTitle) innovationTitle.textContent = translations.innovationTitle;
+              if (innovationDesc) innovationDesc.textContent = translations.innovationDesc;
+              
+              // Collaboration卡片
+              const collaborationCard = valueCards[3];
+              const collaborationTitle = collaborationCard.querySelector('h3');
+              const collaborationDesc = collaborationCard.querySelector('p');
+              if (collaborationTitle) collaborationTitle.textContent = translations.collaborationTitle;
+              if (collaborationDesc) collaborationDesc.textContent = translations.collaborationDesc;
+            }
+          } else {
+            console.error('Translations not found for language:', lang);
+          }
+        }
+        
+        // 初始化语言切换器
+        function initAboutLanguageSwitcher() {
+          const languageButton = document.querySelector('.language-button');
+          const languageDropdown = document.querySelector('.language-dropdown');
+          const languageOptions = document.querySelectorAll('.language-option');
+          
+          if (languageButton && languageDropdown && languageOptions.length > 0) {
+            // 初始化语言按钮显示
+            const langMap = {
+              'en': 'EN',
+              'zh': '中',
+              'ar': 'ع'
+            };
+            languageButton.textContent = langMap[currentLanguage] || 'EN';
+            
+            // 切换下拉菜单显示/隐藏
+            languageButton.addEventListener('click', function(e) {
+              e.stopPropagation();
+              languageDropdown.classList.toggle('show');
+            });
+            
+            // 点击其他区域关闭下拉菜单
+            document.addEventListener('click', function() {
+              if (languageDropdown.classList.contains('show')) {
+                languageDropdown.classList.remove('show');
+              }
+            });
+            
+            // 防止下拉菜单内部点击事件冒泡
+            languageDropdown.addEventListener('click', function(e) {
+              e.stopPropagation();
+            });
+            
+            // 语言选择事件
+            languageOptions.forEach(option => {
+              option.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                switchAboutLanguage(lang);
+                languageDropdown.classList.remove('show');
+              });
+            });
+          }
+        }
+        
+        // 初始化页面
+        updateAboutPageContent(currentLanguage);
+        initAboutLanguageSwitcher();
+      });
+    </script>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

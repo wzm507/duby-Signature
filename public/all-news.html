@@ -1,0 +1,2363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Home | Signature Homes</title>
+    <link rel="icon" href="/img/logo2.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #333;
+            --secondary-color: #6c63ff;
+            --light-text: #666;
+            --border-radius: 12px;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        /* 弹窗样式 - 与首页保持一致 */
+        .news-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.4s ease-out;
+        }
+        
+        .news-modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            transform: scale(0.95);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+        }
+        
+        .news-modal.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .modal-header {
+            position: relative;
+            height: 320px;
+            overflow: hidden;
+        }
+        
+        .modal-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .news-modal.active .modal-header img {
+            transform: scale(1.05);
+        }
+        
+        .modal-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+        
+        .modal-title-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            color: white;
+        }
+        
+        .modal-title-overlay h3 {
+            font-size: 1.8rem;
+            margin: 0 0 5px 0;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .modal-date-overlay {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .modal-date-overlay i {
+            margin-right: 4px;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .modal-close:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1) rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 40px;
+        }
+        
+        .modal-date {
+            display: none;
+        }
+        
+        .modal-body h3 {
+            display: none;
+        }
+        
+        .modal-body p {
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        
+        .modal-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .modal-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .modal-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .modal-content::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+        
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .modal-header {
+                height: 220px;
+            }
+            
+            .modal-body {
+                padding: 25px;
+            }
+            
+            .modal-title-overlay {
+                padding: 20px;
+            }
+            
+            .modal-title-overlay h3 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-body p {
+                font-size: 1rem;
+            }
+            
+            .modal-close {
+                width: 38px;
+                height: 38px;
+                top: 15px;
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .news-modal {
+                padding: 10px;
+            }
+            
+            .modal-header {
+                height: 180px;
+            }
+            
+            .modal-title-overlay h3 {
+                font-size: 1.3rem;
+            }
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+        
+        /* 导航栏样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #6c63ff;
+        }
+        
+        /* 新闻页面样式 */
+        .page-header {
+            background-color: #f9f9f9;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .news-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* 新闻网格容器样式 */
+        .news-container-wrapper {
+            overflow: hidden;
+            position: relative;
+            min-height: 800px;
+            margin-bottom: 3rem;
+        }
+        
+        /* 新闻网格样式 */
+        .news-grid {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 300%;
+            gap: 2rem;
+        }
+        
+        .news-page {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: calc(100% / 3);
+        }
+        
+        /* 新闻卡片样式 */
+        .news-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .news-image-container {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .news-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .news-card:hover .news-image-container img {
+            transform: scale(1.05);
+        }
+        
+        .news-date {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .news-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .news-content p {
+            font-size: 1rem;
+            color: var(--light-text);
+            margin-bottom: auto;
+            line-height: 1.6;
+        }
+        
+        .news-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .news-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .news-link::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .news-link:hover::after {
+            transform: translateX(5px);
+        }
+        
+        /* 分页样式 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+        
+        .pagination a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: var(--transition);
+            line-height: 1;
+        }
+        
+        /* 确保箭头图标在圆形容器中完全居中对齐并增强可见性 */
+        #next-page {
+            font-size: 1.3rem;
+            font-weight: bold;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+            border-radius: 50%;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            /* 更精确的微调值 */
+            transform: translateX(0px) translateY(0);
+            /* 确保完美居中 */
+            text-align: center;
+            line-height: 40px;
+            /* 移除所有可能影响对齐的默认样式 */
+            text-decoration: none;
+            outline: none;
+            user-select: none;
+        }
+        
+        .pagination a:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .pagination a.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding-top: 120px;
+            }
+            
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .news-image-container {
+                height: 180px;
+            }
+        }
+        
+        /* 返回按钮样式 - 线性按钮，与页面其他按钮颜色保持一致 */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: var(--secondary-color);
+            text-decoration: none;
+            border: 2px solid var(--secondary-color);
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .back-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--secondary-color);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .back-button:hover {
+            color: white;
+        }
+        
+        .back-button:hover::before {
+            left: 0;
+        }
+        
+        .back-button i {
+            margin-right: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-button:hover i {
+            transform: translateX(-3px);
+        }
+        
+        /* 按钮点击效果 */
+        .back-button:active {
+            transform: scale(0.98);
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .back-button {
+                padding: 8px 16px;
+                font-size: 14px;
+                border-width: 1.5px;
+            }
+        }    </style>
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <div class="navbar">
+        <a href="http://localhost:5173/" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        <div class="language-selector">
+            <div class="current-language" id="current-language">English</div>
+            <div class="language-dropdown">
+                <button class="language-option" data-lang="en">English</button>
+                <button class="language-option" data-lang="zh">中文</button>
+                <button class="language-option" data-lang="ar">العربية</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 页面标题 -->
+    <section class="page-header">
+        <h1>Your Home</h1>
+    </section>
+    
+    <!-- 新闻列表 -->
+    <section class="news-container">
+        <div class="news-container-wrapper">
+            <div class="news-grid">
+                <!-- 第1页 - 6个卡片 -->
+                <div class="news-page" id="page-1">
+                    <!-- 新闻卡片 1 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="images_new/news/news-1/微信图片_2025-10-11_152316_267.jpg" alt="Lyvia By Palace Project" />
+                            <div class="news-date">October 13, 2025</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Lyvia By Palace Grand Launch on October 13, 2025</h3>
+                            <p>Lyvia By Palace will be launched at 5:00 PM on October 13, 2025, with an expected delivery in 2029. Located at a prime location with multiple upcoming developments, including the near-completion of the Creek Tower, the opening of the Metro Blue Line, new schools, shopping malls, and commercial office complexes. Whether for investment or personal residence, Lyvia By Palace is an excellent choice.</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻卡片 2 -->
+                    <div class="news-card">
+          <div class="news-image-container">
+            <img src="images_new/news/news-2/微信图片_2025-10-11_155933_842.png" alt="SOLAYA: New Luxury Residence at Dubai's La Mer Beach" />
+            <div class="news-date">January 8, 2025</div>
+          </div>
+          <div class="news-content">
+            <h3>SOLAYA: New Luxury Residence at Dubai's La Mer Beach, Unlocking Dual Living of Prime Sea View and Urban Vibrancy</h3>
+            <p>In Dubai's high-end real estate market, prime sea view luxury residences with core resource locations have always been scarce. Now, La Mer Beach on the prestigious Jumeirah coastline welcomes a new luxury residential masterpiece — SOLAYA.</p>
+            <a href="#" class="news-link">Read more</a>
+          </div>
+        </div>
+                    
+                    <!-- 新闻卡片 3 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="/images_new/news/news-3/微信图片_2025-10-11_162014_033.png" alt="UAE Real Estate Market Report" />
+                            <div class="news-date">January 2, 2025</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Report Analysis: UAE Real Estate Becomes Core Driver of Economic Growth</h3>
+                            <p>Amidst global economic challenges, the UAE continues to strengthen its position as an 'investment safe haven' in the Middle East, thanks to its unique geographical advantages and stable investment environment. The latest report indicates that the real estate sector has become a key engine driving the UAE's economic growth.</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻卡片 4 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="/images_new/news/news-4/微信图片_2025-10-11_163555_819.png" alt="SAAS Heights" />
+                            <div class="news-date">December 28, 2024</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>SAAS Heights: New Benchmark for Eco-Ocean View Luxury Residences in Abu Dhabi</h3>
+                            <p>When buying property in Abu Dhabi, people's pursuit of living quality has long gone beyond a single view or location. Now, a high-end residence that combines mangrove ecological scenery, the magnificent view of the Arabian Gulf, and top-tier精装修 — SAAS Heights — is about to shine in the central area of Reem Island.</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻卡片 5 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                             <img src="images_new/news/news-5/微信图片_2025-10-11_165302_208.png" alt="Azizi Lina Investment" />
+                              <div class="news-date">December 22, 2024</div>
+                          </div>
+                        <div class="news-content">
+                            <h3>Seize the Value Highland in Dubai Free Zone! Azizi Lina Exclusive Apartments Launch</h3>
+                            <p>8% rental return opens new investment opportunities. Located in the core of Jebel Ali Free Zone, just a 3-minute walk to the metro station, unlocking new global asset allocation options for investors.</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻卡片 6 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="images_new/news/news-6/微信图片_2025-10-11_170037_484.png" alt="SERA 2" />
+                            <div class="news-date">December 15, 2024</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>SERA 2: Limited to 190 Units, Ushering in a New Era of Dubai Coastal Resort Living</h3>
+                            <p>At Dubai's Rashid Yacht Marina, a new revolution in luxury living and vacation experience is quietly unfolding. SERA 2 is not just a traditional residential community; it's more like a carrier that integrates life attitude and quality pursuit.</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第2页 - 6个卡片 -->
+                <div class="news-page" id="page-2">
+                    <!-- 新闻卡片 7 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="images_new/news/news-7/640.png" alt="Binghatti Skyblade" />
+                            <div class="news-date">December 10, 2024</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Binghatti Skyblade: New Landmark in Downtown Dubai, Co-creating the Urban Skyline with Burj Khalifa</h3>
+                            <p>In the heart of Downtown Dubai, on the precious land beside the Burj Khalifa, a new landmark that will redefine the city's skyline — Binghatti Skyblade — is ready to launch. As the "2025 Landmark Project" by Binghatti Group, it is not only another heavyweight in the group's iconic project matrix but also seen as the "final piece of the puzzle" to fill the land resource gap in Downtown Dubai.</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻卡片 8 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="images_new/news/news-8/微信图片_2025-10-11_172051_529.jpg" alt="Windsor House II" />
+                            <div class="news-date">December 5, 2024</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Windsor House II: Another Hot Asset in Dubai South, Phase II Launches with Immediate Popularity</h3>
+                            <p>As global investors keep a close eye on new opportunities in the Middle East real estate market, Dubai South has become a highly sought-after wealth highland with its clear strategic planning and strong development momentum.</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻卡片 9 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="images_new/news/news-9/微信图片_2025-10-11_172344_201.png" alt="Rise by Athlon" />
+                            <div class="news-date">October 12, 2025</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Rise by Athlon: Move into Dubai's LEED Platinum Community with AED 150,000 Down Payment, 7% Annual Return Opens New Investment Opportunities</h3>
+                            <p>A brand-new project by Aldar, a developer with Abu Dhabi royal background, redefines Dubai's real estate market with ultra-low down payment plans and top sustainable development concepts.</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻卡片 10 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="images_new/news/news-10/微信图片_2025-10-11_172809_816.jpg" alt="Wynn Resort & Casino Ras Al Khaimah" />
+                            <div class="news-date">August 28, 2025</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Wynn Resort & Casino Ras Al Khaimah Opening in 2027: Project Progress, Economic Value, and Regional Development Linkage</h3>
+                            <p>As the first integrated gaming resort in the UAE, Wynn Resort & Casino Ras Al Khaimah will be completed and opened as scheduled in March 2027, deeply linking regional economy and urban development.</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻卡片 11 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="images_new/news/news-11/微信图片_2025-10-11_173158_843.png" alt="Palm Jumeirah Villa Auction" />
+                            <div class="news-date">October 11, 2025</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Palm Jumeirah Villa Auction Sets New Record! Sold for AED 161 Million</h3>
+                            <p>Dubai Sotheby's International Realty successfully facilitated the sale of a top-tier Signature Villa on Palm Jumeirah for AED 161 million, setting a new record for the most expensive resale villa transaction on the island so far in 2025.</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻卡片 12 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="images_new/news/news-12/微信图片_2025-10-11_173659_104.jpg" alt="Binghatti Pinnacle" />
+                            <div class="news-date">September 17, 2025</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Binghatti Pinnacle Launches: Ready-to-Move-in Property in Al Jaddaf with 3-Month Quick Delivery</h3>
+                            <p>The brand-new Binghatti Pinnacle project by renowned developer Binghatti is coming to Al Jaddaf, with a starting price of just AED 1,349,999 and lightning-fast delivery within 3 months!</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第3页 - 6个卡片 -->
+                <div class="news-page" id="page-3">
+                    <!-- 新闻卡片 1 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="images_new/news/news-13/微信图片_2025-10-13_092021_895.jpg" alt="Breez by Danube" />
+                            <div class="news-date">November 20, 2025</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Breez by Danube: Luxury Seaview Residence in Dubai Maritime City, Move-in Ready from AED 1,400,000</h3>
+                            <p>This 60-story cloud residence offers a high-quality living experience at an accessible price starting from AED 1,400,000, fully furnished for true move-in readiness. The project also features highly attractive payment plans.</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻卡片 2 -->
+                    <div class="news-card">
+          <div class="news-image-container">
+            <img src="images_new/news/news-14/微信图片_2025-10-13_092435_983.jpg" alt="The Valley Phase II Terrace Villas" />
+            <div class="news-date">November 15, 2025</div>
+          </div>
+          <div class="news-content">
+            <h3>The Valley Phase II Terrace Villas Coming Soon! Emaar's Large Units + Golden Beach + High Greenery, Starting Ideal Living</h3>
+            <p>The Valley creates an ecological oasis city integrating nature and life, featuring diverse products including modern terrace villas, duplex villas and detached villas.</p>
+            <a href="#" class="news-link">Read more</a>
+          </div>
+        </div>
+                    
+                    <!-- 新闻卡片 3 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="images_new/news/news-15/微信图片_2025-10-13_104501_380.jpg" alt="DAMAC District" />
+                            <div class="news-date">November 20, 2025</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>New Landmark in Dubai's Luxury Area! DAMAC District Launches, "Office + Apartment" Combination Reshapes High-End Living</h3>
+                            <p>DAMAC District breaks the single-function limitation of traditional real estate projects, entering the market with a strong "three-building development" approach, integrating Grade A offices and boutique apartments to provide a one-stop "living, working, entertainment" solution for enterprises and high-end groups.</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻卡片 4 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="images_new/news/news-16/微信图片_2025-10-13_113435_287.jpg" alt="Danube Sparklz Low-Density Apartments" />
+                            <div class="news-date">November 25, 2024</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>New Benchmark in Dubai's Al Furjan! Danube Sparklz Low-Density Apartments Launch, 10% Down Payment for Two-Bedroom Space at One-Bedroom Price</h3>
+                            <p>Danube Sparklz boutique low-density apartments are located in the core area of Al Furjan, within walking distance to the metro station, equipped with over 30 hotel-grade amenities, and innovative unit designs to meet diverse needs.</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻卡片 5 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="images_new/news/news-17/微信图片_2025-10-13_113819_644.jpg" alt="Akala Residences Tower1" />
+                            <div class="news-date">October 13, 2025</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>New Landmark in Dubai's DIFC! Akala Residences Tower1 Twin Towers Launch</h3>
+                            <p>The flagship project Akala Residences Tower1 by Sharjah royal developer Arada has been officially unveiled, featuring dual-certified wellness luxury residences with only 284 units.</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻卡片 6 -->
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="images_new/news/news-18/微信图片_2025-10-13_114116_332.jpg" alt="Jumeirah Residences Emirates Towers" />
+                            <div class="news-date">October 13, 2025</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Meraas and Jumeirah Group Collaboration! Jumeirah Residences Emirates Towers Shines Bright</h3>
+                            <p>A landmark project jointly developed by Meraas, a renowned developer under the Dubai government, and Jumeirah Group, a global leader in luxury hospitality, designed by the internationally acclaimed architectural firm SCDA.</p>
+                            <a href="#" class="news-link">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 分页控件 -->
+        <!-- 分页控件 -->
+        <div class="pagination">
+            <a href="#" id="page-btn-1" class="active">1</a>
+            <a href="#" id="page-btn-2">2</a>
+            <a href="#" id="page-btn-3">3</a>
+            <a href="#" id="next-page">→</a>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2025 SIGNATURE HOMES. All rights reserved.</p>
+    <!-- 新闻弹窗 - 与首页保持一致 -->
+    <div class="news-modal" id="news-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img id="modal-image" src="" alt="News image" />
+                <div class="modal-overlay"></div>
+                <div class="modal-title-overlay">
+                    <h3 id="modal-title-overlay"></h3>
+                    <div class="modal-date-overlay">
+                        <i class="far fa-calendar-alt"></i>
+                        <span id="modal-date-overlay"></span>
+                    </div>
+                </div>
+                <div class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-date" id="modal-date"></div>
+                <h3 id="modal-title"></h3>
+                <p id="modal-content"></p>
+                <p id="modal-content-more"></p>
+            </div>
+        </div>
+    </div>
+    
+    </footer>
+    
+    <script>
+        // 平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            if (!anchor.id.startsWith('page-btn-') && anchor.id !== 'next-page') {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+        
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '1rem 2rem';
+                navbar.style.boxShadow = '0 8px 30px rgba(0, 0, 0, 0.12)';
+            } else {
+                navbar.style.padding = '1.5rem 2rem';
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+            }
+        });
+        
+        // 分页功能实现
+        const newsGrid = document.querySelector('.news-grid');
+        const pageBtns = {
+            1: document.getElementById('page-btn-1'),
+            2: document.getElementById('page-btn-2'),
+            3: document.getElementById('page-btn-3')
+        };
+        const nextBtn = document.getElementById('next-page');
+        let currentPage = 1;
+        const totalPages = 3;
+        
+        // 切换到指定页面
+        function goToPage(pageNumber) {
+            // 验证页码
+            if (pageNumber < 1) pageNumber = 1;
+            if (pageNumber > totalPages) pageNumber = 1; // 循环回到第一页
+            
+            // 更新当前页码
+            currentPage = pageNumber;
+            
+            // 移动新闻网格
+            const translateX = -(currentPage - 1) * 33.33; // 33.33% per page
+            newsGrid.style.transform = `translateX(${translateX}%)`;
+            
+            // 更新分页按钮状态
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === currentPage) {
+                    pageBtns[i].classList.add('active');
+                } else {
+                    pageBtns[i].classList.remove('active');
+                }
+            }
+        }
+        
+        // 绑定页码按钮点击事件
+        for (let i = 1; i <= totalPages; i++) {
+            pageBtns[i].addEventListener('click', function(e) {
+                e.preventDefault();
+                goToPage(i);
+            });
+        }
+        
+        // 绑定下一页按钮点击事件
+        nextBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            goToPage(currentPage + 1);
+        });
+        
+        // 初始化显示第一页
+        goToPage(1);
+        
+        // 新闻弹窗功能 - 与首页保持一致
+        const newsModal = document.getElementById('news-modal');
+        const modalClose = document.getElementById('modal-close');
+        const modalImage = document.getElementById('modal-image');
+        const modalDate = document.getElementById('modal-date');
+        const modalDateOverlay = document.getElementById('modal-date-overlay');
+        const modalTitle = document.getElementById('modal-title');
+        const modalTitleOverlay = document.getElementById('modal-title-overlay');
+        const modalContent = document.getElementById('modal-content');
+        const modalContentMore = document.getElementById('modal-content-more');
+        
+        // 为所有Read more按钮添加点击事件
+        const newsLinks = document.querySelectorAll('.news-link');
+        
+        newsLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 获取当前新闻卡片
+                const newsCard = this.closest('.news-card');
+                
+                // 提取新闻数据
+                const imageSrc = newsCard.querySelector('.news-image-container img').src;
+                const date = newsCard.querySelector('.news-date').textContent;
+                const title = newsCard.querySelector('.news-content h3').textContent;
+                const content = newsCard.querySelector('.news-content p').textContent;
+                
+                // 根据标题生成更多内容（实际项目中应该从后端获取）
+                let moreContent = '';
+                if (title.includes('Growth')) {
+                    moreContent = 'Industry experts attribute this growth to several factors including increased tourism, favorable government policies, and a strong economy. The luxury segment has seen the most significant appreciation, with some properties increasing in value by over 20% in the past year alone. This trend is expected to continue into 2026 as Dubai prepares to host several major international events.';
+                } else if (title.includes('SOLAYA')) {
+                modalImage.src = 'images_new/news/news-2/微信图片_2025-10-11_155933_842.png';
+                    moreContent = `
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">一线海景加持，私享 234 套臻品奢宅</h4>
+              <p>SOLAYA 选址于迪拜极具价值的朱美拉黄金海岸线，坐拥不可复制的海滨位置。推窗望去，无遮挡的阿拉伯海湾壮阔海景与错落有致的迪拜天际线全景映入眼帘，将 "面朝大海" 的居住理想变为现实。不同于普通住宅，SOLAYA 仅规划 234 套私人臻选奢宅，每一处空间都经过精心雕琢，在细节中尽显低调优雅的格调。无论是日常居住还是休闲度假，都能让居者在静谧氛围中，私享专属的滨海生活质感。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">国际大师联袂设计，建筑与自然无缝融合</h4>
+              <p>为了打造匹配这片稀缺土地的居住作品，SOLAYA 特邀全球知名设计团队 ——Foster + Partners 与 1508 London 共同操刀。两大团队以 "建筑融入自然" 为核心理念，让项目与周边的海滩、海景、城市景观形成完美呼应。整个社区由九栋临海建筑组成，布局经过反复优化，最大程度保障了每一户的海景、城景与沙滩视野。室内采用开放式格局设计，搭配大面积采光窗，让阳光自然涌入。同时，通过巧妙的空间衔接，实现室内外生活场景的自由切换，无论是在阳台俯瞰海景，还是步入社区感受微风，都能体验到现代海岸生活的舒适与惬意，堪称理想人居的典范。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">多维优势赋能，定义奢宅新标杆</h4>
+              <p>SOLAYA 之所以能成为迪拜备受关注的海滨奢宅项目，源于其在开发商、区位、交通、配套、市场潜力等多方面的突出优势，全方位满足居住与投资需求。</p>
+              
+              <div style="margin-top: 10px;">
+                <p><strong>优势一：实力开发商背书，投资潜力显著</strong></p>
+                <p>SOLAYA 由迪拜酋长国最大的房地产开发企业之一 —— 迪拜控股（Dubai Holding）主导开发。作为当地极具影响力的开发商，迪拜控股不仅在核心地段打造了多个高品质住宅社区，还涉足商业地产、酒店运营等多元化领域，为投资者提供了丰富的投资选择。随着迪拜房地产市场的持续升温，高端住宅与商业地产的需求不断增长，迪拜控股开发的项目凭借优质的产品力与稀缺的区位资源，在租金回报与资产增值方面表现突出，国际竞争力稳居前列，为 SOLAYA 的居住品质与投资价值提供了坚实保障。</p>
+              </div>
+              
+              <div style="margin-top: 10px;">
+                <p><strong>优势二：世界级海滨目的地，生活氛围浓厚</strong></p>
+                <p>项目所在的 La Mer 海滩，是朱美拉 1 区的世界级海滨目的地，由知名开发商 Meraas 打造 —— 该开发商还成功开发了 City Walk、Outlet Village、Bluewaters Island 等迪拜标志性项目，实力与口碑兼具。La Mer 总面积达 1340 万平方英尺，分为北区与南区两大板块，自 2018 年开放以来，已成为迪拜热门的休闲生活地标。其中，第二阶段打造的 The Wharf 区域，涵盖 Laguna 水上乐园、Roxy 电影院等娱乐设施；区域内还规划了 Port De La Mer 公寓、Sur La Mer 联排别墅，以及顶层公寓、独栋别墅等多元住宅形态，满足不同人群的居住需求。此外，La Mer 周边聚集了众多高端餐饮、精品购物场所，还有拥有 190 个泊位的世界级游艇俱乐部与码头，无论是日常消费还是高端社交，都能轻松满足，生活格调十足。</p>
+              </div>
+              
+              <div style="margin-top: 10px;">
+                <p><strong>优势三：核心区位 + 便捷交通，通勤出行无忧</strong></p>
+                <p>La Mer 位于迪拜朱美拉 1 区的核心位置，交通网络十分便捷。社区紧邻谢赫・扎耶德路、Al Khail 路等主要干道，驾车出行畅通无阻：前往迪拜国际金融中心（DIFC）、迪拜市中心仅需约 15 分钟；抵达迪拜国际机场仅需 16-20 分钟，为国际出行提供极大便利；距离阿提哈德博物馆约 7 分钟车程，到 Dubai Frame、Meraas 旗下的 The Green Planet 仅需 13 分钟，休闲出行轻松便捷。对于在核心商务区工作的专业人士而言，短距离通勤大幅节省时间成本；对于有国际差旅需求的家庭，便捷的机场交通也提升了生活效率。</p>
+              </div>
+              
+              <div style="margin-top: 10px;">
+                <p><strong>优势四：全维生活配套，满足多元需求</strong></p>
+                <p>SOLAYA 所在的 La Mer 社区，不仅拥有优质的居住环境，更配备了全方位的高端生活与休闲设施，堪称 "一站式生活目的地"。在生活配套方面，社区内及周边有超过 130 家商店与餐饮场所，既有国际知名品牌，也有充满当地特色的店铺，日常购物、聚餐选择丰富；周边还有 Maha 超市、LuLu Xpress、Spinneys 超市等多家商超，5 分钟内即可抵达，满足日常杂货采购需求。休闲娱乐方面，社区坐拥延绵的私人海滩，居者可随时享受阳光与海浪；区域内还有 Laguna 水上乐园、J1 海滩等设施，无论是家庭亲子互动，还是朋友聚会游玩，都能找到合适的场所。此外，社区内的 Beach Park、Yoga Deck 等空间，也为运动、社交、放松提供了多样化选择。教育与医疗资源同样优质：周边 5 分钟路程内有 Kinderville 幼儿园、Mon Ecole French Nursery 等托儿所；中小学方面，有采用 IB 课程、被 KHDA 评为 "非常好" 的 Jumeirah Baccalaureate School，以及拥有足球场、礼堂等完善设施的 Al Shaab School、Al Shorouq Private School；高等教育可选择 10 分钟车程内的迪拜加拿大大学。医疗方面，Infinity 家庭医学诊所、Jumeirah American Clinic、拥有 47 年历史的 GMC Clinics 等机构均在附近，为家人健康提供保障。</p>
+              </div>
+              
+              <div style="margin-top: 10px;">
+                <p><strong>优势五：稳健市场趋势，资产增值可期</strong></p>
+                <p>作为迪拜高端房地产市场的代表项目，SOLAYA 所在的 La Mer 区域，近年来房产市场表现亮眼。由于占据稀缺的滨海资源，且周边配套持续完善，区域内住宅的市场需求不断上升，过去几年已实现显著的资本增值。从市场趋势来看，迪拜作为国际知名的旅游与商业都市，高端住宅的需求仍在稳步增长，加之 La Mer 区域的规划持续升级，SOLAYA 作为区域内的优质奢宅项目，未来的资产增值潜力与投资回报率均值得期待。</p>
+              </div>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">户型规划：多样选择，匹配不同需求</h4>
+              <p>SOLAYA 针对不同家庭结构与居住需求，规划了丰富的户型产品，从两房到五房顶楼大平层，满足从二人世界到多代同堂的居住需求，具体户型与价格参考如下：</p>
+              <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>两房户型：面积 2000 平方英尺起，价格约 1420 万；</li>
+                <li>三房户型：面积 3129 平方英尺起，价格约 2060 万-4400 万（含多种细分户型）；</li>
+                <li>四房户型：面积 4340 平方英尺，价格约 3230 万（复式户型价格约 3500 万）；</li>
+                <li>五房户型：面积 6987 平方英尺起，价格约 4740 万；</li>
+                <li>五房顶楼大平层：面积 11567 平方英尺起，价格约 8860 万。</li>
+              </ul>
+            </div>
+          `;
+                } else if (title.includes('Sustainable')) {
+                    modalImage.src = '/images_new/news/news-3/微信图片_2025-10-11_162014_033.png';
+                    moreContent = `
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">全球经济挑战下的中东投资安全港</h4>
+              <p>在全球经济面临多重挑战的当下，阿联酋凭借其独特的区位优势与稳定的投资环境，持续巩固着中东地区 "投资安全港" 的地位。最新发布的国际研究报告指出，房地产行业已成为拉动阿联酋经济增长的关键引擎，且在 2025 年将延续向上发展的良好态势。这一积极趋势的背后，是外国直接投资（FDI）的强劲注入、期房市场的迅猛扩张、租赁需求的稳步攀升，以及政府通过一系列改革举措对投资环境的持续优化与创新推动。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">01 期房市场成主力，双市齐发力</h4>
+              <p>仲量联行（JLL）最新统计数据显示，2025 年上半年，阿联酋两大核心城市 —— 迪拜与阿布扎比的期房销售市场迎来爆发式增长，交易数据再创新高。</p>
+              <p>迪拜：第二季度期房销售额达到 1537 亿迪拉姆，与去年同期相比增幅高达 44.5%，刷新历史纪录，展现出极强的市场吸引力。</p>
+              <p>阿布扎比：同期期房平均售价上涨 12.1%，高端及中高端住宅项目持续受到市场青睐，成为拉动区域期房市场的重要力量。</p>
+              <p>两大市场的同步扩张还体现在房源供给上。据预测，2025 年下半年，阿布扎比与迪拜将有 32400 套在建住宅单元陆续投入市场。这一举措不仅能有效满足当地不断增长的住房需求，也为全球投资者提供了更多优质的投资选择，进一步激活了区域房地产市场活力。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">02 租赁市场稳健，续租需求凸显稳定性</h4>
+              <p>除了期房市场的火热，阿联酋租赁市场同样表现稳健，需求端持续发力。阿布扎比第二季度租赁合同数量同比增长 9.4%，租赁市场规模稳步扩大；迪拜住宅租赁总额同比上升 11.5%，市场交易活跃度不断提升。</p>
+              <p>值得注意的是，许多租户选择续签租赁合同，这一现象充分反映出阿联酋租赁市场的稳定性。对于投资者而言，稳定的续租需求意味着更可靠的租金回报，尤其在长期持有房产并期待资产增值的背景下，租赁市场的稳健表现为投资收益提供了有力保障。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">03 二级市场活力不减，"双轮驱动"形成</h4>
+              <p>在期房市场成交火爆的同时，阿联酋房地产二级市场同样展现出旺盛活力，与期房市场共同构成了 "双轮驱动" 的良好市场格局。</p>
+              <p>阿布扎比二级市场交易额同比增长 32.6%，市场流动性显著提升；迪拜二级市场销售额同比增长 17.1%，带动阿联酋房地产整体市场实现 22.8% 的年增长率。</p>
+              <p>二级市场的活跃，既为有刚需的购房者提供了更多选择，也满足了投资客灵活调整资产配置的需求，进一步完善了阿联酋房地产市场的生态体系，增强了市场的整体抗风险能力。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">04 商业地产受青睐，金融中心助力发展</h4>
+              <p>除住宅相关市场外，阿联酋商业地产也成为投资热点，尤其是办公楼市场需求持续扩张，同时金融中心的升级规划为商业地产发展注入新动能。</p>
+              <p>阿布扎比：第二季度新增办公楼面积 7.8 万平方米，办公楼总存量达到 460 万平方米，预计年底前还将新增 6.6 万平方米，办公空间供给持续增加；</p>
+              <p>迪拜：新增办公空间 2.4 万平方米，总存量达 930 万平方米，市场规模领先。</p>
+              <p>更值得关注的是，迪拜国际金融中心（DIFC）的发展规划 —— 到 2026 年，该区域将迎来一批顶级办公项目，预计新增办公面积 26.4 万平方米。这一规划将进一步强化迪拜作为全球金融枢纽的地位，吸引更多跨国企业入驻，反过来又将带动商业地产需求，形成良性循环。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">05 市场前景广阔，长期增长潜力显著</h4>
+              <p>多家权威机构对阿联酋房地产市场规模的预测显示，该行业未来增长空间广阔，长期发展韧性十足。</p>
+              <p>根据 Statista 的预测数据：2025 年底，阿联酋房地产市场总体规模将达到 6935.3 亿美元，其中住宅市场规模为 4018.1 亿美元；到 2029 年，房地产整体市场年增长率预计为 2.28%，总规模将突破 7590.4 亿美元。</p>
+              <p>而 Mordor Intelligence 的报告则聚焦房地产服务市场：2025 年阿联酋房地产服务市场规模为 184.5 亿美元；预计到 2030 年，这一规模将增至 247.5 亿美元，复合年增长率达 6.05%，凸显出房地产服务领域的强劲扩张潜力。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">06 区域多元化发展，新兴市场崭露头角</h4>
+              <p>以往，阿联酋房地产投资主要集中在迪拜和阿布扎比两大传统核心市场，而如今，区域多元化发展趋势逐渐显现，其他酋长国开始崭露头角，成为房地产市场的新增长点。</p>
+              <p>报告特别指出，拉斯海玛（RAK）预计将在未来几年实现最高增长率。这一趋势意味着阿联酋房地产市场正从 "双核心驱动" 向 "全域多点开花" 转变，为投资者提供了更广阔的投资空间，不再局限于传统热门城市，新兴市场的投资价值逐渐凸显。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">07 结语：报告对投资者的核心价值</h4>
+              <p>这份关于阿联酋房地产市场的报告，对全球投资者而言具有重要的参考意义，核心价值体现在以下几点：</p>
+              <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>经济核心地位：房地产是阿联酋经济的核心驱动力，不仅直接拉动就业，还间接带动金融、消费等相关产业发展，投资房地产相当于布局阿联酋经济增长的核心领域；</li>
+                <li>收益双重保障：期房市场的繁荣为投资者提供了资本溢价机会，而二级市场与租赁市场的稳定则带来了可靠的租金回报，实现 "增值 + 收益" 双重保障；</li>
+                <li>商业住宅协同：商业地产与住宅地产并行发展，办公楼市场的升级与国际金融中心地位的强化，将吸引更多跨国企业入驻，进一步提升房地产市场的长期价值；</li>
+                <li>规模增长明确：千亿美元级别的市场规模扩张路径清晰，无论是整体房地产市场还是细分的服务市场，都展现出长期增长潜力，对全球资本具有极强的吸引力；</li>
+                <li>区域机会多元：拉斯海玛等新兴市场的崛起，让投资者不再依赖单一城市，可通过多元化布局降低风险，捕捉更多潜在投资机遇。</li>
+              </ul>
+              <p style="margin-top: 10px;">对于潜在买家和国际投资者来说，报告释放的信号十分明确：阿联酋房地产市场依然是全球资本配置的优质选择，既能带来稳定的短期收益，又具备长期资产增值的潜力，值得重点关注与布局。</p>
+            </div>
+          `;
+                } else if (title.includes('SAAS Heights')) {
+                    modalImage.src = '/images_new/news/news-4/微信图片_2025-10-11_163555_819.png';
+                    moreContent = `
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">SAAS Heights：顶奢设计与诗意生活的完美融合</h4>
+              <p>在阿布扎比置业，人们对居住品质的追求早已不止于单一的景观或地段。如今，一处将红树林生态盛景、阿拉伯湾壮阔海景、顶配精装、Minotti 进口家具、VLED 净化空调与黄金梯户比集于一身的高端住宅 ——SAAS Heights，即将在 Reem 岛中央区璀璨登场，为追求品质生活的人士带来全新选择。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">01 开发商 SAAS Properties</h4>
+              <p>自 2019 年成立以来，SAAS Properties 始终秉持 "重塑高端生活方式" 的理念，凭借对品质的极致追求和创新的设计思维，迅速在阿联酋房地产市场崭露头角，成为备受瞩目的 "黑马"。不同于大规模复制的开发模式，SAAS Properties 专注于打磨高端精品住宅，每一个项目都倾注心血，以精致的细节、前沿的审美和创新的规划，诠释着 "低调奢华" 的真正内涵。</p>
+              <p>目前，SAAS Properties 在阿布扎比 Reem 岛已成功布局 7 个项目，其中 6 个项目一经推出便迅速售罄，足见市场对其品质的认可。不仅如此，在迪拜市场，该开发商同样成绩亮眼：打造的 Saas Tower 与 Biltmore Hotel 已正式落地运营，并分别交由国际知名的 Sonder 和 Millennium 酒店集团管理；位于 Science Park 的 SAAS Hills 项目也在稳步推进中，未来将为迪拜高端住宅市场再添新彩。</p>
+              <p>更值得关注的是，SAAS Properties 凭借卓越的项目品质与品牌影响力，成功吸引了 St. Regis、Autograph Collection 等全球顶奢酒店品牌展开联名合作。通过与这些顶级品牌的携手，SAAS Properties 不仅将住宅打造成兼具艺术感与舒适度的生活空间，更助力阿布扎比 Reem 岛和 Al Maryah 岛升级为真正的 "精英生活聚集地"，为居住者带来与世界顶奢标准接轨的生活体验。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">02 SAAS Heights：不止是住宅</h4>
+              <h5 style="color: #555; margin-bottom: 10px; font-size: 1.1rem;">核心地段：Reem 岛中心的便利与诗意</h5>
+              <p>SAAS Heights 选址于阿布扎比 Reem 岛核心区域，周边配套成熟，生活便利触手可及。项目紧邻海滩塔、Reem Eight 以及充满生活气息的 Shams 精品街区，步行即可抵达 Reem 中央公园，无论是日常购物、休闲散步还是社交娱乐，都无需长途奔波。</p>
+              <p>更难得的是，这里拥有独一无二的 "双景观" 资源：推窗即览郁郁葱葱的红树林生态画卷，远眺则是一望无际的阿拉伯湾海景，每一扇窗都如同画框，将自然之美与海洋之壮阔定格成日常风景。此外，Reem 岛通过多座桥梁与阿布扎比主岛无缝连接，快速通达市中心的商业区、政府机构与交通枢纽；同时靠近 Al Maryah 岛（阿布扎比金融中心，汇聚国际企业与高端餐饮购物场所）和萨迪亚特岛（文化艺术中心，拥有卢浮宫阿布扎比等世界级文化地标），居住者可轻松享受金融、文化、娱乐等多元高端资源。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">03 建筑规划：低密度设计，私密尊贵</h4>
+              <p>SAAS Heights 由两栋地标级塔楼构成，两栋塔楼之间通过一座精致的空中连桥相连，既保证了建筑的整体美感，又增强了空间的互动性。项目采用低密度规划，每层仅设置 5 户住宅，同时配备 5 部高速电梯，实现 1:1 的黄金梯户比。这一设计不仅有效减少了住户等待电梯的时间，提升了出行效率，更最大程度保障了居住的私密性与尊贵感，让每一位居住者都能享受到专属的静谧空间。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">04 精装配置：拎包入住，细节处见顶奢</h4>
+              <p>对于高端住宅而言，"拎包入住" 不应只是一句口号，而应是触手可及的舒适与品质。SAAS Heights 从居住者的实际需求出发，在精装配置上做到了极致用心：</p>
+              <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>全屋配备意大利 Minotti 进口家具，作为国际知名的高端家具品牌，Minotti 以简约优雅的设计、精湛的工艺和优质的材质，为空间注入轻奢质感，无需额外添置家具，即可享受高品质居住体验；</li>
+                <li>采用德国 VLED 技术空气净化空调系统，不仅能精准调节室内温度，更能有效过滤空气中的杂质与污染物，为居住者营造洁净健康的呼吸环境；</li>
+                <li>搭载全屋软水过滤系统，从源头改善水质，减少水垢对家电的损害，同时让洗漱、护肤等日常体验更加舒适；</li>
+                <li>大面积全景落地窗设计，最大化引入自然光线，同时将红树林与阿拉伯湾的双重景观无缝融入室内，让居住者在房间的每一个角落都能欣赏到绝美风景；</li>
+                <li>全套酒店级硬件配置，从厨房电器到卫浴设施，均选用国际一线品牌，兼顾实用性与奢华感，打造媲美五星级酒店的居住品质。</li>
+              </ul>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">05 社区配套：度假式生活，日常即享受</h4>
+              <p>SAAS Heights 致力于为居住者打造 "如同度假般的日常"，社区配套完全按照五星级度假村标准规划，覆盖休闲、健身、社交、亲子等多元需求：</p>
+              <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>三大泳池满足不同场景需求：室内泳池静谧舒适，适合放松身心；户外泳池直面蓝天与景观，让游泳成为与自然互动的惬意体验；</li>
+                <li>500 平方米超大 Wellness 健身中心，配备全球顶尖的健身设备，同时划分出专属的瑜伽与拉伸区域，满足不同健身爱好者的需求；</li>
+                <li>桑拿房、蒸汽房与豪华按摩浴缸组成的 SPA 区域，为居住者提供放松身心的私密空间，缓解日常疲惫；</li>
+                <li>专属女士健身房，兼顾隐私与安全性，让女性住户享受更舒适的健身环境；</li>
+                <li>社区厨房、高端休息室与大型活动厅，为家庭聚会、朋友社交或商务洽谈提供理想场所；</li>
+                <li>迷你影院与游戏娱乐区，满足休闲娱乐需求，在家即可享受沉浸式观影与互动游戏体验；</li>
+                <li>专为儿童设计的游乐区，采用安全环保的材料，打造充满童趣与创意的空间，让孩子在安全的环境中尽情玩耍。</li>
+              </ul>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">06 Reem 岛：高端房产市场潜力热土</h4>
+              <p>作为阿布扎比豪华房产市场的核心区域之一，Reem 岛凭借优越的地理位置、完善的配套设施与巨大的发展潜力，成为众多投资者与居住者的首选之地。</p>
+              <p><strong>（一）从区域定位来看</strong>，Reem 岛是阿布扎比现代化大型开发区域的代表，这里融合了高端住宅、商业办公与休闲娱乐空间，既充满活力又兼具宜居性，无论是本地居民还是外籍人士，都能在这里找到理想的生活方式。岛上不仅有多个高端公寓项目，在建的别墅项目也将进一步丰富居住选择，且多数住宅都能欣赏到周边水域或城市天际线的迷人景观，居住体验极佳。</p>
+              <p><strong>（二）在配套设施方面</strong>，Reem 岛可谓 "一应俱全"：</p>
+              <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>商业购物：拥有备受欢迎的 Boutik Mall 购物中心，汇聚各类零售商店、特色餐厅与休闲咖啡馆，满足居民日常购物与社交需求；未来，大型购物中心 Reem Mall 也将进一步提升区域商业活力；</li>
+                <li>绿色空间：Reem Central Park 作为岛上的大型绿色休闲区，设有蜿蜒的步行道、亲子游乐场与各类休闲设施，是居民散步、野餐、亲近自然的绝佳去处；</li>
+                <li>教育资源：岛上分布着多所优质学校与幼儿园，其中不乏巴黎索邦大学阿布扎比分校这样的国际知名学府。巴黎索邦大学阿布扎比分校是法国高等教育在海湾地区设立的首个校园，以多元化的国际教育资源与雄伟的建筑风格，成为岛上的学术与文化象征，为家庭住户提供了优质的教育选择；</li>
+                <li>医疗保障：配备多家医疗中心与诊所，从日常健康护理到紧急医疗救助，全方位保障居民的健康需求；</li>
+                <li>交通便捷：通过多座桥梁与阿布扎比主岛紧密相连，距离阿布扎比国际机场仅 20 分钟车程，快速通达市中心及周边重要区域。</li>
+              </ul>
+              <p><strong>（三）从市场趋势来看</strong>，2024 年上半年，阿布扎比房地产市场无论是经济适用房领域，还是豪华住宅领域，都呈现出强劲的增长态势。作为核心区域的 Reem 岛，凭借完善的配套、优越的景观与巨大的发展潜力，在高端住宅需求中扮演着愈发重要的角色，未来将持续吸引国内外高端投资者的目光，为阿布扎比房地产市场注入源源不断的活力。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">户型与置业信息：灵活选择，品质保障</h4>
+              <p><strong>（一）多样户型，满足不同需求</strong></p>
+              <p>SAAS Heights 共规划两栋塔楼，每栋塔楼设有 134 套住宅（包含 78 套一房、26 套两房、26 套三房），总计 268 套房源，户型丰富多样，可满足单身精英、三口之家乃至多人口家庭的居住需求：</p>
+              <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>1 房 + 佣人房：建筑面积约 1100 平方英尺，平均价格 220 万迪拉姆，空间布局紧凑实用，同时配备佣人房，兼顾居住舒适度与生活便利性；</li>
+                <li>2 房：建筑面积约 2000 平方英尺，平均价格 320 万迪拉姆，户型开阔通透，客厅与卧室空间充足，适合家庭居住，部分户型还带有超大阳台，可尽情欣赏窗外美景；</li>
+                <li>3 房 + 佣人房：建筑面积约 3200 平方英尺，平均价格 498 万迪拉姆，空间奢华宽敞，配备多个卫生间与佣人房，满足多人口家庭的居住需求，同时拥有绝佳的景观视野，尽显高端品质。</li>
+              </ul>
+              <p>所有户型均延续了项目 "细节为王" 的设计理念，从空间规划到采光布局，都经过精心考量，确保居住的舒适度与实用性。</p>
+              
+              <p style="margin-top: 10px;"><strong>（二）灵活付款，无忧置业</strong></p>
+              <p>为降低购房者的置业压力，SAAS Heights 推出两种灵活的付款方案，购房者可根据自身经济状况自由选择：</p>
+              <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>40/60 付款方案：首付 10%；2025 年 6 月支付第一期款项 10%；2026 年 1 月支付第二期款项 5%；2026 年 6 月支付第三期款项 5%；2027 年 1 月支付第四期款项 5%；2027 年 6 月支付第五期款项 5%；交房时支付剩余 60% 款项。</li>
+                <li>60/40 付款方案：首付 10%；2025 年 6 月支付第一期款项 10%；2026 年 1 月支付第二期款项 10%；2026 年 6 月支付第三期款项 10%；2027 年 1 月支付第四期款项 10%；2027 年 6 月支付第五期款项 10%；交房时支付剩余 40% 款项。</li>
+              </ul>
+              <p>此外，项目预计交房时间为 2028 年第一季度，物业管理费为 16 迪拉姆 / 平方英尺，转售比例为 30%，注册费为 2% + 525 迪拉姆（ADGM），订房需支付 10% 款项，各项置业信息透明清晰，为购房者提供无忧保障。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">SAAS Heights项目结语</h4>
+              <p>在阿布扎比这座充满活力与机遇的城市，SAAS Heights 不仅是一处高端住宅，更是一种生活方式的象征。它将自然景观与顶奢设计完美融合，以优越的地段、完善的配套、精致的细节与灵活的置业方案，为居住者打造出 "推窗见景、出门享便利" 的理想生活。</p>
+              <p>无论是追求静谧生态生活的自然爱好者，还是看重高端配套的品质追求者，亦或是关注投资潜力的投资者，SAAS Heights 都能满足其需求。如果你渴望在阿布扎比拥有一套真正 "拎包入住" 的高端住宅，渴望将日常过成诗，那么 SAAS Heights，或许就是你寻觅已久的答案。</p>
+            </div>`;
+                } else if (title.includes('Azizi Lina')) {
+                     modalImage.src = 'images_new/news/news-5/微信图片_2025-10-11_165302_208.png';
+                    moreContent = `
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">抢占迪拜自贸区价值高地！Azizi Lina 稀缺公寓登场</h4>
+              <p>在迪拜房产投资领域，杰贝阿里（Jebel Ali）始终是备受瞩目的财富热土。如今，知名开发商 Azizi Developments 重磅推出全新力作 ——Azizi Lina 公寓，选址自贸区核心位置，步行 3 分钟即达地铁站，以无可比拟的地段优势，为投资者解锁全球资产配置新选择。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">01 Azizi Lina 价值体系构成</h4>
+              <p>Azizi Lina 秉持 "Connected Living, Borderless Opportunities"（互联生活，无界机遇）的理念，从通勤、租赁需求、生活品质三大维度，构建投资与居住的双重价值体系：</p>
+              <p><strong>通勤零烦恼：</strong>紧邻 Life Pharmacy 地铁站，出门即可搭乘地铁直达迪拜各大商务区；同时无缝衔接谢赫扎耶德主干道（Sheikh Zayed Road），无论是日常出行还是跨区通勤，都能高效便捷，为快节奏生活提速。</p>
+              <p><strong>租赁需求旺盛：</strong>项目紧邻中东最大港口及全球顶尖自贸区 JAFZA，周边聚集超 100 家《财富》世界 500 强企业，高素质外籍人才密集，对高品质住宅的租赁需求持续强劲，为稳定租金收益提供坚实保障。</p>
+              <p><strong>生活与投资双赢：</strong>延续 Azizi 一贯的高端品质，公寓采用精装修交付，搭配智能家居系统，且零公摊面积，每一寸空间都属于业主资产；社区内还配备高端零售商铺与完善生活配套，居住舒适度拉满，投资自住皆适宜。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">02 三大核心优势，奠定投资硬实力</h4>
+              <p><strong>优势 1：品牌背书 ——Azizi Developments，迪拜房产界的 "品质标杆"</strong></p>
+              <p>作为阿联酋房地产领域的领军企业，Azizi Developments 专注于高端生活社区开发，凭借精准的战略拿地眼光，在迪拜热门区域打造了多个备受青睐的住宅及混合用途社区。其不仅与迪拜王室、政府保持紧密合作，深度契合阿联酋发展愿景，更以 "客户为中心" 的理念，累计交付数千套住宅，以公开透明的运营模式和建设驱动的发展策略，赢得市场广泛认可。</p>
+              
+              <p style="margin-top: 10px;"><strong>优势 2：区域潜力 ——Jebel Ali Downtown，"低价入场，长期收益" 的潜力股</strong></p>
+              <p>Azizi Lina 所在的 Jebel Ali Downtown，是迪拜少数向本地人与外国人全面开放自由产权的郊区社区，主打一居、两居、三居公寓，并配套商业及混合用途地块，目前租售市场持续升温。</p>
+              <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>配套成熟：社区内商店、公园等生活设施齐全，轻松满足日常需求；</li>
+                <li>交通便捷：紧邻谢赫扎耶德路，快速通往阿布扎比，出行四通八达；</li>
+                <li>潜力巨大：据行业报道，该区域规划总投资高达 130 亿美元，目前深层公用设施建设已完成 50%，后续开发条件成熟，众多开发商纷纷布局，未来价值增长空间可观，是投资者眼中 "低成本入场，长期享受收益" 的优质选择。</li>
+              </ul>
+              
+              <p style="margin-top: 10px;"><strong>优势 3：交通枢纽 —— 无缝衔接全城，通勤效率拉满</strong></p>
+              <p>项目与 Life Pharmacy 地铁站仅步行可达，搭乘地铁可直达迪拜各大商务区；同时直连谢赫扎耶德主干道，自驾出行无论是前往工作地点，还是前往商场、医院等场所，都能高效抵达，彻底告别通勤拥堵烦恼。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">03 区域利好不断，未来生活更可期</h4>
+              <p><strong>利好 1：赛马场变身 "城市绿洲"，2026 年启建绿色新社区</strong></p>
+              <p>Jebel Ali 片区即将迎来重大升级 —— 曾经的 Jebel Ali 赛马场，计划转型为融合居住、文化、公共空间的 "城市岛屿" 式绿色社区，预计 2026 年正式启动建设。该项目由国际知名设计团队 Bjarke Ingels Group（BIG）与 A.R.M. Holding 联手打造，对标迪拜 2040 城市母版计划，将打造 "20 分钟城市" 概念社区（即居民 20 分钟内可满足生活、休闲、工作等核心需求）。</p>
+              <p>未来社区将引入自动穿梭小巴、专属自行车道、中央公园绿带等绿色出行与休闲设施，在保留历史地标的同时，注入全新生活理念，实现 "新旧融合" 的高品质生活场景。</p>
+              
+              <p style="margin-top: 10px;"><strong>利好 2：生活配套全覆盖，宜居指数满分</strong></p>
+              <p>Azizi Lina周边教育、医疗、商业、休闲资源一应俱全，无需长途奔波即可享受便捷生活：</p>
+              <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>教育资源：15 分钟车程可达 Little Woods 幼儿园，20 分钟内可至 Greenfield 社区学校（IB 课程）、British Columbia 加拿大学校（加拿大课程）、Dove Green 小学（英国课程）；30 分钟车程抵达迪拜知识园，满足从幼儿到大学的全阶段教育需求。</li>
+                <li>医疗保障：18 分钟车程可达 Mediclinic Meadows 诊所，几分钟内可至迪拜投资园区的 NMC 皇家医院，优质医疗资源近在咫尺。</li>
+                <li>商业购物：13 分钟车程至 Meraas 奥特莱斯村（意大利风格建筑，汇聚国际品牌折扣店）；18 分钟内可达伊本白图泰购物中心（六国城）、迪拜码头购物中心；23 分钟车程至阿联酋购物中心（含 700 + 商铺、迪拜滑雪场、VOX 影院）。</li>
+                <li>休闲娱乐：12 分钟车程至巴南海滩（付费，含水上运动、水景小屋、露营帐篷），附近还有免费的杰贝阿里海滩；30 分钟可达朱美拉海滩（设施完善，含健身器材、浴室、餐厅）；15 分钟内可至阿勒马克图姆国际机场、2020 年世博会会址；周边还有迪拜乐园及度假村（含 Motiongate Dubai 好莱坞主题公园、乐高乐园、宝莱坞主题公园），满足全年龄段休闲需求。</li>
+              </ul>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">04 户型与付款：透明定价，轻松上车</h4>
+              <p>Azizi Lina 推出 Studio、一居室、二居室三种户型，价格透明，付款方式灵活，降低投资门槛：</p>
+              <p><strong>户型及起售价：</strong></p>
+              <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>Studio：54 万迪拉姆</li>
+                <li>一居室：94 万迪拉姆</li>
+                <li>二居室：128 万迪拉姆</li>
+              </ul>
+              <p style="margin-top: 10px;"><strong>付款计划：</strong>采用 50/50 付款方式，首付压力小，投资者可轻松布局，提前锁定未来收益。</p>
+              <p style="margin-top: 10px;">在迪拜自贸区的价值风口上，Azizi Lina 以稀缺的核心地段、稳定的 8% 租金回报、强劲的品牌与区域潜力，成为全球投资者配置海外资产的优选。在这里，购置的不仅是一套公寓，更是一张通往全球商业舞台的 "入场券"，机遇难得，不容错过！</p>
+            </div>`;
+                } else if (title.includes('SERA 2')) {
+                    modalImage.src = 'images_new/news/news-6/微信图片_2025-10-11_170037_484.png';
+                } else if (title.includes('Binghatti Skyblade')) {
+                    modalImage.src = 'images_new/news/news-7/640.png';
+                } else if (title.includes('Windsor House II')) {
+                    modalImage.src = 'images_new/news/news-8/微信图片_2025-10-11_172051_529.jpg';
+                } else if (title.includes('Rise by Athlon')) {
+                    modalImage.src = 'images_new/news/news-9/微信图片_2025-10-11_172344_201.png';
+                } else if (title.includes('拉斯海马永利博彩度假村')) {
+                    modalImage.src = 'images_new/news/news-10/微信图片_2025-10-11_172809_816.jpg';
+                    moreContent = `
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">SERA 2：限量 190 席，启幕迪拜滨海度假生活新纪元</h4>
+              <p>在迪拜拉希德游艇码头（Rashid Yachts & Marina），一场关于奢华居住与度假体验的全新变革正悄然发生。SERA 2 绝非传统意义上的居住社区，它更像是一种融合了生活态度与品质追求的载体 —— 屹立于新旧迪拜的交汇地带，将城市的传统底蕴与现代繁华精妙交织，为追求高端生活的人们打造出一片理想栖居地。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">01 臻稀席位，定格滨海居住机遇</h4>
+              <p>SERA2仅推出 190 套精品住宅单位，涵盖一居室、两居室与三居室公寓三种户型。这不仅是入主迪拜滨海生活圈的稀缺入场券，更是奢华质感、静谧氛围与永恒设计理念碰撞融合的居住典范。在这里，每一套住宅都经过精心规划，旨在为住户带来兼具舒适度与美学价值的居住体验。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">02 沉浸式度假，让日常成为诗与远方</h4>
+              <p>试想每个清晨，推开窗户的瞬间，12,500 平方米的水上花园便映入眼帘 —— 这片精心打造的景观空间，集合了私人泳池胜地、多功能活动中心、雅致花园凉亭、社交主题公园与休闲观景平台等多重配套。从此，度假不再是一年中寥寥几次的短暂逃离，而是融入朝朝暮暮的日常场景。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">03 重新定义滨水生活美学</h4>
+              <p>SERA2以优雅细腻的室内设计、开阔无垠的蓝色景致，以及充满活力的社交氛围，彻底重塑了迪拜滨水居住的体验标准。无论是注重家庭生活的住户，还是追求高品质工作与生活平衡的专业人士，都能在这里找到属于自己的理想生活节奏，在繁忙与闲适之间找到完美平衡点。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">04 投资未来，抢占迪拜发展红利</h4>
+              <p>当下，正是布局迪拜房地产市场、抢占未来增值机遇的黄金时期。迪拜正加速推进 D33 愿景规划，一系列重磅目标将为城市发展注入强劲动力：</p>
+              <p>到 2033 年，城市经济规模预计翻倍至 8.7 万亿美元；</p>
+              <p>每年将吸引超 2500 万国际游客到访；</p>
+              <p>2030 年城市人口有望增长至 580 万。</p>
+              <p>与此同时，迪拜 "黄金签证" 政策的持续利好，以及全球超高净值人群的不断迁入，更为房地产市场带来了旺盛需求。SERA2早已超越 "一套房子" 的属性，成为一份兼具居住价值与投资潜力的未来资产。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">05 四大核心优势，奠定高端居住标杆</h4>
+              <p><strong>优势一：全球顶尖开发商背书，品牌实力保驾护航</strong></p>
+              <p>SERA 2 由全球知名的顶尖房地产开发商 Emaar（伊玛尔）精心打造。作为市值高达 698 亿的行业巨头，Emaar 以卓越的项目品质和世界级的社区规划享誉全球，其打造的多个项目已成为城市地标。</p>
+              <p>在社区设施配套、建筑工程质量、专业物业管理等方面，Emaar 始终坚持极高标准，为购房者提供了强大的信心保障。同时，Emaar 的品牌效应也意味着房产具备出色的保值与增值潜力 —— 根据公开数据，2024 年上半年，Emaar 集团房地产销售额同比增长 56%，达到 215 亿迪拉姆（约合 86 亿美元），强劲的业绩表现进一步印证了品牌的市场认可度。</p>
+              
+              <p style="margin-top: 10px;"><strong>优势二：稀缺海岸线资源，占据迪拜价值高地</strong></p>
+              <p>SERA 2 坐落于有 "迪拜摩纳哥" 之称的拉希德游艇码头（Rashid Yachts & Marina）澜风港湾（BAYLINE），这里是迪拜最具价值的海滨地段之一。</p>
+              <p>迪拜海岸线整体平直，可开发利用的海岸线资源极其有限 —— 其中两段海岸线用于港口建设，大部分海岸线由当地居民与皇室专属使用，剩余可供商业开发的海岸线更是稀缺珍贵。正是这种 "稀缺性"，使得迪拜所有海景项目的价值均实现数倍增长，而占据核心海滨地段的 SERA 2，自然成为了稀缺资源中的佼佼者。</p>
+              <p>从区域增值潜力来看，澜风港湾的增长空间尤为可观。参考迪拜沿海岸线各区域单价（以 AED / 平方英尺计算）及过往增幅数据：王子岛区域曾实现显著增值，而澜风港湾作为新兴海滨板块，凭借其核心区位与规划优势，被业内视为 "下一个王子岛"，未来增值潜力不容小觑。同时，迪拜山庄、云溪港等热门区域此前也分别实现了 50%、57% 的增幅，进一步印证了迪拜优质房地产板块的强劲增值能力。</p>
+              
+              <p style="margin-top: 10px;"><strong>优势三：奢华滨海体验，驱动高回报投资价值</strong></p>
+              <p>澜风港湾不仅是高端居住区，更是迪拜政府重点打造的游艇与邮轮枢纽 —— 这里将吸引全球大量高净值人群前来旅游、定居，直接催生旺盛的租房与买房需求，为投资者带来稳定的高租金回报与长期的资本增值空间。</p>
+              <p>此外，澜风港湾还占据着迪拜的黄金地理位置：紧邻迪拜市中心，住户可远眺市中心繁华天际线，俯瞰湛蓝的阿拉伯湾，实现 "在市中心看海" 的独特居住体验。同时，项目周边环绕德拉老城区、黄金市场、香料市场等知名批发市场，旺盛的商业活动将进一步提升区域租赁市场活跃度，为房产投资增添更多保障。</p>
+              
+              <p style="margin-top: 10px;"><strong>优势四：全球顶级游艇目的地，融合美学与奢华的生活典范</strong></p>
+              <p>SERA2所在的滨海广场，以现代海滨生活方式为核心设计理念，将豪华住宅、全方位服务的游艇码头、精品餐厅及高端零售商店完美融合，重新定义了 "海上生活" 的全新形态。</p>
+              <p>滨海广场位于拉希德游艇码头中心地带，地理位置得天独厚 —— 距离充满历史魅力的老迪拜区域，以及活力四射的市中心仅数分钟车程，住户可轻松享受两地截然不同的风情。同时，精心规划的周边环境，包括景观观景平台与开放式公共空间，营造出浓厚的社区归属感与邻里联结感。无论你偏爱城市的热闹活力，还是钟情码头的宁静惬意，都能在滨海广场找到属于自己的生活乐趣。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">06 澜风港湾：迪拜新兴全球度假居住目的地</h4>
+              <p>拉希德游艇码头（Rashid Yachts & Marina）不仅是全新的全球旅游目的地，更是堪称 "史无前例" 的住宅码头杰作，为豪华海滨生活赋予了全新内涵。在这片优雅的环境中，建筑美学与奢华质感碰撞交融，将豪华住宅、全方位服务的码头、极具吸引力的餐厅与商店有机组合，为 "海上生活" 创造了独一无二的定义。</p>
+              <p>作为交通与旅游枢纽，拉希德游艇码头具备无可比拟的优势：</p>
+              <p>提供便捷无障碍的交通通道，可容纳 430 个长度达 100 米的游艇泊位，并提供灵活多样的泊位选择；</p>
+              <p>周边的米娜・拉希德（Mina Rashid）凭借出色的服务与设施，连续八年被世界旅游奖评为 "中东领先邮轮旅游目的地"，并持续获得全球关注；</p>
+              <p>目前，米娜・拉希德可同时接待七艘巨型游轮，或容纳 25,000 名乘客；其中，哈姆丹・本・穆罕默德邮轮码头作为全球最大的单一有盖邮轮码头设施，单日可容纳 14,000 名乘客；</p>
+              <p>米娜・拉希德正处于扩建阶段，未来将打造世界级休闲区，彰显迪拜丰富的文化遗产，进一步巩固其 "全球首屈一指邮轮旅游枢纽" 的地位；同时，为满足私人游艇所有者的需求，区域还将优化停泊服务，吸引更多高端人群入驻。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">07 便捷区位：无缝链接城市核心资源</h4>
+              <p>SERA2凭借巧妙的区位规划，与迪拜各黄金地段保持紧密联系，短短数分钟车程即可抵达各类核心社交与生活配套：</p>
+              <p>5 分钟车程：抵达拉希德港口（每日接待 1.5-3 万名游客，短租需求旺盛）；</p>
+              <p>10 分钟车程：直达谢赫扎耶德路，快速接入城市主干道；抵达迪拜著名景点 "金色大相框"；</p>
+              <p>15 分钟车程：抵达迪拜国际机场，便捷连接全球；</p>
+              <p>20 分钟车程：抵达迪拜市中心、哈利法塔、迪拜购物中心、迪拜云溪港，轻松享受城市顶级商业、文化与休闲资源；</p>
+              <p>30 分钟车程：抵达迪拜码头；</p>
+              <p>49 分钟车程：抵达 DWC 机场（阿勒马克图姆国际机场）。</p>
+              <p>此外，迪拜道路交通管理局（RTA）推进的 Al Shindagha 走廊改善项目，也为区域交通赋能。该项目第四阶段第一合同已完成 45% 工程，范围从谢赫・拉希德路与谢赫・哈利法・本・扎耶德街交叉口延伸至阿尔米娜街的猎鹰交叉口，全长 4.8 公里，将修建三座总长 3.1 公里的桥梁，建成后每小时可容纳 19,400 辆汽车通行。整个 Al Shindagha 走廊改善项目横跨谢赫・拉希德路、阿尔米娜街、阿尔哈利吉街与开罗街，全长 13 公里，旨在提升走廊沿线交通流畅度、通行能力与交通安全，为住户出行提供更多便利。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">08 奢华配套：五星度假村标准级打造</h4>
+              <p>SERA2整个社区以五星级度假村标准进行规划与打造，除了 Emaar 社区标配的优质学校、大型商场与专业医院外，更引入了一系列世界级奢华配套，满足住户对高端生活的所有想象：</p>
+              <p>文化与休闲配套：海上歌剧院、私人沙滩泳池俱乐部、水上漂浮酒店及餐厅、全迪拜最长的 500 米运河泳池、海边迪拜购物中心、威尼斯风格广场、博物馆、创始人之家；</p>
+              <p>交通与服务配套：水上交通运输中心（渡轮站）、伊丽莎白二世号（QE2）游轮酒店餐厅、精品酒店、人行天桥、码头健身中心；</p>
+              <p>生态与景观配套：私人海滩会所、运河泳池、滨海长廊。</p>
+              <p>值得一提的是，澜风港湾所在区域是迪拜唯一的自由海滨区，既保留了迪拜 "老钱区" 的历史印记 —— 如博物馆、百年名校、世界闻名的伊丽莎白二世号游轮、帆船码头、老酋长皇宫、私人海滩会所等；又融入了新贵社区的精致现代风格，迪拜最长的网红泳池、通透的玻璃幕墙、迷人的落地窗与宽敞明亮的观景阳台，让充足的自然光洒满室内。社区还提供两种内饰色彩方案供住户选择，搭配绝佳的观海视角，使SERA2成为迪拜奢华住宅领域的标杆之作。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">09 户型与价格</h4>
+              <p>SERA2190套臻稀单位中，各户型的面积、价格与库存情况清晰透明，为购房者提供明确的置业参考：</p>
+              <p>超具吸引力的单价：2,680 / 平方英尺为购房者提供了入主迪拜最受追捧滨海社区的难得机会。</p>
+              <p>一居室： AED 210 万 758-932平尺</p>
+              <p>两居室：AED 340 万 1195-1731平尺</p>
+              <p>三居室：AED 450 万 1662-1865平尺</p>
+              <p>三居室联排：AED 730万 2554-2583平尺</p>
+              <p>室内设计：</p>
+              <p>无论是自住还是投资，都具备极高的性价比。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">10 灵活支付计划</h4>
+              <p>为了让更多追求高品质生活的人群能够轻松入主 SERA 2，项目推出了灵活合理的支付计划，将购房压力均匀分摊，具体分期节点如下（以实际签约条款为准）。</p>
+            </div>`;
+                } else if (title.includes('Binghatti Skyblade')) {
+                    moreContent = `
+            <div style="margin-bottom: 25px;">
+              <p>在迪拜市中心的核心地带，哈利法塔旁的珍贵土地上，一座足以改写城市天际线的全新地标 ——Binghatti Skyblade 正蓄势待发。作为 Binghatti 集团倾力打造的 "2025 年度地标作品"，它不仅是该集团在标志性项目矩阵中的又一重磅力作，更被视作填补迪拜市中心土地资源空缺的 "最后一块拼图"，为这座繁华都市的核心区域注入全新活力。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">01 稀缺地段：执掌市中心的繁华脉搏</h4>
+              <p>迪拜市中心（Dubai Downtown）的土地资源早已濒临饱和，每一寸土地都堪称 "寸土寸金"。而 Binghatti Skyblade 恰好坐落于这片核心区域的最后一块珍稀地皮之上，其地理位置的稀缺性不言而喻。</p>
+              <p>居住于此，无需远行便可尽享世界级生活配套：步行可达迪拜购物中心 —— 这座汇聚全球顶尖品牌、涵盖时尚、科技与生活业态的超级商场；周边环绕着众多艺术馆与高端餐厅，无论是文化熏陶还是味蕾享受，都能轻松满足。真正实现 "将家安在繁华中央"，让生活与城市的璀璨无缝衔接。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">02 奢华户型：定制塔尖人群尊贵生活</h4>
+              <p>Binghatti Skyblade 以 "极致生活演绎" 为理念，打造了覆盖不同需求的多元化户型，从单身公寓到顶层皇家尊邸，每一套都彰显着现代都市的奢华质感：</p>
+              <p>单身公寓（188 套）：空间精致布局合理，为都市新锐人群提供舒适便捷的居住选择，满足日常通勤与独居生活的双重需求。</p>
+              <p>带按摩浴缸的单身公寓（208 套）：在精致空间基础上增设私密按摩浴缸，让住户在忙碌之余，能随时享受放松时刻，提升居住幸福感。</p>
+              <p>带私家泳池的一居室（100 套）：打破小户型的局限，将 "度假感" 融入日常，在家中即可拥有私人泳池，享受专属惬意时光。</p>
+              <p>两居室（110 套）：空间宽敞通透，功能分区明确，无论是三口之家还是双人居住，都能满足对舒适生活的需求。</p>
+              <p>两居室皇家套房（10 套）：位于顶层的稀缺户型，配备专属泳池，推窗即可将哈利法塔的震撼景致尽收眼底，堪称 "收藏级" 居住资产。</p>
+              <p>三居室皇家尊邸（3 套）：作为项目的顶级户型，不仅拥有顶层专属泳池与极致景观，还贴心配备佣人房，全方位满足塔尖人群对高品质生活的极致追求。</p>
+              <p>值得一提的是，所有顶层套房均能直面哈利法塔，稀缺的景观资源让这些户型兼具居住价值与收藏价值。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">03 投资亮点：低门槛锁定迪拜核心资产</h4>
+              <p>对于投资者而言，Binghatti Skyblade 无疑是极具潜力的优质标的，核心优势集中在 "低门槛" 与 "高潜力" 两大维度：</p>
+              <p>限时付款优惠：项目推出 "60/40" 付款计划，首付仅需 10%（注：此优惠为开盘期间专属，限时有效），大幅降低投资入场门槛，让更多投资者有机会锁定迪拜市中心的稀缺资产。</p>
+              <p>明确竣工时间：预计 2027 年 11 月 30 日竣工，清晰的时间节点为投资回报提供了稳定预期，减少投资不确定性。</p>
+              <p>从市场大环境来看，迪拜市中心作为全球知名的高端居住区与旅游热点，房地产市场长期保持稳健增长，而 Binghatti Skyblade 作为区域内稀缺的新建地标项目，未来无论是租金收益还是资产增值，都具备广阔空间。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">04 核心优势：四大维度定义地标价值</h4>
+              <p>优势一：实力开发商护航，品质与交付双保障</p>
+              <p>Binghatti Skyblade 由迪拜领先开发商 Binghatti Properties 打造。作为 Binghatti Holding 集团旗下核心企业，Binghatti Properties 以 "创新设计 + 品质兑现" 闻名，业务覆盖房地产、酒店管理、食品饮料等多个领域，在迪拜房地产市场树立了良好口碑。</p>
+              <p>该开发商的核心竞争力在于：</p>
+              <p>垂直整合商业模式：内部具备钢铁、铝等关键建筑材料的自主生产能力，从源头把控工程质量，有效避免供应链延误问题。</p>
+              <p>高效开发能力：凭借成熟的开发体系，被迪拜土地局评为 "最快房地产开发商之一"，过往项目均能实现按时交付，为投资者与业主消除 "烂尾" 顾虑。</p>
+              <p>多元项目布局：不仅深耕迪拜黄金地段（如商业湾、棕榈岛、朱美拉村），覆盖豪华与刚需住房市场，还积极拓展国际市场（如沙特阿拉伯利雅得），并推出与布加迪等高端品牌的合作项目，品牌影响力持续提升。</p>
+              <p>优势二：迪拜市中心区位，坐拥全球顶级配套</p>
+              <p>项目所在的迪拜市中心（Downtown Dubai），是由 Emaar Properties 打造的多功能核心区域，地处谢赫扎耶德路（E11）沿线，北接 Al Wasl 社区，东连金融中心路（D71），南邻商业湾，地理位置得天独厚。</p>
+              <p>这片区域的价值，体现在 "世界级配套" 与 "高人气市场" 两大方面：</p>
+              <p>地标环绕：哈利法塔、迪拜购物中心、迪拜喷泉、迪拜歌剧院等全球知名地标均汇聚于此，是迪拜旅游与城市形象的核心名片。</p>
+              <p>市场热度高：根据 Bayut 2023 年上半年报告，迪拜市中心是迪拜第二受欢迎的房产交易区域（仅次于迪拜码头），豪华公寓需求旺盛，无论是租赁还是出售，都保持着活跃的市场态势。</p>
+              <p>生活氛围浓：区域内不仅有高端住宅、商业建筑与奢华酒店，还全年举办各类游行、节日活动，兼顾旅游属性与社区体验，是迪拜家庭友好型居住区域的代表。</p>
+              <p>优势三：与哈利法塔比肩，稀缺景观成增值硬通货</p>
+              <p>Binghatti Skyblade 紧邻世界第一高楼哈利法塔，部分户型可直接俯瞰哈利法塔全景与迪拜市中心的璀璨天际线。</p>
+              <p>在房地产市场中，"地标景观" 始终是资产增值的核心要素 —— 无论是自住时的视觉享受，还是出租、转售时的溢价空间，稀缺的地标景观都能为房产赋予更高价值。</p>
+              <p>优势四：顶配生活设施，升级度假式居住体验</p>
+              <p>从私家泳池到按摩浴缸，Binghatti Skyblade 为多数高端户型配备了 "度假级" 私享设施。尤其是顶层皇家套房与皇家尊邸，不仅拥有专属泳池，更能将哈利法塔与市中心全景尽收眼底，让 "在家度假" 成为日常。这种将 "奢华体验" 与 "居住功能" 深度融合的设计，恰好契合了高端人群对品质生活的追求。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">05 迪拜市中心：全球财富的核心聚集地</h4>
+              <p>作为迪拜的 "城市心脏"，迪拜市中心不仅是旅游与居住的热门区域，更是全球投资者眼中的 "财富高地"，其核心价值体现在三大维度：</p>
+              <p>1. 区位交通：连接城市核心，便捷通达全球</p>
+              <p>核心枢纽：位于迪拜国际金融中心（DIFC）与商业湾之间，距离两大商业中心仅几分钟车程，是商务人士的理想居住选择。</p>
+              <p>交通便捷：紧邻谢赫扎耶德路（连接七个酋长国）与艾哈里路两大主干道，18 分钟可达迪拜国际机场，20 分钟可达迪拜码头，无论是市内通勤还是国际出行，都极为便捷。</p>
+              <p>2. 生活配套：全方位覆盖，满足多元需求</p>
+              <p>（1）教育资源</p>
+              <p>区域内拥有多所优质幼儿园，为低龄儿童提供国际化教育：</p>
+              <p>- Toddler Town 英国幼儿园：遵循英国早期基础阶段（EYFS）框架，招收 3 个月至 4 岁儿童，提供 8:00-13:00 的标准托儿服务。</p>
+              <p>- Blossom Nursery：同样以 EYFS 为课程基础，招收 8 周至 5 岁儿童，位于 Al Manzil 区 Yansoon 7 号（谢赫穆罕默德・本・拉希德大道旁）。</p>
+              <p>- 朱美拉国际幼儿园：坐落于 South Ridge Towers 的 Al Abraj 街，课程体系贴合 EYFS 标准，为儿童提供优质启蒙教育。</p>
+              <p>- 小学阶段则可选择 Al Safa 区的 JSS 私立学校，该校采用中央中等教育委员会（CBSE）课程，位于谢赫扎耶德路（E11）旁，靠近 45 街与 48 B 街交叉口，方便家庭接送。</p>
+              <p>（2）医疗保障</p>
+              <p>医疗设施完善，覆盖基础医疗与专科诊疗需求：</p>
+              <p>Mediclinic 分院：位于迪拜购物中心内，是迪拜顶尖私立医院之一，提供心脏病学、牙科、产科、皮肤科等多学科诊疗服务，满足居民日常医疗需求。</p>
+              <p>Sage Clinics：专注心理健康领域，位于 Saaha 大厦 A 座 519 室，为居民提供专业的心理疏导与健康咨询服务。</p>
+              <p>（3）商业与休闲</p>
+              <p>购物天堂：除了全球最大的迪拜购物中心（汇聚香奈儿、普拉达、路易威登等高端品牌，以及超市、电子产品店、家居店），还有 Souk Al Bahar 这样充满阿拉伯风情的高端商场，100 余家特色店铺涵盖当地香水、干果、香料等，搭配 Shakespeare and Co.、Patiala 等热门餐厅，满足购物与餐饮的双重需求。</p>
+              <p>休闲娱乐：迪拜歌剧院全年举办国际演出与音乐会；迪拜喷泉的灯光秀是全球知名的景观体验；迪拜水族馆、水下动物园、Play Dxb 主题乐园、KidZania 儿童互动城市（8 万平方英尺的 "迷你城市"，寓教于乐）等，为不同年龄段人群提供丰富的休闲选择。此外，区域内还有中央公园、城市漫步公园等绿地，以及迈丹高尔夫俱乐部、迪拜山高尔夫俱乐部等高端运动场所，平衡繁华与自然。</p>
+              <p>3. 房地产市场：稳健增长，潜力可观</p>
+              <p>迪拜市中心的房地产市场长期保持强劲势头：</p>
+              <p>需求旺盛：作为高端住宅聚集地，持续吸引富裕买家与国际投资者，租赁市场表现稳健（因商业活动与旅游需求，租房需求常年活跃）。</p>
+              <p>持续升级：Emaar 等开发商不断推出新项目与区域再开发计划，聚焦创新设计与高标准配套，进一步提升区域房产的价值与竞争力。</p>
+              <p>全球认可度高：迪拜市中心已成为 "全球豪宅市场" 的重要代表，近年来更是超越纽约、伦敦等传统豪宅市场，成为全球高净值人群的置业热点。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">06 户型与价格：清晰透明，匹配不同需求</h4>
+              <p>为方便投资者与购房者了解项目详情，以下为 Binghatti Skyblade 的户型面积与价格参考：</p>
+              <p>- 付款计划：60/40 （首付10%）</p>
+              <p>- 预计竣工时间：2027年11月30日</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">07 Binghatti Skyblade项目结语</h4>
+              <p>Binghatti Skyblade，不仅是一座建筑，更是一种身份的象征、一种未来的生活方式。它以未来主义的设计语言，将迪拜市中心的繁华与奢华生活完美融合，为居住者与投资者开启 "执掌城市核心" 的全新可能。现在，正是锁定这座地标级资产的最佳时机。</p>
+            </div>`;
+                } else if (title.includes('Windsor House II')) {
+                    moreContent = `
+            <div style="margin-bottom: 25px;">
+              <p>当全球投资者都在紧盯中东房产市场的新机遇时，迪拜南城（Dubai South）已凭借其清晰的战略规划和强劲的发展势能，成为备受瞩目的财富高地。而由知名开发商 Ellington 打造的 Windsor House II 项目，更是凭借一期 "秒空" 的火爆态势，印证了自身 "爆款资产" 的实力。如今，项目二期即将正式开放认购，对于渴望布局迪拜未来核心区域的投资者而言，这无疑是抢占红利的关键契机。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">01 为何能成投资新宠？</h4>
+              
+              <p style="margin-top: 10px;"><strong>1. 低门槛入局，轻松抢占核心资源</strong></p>
+              <p>相较于迪拜市中心动辄高首付的房产项目，Windsor House II 大幅降低了投资门槛，首付仅需 24 万迪拉姆起，让更多投资者有机会参与到迪拜南城的发展红利中，无需承担过高的资金压力，即可开启海外资产配置之路。</p>
+              
+              <p style="margin-top: 10px;"><strong>2. 交通优势凸显，联动全城核心区域</strong></p>
+              <p>项目坐拥优越的交通区位，出行便捷度远超同类型项目：</p>
+              <p>- 搭乘地铁仅需 8 分钟，即可直达世博城，轻松衔接区域热门地标；</p>
+              <p>- 未来更有铁路与地铁线路规划，将直接连通阿布扎比（Abu Dhabi）与迪拜国际机场（DXB），实现跨城市交通无缝对接，无论是日常通勤还是国际出行，都将更加高效。</p>
+              
+              <p style="margin-top: 10px;"><strong>3. 高回报预期，投资价值看得见</strong></p>
+              <p>从投资收益角度看，Windsor House II 的表现堪称亮眼：</p>
+              <p>- 据市场分析，项目所在区域发展潜力巨大，房价预计上涨 40% 以上，资产增值空间清晰可见；</p>
+              <p>- 租金回报率更是稳定在9% ，远超迪拜房产市场平均水平，为投资者带来持续且可观的被动收入。</p>
+              
+              <p style="margin-top: 10px;"><strong>4. 产业集群加持，住房需求有保障</strong></p>
+              <p>迪拜南城作为全球物流、航空航天产业的重要枢纽，背靠全球最大的阿勒马克图姆国际机场，未来将创造约 50 万个就业岗位。大量产业人才的涌入，将直接催生旺盛的住房需求，无论是长租市场还是短租市场，都将拥有稳定的客群基础，有效降低投资风险。</p>
+              
+              <p style="margin-top: 10px;"><strong>5. 会展经济助力，短租市场迎爆发</strong></p>
+              <p>区域内正斥资 100 亿迪拉姆打造全球最大会展中心，未来每年将举办多场国际展会，预计将吸引海量参展商、游客入驻。庞大的短期住宿需求，将进一步推高项目的短租收益，为投资者带来 "租金 + 资产增值" 的双重回报。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">02 开发商 Ellington</h4>
+              <p>对于房产投资而言，开发商的实力直接关系到项目的品质与交付保障，而 Ellington 在迪拜房地产市场早已是 "品质标杆" 的代名词，其过往业绩足以证明自身的硬实力：</p>
+              
+              <p>交付项目增值显著：Ellington 已交付的房产项目，房价平均上涨 80%，远超同区域其他开发商的项目表现；</p>
+              <p>租金回报领先市场：旗下项目出租回报率普遍达到 9% 起，且相较于同区域同类产品，回报率高出 30%，为投资者带来稳定且丰厚的收益；</p>
+              
+              <p>设计与口碑双丰收：作为迪拜 "设计驱动型" 开发商的先锋，Ellington 始终将艺术与现代建筑设计深度融合，旗下项目因精致细节、豪华设施和创新设计备受市场青睐。在 2023 年国际房产奖（International Property Awards）中，Ellington 一举斩获五项大奖，其中棕榈岛 Ocean House 项目获评 "最佳多户住宅建筑"，Ellington Beach House 项目获评 "最佳住宅开发项目"，充分彰显了其在设计与客户体验上的领先优势。</p>
+              
+              <p>由此可见，Windsor House II 并非 Ellington 的 "试水之作"，而是基于过往成功经验的 "爆款复制"，从品质到收益，都具备可靠保障。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">03 迪拜南城：未来的战略增长引擎</h4>
+              <p>Windsor House II 的火爆，不仅源于项目自身的优势，更得益于迪拜南城（Dubai South）的强劲发展势能。作为写入《迪拜 2040 城市总体规划》的核心区域，迪拜南城的定位清晰、布局完善，未来潜力不可限量。</p>
+              
+              <p style="margin-top: 10px;"><strong>1. 区域定位：多功能综合性开发区</strong></p>
+              <p>迪拜南城总面积达 145 平方公里，涵盖八大功能区 —— 马克图姆机场区、机场办公区、商务 & 物流园区、商业区、人道主义区、EMAAR 高尔夫别墅区、住宅区及世博展馆区，形成了集住宅、商业、物流、航空、休闲于一体的高度整合的城市生态系统，满足居住、工作、娱乐等多元化需求。</p>
+              
+              <p style="margin-top: 10px;"><strong>2. 产业优势：全球物流与航空枢纽</strong></p>
+              <p>作为海湾阿拉伯国家中唯一一个涵盖完整物流与航空产业链的区域中心，迪拜南城吸引了全球资本与人才入驻：</p>
+              <p>- 阿勒马克图姆国际机场（全球最大机场）作为核心引擎，正推进扩建计划，未来将进一步强化其国际交通枢纽地位；</p>
+              <p>- 物流与航空航天产业集群效应显著，已成为全球企业布局中东市场的重要选择，产业活力持续释放。</p>
+              
+              <p style="margin-top: 10px;"><strong>3. 政策红利：自由区优势吸引全球投资</strong></p>
+              <p>迪拜南城被划定为自由区，为投资者提供了极具吸引力的政策支持：</p>
+              <p>允许 100% 外资所有权，无需与本地企业合作，投资自主性更强；</p>
+              <p>免除企业所得税、关税及个人所得税，大幅降低经营与生活成本；</p>
+              <p>提供便捷的签证办理与营业执照审批服务，简化外商投资流程，为企业落地与运营提供便利。</p>
+              
+              <p style="margin-top: 10px;"><strong>4. 配套完善：宜居宜业的成熟区域</strong></p>
+              <p>随着区域发展，迪拜南城的生活配套不断完善，已成为宜居宜业的热门选择：</p>
+              
+              <p>教育资源：引入国际教育标准，设有多所国际化学校，涵盖幼儿园至高等教育阶段。例如 GEMS 教育集团已在区域内开办 Gems 创始人学校，聚焦创新、技术与企业技能培养；航空区还设有航空航天培训学院，为产业培养专业人才。未来，随着人口增长，更多教育机构将陆续落地。</p>
+              
+              <p>医疗保障：拥有多家医疗中心与医院，配备先进设备与专业医疗团队，可提供基础保健至专业诊疗服务；同时与其他区域医疗网络紧密联动，确保急诊与转诊服务高效便捷。</p>
+              
+              <p>商业休闲：多个大型购物中心已投入使用或规划中，汇聚国际品牌、餐饮与娱乐设施，满足一站式消费需求；区域内还规划了多功能商业区，吸引全球企业入驻；此外，社区公园、绿地、高尔夫球场、健身房、游泳池等休闲设施齐全，兼顾健康生活与家庭娱乐需求。</p>
+              
+              <p>交通便捷：毗邻国道 E611（Emirates Road），5 分钟可达阿联酋路，7 分钟至阿勒马克图姆国际机场（DWC），10 分钟抵达迪拜乐园及度假村，15 分钟到杰贝阿里棕榈岛，20 分钟直达迪拜滨海区，轻松衔接迪拜市中心及各大核心区域。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">04 项目详情：户型、交付与付款</h4>
+              <p><strong>1. 项目规划：</strong>Windsor House II 为双塔布局，涵盖 424 套住宅及 10 个商铺（9 个零售 + 1 个餐饮），产品线丰富，可满足不同投资者与居住者的需求。</p>
+              
+              <p style="margin-top: 10px;"><strong>2. 户型选择</strong></p>
+              <p>Studio（单身公寓）：432 平方英尺起</p>
+              <p>一居室：779 平方英尺起</p>
+              <p>两居室：1127 平方英尺起</p>
+              <p>两居室 + 书房：1256 平方英尺起</p>
+              <p>三居室：1489 平方英尺起</p>
+              <p>商铺：759-2461 平方英尺起</p>
+              
+              <p>无论是单身人士、小家庭还是多人口家庭，亦或是寻求商业投资的客户，都能找到契合需求的户型。</p>
+              
+              <p style="margin-top: 10px;"><strong>3. 交付信息</strong></p>
+              <p>- 交付时间：2028 年第 3 季度</p>
+              <p>- 物业费：17 迪拉姆 / 平方英尺 / 年</p>
+              
+              <p style="margin-top: 10px;"><strong>4. 付款计划：</strong>采用 "70/30" 付款方式，有效缓解投资者的资金压力，让投资更灵活。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">05 Windsor House项目结语</h4>
+              <p>当迪拜南城凭借《迪拜 2040 城市总体规划》成为迪拜未来的核心增长极，当 Ellington 以成熟的 "爆款逻辑" 打造 Windsor House II，这个项目已不再是单纯的房产选择，而是一扇通往迪拜未来红利的 "窗口"。低门槛、高回报、强保障，无论是资产配置、长期投资还是租金收益，Windsor House II 都具备显著优势。如今二期即将开抢，对于想要布局迪拜房产市场的投资者而言，这无疑是不容错过的机遇。</p>
+            </div>`;
+                } else if (title.includes('Rise by Athlon')) {
+                    moreContent = `
+            <div style="margin-bottom: 25px;">
+              <p>在迪拜购置房产，最低仅需 15 万人民币？这一看似不可思议的门槛，如今已成为现实。由阿布扎比皇室背景开发商 Aldar（阿尔达房地产开发公司）重磅打造的全新项目 ——Rise by Athlon，正以超低首付方案与顶尖可持续发展理念，重新定义迪拜房地产市场，无论是自住需求还是投资规划，都能在这里找到理想答案。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">01 超低门槛付款计划，轻松置业</h4>
+              <p>对于渴望布局迪拜房产的人群而言，Rise by Athlon 推出的付款方案极具吸引力，大幅降低了置业压力：</p>
+              <p>首付仅 5%：约 15 万人民币即可锁定房源，无需承担高额初始资金压力；</p>
+              <p>前期付款压力小：前 2 年仅需支付总房款的 20%，有效缓解现金流紧张问题，让资金规划更灵活；</p>
+              <p>专属额外福利：购房即赠免费车位，若选择两房户型，还可直接获得黄金签证，为国际身份规划添砖加瓦。</p>
+              <p>从投资角度看，该项目的收益潜力同样亮眼。据测算，其租金回报率稳定在 7% 左右，且户型面积比周边二手房多出 10%，更大的居住空间意味着未来租金上涨空间更广阔。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">02 卓越区位 + 立体交通，便捷出行</h4>
+              <p>Rise by Athlon 的地理位置优势显著，无论是通勤还是出行，都能享受高效便捷的体验：</p>
+              <p>快速通达核心区域：25 分钟车程直达迪拜市中心，轻松抵达哈利法塔、迪拜购物中心等地标；25 分钟可至迪拜海滨，享受滨海休闲生活；30 分钟即可抵达迪拜国际机场（DXB），国际出行更省心。</p>
+              <p>多维交通网络覆盖：紧邻 E311（谢赫・穆罕默德・本・扎耶德路）与 E611（阿联酋路）两大主干道，自驾出行畅通无阻；同时临近规划中的地铁线路，未来公共交通选择将更加丰富，交通优势进一步凸显。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">03 迪拜首个 LEED 铂金社区</h4>
+              <p>Rise by Athlon 并非普通住宅区，而是迪拜首个获得 LEED 铂金认证的可持续社区，将绿色生态与健康生活深度融合：</p>
+              <p>专业设计赋能：项目由全球健康与运动领域专家参与设计，精心规划了步行环道、骑行环道，以及大面积绿意公园与开放空间，真正实现 "出门两分钟，开启活力生活"，居民无需远行即可享受运动与自然的双重乐趣。</p>
+              <p>可持续理念贯穿：从建筑材料到社区运营，均遵循严格的绿色标准，减少能源消耗与环境影响，同时为居民打造更健康、舒适的居住环境，契合当下全球可持续发展趋势，也让房产更具长期价值。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">04 实力开发商护航品质与保障</h4>
+              <p>Rise by Athlon 由阿布扎比地产巨头 Aldar 打造，开发商的实力与口碑为项目品质奠定坚实基础：</p>
+              <p>开发商背景雄厚：Aldar 成立于 2004 年，是总部位于阿布扎比的国有房地产上市公司，业务涵盖房地产开发、销售、投资、管理，以及酒店、学校、码头、高尔夫球场、主题公园等多元化领域。作为阿联酋最大的开发商之一，Aldar 占据阿布扎比超 90% 的房地产市场份额，实力毋庸置疑。</p>
+              <p>强大股东背书：Aldar 第一大股东为阿布扎比主权财富基金穆巴达拉，其旗下拥有阿布扎比国家石油公司（ADNOC）、第一阿布扎比银行（FAB）、阿布扎比商业银行（ADCB）等知名企业。依托这一背景，若业主选择贷款购房，FAB 将提供超快审批流程与超低贷款利率，降低置业融资成本。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">05 深耕潜力区域，把握长期投资红利</h4>
+              <p>Rise by Athlon 位于迪拜核心潜力区域 ——Dubailand，该区域不仅是当下热门居住区，更是未来城市发展的重点板块，投资价值显著：</p>
+              <p>区域规划优势：Dubailand 是迪拜 "2040 城市总体规划" 的核心区域之一，规划聚焦可持续发展，将持续投入大规模基础设施建设，提升居民生活质量与经济多样性，未来将吸引更多高净值人群、外籍人才与国际企业入驻，人口与产业的流入将直接带动房产需求与价值上涨。</p>
+              <p>租赁市场稳健：根据 2023 年市场数据，Dubailand 的租金回报率稳定在 7%-8% 之间，高于迪拜其他成熟社区平均水平。这一成绩得益于区域合理的购房价格与旺盛的租赁需求，尤其是家庭型租客与长期居住者对该区域青睐有加，为投资提供稳定的租金回报。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">06 户型配套：高性价比 + 全维生活体验</h4>
+              <p><strong>户型与价格：多样选择，高性价比入场</strong></p>
+              <p>Rise by Athlon 总价从 100 万迪拉姆起，提供多种户型选择，满足不同家庭与投资需求：</p>
+              <p>1 房户型：面积约 87 平方米，共 565 套，总价 135 万迪拉姆起；</p>
+              <p>2 房户型：面积约 136 平方米，共 495 套，总价 195 万迪拉姆起；</p>
+              <p>2 房 + 保姆间户型：面积 162 平方米，共 16 套，总价 235 万迪拉姆起；</p>
+              <p>3 房 + 保姆间户型：面积 198 平方米，共 166 套，总价 275 万迪拉姆起。</p>
+              <p><strong>全维配套：运动 + 休闲 + 社交，满足多元需求</strong></p>
+              <p>Rise by Athlon 不仅自身配套丰富，还可与周边别墅区共享高端资源，为居民打造全方位生活体验：</p>
+              <p>自身核心配套：涵盖游泳池（家庭泳池、成人泳池、 plunge pool）、健身房、高尔夫球模拟器、瑜伽平台、攀岩设施、滑板公园、篮球场、网球场、儿童游乐区、社区广场等，无论是运动健身、亲子互动还是邻里社交，都能找到专属空间；</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">07 抢占迪拜楼市新星，把握投资先机</h4>
+              <p>当前，迪拜楼市正吸引全球投资者目光，而 Rise by Athlon 凭借超低首付、稳定回报、绿色认证、潜力区位等多重优势，成为市场中耀眼的新星。无论是为了在迪拜打造健康舒适的自住空间，还是布局全球资产、获取稳健投资收益，Rise by Athlon 都是难得的优质选择。</p>
+              <p>机会稍纵即逝，想要抢占迪拜房地产市场红利，开启高品质生活与投资新篇章，不妨从了解 Rise by Athlon 开始。</p>
+            </div>`;
+                } else if (title.includes('拉斯海马永利博彩度假村')) {
+                    moreContent = `
+            <div style="margin-bottom: 25px;">
+              <p>近日，Marjan 集团首席执行官阿卜杜拉・阿勒阿卜杜利（Abdulla Al Abdouli）在《海湾时报》（Khaleej Times）独家专访中，正式确认拉斯海马永利综合度假村（Wynn Integrated Resort）将按计划于 2027 年 3 月竣工开业。作为阿联酋首个综合博彩度假村，该项目不仅是当地旅游业的里程碑，更将深度联动区域经济与城市发展，成为拉斯海马未来增长的核心引擎之一。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">01 项目核心进展：筹备同步推进</h4>
+              <p>拉斯海马永利综合度假村的开发进程已进入关键阶段，从硬件建设到软件筹备均呈现清晰落地节奏：</p>
+              <p><strong>建设进度按计划落地：</strong>这座 70 层的地标性建筑由永利度假村集团（Wynn Resorts）、Marjan 集团与拉斯海马酒店控股公司（RAK Hospitality Holding）合资打造，截至 2025 年 8 月已施工至第 61 层，距离 2027 年 3 月的竣工期限稳步推进，现场施工工作正紧锣密鼓开展。</p>
+              <p><strong>资质突破奠定行业地位：</strong>2024 年，永利度假村集团成功斩获阿联酋首张商业博彩运营商牌照，这一资质不仅是对企业专业能力的认可，更标志着中东和北非（MENA）地区首个综合博彩度假村正式落地拉斯海马，填补了区域高端博彩休闲业态的空白。</p>
+              <p><strong>人才储备提前启动：</strong>为保障开业后顺利运营，度假村已率先开启招聘工作。截至 2025 年 9 月 21 日，官方已公布 78 个空缺岗位；回溯 2025 年 4 月，永利集团已完成 80 名核心员工招聘，并计划在 2025 年底前将团队规模扩充至约 300 人，构建专业运营梯队。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">02 项目定位与配套</h4>
+              <p>作为总投资达 39 亿美元的超级项目，拉斯海马永利度假村并非单一博彩业态，而是以 '全场景体验' 为核心的综合目的地：</p>
+              <p><strong>独特区位与规模：</strong>度假村选址于一座面积超 60 公顷的独立岛屿，版图延伸至阿拉伯湾，坐拥一线海景资源，地理优势显著。</p>
+              <p><strong>多元设施覆盖全客群：</strong>除备受关注的博彩设施外，项目规划包含 1542 间酒店客房、22 个以上餐饮酒廊及特色体验场所，既满足高端博彩客群需求，也为家庭游客、休闲度假者提供丰富选择。永利度假村集团首席执行官克雷格・比林斯（Craig Billings）指出，阿联酋博彩市场规模有望达 50 亿美元，而该项目的非博彩配套将进一步扩大客群覆盖，提升综合竞争力。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">03 经济与旅游价值</h4>
+              <p>阿卜杜拉・阿勒阿卜杜利明确表示，永利度假村将成为拉斯海马经济与旅游业的 '双引擎'，其价值体现在多重维度：</p>
+              <p><strong>直接带动旅游增长：</strong>作为阿联酋规模最大、区域最受期待的项目之一，度假村的开业将显著提升拉斯海马的游客吸引力，为实现 '2030 年吸引超 350 万名游客' 的官方目标提供关键支撑。</p>
+              <p><strong>间接激活关联产业：</strong>度假村运营需大量配套住宅、公寓作为后勤保障，这将催生当地房地产开发热潮；同时，围绕度假村的餐饮、零售、服务等需求，还将带动大量新企业诞生，逐步成为拉斯海马经济体系的重要组成部分。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">04 区域发展联动：构建全域增长格局</h4>
+              <p>永利度假村的推进，并非孤立的项目落地，而是与拉斯海马整体发展规划深度绑定：</p>
+              <p><strong>'RAK 中心' 同步完善商业配套：</strong>就在阿卜杜拉・阿勒阿卜杜利接受采访前数日，Marjan 集团已宣布完成新社区 'RAK 中心'（RAK Central）的基础设施建设。该社区定位为 '北部酋长国最大商业区'，计划 2027 年迎来首批入驻企业，后续还将推进酒店与住宅项目，与永利度假村形成 '商业 + 休闲' 的功能互补。</p>
+              <p><strong>科学规划保障可持续发展：</strong>为避免盲目开发，拉斯海马正以 '供需监测 + 利润保障' 为核心制定总体发展规划：通过科学研发密切跟踪市场动态，确保规划对政府、企业、投资者等各方有利；同时明确为参与开发的开发商保障 30% 的开发利润率，以此吸引优质资本参与酒店、公寓等配套项目，形成 '度假村 - 商业区 - 住宅区' 的良性循环。</p>
+            </div>`;
+                } else if (title.includes('朱美拉棕榈岛别墅拍卖')) {
+                    moreContent = `
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">罕见藏品级别墅：奢华艺术之作</h4>
+              <p>此次成功交易的Signature Villa由知名开发商25 Degrees精心打造，将简约现代的建筑风格与精致奢华的室内设计完美融合，每一处细节都尽显匠心。</p>
+              <p>从具体配置来看，该别墅建筑面积约为10900平方英尺，内部布局十分优越，涵盖六间套房卧室以及多个独立起居空间，能充分满足居住者对生活空间的高品质需求。</p>
+              <p>在娱乐设施方面，私人影院、泳池甲板等一应俱全，为居住者打造丰富的休闲娱乐体验。</p>
+              <p>更值得一提的是其绝佳的景观优势，站在别墅内，可直接俯瞰亚特兰蒂斯皇家度假村及住宅，将全球闻名的海岸线风光尽收眼底。此外，该别墅的成交单价高达每平方英尺14679迪拉姆，在2025年的迪拜豪宅市场中，位列迄今成交单价第二名。</p>
+              <p>迪拜苏富比国际地产执行合伙人Leigh Borg评价道：'在竞争异常激烈的当下市场，这样的房源实属罕见，其稀缺性不言而喻。'</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">交易双方：依托全球平台，聚焦高净值人群</h4>
+              <p>这桩创纪录的交易由迪拜苏富比国际地产独家推动完成。其中，卖方由该公司合伙人Leigh Borg全权代表，买方则由高级顾问Filippo Tavernaro负责对接。双方团队充分借助苏富比覆盖全球的网络资源以及汇聚的超高净值客户群体，为这笔交易的顺利达成提供了有力支撑。</p>
+              <p>交易结束后，Filippo Tavernaro表示：'当一处房产能够全方位满足顶级买家的各类需求时，价格往往不再是阻碍交易的因素。'这句话精准点出了超级豪宅市场的核心逻辑——稀缺的房源与卓越的品质决定了房产的价值，而充足的资金只是进入这一市场的基本门槛。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">朱美拉棕榈岛：迪拜豪宅市场的顶尖象征</h4>
+              <p>朱美拉棕榈岛不仅是迪拜这座城市的标志性景观，更是全球顶级富豪的聚居之地。这里汇聚了品牌酒店、奢华餐饮场所以及超高端别墅群，已然成为世界级高品质生活方式的代名词。</p>
+              <p>近年来，朱美拉棕榈岛的豪宅价格呈现出持续上涨的态势。2024年，该岛上的一栋别墅以6.5亿迪拉姆的价格成交，创下了迪拜住宅交易史上的最高纪录；到了2025年，本次1.61亿迪拉姆的二手别墅交易再次证明即便在二手市场，朱美拉棕榈岛的房产依然拥有极强的投资回报率与良好的市场流动性。</p>
+              <p>Leigh Borg对此也有着深刻的见解：'朱美拉棕榈岛的买家群体具备极高的综合素质，这类顶级房产在市场上通常不会停留过长时间，往往一经推出便会吸引众多买家关注。'</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">2025市场趋势：迪拜豪宅热度居高不下</h4>
+              <p>除了本次朱美拉棕榈岛的别墅交易，迪拜苏富比国际地产近期还成功运作了多笔同样打破纪录的豪宅交易。例如：</p>
+              <p>在朱美拉湾岛，促成了2025年迄今该区域最昂贵的住宅成交；在酋长山庄与迪拜山庄，多宗豪宅交易也引发了市场的广泛关注；此外，Leigh Borg还完成了本年度朱美拉棕榈岛住宅地块的最昂贵出售交易。</p>
+              <p>这些交易案例充分表明，在当前市场环境下，迪拜的高端物业已不再仅仅是人们的居住选择，更逐渐成为全球投资者投资组合中具有战略意义的重要资产。</p>
+              <p>国际知名机构如Cavendish Maxwell、Knight Frank等发布的报告也显示，2025年上半年，迪拜超豪宅（价值1000万美元以上）的交易量与去年同期相比，增长了近30%；而朱美拉棕榈岛、朱美拉湾岛、萨迪亚特岛等滨水区域的豪宅带，更是成为中东地区乃至全球范围内最受投资者青睐的热门投资标的。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">全球资本持续涌入迪拜投资逻辑解析</h4>
+              <p>迪拜之所以能吸引全球资本不断涌入其房地产市场，背后有着多方面的优势支撑：</p>
+              <p>首先是税收优势，迪拜无个人所得税、无资本利得税，这一政策极大降低了投资者的成本，提升了投资吸引力。</p>
+              <p>其次是稳定的市场需求，目前迪拜人口已突破400万，且外籍高净值人士数量仍在持续增长，对高端住宅的需求也随之不断增加。</p>
+              <p>再者，迪拜的租金回报表现强劲，别墅和豪宅的租金收益率可达5%–7%，这一水平高于伦敦、纽约、香港等国际知名城市。</p>
+              <p>从国际认可度来看，迪拜被全球投资者视为'财富避风港'，其豪宅市场已跻身与摩纳哥、新加坡同级别的全球顶尖豪宅市场行列，成为全球富豪资产配置的重要选择地。</p>
+              <p>最后，政策支持也为迪拜房地产市场注入了强大动力，黄金签证计划、自由持有区政策等，都极大地吸引了全球人士前来迪拜长期定居，并推动资本在此落地。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">结语：一次交易，彰显市场未来走向</h4>
+              <p>此次1.61亿迪拉姆的朱美拉棕榈岛别墅交易，不仅刷新了该岛二手别墅的成交纪录，更向市场释放了一个清晰的信号——迪拜的超级豪宅市场目前仍处于上升阶段，未来发展潜力可观。</p>
+              <p>正如25 Degrees联合创始人David von Rosen所说：'这笔交易充分展现了迪拜高端房地产市场的成熟度与活力，即便对于全球最为挑剔的买家而言，迪拜依旧是他们购置豪宅的首选之地。'</p>
+              <p>随着未来更多新项目的推出以及国际资本的持续流入，迪拜在全球豪宅市场中的领军地位将进一步巩固。对于广大投资者而言，当前面临的问题已不再是'是否要进入迪拜豪宅市场'，而是'选择在何时进入'以及'挑选哪一类房产作为投资标的'。</p>
+            </div>`;
+                    // 为朱美拉棕榈岛别墅拍卖设置特定的图片
+                    modalImage.src = '/images_new/news/news-11/微信图片_2025-10-11_173158_843.png';
+                } else if (title.includes('Future Developments')) {
+                    moreContent = 'These ambitious projects include new residential communities, commercial hubs, and iconic landmarks that will further enhance Dubai\'s global reputation. The developments are designed to be sustainable, technologically advanced, and to offer an exceptional quality of life for residents. They represent a significant investment in Dubai\'s future as a leading global city.';
+                } else if (title.includes('Lyvia By Palace')) {
+          moreContent = `
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">项目开售信息</h4>
+              <p>近日，Lyvia By Palace将于 2025 年 10 月 13 日下午 5:00 开售，预计在2029年交付，此项目落地就站在了红利爆发点，拥有云溪塔封顶，地铁蓝线也同步通车，并且赶上名校开学、商场动工以及大型写字楼群和企业入驻。这些基础设施齐发力，正是资产价值跃升的起跳点。无论是投资还是自住，Lyvia By Palace都堪称不二之选。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">项目亮点速递</h4>
+              <p>下楼即学校距离不足百米五星Palace皇宫酒店住宅强大的开发商背书黄金签证的最佳机会机会难得，下一个学区房机会在10年后</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">云溪港「零接送」亲子奢居</h4>
+              <p>云溪港的市中心的政府定位和高塔、商场、写字楼的商圈配套带动高房价增长和抗贬抗通胀属性，且有学区房的高流通性和高租售比快速变现属性，加上Palace五星酒店的品牌加持，比普通楼租金和转售价都要高出20%，属于年度最佳住宅投资项目。云溪港公园五星酒店品牌住宅学区房，Palace品牌诠释活力生活：Palace连锁酒店品牌价值+一流家装+星级酒店服务，租金和转卖售价都比普通住宅楼高出20%。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">强大开发商护航：伊玛尔Emaar</h4>
+              <p>伊玛尔地产 (EMAAR Properties PJSC)成立于1997 年，是中东地区最大的土地和房地产开发商。Emaar作为世界首屈一指的地产公司，是整个阿联酋范围内的不动产巨头和领头羊，在迪拜金融市场和道琼斯阿拉伯泰坦名单中均榜上有名。集团以骄人的业绩和庞大的公司规模稳居世界 500 强之列。对于Emaar 来说，其目标不仅仅是建造住宅楼宇，在物业、商场、 零售和酒店休闲领域均获得了巨大的成功 。为满足购房者的各种需求而去开发高价值、典范级的生活社区，Emaar永远为创造上流生活品质而存在。目前 EMAAR 地产公司在全球范围内已经开发37350个居住单位，并完成20万平方米的商业项目。Emaar地产负责筹建了世界最大的购物中心（迪拜购物商场Dubai Mall）以及世界最高建筑哈利法塔（Burj Khalifa）。同时伊玛尔地产打造的市中心Downtown Dubai、迪拜码头社区Dubai Marina、阿联酋山庄Emirates Hills和Arabian Ranches 等大型综合社区，均已成为阿联酋地区最富品质及盛名的生活社区。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">黄金地段价值，迪拜河港核心区</h4>
+              <p>迪拜云溪港位于迪拜河The Creek沿岸，紧邻Ras Al Khor 迪拜最大的野生动物保护区火烈鸟自然保护区，是迪拜最大开发商Emaar在迪拜河畔开发的集住宅购物娱乐及商业办公为一体的综合区域。此区域最具代表的建筑是万众瞩目的未来世界最高塔Creek Tower。该区域毗邻火烈鸟湿地公园，与目前迪拜市中心哈利法塔区隔海相望。迪拜云溪港总占地550公顷，其中有730万平米的住宅，90万平米的酒店及零售区域以及30万平米的办公区域。同时迪拜地铁新干线也将延伸于此。游艇码头+艺术创意腹地 毗邻地铁蓝线（规划中）10分钟直达地标：哈利法塔 | 迪拜相框 | 未来博物馆 下楼即达的教育主场云溪港，首座\"零接送\"学区房，让孩子的上学路，变成一场轻松的漫步。学校近在咫尺，家长从此告别接送的奔波，将更多时间留给生活。孩子轻松上学、家长无忧通勤，节省的时间就是给家庭最好的礼物。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">绿意为邻，放学后的快乐天地</h4>
+              <p>Lyvia by Palace紧邻云溪港最大中央公园，以及采用现代自然风室内设计，全景视野更加开阔。在欣赏公园景的同时也能享受城市天际线，云溪港最大的中央公园达48000平方米，孩子放学即可投入天然\"绿色游乐场\"，阳光、草地、安全感，从孩子的童年开始为幸福加分。坐拥园景花园与静谧绿洲，融合高端、活力与玩趣的VIDA生活方式。配套齐全，沉浸式社区体验：泳池、儿童嬉水区、日落聚会花园、多功能运动场、攀岩墙、滑板公园、中央广场、景观步道、烧烤草坪一应俱全。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">低密奢居，便捷交通抢占未来城市C位</h4>
+              <p>整个片区仅规划5栋稀缺住宅，打造云溪港密度最低、绿化最高的社区。三分钟步行穿越天桥，直达新地标云溪塔与未来最大商场Dubai Square。五分钟接驳地铁蓝线，通达机场与全城核心。同时世界最高地铁站将落地云溪港，站名Emaar Property</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">户型分布及景观分析</h4>
+              <p>户型与价格（共474套）一居室共230套：面积755-1417平尺，起售价198万迪拉姆起两居室共191套：面积1,144 - 1,917平尺，起售价292万迪拉姆起三居室共48套：面积1,821 - 1,835平尺，起售价412万迪拉姆起 三房+多功能房+保姆间复式共9套：面积3239平尺，价格680万迪拉姆室内家装：</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">灵活付款计划及意向登记流程</h4>
+              <p>首付仅10%，分期至2029年▸ 订金10% → 分期付款（2025-2026每期10%）▸ 工程款按进度支付（2027-2029共40%）▸ 尾款20%交房付清（2029年7月） Lyvia by Palace 的意向登记流程：(1)整层 / 半层 / 多套购买•整层、半层或多套（最少 5 套）• 登记截止时间：2025 年 10 月 10 日（星期五）上午 11:00 (2)组合购买 & 单套购买•组合购买为 2 至 4 套（必须为前后景观混合组合）•登记截止时间：2025 年 10 月 10 日（星期五）下午 3:00 前</p>
+            </div>
+          `;
+          // 为Lyvia By Palace项目设置特定的图片
+          modalImage.src = '/images_new/news/news-1/微信图片_2025-10-11_152316_267.jpg';
+        } else if (title.includes('Binghatti Pinnacle')) {
+          moreContent = `
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">黄金区位：静谧繁华随心切换</h4>
+              <p>Binghatti Pinnacle 选址 Al Jaddaf 核心地带，地理位置得天独厚。居住于此，每日清晨醒来，推窗即可将迪拜哈利法塔（Burj Khalifa）、迪拜相框（Dubai Frame）以及不断焕新的谢赫扎耶德路（Sheikh Zayed Road）全景天际线尽收眼底。在这里，既能沉浸式感受迪拜这座国际都市的蓬勃活力，又能在兼具设计感与舒适度的居住空间中，寻得一份属于自己的静谧时光。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">立体交通四通八达，轻松拓展生活半径</h4>
+              <p>项目坐落于乌德梅萨路（Oud Metha Road），交通网络四通八达。无论是自驾出行，还是选择公共交通，都能实现无缝衔接，轻松抵达迪拜市中心（Downtown Dubai）、迪拜溪港（Dubai Creek Harbour）等核心区域，真正实现 '分分钟即达' 的便捷出行体验。居住在这里，'世界在你脚下' 不再是口号，而是触手可及的日常。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">灵活付款：20:40:40 专属计划</h4>
+              <p>为降低购房者置业门槛，开发商 Binghatti 特别推出 '20:40:40' 付款计划，该计划覆盖项目部分精选房源，且面向全球所有国籍客户开放。对于希望快速在迪拜安家或布局海外房产的投资者而言，这一极具诚意的付款方案，无疑是抢占迪拜优质房产的绝佳入场机会。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">项目核心优势：四大亮点定义品质生活</h4>
+              
+              <h5 style="color: #444; margin-top: 15px; margin-bottom: 10px;">（一）实力开发商背书：Binghatti Properties，品质与效率双保障</h5>
+              <p>Binghatti Pinnacle 由迪拜领先房地产开发商 Binghatti Properties 倾力打造。作为总部位于迪拜的快速成长型房企，Binghatti Properties 隶属于规模更大的 Binghatti Holding 集团，业务版图涵盖房地产、酒店管理、食品饮料等多个领域。</p>
+              <p>凭借独特的建筑设计与创新的开发理念，Binghatti Properties 在迪拜房产市场崭露头角。其开发的住宅与商业项目，始终坚持将大胆的建筑概念与实用、高价值的设计相结合，且项目选址极具战略性，多位于商业湾、棕榈岛、朱美拉村等迪拜黄金地段，产品覆盖豪华住宅与刚需住房市场，满足不同客群需求。</p>
+              <p>更值得一提的是，Binghatti Properties 采用垂直整合商业模式，公司内部具备钢铁、铝等关键建筑材料的自主生产能力，这一优势使其能够严格把控项目质量，确保按时交付。凭借高效的开发效率，该公司还获得迪拜土地局认可，跻身 '迪拜最快房地产开发商' 行列。</p>
+              <p>目前，Binghatti Properties 正加速拓展国际市场，已在沙特阿拉伯利雅得设立新办事处，积极探索海外发展机遇。同时，公司凭借与布加迪等国际品牌的高端合作项目备受瞩目，持续为本地及全球投资者推出优质新项目。</p>
+              
+              <h5 style="color: #444; margin-top: 15px; margin-bottom: 10px;">（二）潜力区域加持：Al Jaddaf，历史与现代交融的滨水新城</h5>
+              <p>Binghatti Pinnacle 所在的 Al Jaddaf（又称 Al Jadaf），是迪拜兼具历史底蕴与现代活力的特色区域。其名称源自阿拉伯语 '划桨者'，历史上曾是传统阿拉伯帆船（dhow）的建造基地，如今，区域内的滨水地带仍保留着船厂及大型传统帆船建造设施，且有望创造新的世界纪录。</p>
+              <p>从地理位置来看，Al Jaddaf 优势显著：地处迪拜湾（Dubai Creek）与商业湾（Business Bay）延伸区之间，通过完善的交通网络，可快速连接迪拜市中心、商业湾等核心板块。区域内不仅有主干道贯穿，更有地铁线路经过，极大便利了居民日常通勤。</p>
+              <p>此外，Al Jaddaf 的配套设施极为完善：Zabeel 体育场、穆罕默德・本・拉希德图书馆、拉提法医院（Latifa Hospital）等重要公共设施集聚，同时拥有大量公寓楼与酒店，满足居住、休闲、医疗、文化等多元需求。目前，区域内还在推进文化村与医疗城二期项目建设，未来发展潜力巨大。</p>
+              <p>总结来看，Al Jaddaf 既有丰富的历史积淀，又凭借优越的区位、持续升级的基础设施，成为迪拜房产市场的 '热门潜力股'，吸引众多投资者目光。</p>
+              
+              <h5 style="color: #444; margin-top: 15px; margin-bottom: 10px;">（三）优质资源环绕：教育、医疗、商业一站式配齐</h5>
+              <p>在教育资源方面，Al Jaddaf 周边聚集了多所优质院校，从学龄前教育到高等教育全覆盖。例如，位于扎比尔体育场附近的 Dazzle Kids Nursery，提供 EYFS（英国早期基础教育体系）课程，为学龄前儿童打造专业启蒙环境；Chubby Cheeks Nursery 分校则以安全健康的校园环境、专业合格的教职工团队及丰富设施，成为家长青睐的选择。此外，Mini Miracles Nursery、Yellow Brick Road Nursery、Kinderville Early Learning Centre 等周边社区院校，以及提供 IB（国际文凭）课程、覆盖学前班至 12 年级的瑞士国际科学学校（Swiss International Scientific School），还有迪拜英语学校（Dubai English Speaking School）、迪拜宝石私立学校（Dubai Gem Private School）等，为家庭提供多样化优质教育选择。</p>
+              <p>医疗资源方面，Al Jaddaf 及周边拥有多家顶尖医疗机构。1987 年成立的拉提法妇女儿童医院（Latifa Women and Children Hospital），配备先进医疗设备，是迪拜顶尖的政府医院之一；克莱蒙梭医疗中心医院（Clemenceau Medical Center Hospital）则提供多学科综合治疗服务，拥有现代化医疗设施与专业医护团队。此外，从区域出发，仅需几分钟车程即可抵达位于迪拜医疗城的美迪 clinics 城市医院（Mediclinic City Hospital）、红衣主教健康（Cardinal Health）及阿联酋专科医院（Emirates Specialty Hospital），为居民健康保驾护航。</p>
+              <p>商业与旅游方面，Al Jaddaf 周边奢华酒店群林立，将吸引大量国际游客，进一步带动区域旅游与商业发展，提升整体吸引力。同时，区域及周边的购物中心、餐饮街区等商业配套完善，满足居民日常消费与休闲需求。</p>
+              
+              <h5 style="color: #444; margin-top: 15px; margin-bottom: 10px;">（四）强劲投资潜力：永久产权 + 高回报率，长期价值凸显</h5>
+              <p>Al Jaddaf 目前正处于大规模城市更新与开发阶段，未来几年，将有一系列新的住宅、商业及混合用途项目投入使用。这些新项目不仅将提升区域生活品质，还将进一步丰富房产市场业态，推动区域房产价值持续攀升。</p>
+              <p>根据最新市场数据，Al Jaddaf 房地产价格呈稳步上升趋势，且投资回报率（ROI）表现亮眼。其中，3 卧室公寓投资回报率最高，达 6.52%；1 卧室公寓回报率约 6.22%；单间公寓回报率约 5.10%；2 卧室公寓平均回报率为 4.67%，在迪拜房产市场中处于较高水平。</p>
+              <p>更值得投资者关注的是，Al Jaddaf 提供 '永久产权'—— 这一优势在迪拜房产市场中极为稀缺，为希望长期持有房产、获取稳定收益的投资者提供了独特保障。加之区域交通便捷、基础设施不断完善、生活便利性高，Al Jaddaf 的长期投资潜力备受认可，成为众多追求资本增值投资者的优选区域。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">周边配套与出行：便捷生活触手可及</h4>
+              
+              <h5 style="color: #444; margin-top: 15px; margin-bottom: 10px;">（一）交通出行</h5>
+              <ul style="list-style-type: disc; margin-left: 20px;">
+                <li>步行 15 分钟可达 Al Jaddaf 地铁站（开车仅需 5 分钟）</li>
+                <li>步行 15 分钟可达 Creek 地铁站（开车仅需 3 分钟）</li>
+                <li>开车 5 分钟可达迪拜节日城购物中心（Dubai Festival City Mall）</li>
+                <li>开车 5 分钟可达范思哲宫殿酒店（Palazzo Versace Dubai)</li>
+                <li>开车 8 分钟可达迪拜国际机场</li>
+                <li>开车 10 分钟可达迪拜国际机场（DXB International Airport）</li>
+                <li>开车 10 分钟可达商业湾（Business Bay）</li>
+                <li>开车 10 分钟可达迪拜市中心（Downtown Dubai）</li>
+                <li>开车 10 分钟可达克里克公园（Creek Park）</li>
+                <li>开车 10 分钟可达拉斯阿尔科野生动物保护区（Ras Al Khor Wildlife Sanctuary）</li>
+                <li>开车 13 分钟可达迪拜购物中心（Dubai Mall）</li>
+                <li>开车 20 分钟可达朱美拉海滩（Jumeirah Beach）</li>
+                <li>开车 30 分钟可达棕榈岛（Palm Jumeirah）</li>
+                <li>开车 30 分钟可达迪拜码头（Dubai Marina）</li>
+              </ul>
+              
+              <h5 style="color: #444; margin-top: 15px; margin-bottom: 10px;">（二）休闲与地标</h5>
+              <p>文化地标：步行 15 分钟可达穆罕默德・本・拉希德图书馆（藏书约 110 万本数字及印刷图书，内设咖啡厅、语言花园与圆形剧场）；邻近贾米尔艺术中心（Jameel Arts Centre），该中心为支持本地艺术家打造，设有展览空间、大型花园及 200 座圆形剧场。</p>
+              <p>自然与休闲：开车 9 分钟可达拉斯阿尔科火烈鸟保护区（Ras Al Khor Flamingo Sanctuary），这里是湿地生态保护区，栖息着大量火烈鸟等动物；开车 10 分钟可达迪拜花园之光（Dubai Garden Glow）主题公园。</p>
+              <p>商业与餐饮：开车 7 分钟可达迪拜节日城购物中心，内有 H&M、Zara、Kate Spade、Swarovski 等国际品牌，还有大型宜家（IKEA）专卖店；周边还有 Wafi Mall 等购物中心，满足购物需求；区域内滨水长廊聚集众多顶级餐饮与零售店铺，同时邻近公园、历史遗迹中心、体育场馆及精品酒店，为家庭提供平衡的生活方式。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">项目细节：户型、规模与交付时间</h4>
+              
+              <h5 style="color: #444; margin-top: 15px; margin-bottom: 10px;">（一）户型分布</h5>
+              <ul style="list-style-type: disc; margin-left: 20px;">
+                <li>1 卧室公寓：48 套</li>
+                <li>2 卧室公寓：96 套</li>
+                <li>3 卧室公寓：32 套</li>
+              </ul>
+              
+              <h5 style="color: #444; margin-top: 15px; margin-bottom: 10px;">（二）基础参数</h5>
+              <ul style="list-style-type: disc; margin-left: 20px;">
+                <li>地块规模：2,827.54 平方米（约 30,435.39 平方英尺）</li>
+                <li>建筑结构：4 层地下室 + 1 层地面层 + 16 层住宅 + 1 层屋顶</li>
+                <li>住宅总量：共 176 套精选住宅</li>
+                <li>预计完工时间：2025 年 12 月 31 日</li>
+                <li>起售价：1,349,999 AED</li>
+              </ul>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <p>Binghatti Pinnacle 不仅是一处居所，更是一种与迪拜城市发展同频共振的高品质生活方式。目前项目正处于限时推广阶段，对于想要布局迪拜房产、追求优质生活的购房者与投资者而言，此时入手，无疑是把握机遇的最佳选择。</p>
+            </div>`;
+          // 为Binghatti Pinnacle项目设置特定的图片
+          modalImage.src = '/images_new/news/news-12/微信图片_2025-10-11_173659_104.jpg';
+        } else if (title.includes('Breez by Danube') || title.includes('迪拜海事城海景奢宅')) {
+          modalImage.src = 'images_new/news/news-13/微信图片_2025-10-13_092021_895.jpg';
+          moreContent = `
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">Breez by Danube：迪拜海事城海景奢宅，140万迪拉姆起拎包入住</h4>
+              <p>若你始终向往推窗即见无垠海景的生活，那迪拜海事城的全新项目 ——Breez by Danube，或许正是为你量身打造。这座60层的云端住宅，以140万迪拉姆起的亲民价格，为购房者带来高品质居住体验，更配备全屋家具，实现真正的拎包入住。不仅如此，项目还推出极具吸引力的付款方案，30% 房款可在交房后3年内付清，大幅降低购房门槛。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">全新海上生活方式：私人度假生活</h4>
+              <p>Breez by Danube 绝非普通公寓，而是为居者构建了一种全新的海上生活方式。项目户型丰富，从精致的 Studio 到宽敞的四居室，每一户均采用大面积落地窗设计。当清晨的阳光透过窗户洒入室内，迪拜海港的壮丽景致便自然而然地 "搬进" 客厅，让居者每日都能与美景相伴。</p>
+              <p>更令人心动的是，这里宛如一座私人度假村，配备40余项度假式奢华配套设施。无边际泳池让你在水中尽享海风轻抚，迷你高尔夫球场满足运动爱好，户外影院为你打造浪漫观影氛围，儿童乐园是孩子欢乐的天地，健身会所则助力保持健康体态。即便在工作日下班后，回到这里，也能瞬间切换至度假模式，卸下一身疲惫。</p>
+              <p>项目的入户大堂设计堪称惊艳，1500平方英尺的巨型水族馆坐落于此。步入大堂，仿佛置身海洋隧道，归家之路瞬间变成一场独特的海底探索之旅。这种极具创意的设计在迪拜豪宅中十分罕见，既彰显了项目的高端品味，也让其独特性与收藏价值大幅提升。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">开发商实力背书</h4>
+              <p>从开发商实力来看，项目由迪拜排名前五的 Danube Properties（达禄比地产）打造。作为迪拜首屈一指的房地产开发企业，Danube Properties 拥有30年的良好信誉。截至目前，已在迪拜热门地段推出32个优质项目，2024年全年房产销售价值高达100亿迪拉姆。其核心价值在于以合理价格，为客户提供黄金地段的永久产权房产，这些房产不仅收益高、增值潜力大，还配备一流精装，且能确保按时交付。</p>
+              <p>此外，开发商还推出1%的月度付款计划，凭借卓越表现，连续多年斩获福布斯中东以及海湾及阿拉伯商业房产开发大奖，客户遍布全球170多个国家，机构更是落地世界各地。强大的开发商实力，为项目品质与交付提供了坚实保障，也让投资者更具安全感。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">自住投资两相宜，双重价值之选</h4>
+              <p>从投资前景来看，Breez by Danube 所在的迪拜海事城，具备巨大的增值空间，堪称一线海岛中的价格洼地。迪拜政府正投入50.35亿迪拉姆（约合13.7亿美元）用于升级道路，未来海事城将直接连接DIFC（迪拜国际金融中心）、市中心、世贸中心、德拉老城和帆船酒店，交通便利性与区域价值将大幅提升。</p>
+              <p>回顾迪拜其他海岛项目的价格走势，更能印证海事城的投资潜力。棕榈岛（Palm Jumeirah）初始单价仅2000迪拉姆/平方英尺，如今已涨至7000迪拉姆/平方英尺；蓝水岛（Blue Waters）初始单价同样为2000迪拉姆/平方英尺，现单价达5200迪拉姆/平方英尺；宝格丽与珍珠岛（Bulgari & Jumeriah）初始单价3500迪拉姆/平方英尺，目前也攀升至7000迪拉姆/平方英尺。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">黄金区位加持，尽享便捷与繁华</h4>
+              <p>Breez by Danube 坐落于有 "迪拜心脏门口" 之称的海事城，地理位置得天独厚。海事城岛面积达227万平方米，而项目所在的BEYOND住宅总开发面积约102万平方米（1100万平方英尺）。从居住体验来看，这里能为住户提供宁静的海岛生活，同时又能轻松接入城市的繁华。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">配套设施全面，悦享生活</h4>
+              <p>从周边配套来看，海事城及周边区域设施完善。教育方面，附近有Little Diamond幼儿园，遵循早期教育基础阶段（EYFS）课程，距离项目仅10分钟路程；New Academy School和Ambassador School也在10分钟车程内。医疗资源方面，15分钟车程内有Aster诊所、牛津医疗中心和Harley国际医疗诊所。购物娱乐方面，14分钟车程即可抵达热门购物大道Burjuman Mall。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">户型丰富，满足不同需求</h4>
+              <p>Breez by Danube户型多样，涵盖Studio、1房（1 BHK）、2房（2 BHK）、3房（3 BHK）、4房（4 BHK）及顶层复式公寓（Penthouse），可满足单身人士、小家庭、多人口家庭等不同群体的居住需求。项目采用豪华装修标准，配备全屋家具，还为每户提供专属车位，省心又贴心。付款方式灵活，70%房款可分期至交房，30%房款在交房后分期支付，进一步减轻购房者的资金压力。</p>
+            </div>`;
+        } else if (title.includes('花溪谷二期') || title.includes('Emaar 超大户型')) {
+          modalImage.src = 'images_new/news/news-14/微信图片_2025-10-13_092435_983.jpg';
+          moreContent = `
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">花溪谷二期压轴联排即将入市！Emaar 超大户型 + 黄金沙滩 + 高绿化，开启理想人居</h4>
+              <p>花溪谷打造的是一座集自然与生活于一体的原生态绿洲新城，社区内涵盖现代联排别墅、双拼别墅及独栋别墅等多元产品。作为一座 "自给自足" 的全能社区，这里配备了完善的生活配套——从日常所需的生活设施，到全龄段的教育资源、专业的医疗服务，再到风景宜人的休闲空间与丰富的娱乐场地，全方位满足居民生活需求。在这里，每一位居住者都能找到梦想的生活方式，成为引领未来的创新者与追梦者。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">01核心区位：便捷交通网，畅达全城</h4>
+              <p>花溪谷（The Valley）地理位置优越，距离迪拜市中心仅需 25 分钟车程，坐落于 Jebel Ali – Lehbab Rd 与 Al Ain – Dubai Rd 的交汇处。从社区出发，不到 10 分钟即可抵达酋长国路，依托完善的高速公路网络，无论是通勤、购物还是出行游玩，都能快速畅达迪拜各个区域，轻松连接城市繁华。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">02VENERA 项目：演绎豪华人居</h4>
+              <p>位于花溪谷（The Valley）内的 VENERA 项目，是 Emaar 集团的全新匠心之作，更是对传统联排别墅的一次创新突破。项目主打豪华 3 卧室与 4 卧室联排别墅，以 "现代舒适与自然风光和谐共生" 为设计理念，为追求高品质生活的人群，提供了在独特自然环境中享受精致生活的难得机会，重新定义迪拜联排居住体验。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">03社区核心亮点：全能配置，品质升级</h4>
+              <p>交通升级，高效出行：耗资 20 亿迪拉姆的 E66 公路升级改造已全面完工，不仅完成了 17 公里公路的优化，还将车道数量翻倍，并升级了 6 个交通交汇处，新建桥梁进一步提升通行效率——如今从社区到迪拜市中心仅需 25 分钟，抵达两大机场也仅需 20 分钟，出行更便捷。</p>
+              <p>全能配套，自给自足：社区规划 33 个公共配套设施，且二期占地面积是一期的 2 倍，公共开放空间与公园绿化覆盖率也同步翻倍，让居民在更广阔的自然空间里，享受丰富的社区生活。</p>
+              <p>精品户型，稀缺价值：作为当前市场上的稀缺产品，VENERA 项目的 3/4 房联排别墅拥有市场最大占地面积，同时升级扩大了建筑面积，全部采用单排设计，相比以往联排产品，面积增加约 40 平米。现代简约的建筑风格搭配开阔的户型空间，再加上贯穿整个社区的中央公园与齐全的娱乐配套，居住舒适度与品质感拉满。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">04配套设施：全维资源，悦享生活</h4>
+              <p>社区为居民精心规划了丰富的配套设施，满足日常休闲、社交、运动等多元需求，让生活更具幸福感。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">05室内设计：精工细作，采光与美学兼具</h4>
+              <p>VENERA 联排别墅的室内设计，将精心打磨的建筑设计与精湛工艺无缝融合。大面积的落地窗成为空间的点睛之笔，不仅能最大化引入自然光线，让阳光洒满房屋每一个角落，更能透过窗户展现室内精致辉煌的装修细节，营造出明亮、通透且富有格调的居住氛围。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">06价格・户型・支付计划</h4>
+              <p>（一）户型<br>
+              三居室建筑面积：2400 平方英尺起<br>
+              占地面积：1959 平方英尺起<br>
+              四居室建筑面积：2754 平方英尺<br>
+              占地面积：3289 平方英尺</p>
+              <p>（二）支付计划<br>
+              - 灵活支付计划：80% 分期支付，20% 尾款结算；<br>
+              - 项目完成日期：2029 年<br>
+              降低置业压力，轻松实现居住梦想。</p>
+            </div>`;
+        } else if (title.includes('DAMAC District') || title.includes('迪拜豪宅区新地标')) {
+          modalImage.src = 'images_new/news/news-15/微信图片_2025-10-13_104501_380.jpg';
+          moreContent = `
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">迪拜豪宅区新地标！DAMAC District 登场，"办公 + 公寓" 王炸组合重塑高端生活</h4>
+              <p>近日，迪拜知名豪宅社区 DAMAC Hills 再添重磅项目 —— 开发商 DAMAC Properties 全新打造的 DAMAC District 正式亮相。此次项目以 "三栋联发" 的强劲姿态入市，集甲级写字楼与精品公寓于一体，堪称今年迪拜房产市场的 "王炸之作"，为企业与高端人群带来 "居住、办公、娱乐" 一站式解决方案。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">01项目核心亮点</h4>
+              <p>DAMAC District 打破传统地产项目的单一功能局限，以 "全场景覆盖" 为核心，打造迪拜少见的综合体形态，无论是办公需求、居住需求还是休闲娱乐需求，都能在社区内得到满足。"住 + 工 + 娱" 一体化，重塑多元生活场景。</p>
+              <p>办公维度：两栋甲级写字楼聚焦 "生活方式化办公"，不仅提供宽敞实用的办公空间，更融入健康理念与多元配套，重新定义现代工作场所；</p>
+              <p>居住维度：一栋精品公寓涵盖多种户型，低门槛即可入驻迪拜高端社区，兼顾自住舒适度与投资性价比；</p>
+              <p>娱乐维度：依托 DAMAC Hills 成熟配套与项目自身优质设施，形成 "办公之余即享休闲" 的便捷生活圈，实现 "工作与生活的无缝衔接"。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">02开发商实力：高端地产领军者</h4>
+              <p>作为项目的打造者，DAMAC Properties 自 2002 年成立以来，始终深耕高端房地产领域，凭借雄厚实力与创新理念，在全球市场树立起卓越口碑。</p>
+              <p>- 交付能力强劲：累计成功交付超过 47000 套住宅，覆盖住宅、商业、混合用途等多种业态，以稳定的交付质量与效率，赢得投资者与业主的信任；</p>
+              <p>- 品牌合作顶尖：通过与 Versace、Cavalli 等全球顶级奢侈品牌战略合作，将奢华设计与生活美学融入项目，打造具有独特辨识度的高端产品，巩固其在高端市场的领先地位；</p>
+              <p>- 全球布局广泛：除阿联酋本土市场外，业务已拓展至沙特阿拉伯、卡塔尔、英国、美国、加拿大等多个国家和地区，截至 2024 年，全球项目覆盖中东、欧洲、北美等核心市场，有效分散区域风险，提升全球投资者信心；</p>
+              <p>- 创新理念前沿：率先将节能技术融入高端项目开发，成为中东豪华房地产领域的创新标杆，同时不断升级 "生活方式" 理念，从住宅开发延伸至商业领域，为用户提供更具温度的空间体验。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">03区位价值：迪拜版 "比弗利山庄"</h4>
+              <p>DAMAC District 选址于迪拜知名豪宅社区 DAMAC Hills（前身为 Akoya），该区域被誉为 "迪拜的比弗利山庄"，凭借优越的地理位置、完善的配套与稀缺的资源，成为全球高净值人群的置业优选。</p>
+              <p>（一）区域基础优势：</p>
+              <p>- 地处 Dubailand 中心地带，占地 4200 万平方英尺，拥有联排别墅、独立别墅、公寓等多元物业形态，是迪拜热门的高端居住板块；</p>
+              <p>- 紧邻 Al Qudra 路（D63），周边环绕 Mudon、Remraam、Arabian Ranches 2 等成熟社区，交通便捷，生活氛围浓厚；</p>
+              <p>根据 Bayut《2024 年迪拜年度销售报告》，DAMAC Hills 是迪拜豪华别墅购买的最受欢迎区域之一，区域价值认可度高。</p>
+              <p>（二）稀缺景观资源：项目紧邻 Trump International Golf Club（特朗普国际高尔夫俱乐部）与 DAMAC Lagoons（达马克泻湖），住户可俯瞰高尔夫球场的绿意与泻湖的静谧，景观视野绝佳，自然与奢华完美融合。</p>
+              <p>（三）成熟生活配套：作为迪拜少有的 "全方位自给自足社区"，DAMAC Hills 已配备完善的生活设施，包括 DAMAC Mall（达马克购物中心）、国际学校、诊所、酒店、餐饮集群、公园等，无需远行即可满足日常购物、教育、医疗、休闲等所有需求，生活便利性拉满。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">04项目亮点解析：全维度赋能高端体验</h4>
+              <p>（一）三栋联发，功能互补抗风险</p>
+              <p>项目一次性推出 "两栋甲级写字楼 + 一栋精品公寓楼"，业态间形成强力互补：</p>
+              <p>对企业而言：可实现 "办公与员工居住同社区"，减少通勤成本，提升团队效率；</p>
+              <p>对投资者而言："办公 + 居住" 双业态组合能分散市场风险，无论租赁市场偏向企业还是个人，都能保障资产收益，提升抗周期能力；</p>
+              <p>对社区而言：多元业态带来稳定的人流与活力，进一步激活周边配套价值，形成 "业态 - 人流 - 配套" 的良性循环。</p>
+              <p>（二）甲级写字楼：重新定义 "健康办公"</p>
+              <p>写字楼以 "提升协作效率 + 关注员工健康" 为核心，打造符合现代企业需求的办公空间：</p>
+              <p>空间设计：每间办公室面积约 3000 平方英尺，整层面积 22459-22882 平方英尺，单元面积 3164-6588 平方英尺，空间灵活可分割，适配不同规模企业；</p>
+              <p>理念创新：打破传统 "格子间" 模式，将艺术设计与健康理念融入办公场景，配备 Indoor Co-working Spaces（室内联合办公空间）、Gym & AI Training Lab（健身房与 AI 训练实验室）、Red Light Therapy（红光理疗室）等设施，关注员工身心健康，提升企业对人才的吸引力；</p>
+              <p>定位高端：对标国际甲级写字楼标准，满足远程办公与混合办公趋势下，企业对 "高品质办公环境" 的需求，为迪拜办公市场注入新活力。</p>
+              <p>（三）精品公寓：低门槛入驻豪宅区，自住投资双优</p>
+              <p>公寓塔楼涵盖 studio、一房、两房等多种户型，以 "高性价比" 为核心优势，成为入驻 DAMAC Hills 的优质选择：</p>
+              <p>1、户型与价格：</p>
+              <p>一居室：平均面积 740 平方英尺，起售价 110 万迪拉姆；</p>
+              <p>两居室：平均面积 1221 平方英尺，起售价 170 万迪拉姆；</p>
+              <p>2、核心优势：</p>
+              <p>（1）自住：低门槛即可享受 DAMAC Hills 的高端配套与景观资源，社区环境优质，生活便利度高；</p>
+              <p>（2）投资：区域租金回报率稳定，公寓类产品回报率可达 6%-8%，且项目定位契合市场需求，未来增值潜力可观。</p>
+              <p>（四）配套设施：360° 覆盖休闲与健康需求</p>
+              <p>项目自身配备丰富的高端设施，结合 DAMAC Hills 的成熟配套，形成 "内外联动" 的优质体验：</p>
+              <p>- 休闲娱乐类：无边际泳池、度假式泳池甲板、Sunset Bar（日落酒吧）、BBQ Stations（烧烤区）、Private Dining Pods（私享用餐舱）、Gaming Lounge（游戏休闲厅，含 PC、PlayStation、桌球）、Indoor Golf Simulator（室内高尔夫模拟器）；</p>
+              <p>- 运动健康类：Outdoor Callisthenics（户外健身区）、Padel Courts（板式网球场）、Garden Yoga（花园瑜伽区）、Sensory Deprivation Tank（感官剥夺舱）、Cloud Zen Lounge（云端禅意休息室）；</p>
+              <p>- 生活服务类：Urban Farming Terrace（城市农场露台）、Kids Pool（儿童泳池）、Kias Playground（儿童游乐场）、多功能运动场、公园及景观绿地。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">05区域市场分析</h4>
+              <p>从市场数据来看，DAMAC Hills 近年来房价与租金均保持良好增长态势，区域投资价值显著。</p>
+              <p>房价涨幅强劲：区域内别墅、联排别墅价格区间广泛，四卧别墅价格 350-550 万迪拉姆，顶尖豪华别墅（如 Trump Estates 或球场景观房）价格可达 3000-3400 万迪拉姆；2024 年上半年，DAMAC Hills 2（较新片区）的 Villa 类型房产涨幅超过 41%，区域价值增长势头迅猛。</p>
+              <p>租金回报率稳定：根据 LuxFolio 与 DAMAC 官方数据，区域内公寓、联排别墅、别墅的整体租金回报率（毛收益率）在 5%-8% 之间；其中公寓类产品回报率更高，1-2 房公寓及设施现代的楼盘，回报率可达 6%-8%，远超迪拜部分区域平均水平，投资收益有保障。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">06置业细节：灵活付款 + 合理交付周期</h4>
+              <p>（一）付款计划</p>
+              <p>项目采用 "20-40-40" 灵活付款方案，大幅降低资金压力：</p>
+              <p>- 首付：20%（签约时支付）；</p>
+              <p>- 中期付款：40%（分 40 个月支付，每月仅需支付 1%）；</p>
+              <p>- 尾款：40%（交房时支付）。</p>
+              <p>（二）交付时间</p>
+              <p>项目预计交付时间为 2028 年 12 月 - 2029 年 1 月，给予购房者充足的资金准备与规划时间，同时契合区域价值持续增长的趋势，交房时或可享受更高资产价值。</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">07总结：迪拜高端地产的 "全能选手"</h4>
+              <p>无论是从区位、业态、配套还是市场潜力来看，DAMAC District 都展现出 "全能型" 优势：</p>
+              <p>对企业主：可获得 "高端办公 + 员工居住" 的一体化解决方案，提升运营效率；</p>
+              <p>对投资者："办公 + 公寓" 双业态组合抗风险能力强，区域价值与租金回报双稳定；</p>
+              <p>对都市菁英：低门槛入驻迪拜豪宅区，享受 "工作 - 生活 - 休闲" 无缝衔接的高品质生活。</p>
+              <p>作为 DAMAC 在高端商业地产领域的重要布局，DAMAC District 不仅是一个地产项目，更是迪拜豪宅区功能升级的重要标志，为迪拜房地产市场注入新的活力，无疑是 2025 年值得重点关注的优质项目。</p>
+            </div>`;
+        } else if (title.includes('Jumeirah Residences Emirates Towers') || title.includes('Meraas与卓美亚酒店集团联袂巨献')) {          modalImage.src = 'images_new/news/news-18/微信图片_2025-10-13_114116_332.jpg';          moreContent = `            <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">Meraas与卓美亚酒店集团联袂巨献！Jumeirah Residences Emirates Towers 耀世登场</h4>              <p>近日，迪拜房地产市场再添重磅力作 ——Jumeirah Residences Emirates Towers 正式亮相。这一地标级项目由迪拜政府旗下知名开发商 Meraas，携手全球奢华酒店领域的领军者卓美亚酒店集团共同打造，更邀请到享誉国际的建筑事务所 SCDA 操刀设计，以 AB 两座巍峨塔楼为核心，为全球买家带来一至四居室的精品公寓选择，重新定义迪拜高端居住标杆。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">01项目核心亮点：多重优势</h4>              <p>黄金地段，便捷通达：项目坐落于迪拜核心主干道谢赫扎耶德路，周边环绕迪拜国际机场、哈利法塔、迪拜国际金融中心（DIFC）、迪拜市中心、城市步道及未来博物馆等城市地标。住户轻松享受高效出行，10 分钟可达迪拜市中心与 City Walk 城市街区，14 分钟抵达迪拜国际机场，15 分钟至 D3 设计区，17 分钟到 J1 海滩，25 分钟可至迪拜码头，繁华生活触手可及。</p>              <p>双强联名，实力背书：作为 Meraas 与卓美亚酒店集团的联手之作，两大品牌的影响力为项目注入强大信心。Meraas 是迪拜控股集团旗下的优质开发商，卓美亚则是全球奢华酒店领域的标杆，二者合作不仅提升项目知名度，更从开发与运营两端保障居住品质。</p>              <p>创新设计，视野无界：项目采用独特的悬挑设计，无立柱的醒目结构搭配专属空中露台，让空间更具通透感与设计感。AB 两座塔楼均实现全景无遮挡视野，住户推窗即可拥揽迪拜壮丽天际线，将城市美景尽收眼底。</p>              <p>酒店式管理，奢享服务：依托卓美亚酒店集团的专业运营经验，项目提供全方位酒店式管理服务。24 小时安保、礼宾接待、家政服务、SPA 理疗等贴心服务，让住户无需出门即可享受奢华体验，生活便捷度与舒适度大幅提升。</p>              <p>高投资潜力，抗风险能力强：地处谢赫扎耶德路这一高价值区域，项目所在板块投资回报率常年保持高位，房产流通性强。同时，品牌加持下的高端住宅在市场波动中更具抗压性，无论是出租还是转售，都能为投资者带来稳定回报。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">02品牌酒店住宅投资价值解析</h4>              <p>在当下房地产市场中，品牌酒店住宅已成为投资者青睐的热门品类，其独特优势主要体现在五大维度：</p>              <p>1. 品牌赋能，提升资产价值：品牌酒店住宅通常与知名酒店或高端生活方式品牌深度合作，凭借品牌的知名度与尊贵形象，能轻松吸引高净值买家与租客。这种 "品牌效应" 不仅能提高房产出租价格，在未来转售时也能获得更高溢价，让资产持续增值。</p>              <p>2. 高标准打造，品质无忧：从设计理念到施工工艺，从装修材料到设施配置，品牌酒店住宅均遵循极高标准。顶级设计团队、先进建筑技术与卓越工艺的结合，让房产在居住体验与耐用性上远超普通住宅，长期来看更有利于资产稳步升值，为住户提供高品质生活环境。</p>              <p>3. 高端配套，丰富生活场景：品牌酒店住宅往往配备全方位高端配套设施，涵盖礼宾接待、家政服务、星级 SPA、高端水疗中心、米其林级别的星级餐厅、户外休闲空间等。这些配套不仅满足住户日常居住需求，更能提供社交、休闲、养生等多元化场景，吸引愿意为品质与便利支付溢价的客户。</p>              <p>4. 租赁需求旺盛，收益稳定：得益于品牌影响力与优质配置，品牌酒店住宅在租赁市场中始终处于供不应求的状态。相比非品牌房产，这类项目入住率更高，租金收益更可观，且空置风险大幅降低，为投资者带来持续、稳定的现金流回报。</p>              <p>5. 抗波动性强，市场风险更低：在房地产市场面临波动时，品牌酒店住宅凭借高端形象与市场认可度，展现出更强的抗风险能力。即便在经济下行时期，仍能凭借稳定的高净值客群（买家与租客），缓冲市场波动带来的冲击，保障资产价值相对稳定。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">03强强联合：背后的实力团队</h4>              <p>1. 顶级开发商 Meraas：迪拜地产界的 "品质标杆"</p>              <p>Meraas 隶属于迪拜控股集团，拥有迪拜国企开发资质，虽成立时间不算久远，却凭借一系列高品质项目迅速在业界站稳脚跟，被誉为迪拜开发商中的 "爱马仕"。其过往开发的 Port de La Mer、City Walk、蓝水岛、宝格丽岛、Nad Al Sheba Gardens 等住宅与商业项目，均以卓越品质与创新设计赢得客户广泛信赖，成为迪拜房地产市场的优质代表。</p>              <p>2. 卓美亚酒店集团：全球奢华酒店的领军者</p>              <p>卓美亚酒店集团（Jumeirah Group）始建于 1997 年，2004 年加入迪拜控股集团，专注于豪华酒店与度假村的管理运营。目前，集团在全球拥有 30 家酒店和公寓，足迹遍布上海、南京、广州等中国城市，迪拜、阿布扎比、科威特等中东地区，马尔代夫、巴厘岛等度假胜地，以及法兰克福、伦敦、马略卡、卡普里等欧洲城市。</p>              <p>卓美亚帆船酒店（Burj al Arab）、卓美亚海滩酒店（Jumeirah Beach Hotel）、卓美亚古堡酒店（Madinat Jumeirah）等均荣获无数国际旅游奖项，成为全球高端酒店行业的经典之作，也为 Jumeirah Residences Emirates Towers 的运营服务奠定坚实基础。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">04地理位置和全方位配套</h4>              <p>1.城市核心位置，优越地理环境</p>              <p>Jumeirah Residences Emirates Towers毗邻主干道谢赫扎耶德路(Sheikh Zayed Road)，与迪拜国际机场，哈利法塔、迪拜国际金融中心(DIFC)、迪拜市中心、城市步道和未来博物馆等城市地标和景点咫尺距离，确保每个家庭都能享受到舒适休闲的高档生活。</p>              <p>10分钟-迪拜市中心<br>10分钟-City Walk城市街区<br>14分钟-迪拜国际机场<br>15分钟-D3设计区<br>17分钟-J1海滩<br>25分钟-迪拜码头</p>              <p>2.优质教育&医疗资源，护航成长</p>              <p>项目周边 15 分钟车程内，汇聚多所知名国际学校，包括 GEMS 惠灵顿小学、JSS 私立学校、Horizon 英语学校以及迪拜国际学校 Al Quoz 校区。这些学校涵盖英式、美式、CBSE 等多种教育体系，满足不同家庭的教育需求，让孩子在家门口就能享受优质国际教育。</p>              <p>为保障住户健康，项目周边 10-15 分钟车程内，分布着 Mediclinic Parkview、阿联酋朱美拉医院、Medcare Hospital Al Safa 等多家优质医疗机构。这些医院配备先进医疗设备与专业医护团队，提供门诊服务、健康保健、专科护理及急诊治疗等全方位医疗服务，为住户健康保驾护航。</p>              <p>3.多元休闲配套，悦享生活</p>              <p>Jumeirah Residences Emirates Towers 打造一站式生活配套，满足不同人群的休闲需求：办公与社交、运动与养生、家庭与休闲、亲子专属等多元化场景，让住户体验高品质生活。</p>              <p>4.酒店式尊贵服务</p>              <p>作为全球高端酒店品牌，卓美亚阿联酋中心公寓为居者提供酒店式全套服务，以满足住户的需求。其中包括7天*24小时安保服务、礼宾服务、托儿服务、家教服务、水疗SPA和按摩治疗师服务、修甲和美容服务、家庭清洁服务、洗衣和干洗服务、私人教练服务等全方位贴心服务。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">05建筑与户型：细节处彰显品质</h4>              <p>1. 楼体结构：双塔矗立，先开 A 塔</p>              <p>项目由 A、B 两座塔楼组成，其中 A 塔总高 243 米，规划为 5B+G+59 层，共 394 套房源；B 塔总高 232.5 米，规划为 5B+G+56 层，共 360 套房源。目前 A 塔已确定优先开盘，意向买家可通过后台咨询锁定心仪房源。</p>              <p>2. 户型与价格：多样选择，满足不同需求</p>              <p>项目推出一至四居室及特殊户型，覆盖不同家庭结构的居住需求，具体户型与价格如下：</p>              <p>一居室：面积 860 平尺起，价格 351 万迪拉姆起；<br>二居室：面积 1100 平尺起，价格 478 万迪拉姆起；<br>二居室 + 保姆间：面积 1370 平尺起，价格 615 万迪拉姆起；<br>三居室：基础户型面积 1920 平尺起，价格 1021 万迪拉姆起；<br>特殊客厅双挑高户型三居室：面积2100平尺起，价格1101万迪拉姆起<br>四居室：面积 3460 平尺起，价格 2507 万迪拉姆起。</p>              <p>所有户型均注重空间利用率与居住舒适度，搭配高品质装修，为住户打造温馨且奢华的家。</p>              <p>3. 付款方式：灵活分期，减轻压力</p>              <p>为方便买家置业，项目推出人性化付款计划：首付 20%（预订时支付），施工期间分 5 期支付 40%，剩余 40% 于施工完成时支付。项目预计 2030 年 8 月正式交房，给予买家充足的资金准备时间。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">06品牌酒店住宅市场案例</h4>              <p>从迪拜过往品牌酒店住宅项目的表现来看，这类房产的投资价值早已得到市场验证：</p>              <p>迪拜云溪港 Palace 酒店品牌住宅：相比非品牌豪华住宅，产品溢价高达 30%-40%。2019 年该项目单价为每平尺 1800 迪拉姆，到 2024 年已涨至每平尺 3000 迪拉姆，五年内升值幅度达 60%；而同期普通住宅单价仅 2200 迪拉姆，涨幅有限。在租金收益方面，云溪港品牌酒店住宅年回报率稳定在 8%-9%，远超其他区域 6%-7% 的平均水平。</p>              <p>迪拜市中心 Address Grand 顶奢豪宅：作为拥有五星级酒店品牌 Address 加持的项目，近一年内平均房价达 2381.1 万迪拉姆起，每平方英尺单价高达 4080 迪拉姆起，其高增值率与强抗跌性，成为迪拜高端房产市场的 "硬通货"。</p>              <p>迪拜山庄 Vida Residences Club Point：开盘后房价持续上涨，一房户型从 161 万迪拉姆起涨至 167.8 万迪拉姆起，二房户型从 232 万迪拉姆起涨至 274.3 万迪拉姆起，三房户型从 340 万迪拉姆起涨至 394.9 万迪拉姆起，强劲的增值势头印证了品牌酒店住宅的投资潜力。</p>            </div>`;        } else if (title.includes('Akala Residences Tower1') || title.includes('迪拜 DIFC 新地标')) {          modalImage.src = 'images_new/news/news-17/微信图片_2025-10-13_113819_644.jpg';          moreContent = `            <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">迪拜 DIFC 新地标！Akala Residences Tower1 双子塔登场，双认证康氧奢宅仅 284 席</h4>              <p>近日，迪拜国际金融中心（DIFC）迎来重磅消息 —— 沙迦皇室开发商 Arada 倾力打造的旗舰项目 Akala Residences Tower1 正式亮相。这座地标级双子塔将世界顶尖酒店服务与私密住宅体验深度融合，成功填补了 DIFC 区域纯住宅市场的空白，为追求高品质生活的精英人群带来全新选择。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">01项目核心亮点</h4>              <p>黄金区位，便捷通达：地处迪拜国际金融中心核心，可直达迪拜市中心，周边关键区域触手可得，无论是商务出行还是日常休闲，都能享受高效便捷的交通网络。</p>              <p>双认证加持，绿色健康标杆：项目荣获 LEED 金级与 WELL 银级双预认证，要知道在阿联酋范围内，目前已获得或预认证为 LEED + WELL 双认证的项目仅有三个，Akala 不仅是其中之一，更是阿联酋首例在施工前就获得 WELL 预认证的项目，充分彰显了其对绿色可持续发展和健康人居的坚定承诺。</p>              <p>全球首创，医疗配套领先：项目配备全球首个精密医疗保健中心 Everwell，为住户的健康保驾护航，在家门口就能享受到专业、高端的医疗服务。</p>              <p>精英健身，经验保障：社区内设有精英健身中心 Formative，依托 Arada 丰富的运营经验，为住户提供科学、专业的健身空间和服务，满足精英人群对健康生活的追求。</p>              <p>绝佳视野，尽览繁华：一号楼直面哈利法塔天际线，站在家中就能将迪拜标志性景观尽收眼底，享受无与伦比的视觉盛宴。</p>              <p>智能居家，便捷舒适：全屋搭载智能家居系统，并配备智慧 APP，住户可通过手机轻松掌控家中各类设备，打造便捷、舒适、安全的居住环境。</p>              <p>高端圈层，汇聚精英：项目所在区域汇聚了高盛、摩根大通、瑞银等国际顶尖金融机构，居住于此，轻松融入高端圈层，拓展优质人脉资源。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">02开发商影响力强劲</h4>              <p>作为沙迦皇室背景的开发商，Arada 自 2017 年成立以来，发展势头迅猛。截至目前，已在阿联酋各地推出八个大型社区，年销售平均增长率保持在 30% 的高位。不仅在本土市场表现亮眼，Arada 还积极拓展国际版图。近期，其收购了悉尼 Roberts Co 的新南威尔士分公司，并计划投资 2.35 亿迪拉姆助力该公司在新市场和新领域的扩张。同时，Arada 宣布在澳大利亚启动价值 25 亿澳元（约合 60 亿迪拉姆）的开发项目，将为悉尼市场提供 2500 套住宅单位。在资本市场，Arada 同样成绩斐然。2022 年，公司成功在伦敦证券交易所上市，2023 年又登陆纳斯达克迪拜交易所，凭借稳健的发展和卓越的业绩，品牌在全球市场的影响力不断提升。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">03地理位置优越，链接核心区域</h4>              <p>Akala Residences Tower1 坐落于迪拜的心脏位置，毗邻谢赫扎耶德路，位于知名的 Zaabeel 2 区，是一座高达 51 层的标志性塔楼。从项目出发，前往各核心区域十分便捷：</p>              <p>- 驱车 8 分钟可达迪拜市中心；</p>              <p>- 9 分钟可抵达未来博物馆；</p>              <p>- 10 分钟能到达迪拜歌剧院；</p>              <p>- 步行 13 分钟即可至金融中心地铁站；</p>              <p>- 19 分钟车程可抵达迪拜国际机场。</p>              <p>这里不仅是迪拜金融、经济的核心，也是文化交流的重要地带，周边环绕着众多知名地标和生活配套，为住户提供丰富多元的生活体验。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">04DIFC 区域金融高地价值</h4>              <p>迪拜国际金融中心（DIFC）成立于 2004 年，经过多年发展，已成为世界领先的金融自由贸易区之一。目前，DIFC 内活跃企业数量多达 6920 家，汇集了高盛、摩根大通、瑞银、中国国有银行等大量国际知名金融机构，吸引着全球各地的专业精英人士前来工作和生活。除了强大的金融实力，DIFC 还以令人瞩目的摩天大楼、奢华的零售场所和世界一流的餐饮设施闻名全球。然而，长期以来，该区域以办公和商业用途为主，住宅项目极度稀缺，前不久推出的 Jumeirah Residences Emirates Towers 是为数不多的住宅项目。不断集聚，居住需求日益旺盛，这也为 Akala Residences Tower1 带来了广阔的市场空间。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">05配套设施，满足多元需求</h4>              <p>Akala Residences Tower1 将品牌奢华感与酒店式舒适感完美融合，打造了丰富多样的配套设施，全方位满足住户的生活需求。</p>              <p>医疗配套：全球首个精密医疗保健中心 Everwell，提供专业的健康检测、诊疗和康复服务，为住户健康筑起坚实屏障。</p>              <p>健身配套：精英健身中心 Formative，配备先进的健身设备和专业的教练团队，为住户定制科学的健身计划。</p>              <p>休闲配套：Akala Spa 水疗中心，提供多种高端水疗项目，帮助住户放松身心，缓解压力；还有先进科学的理疗中心、高端健康功能中心以及身心健康中心，从多维度呵护住户的身心健康。</p>              <p>服务配套：提供精英制私人化酒店服务，包括礼宾服务、餐饮服务等，让住户随时随地享受尊贵、便捷的生活体验。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">06市场分析：供需失衡</h4>              <p>从市场供应来看，预计 2025 年迪拜国际金融中心（DIFC）仅有三栋新楼盘上市，Akala Residences Tower1 是该区域一年半以来推出的首栋新盘，在住宅项目稀缺的 DIFC，其稀缺性不言而喻。</p>              <p>从价格走势来看，根据 Property Monitor 数据，DIFC 区域 2024 年第一季度每平方英尺单价为 1741 迪拉姆，到 2025 年第二季度已上涨至 1995 迪拉姆，仅一年时间涨幅就高达 14.59%。业内预计，该项目后期房产转售价值将提升 20%，租金收益率也将从 7% 起，投资潜力巨大。</p>              <p>再看 Zaabeel 2 区的市场表现，近一年该区域平均房价从 217.3 万迪拉姆起，涨幅达 7%，每平方英尺单价达到 2000 迪拉姆，上涨 23%。租赁市场同样火热，与 Akala Residences Tower1 面积相近的一居室公寓新租年租金达到 14 万迪拉姆，涨幅 7%；二居室公寓新租年租金 20 万迪拉姆，上涨 14%。面对 DIFC 区域大量白领的租赁需求，该区域房产价值将持续保持稳定上升态势。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">07项目详情：户型丰富，付款灵活</h4>              <p>（一）楼层分布</p>              <p>Akala Residences Tower1 整体建筑结构为 G+P4+51，其中 4 层至 51 层为住宅层，具体分布如下：</p>              <p>4-17 层：一层 8 套，共 112 套；</p>              <p>18-29 层：一层 7 套，共 84 套；</p>              <p>30-39 层：一层 5 套，共 50 套；</p>              <p>41-47 层：一层 5 套，共 40 套；</p>              <p>48 和 49 层：一层 4 套；</p>              <p>50 层：6 房大平层；</p>              <p>51 层：6 房总统套房（带私人露台）。</p>              <p>（二）户型与价格</p>              <p>项目提供多种户型选择，满足不同人群的居住需求，具体如下：</p>              <p>一居室：面积 1036–1407 平方英尺，价格 379–569 万迪拉姆；</p>              <p>二居室：面积 1556–2091 平方英尺，价格 599–999 万迪拉姆；</p>              <p>三居室：面积 2587–3665 平方英尺，价格 1289–1779 万迪拉姆；</p>              <p>四居室：面积 3648–4698 平方英尺，价格 1899–2440 万迪拉姆；</p>              <p>五居室：面积 6257 平方英尺，价格 3389 万迪拉姆；</p>              <p>六居室大平层：面积 14628 平方英尺；</p>              <p>六居室总统套房：面积 23672 平方英尺。</p>              <p>（三）付款计划</p>              <p>项目采用灵活的付款方式，具体付款节点和比例如下：首付10%施工50%交房40%，预计2029年10月31日交房。</p>            </div>`;        } else if (title.includes('Danube Sparklz') || title.includes('迪拜 Al Furjan 新标杆')) {          modalImage.src = 'images_new/news/news-16/微信图片_2025-10-13_113435_287.jpg';          moreContent = `            <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">迪拜 Al Furjan 新标杆！Danube Sparklz 低密公寓入市，首付 10% 享一房价两房空间</h4>              <p>最近，迪拜热门区域 Al Furjan 迎来全新力作 —— 由知名开发商 Danube 倾力打造的 12 层精品低密公寓 Danube Sparklz 正式亮相。该项目不仅坐拥 10 分钟滨海生活圈的优越区位，更以极具吸引力的付款方案赢得中产阶级青睐，成为迪拜房产市场的新焦点。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">01项目核心亮点：区位配置，全维度优势</h4>              <p>Danube Sparklz 的竞争力贯穿多个维度，无论是交通便利性、价格友好度，还是社区规划与户型设计，都精准匹配购房者需求。</p>              <p>黄金区位，交通便捷：地处城市核心 Al Furjan 潜力板块，距离地铁站仅约 650 米，步行即可轻松抵达，为日常通勤提供极大便利，轻松链接迪拜各大核心区域。</p>              <p>亲民价格，灵活付款：项目首发价仅 90 万迪拉姆，首付仅需 10%，每月还款额低至 1%，大幅降低购房门槛，让中产阶级及年轻购房者轻松实现置业梦想。</p>              <p>低密社区，高配规划：项目共 12 层居民层，采用层层退台设计，搭配 8 部电梯，有效保障居住舒适度与出行效率；同时配备 30 余项酒店级活动设施，满足全龄段居民生活娱乐需求。</p>              <p>灵活户型，创新设计：作为迪拜首推 "一居室 + 佣人房 + 办公室" 结构的公寓项目，户型设计极具灵活性，可根据居住或办公需求灵活调整空间功能，适配度极高。</p>              <p>高品质交付，智能居家：交房时配备现成厨房，无需额外装修即可使用；全屋搭载智能家居系统，通过科技赋能提升居住便捷性与舒适度，打造现代化居住体验。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">02开发商实力：口碑与实力兼具</h4>              <p>Danube 是总部位于迪拜的知名房地产开发商，凭借卓越的开发实力与市场表现，稳居迪拜私人开发商 TOP3、公寓销量 TOP3 行列。自成立以来，Danube 始终专注于在迪拜打造卓越住宅社区，累计开发项目达 34 个，其中 18 个项目已顺利交付，售出房源超 20000 套，市场认可度极高。其独创的 "月付 1%" 弹性付款方式，有效缓解购房者资金压力，深受年轻买家喜爱，成为行业内极具辨识度的付款方案标杆。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">03交通与配套：便捷出行 + 优质教育</h4>              <p>（一）优越交通体系，畅达全城</p>              <p>Danube Sparklz 位于 Al Furjan 核心区域，紧邻谢赫扎耶德路商业区，交通网络四通八达：</p>              <p>- 步行 6-8 分钟即可抵达 Al Furjan 或 Discovery Gardens 地铁站，轻松接入迪拜地铁红线；</p>              <p>- 驱车 15 分钟直达 Dubai Marina，尽享滨海风光与高端商业配套；</p>              <p>- 16 分钟可到达 Palm Jumeirah（棕榈岛），感受世界级度假式生活；</p>              <p>- 22 分钟抵达 Dubai Mall（迪拜购物中心），满足购物、娱乐、餐饮一站式需求；</p>              <p>- 33 分钟可抵达 DXB 国际机场，为国际出行提供便捷。</p>              <p>（二）顶级国际教育，护航成长</p>              <p>项目周边优质教育资源密集，多所国际学校环绕，为家庭购房者提供丰富选择：</p>              <p>- 距离 1.3 公里的迪拜德里私立学校（Indian 体系，费用约 1.3 万迪拉姆 / 年）；</p>              <p>- 1.5 公里处的温彻斯特学校（British 体系，费用约 2.15 万迪拉姆 / 年）；</p>              <p>- 2.0 公里的阿卡迪亚全球学校（British 体系，费用约 2.95 万迪拉姆 / 年）；</p>              <p>- 1.8 公里的 Arbor 学校（British 体系，费用约 7.7 万迪拉姆 / 年）。</p>              <p>值得一提的是，周边有六所学校获得迪拜政府最高评级 "非常好" 或 "优秀"，其中迪拜英国学校朱美拉公园校区与阿联酋山校区更是斩获 "优秀" 评级，为孩子提供高质量教育保障。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">04社区配套：全龄段生活覆盖</h4>              <p>Danube Sparklz 致力于打造全龄化友好社区，配备 30 余项酒店级基础设施，涵盖休闲、运动、社交、商务等多元场景，倡导积极均衡的生活方式：丰富的配套设施让居民无需走出社区，即可满足日常休闲、运动健身、亲子互动、商务办公等多种需求，打造便捷、舒适的社区生活圈。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">05区域市场分析：潜力凸显，价金双涨</h4>              <p>从市场数据来看，Al Furjan 区域近年来房产市场表现强劲，无论是房价还是交易量都保持稳步增长态势，投资与居住价值显著。</p>              <p>（一）一房公寓市场</p>              <p>近一年 Al Furjan 区域一房公寓平均房价从 97.4 万迪拉姆起，涨幅达 8%；每平方英尺单价 1230 迪拉姆起，上涨 17%；全年交易量 1247 套，涨幅高达 88%，市场需求旺盛，交易活跃度持续提升。</p>              <p>（二）两房公寓市场</p>              <p>两房公寓表现同样亮眼，近一年平均房价 148.8 万迪拉姆起，涨幅 11%；平均单价 1170 迪拉姆 / 平方英尺起，上涨 14%；全年交易量 1306 套，涨幅 56%。</p>              <p>对比区域整体房价走势，Danube Sparklz 凭借极具竞争力的价格与优质配置，未来仍有巨大涨幅空间，无论自住还是投资，都具备较高性价比。</p>            </div>                        <div style="margin-bottom: 25px;">              <h4 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">06户型与付款：多样选择 + 灵活方案</h4>              <p>（一）户型选择与价格</p>              <p>项目共提供 356 套豪华公寓，涵盖多种户型，满足不同家庭结构与预算需求：</p>              <p>Studio 变一房：面积 446 平方英尺（约 41.43 平方米），起售价 90 万迪拉姆，空间可灵活升级为一居室，搭配 60-61 平方英尺阳台，总计面积 408-410 平方英尺，性价比极高；</p>              <p>一房变两房：面积 860 平方英尺（约 79.9 平方米），配备保姆房与书房，起售价 130 万迪拉姆，可升级为两居室，阳台面积 120-122 平方英尺，总计面积 816-829 平方英尺，兼具居住与办公功能；</p>              <p>两房户型：面积 1100 平方英尺（约 102.19 平方米），起售价 185 万迪拉姆，包含佣人房与 180-183 平方英尺阳台，总计面积 1072-1091 平方英尺，空间宽敞，适合家庭居住；</p>              <p>三房户型：面积 1385 平方英尺（约 128.67 平方米），起售价 235 万迪拉姆，阳台面积 365 平方英尺，总计面积 1378-1381 平方英尺，功能分区明确，满足多人口家庭需求。</p>              <p>（二）交付时间与付款计划</p>              <p>交付时间：项目预计于 2028 年 5 月正式交房，给予购房者充足的资金准备时间。</p>              <p>付款计划：采用 70/30 分期付款方案，70% 房款可在交房前逐步支付，剩余 30% 房款在交房后分 30 个月无息支付，进一步降低购房资金压力，付款节奏更灵活。</p>            </div>`;        } else {          moreContent = 'This is an important development in Dubai\'s dynamic real estate market. Stay tuned for further updates and analysis as the situation evolves.';        }
+                
+                // 填充弹窗内容 - 与首页保持一致
+                modalImage.src = imageSrc;
+                modalImage.alt = title;
+                modalDate.textContent = date;
+                  modalDateOverlay.textContent = date;
+                  
+                  // 更新翻译，利用已有的data-translate属性
+                  if (window.updateTranslatedElements) {
+                    window.updateTranslatedElements();
+                  }
+                  
+                  // 只设置非翻译内容
+                  modalContent.textContent = content;
+                  // 使用innerHTML代替textContent以正确渲染HTML内容
+                modalContentMore.innerHTML = moreContent;
+                
+                // 显示弹窗
+                newsModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // 防止背景滚动
+            });
+        });
+        
+        // 关闭弹窗
+        modalClose.addEventListener('click', function() {
+            newsModal.classList.remove('active');
+            document.body.style.overflow = ''; // 恢复背景滚动
+        });
+        
+        // 点击弹窗外部关闭
+        newsModal.addEventListener('click', function(e) {
+            if (e.target === newsModal) {
+                newsModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // ESC键关闭弹窗
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && newsModal.classList.contains('active')) {
+                newsModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // 语言切换功能
+        let currentLanguage = localStorage.getItem('currentLanguage') || 'en';
+        
+        // 新闻页面翻译数据
+        const newsTranslations = {
+            en: {
+                pageTitle: 'Your Home',
+                readMore: 'Read more',
+                nextPage: 'Next Page',
+                buy: 'Buy',
+                rent: 'Rent',
+                communities: 'communities',
+                developers: 'Developers',
+                marketTrends: 'Market Trends',
+                services: 'Services',
+                more: 'More',
+                backToHome: 'Back to Home',
+                // 新闻标题翻译
+                newsTitle1: 'Lyvia By Palace Grand Launch on October 13, 2025',
+                newsTitle2: 'SOLAYA: New Luxury Residence in Dubai\'s La Mer Beach',
+                newsTitle3: 'Report Analysis: UAE Real Estate as Core Economic Growth Driver',
+                newsTitle4: 'SAAS Heights: A New Landmark in Dubai\'s Skyline',
+                newsTitle5: 'Dubai Marina Named Most Desirable Residential Area',
+                newsTitle6: 'Investment Opportunities in Abu Dhabi\'s New Developments',
+                newsTitle7: 'The Future of Smart Homes in Dubai',
+                newsTitle8: 'Luxury Villas in Palm Jumeirah Reach All-Time High Prices',
+                newsTitle9: 'Freehold Property Ownership Expanded for Foreign Investors',
+                // 新闻描述翻译
+                newsDesc1: 'Lyvia By Palace will launch at 5:00 PM on October 13, 2025, with delivery expected in 2029. The project is located in an area with upcoming infrastructure improvements including the completion of the Cloud Tower, opening of the Blue Line Metro, schools, shopping malls, and office buildings making it an ideal choice for both investment and residential purposes.',
+                newsDesc2: 'In Dubai\'s high-end real estate market, prime beachfront luxury properties with core resources are always rare. Now, SOLAYA, a new premium residential project, has arrived at La Mer Beach on the Jumeirah Gold Coast.',
+                newsDesc3: 'Amidst multiple global economic challenges, the UAE continues to strengthen its position as an \'investment safe haven\' in the Middle East due to its unique geographical advantages and stable investment environment. Latest reports indicate that the real estate industry has become a key engine driving the UAE\'s economic growth.',
+                newsDesc4: 'SAAS Heights, a 65-story mixed-use tower in Business Bay, is becoming the latest architectural icon of Dubai. The project features premium residences, offices, and world-class amenities.',
+                newsDesc5: 'Dubai Marina has been ranked as the most desirable residential area in Dubai for the third consecutive year, according to a survey conducted by a leading real estate consultancy.',
+                newsDesc6: 'Abu Dhabi is emerging as a promising investment destination with several large-scale development projects underway, offering attractive returns for property investors.',
+                newsDesc7: 'Smart home technology is transforming the way people live in Dubai, with an increasing number of developers incorporating advanced automation systems into new residential projects.',
+                newsDesc8: 'Luxury villa prices in Palm Jumeirah have reached an all-time high, with some properties selling for over AED 50 million as demand continues to outpace supply in this exclusive island community.',
+                newsDesc9: 'The UAE government has announced new regulations expanding freehold property ownership rights for foreign investors, opening up more areas for international buyers.'
+            },
+            zh: {
+                pageTitle: '最新新闻与洞察',
+                pageSubtitle: '随时了解房地产市场的最新趋势和洞察',
+                readMore: '阅读更多',
+                nextPage: '下一页',
+                buy: 'Buy',
+                rent: 'Rent',
+                communities: 'communities',
+                developers: 'Developers',
+                marketTrends: 'Market Trends',
+                services: 'Services',
+                more: 'More',
+                backToHome: '返回首页',
+                // 新闻标题翻译
+                newsTitle1: 'Lyvia By Palace 将于 2025 年 10 月 13 日盛大开售',
+                newsTitle2: 'SOLAYA：迪拜 La Mer 海滩全新奢宅，解锁一线海景与都市繁华的双重生活',
+                newsTitle3: '报告解读：阿联酋房地产成经济增长核心动力',
+                newsTitle4: 'SAAS Heights：迪拜天际线新地标',
+                newsTitle5: '迪拜码头被评为最理想居住区',
+                newsTitle6: '阿布扎比新开发项目投资机会',
+                newsTitle7: '迪拜智能家居的未来发展',
+                newsTitle8: '朱美拉棕榈岛豪华别墅价格创历史新高',
+                newsTitle9: '外国投资者永久产权扩大',
+                // 新闻描述翻译
+                newsDesc1: 'Lyvia By Palace将于2025年10月13日下午5:00开售，预计2029年交付。项目位于红利爆发点，云溪塔即将封顶，地铁蓝线同步通车，名校开学、商场动工及大型写字楼群和企业入驻。无论是投资还是自住，Lyvia By Palace都堪称不二之选。',
+                newsDesc2: '在迪拜的高端房地产市场中，真正占据核心资源的一线海景豪宅始终是稀缺的存在。如今，朱美拉黄金海岸线上的 La Mer 海滩，迎来了一款重磅奢宅新作 ——SOLAYA。',
+                newsDesc3: '在全球经济面临多重挑战的当下，阿联酋凭借其独特的区位优势与稳定的投资环境，持续巩固着中东地区 \'投资安全港\' 的地位。最新报告指出，房地产行业已成为拉动阿联酋经济增长的关键引擎。',
+                newsDesc4: '位于商业湾的65层综合用途塔楼SAAS Heights正在成为迪拜最新的建筑标志。该项目包括高端住宅、办公室和世界级设施。',
+                newsDesc5: '根据一家领先房地产咨询公司的调查，迪拜码头连续第三年被评为迪拜最理想的居住区。',
+                newsDesc6: '阿布扎比正在成为一个充满前景的投资目的地，多个大型开发项目正在进行中，为房地产投资者提供有吸引力的回报。',
+                newsDesc7: '智能家居技术正在改变迪拜人的生活方式，越来越多的开发商将先进的自动化系统纳入新的住宅项目。',
+                newsDesc8: '朱美拉棕榈岛的豪华别墅价格已创历史新高，随着这个独家岛屿社区的需求持续超过供应，一些房产售价超过5000万迪拉姆。',
+                newsDesc9: '阿联酋政府宣布了扩大外国投资者永久产权的新法规，为国际买家开放了更多区域。'
+            },
+            ar: {
+                pageTitle: 'الأخبار والأفكار الحديثة',
+                pageSubtitle: 'الاحتفاظ بالمتابعة مع أحدث الاتجاهات والأفكار في سوق العقارات',
+                readMore: 'اقرأ المزيد',
+                nextPage: 'الصفحة التالية',
+                buy: 'Buy',
+                rent: 'Rent',
+                communities: 'communities',
+                developers: 'Developers',
+                marketTrends: 'Market Trends',
+                services: 'Services',
+                more: 'More',
+                backToHome: 'العودة إلى الرئيسية',
+                // 新闻标题翻译
+                newsTitle1: 'لفييا بى بالاس سيطلق عرضه الكبير في 13 أكتوبر 2025',
+                newsTitle2: 'سوليا: سكن فاخر جديد على شاطئ لامير في دبي، يشغل بين θέاَه البحر وثراء المدينة',
+                newsTitle3: 'تفسير التقرير: العقارات في الإمارات العربية المتحدة تعتبر محركًا أساسيًا لنمو الاقتصاد',
+                newsTitle4: 'ساس هايتس: معلم جديد في سقف دبي',
+                newsTitle5: 'تسمى مرسى دبي أفضل منطقة سكنية',
+                newsTitle6: 'فرص الاستثمار في المشاريع الجديدة في أبو ظبي',
+                newsTitle7: 'مستقبل المنازل الذكية في دبي',
+                newsTitle8: 'تصل أسعار الفيلات الفاخرة في جزيرة النخلة إلى أعلى مستوى على الإطلاق',
+                newsTitle9: 'تم توسيع امتيازات ملكية العقارات المستقلة للمستثمرين الأجانب',
+                // 新闻描述翻译
+                newsDesc1: 'سيطلق لفييا بى بالاس عرضه في الساعة 5:00 مساءً بتاريخ 13 أكتوبر 2025، مع التسليم المتوقع في عام 2029. يقع المشروع في منطقة تتوفر فيها فرص متعددة، حيث سيتم الانتهاء من بناء برج السحاب، وافتتاح خط المترو الأزرق، وافتتاح مدارس متقدمة ومراكز تسوق وقرى مكاتب كبيرة وغرس الشركات. سواء كان للإستثمار أو السكن الشخصي، فإن لفييا بى بالاس يعتبر الخيار الأمثل.',
+                newsDesc2: 'في سوق العقارات الفاخرة في دبي، تظل العقارات الفاخرة المحيطة بالبحر التي تتمتع بمصادر أساسية نادرة دائمًا. اليوم، وصلت سوليا، مشروع جديد فاخر للعقارات، إلى شاطئ لامير على الساحل الذهبي في جميرا.',
+                newsDesc3: 'في ظل التحديات الاقتصادية العديدة عالميًا، تستمر الإمارات العربية المتحدة في تقوية منصبها كـ "م항 ασـــلام للإستثمار" في الشرق الأوسط بفضل ميزاتها الجغرافية الفريدة وبيئتها الاستثمارية المستقرة. تشير التقارير الأخيرة إلى أن صناعة العقارات أصبحت محركًا رئيسيًا لدفع النمو الاقتصادي للإمارات العربية المتحدة.',
+                newsDesc4: 'ساس هايتس، وهي برج متعدد الاستخدامات بارتفاع 65 طابقًا في بيزنس باي، أصبحت أحدث أيقونة هندسية في دبي. يتضمن المشروع مساكن عالية الجودة ومكاتب وتسهيلات عالمية المستوى.',
+                newsDesc5: 'تم تصنيف مرسى دبي على أنها أفضل منطقة سكنية في دبي连续三年， وفقًا لاستطلاع أجرته إحدى الشركات الرائدة في الاستشارات العقارية.',
+                newsDesc6: 'تتطور أبو ظبي كوجهة استثمار متوازنة مع العديد من المشاريع الكبيرة التي جارية التنفيذ، مما يوفر عوائد جاذبة للمستثمرين العقاريين.',
+                newsDesc7: 'تقنية المنازل الذكية تغيِّر كيف يعيش الناس في دبي، مع زيادة عدد المطورين الذين يتضمنون أنظمة تلقائية متقدمة في مشاريعهم السكنية الجديدة.',
+                newsDesc8: 'وصلت أسعار الفيلات الفاخرة في جزيرة النخلة إلى أعلى مستوى على الإطلاق، مع بيع بعض العقارات بأكثر من 50 مليون درهم مع استمرار الطلب يتجاوز العرض في هذه المجتمع الحصري.',
+                newsDesc9: 'أعلنت الحكومة الإماراتية عن لوائح جديدة توسع في حقوق ملكية العقارات المستقلة للمستثمرين الأجانب، مما يفتح المزيد من المناطق للمشترين الدوليين.'
+            }
+        };
+        
+        // 切换语言函数
+        function switchNewsLanguage(lang) {
+            console.log('切换语言到:', lang);
+            currentLanguage = lang;
+            localStorage.setItem('currentLanguage', lang);
+            
+            // 更新当前语言显示
+            document.getElementById('current-language').textContent = {
+                'en': 'English',
+                'zh': '中文',
+                'ar': 'العربية'
+            }[lang];
+            
+            // 更新返回按钮文本
+            const backButton = document.querySelector('.back-button');
+            if (backButton) {
+                backButton.innerHTML = `<i class="fas fa-arrow-left"></i> ${newsTranslations[lang].backToHome}`;
+            }
+            
+            // 更新页面标题和副标题
+            document.querySelector('.page-header h1').textContent = newsTranslations[lang].pageTitle;
+            document.querySelector('.page-header p').textContent = newsTranslations[lang].pageSubtitle;
+            
+            // 更新"阅读更多"链接文本
+            document.querySelectorAll('.news-link').forEach((link, index) => {
+                link.textContent = newsTranslations[lang].readMore;
+            });
+            
+            // 保留右箭头图标，不更新为文本
+            const nextPageBtn = document.getElementById('next-page');
+            if (nextPageBtn) {
+                nextPageBtn.textContent = '→';
+                // 添加aria-label以保持可访问性
+                nextPageBtn.setAttribute('aria-label', newsTranslations[lang].nextPage);
+            }
+            
+            // 更新新闻标题和描述
+            const newsCards = document.querySelectorAll('.news-card');
+            newsCards.forEach((card, index) => {
+                if (index < 9) { // 确保不超出翻译数据范围
+                    const titleKey = `newsTitle${index + 1}`;
+                    const descKey = `newsDesc${index + 1}`;
+                    
+                    if (newsTranslations[lang][titleKey] && newsTranslations[lang][descKey]) {
+                        const titleElement = card.querySelector('.news-content h3');
+                        const descElement = card.querySelector('.news-content p');
+                        if (titleElement) titleElement.textContent = newsTranslations[lang][titleKey];
+                        if (descElement) descElement.textContent = newsTranslations[lang][descKey];
+                    }
+                }
+            });
+        }
+        
+        // 初始化语言切换器
+        function initNewsLanguageSwitcher() {
+            const languageSelector = document.querySelector('.language-selector');
+            const currentLanguageEl = document.getElementById('current-language');
+            const languageDropdown = document.querySelector('.language-dropdown');
+            const languageOptions = document.querySelectorAll('.language-option');
+            
+            // 初始加载时应用保存的语言设置
+            switchNewsLanguage(currentLanguage);
+            
+            // 添加样式
+            const style = document.createElement('style');
+            style.textContent = `
+                .language-selector {
+                    position: relative;
+                    margin-left: auto;
+                }
+                
+                .current-language {
+                    cursor: pointer;
+                    padding: 8px 12px;
+                    background-color: #f0f0f0;
+                    border-radius: 4px;
+                    user-select: none;
+                    font-size: 14px;
+                }
+                
+                .current-language:hover {
+                    background-color: #e0e0e0;
+                }
+                
+                .language-dropdown {
+                    position: absolute;
+                    top: 100%;
+                    right: 0;
+                    margin-top: 4px;
+                    background-color: white;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                    display: none;
+                    z-index: 1000;
+                }
+                
+                .language-dropdown.show {
+                    display: block;
+                }
+                
+                .language-option {
+                    display: block;
+                    width: 100%;
+                    padding: 8px 16px;
+                    text-align: left;
+                    border: none;
+                    background: none;
+                    cursor: pointer;
+                    font-size: 14px;
+                    min-width: 100px;
+                }
+                
+                .language-option:hover {
+                    background-color: #f0f0f0;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // 点击当前语言显示/隐藏下拉菜单
+            currentLanguageEl.addEventListener('click', function(e) {
+                e.stopPropagation();
+                languageDropdown.classList.toggle('show');
+            });
+            
+            // 点击语言选项切换语言
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    switchNewsLanguage(lang);
+                    languageDropdown.classList.remove('show');
+                });
+            });
+            
+            // 点击页面其他地方关闭下拉菜单
+            document.addEventListener('click', function() {
+                languageDropdown.classList.remove('show');
+            });
+            
+            // 阻止事件冒泡
+            languageDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+        
+        // 初始化语言切换功能
+        initNewsLanguageSwitcher();
+        
+        // 从主页面继承语言切换
+        if (window.updateCurrentLanguage) {
+            window.updateCurrentLanguage = function(lang) {
+                switchNewsLanguage(lang);
+            };
+        }
+    </script>
+</body>
+</html>

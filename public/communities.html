@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Communities - Signature Homes</title>
+  <link rel="icon" href="/img/logo2.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+        /* 确保全局变量与主页完全一致 */
+        :root {
+            --primary-color: #333;
+            --secondary-color: #6c63ff;
+            --accent-color: #e74c3c;
+            --light-color: #f8f9fa;
+            --dark-color: #2c3e50;
+            --light-text: #7f8c8d;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+        }
+        
+        /* 右侧固定语言切换按钮样式 */
+        .fixed-language-switcher {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+        
+        .language-button {
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+        
+        .language-button:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+    body {
+      line-height: 1.6;
+      color: var(--primary-color);
+    }
+
+    /* 导航栏 */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      background-color: rgba(31, 33, 34, 0.95);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary-color);
+    }
+
+    /* 页面内容 */
+    .communities-page {
+      padding-top: 100px;
+      min-height: 100vh;
+    }
+
+    /* Communities头部 */
+    .communities-header {
+      padding: 4rem 2rem 2rem;
+      text-align: center;
+    }
+
+    .communities-header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #333;
+      font-weight: 300;
+    }
+
+    .communities-header p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Communities内容 */
+    .communities-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem 4rem;
+    }
+
+    /* 页脚 */
+    .footer {
+      background-color: #ffffff;
+      color: #000000;
+      padding: 3rem 2rem;
+    }
+
+    .footer-simple-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .footer-simple-links span {
+      color: #000000;
+    }
+    
+    .footer-simple-links a {
+      color: #000000;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-simple-links a:hover {
+      color: #6c63ff;
+    }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 2rem auto 0;
+      padding-top: 2rem;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+    }
+    
+    .footer-terms {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .footer-terms a {
+      color: #666;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-terms a:hover {
+      color: #6c63ff;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-brand {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo img {
+      height: 40px;
+    }
+
+    .footer-logo span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #000000;
+    }
+
+    .footer-tagline {
+      color: rgba(0, 0, 0, 0.7);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links-container {
+      flex: 2;
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-column h4 {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: rgba(0, 0, 0, 0.7);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--secondary-color);
+    }
+
+    .footer-social {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-link {
+      color: rgba(0, 0, 0, 0.7);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: var(--secondary-color);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem 2rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .communities-header h1 {
+        font-size: 2.5rem;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-links-container {
+        justify-content: center;
+      }
+    }
+
+    /* 弹窗样式 */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2000;
+      overflow-y: auto;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      filter: blur(8px);
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-container {
+      position: relative;
+      background-color: white;
+      border-radius: 12px;
+      max-width: 800px;
+      margin: 5% auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: modalSlideIn 0.4s ease;
+      overflow: hidden;
+      transform-origin: center;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2.5rem 3rem;
+      background-color: white;
+      color: #000;
+      border-bottom: 2px solid #000;
+      position: relative;
+    }
+
+    .modal-header::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100px;
+      height: 2px;
+      background-color: #000;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #000;
+    }
+
+    .modal-close {
+      background: white;
+      border: 2px solid #000;
+      color: #000;
+      cursor: pointer;
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: #000;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .modal-close svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .modal-body {
+      padding: 3rem;
+      color: #333;
+      font-size: 1.1rem;
+      background-color: white;
+    }
+
+    .modal-body p {
+      margin: 1.2rem 0;
+      line-height: 1.8;
+      font-weight: 300;
+      color: #000;
+    }
+
+    .modal-body h3 {
+      margin: 2rem 0 1rem;
+      font-size: 1.5rem;
+      color: #000;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .modal-body h3::after {
+       content: '';
+       position: absolute;
+       bottom: 0;
+       left: 0;
+       width: 50px;
+       height: 3px;
+       background-color: #000;
+     }
+
+    /* 响应式弹窗 */
+    @media (max-width: 768px) {
+      .modal-container {
+        margin: 5% auto;
+        width: 95%;
+        border-radius: 8px;
+      }
+
+      .modal-header {
+        padding: 2rem 1.5rem;
+        border-bottom: 1px solid #000;
+      }
+
+      .modal-body {
+        padding: 2rem 1.5rem;
+      }
+
+      .modal-header h2 {
+        font-size: 1.8rem;
+      }
+
+      .modal-body h3 {
+        font-size: 1.3rem;
+      }
+
+      .modal-close {
+        width: 35px;
+        height: 35px;
+        border: 1.5px solid #000;
+      }
+
+      .modal-close svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+    
+    /* Communities卡片样式 */
+    .company-stat {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+      transform-style: preserve-3d !important;
+      background-blend-mode: overlay !important;
+    }
+    
+    .company-stat:hover {
+      transform: translateY(-12px) scale(1.03) !important;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2) !important;
+    }
+    
+    .company-stat:hover .card-content {
+      transform: translateY(-8px);
+    }
+    
+    .company-stat:hover button {
+      background: rgba(255, 255, 255, 0.35) !important;
+      transform: scale(1.15) !important;
+      border-color: rgba(255, 255, 255, 0.5) !important;
+    }
+    
+    .company-stat:hover button:hover {
+      background: white !important;
+      color: var(--primary-color) !important;
+      transform: scale(1.2) !important;
+    }
+    
+    .company-stat button {
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+    
+    /* 卡片内容动画 */
+    .card-content {
+      transition: all 0.4s ease;
+    }
+  </style>
+</head>
+  <body>
+    <!-- 导航栏 -->
+    <header class="header">
+        <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background-color: transparent; backdrop-filter: blur(10px); box-shadow: none;">
+            <div class="logo" style="display: flex; align-items: center;">
+                <a href="/" style="display: flex; align-items: center;">
+                    <img src="/img/logo.png" alt="Logo" class="logo-image" style="width: 100px; height: auto;">
+                </a>
+            </div>
+            <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
+                <a href="/featured-properties.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Buy</a>
+                <a href="/communities.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">communities</a>
+                <a href="/developers.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Developers</a>
+                <a href="/services.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Services</a>
+                <a href="/about.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">About Us</a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Communities头部 -->
+    <section class="communities-header">
+      <h1>Communities</h1>
+      <h2 style="font-weight: 300; color: #333; margin: 0.5rem 0 1rem; font-size: 1.5rem;">Ultimate Dubai Neighborhoods and Area Guides</h2>
+      <hr style="width: 250px; margin: 0 auto 1rem; border: 0; height: 1px; background-color: #e0e0e0;">
+    </section>
+
+  <!-- Communities内容 -->
+  <section class="communities-content">
+    <div style="max-width: 1000px; margin: 0 auto 3rem; line-height: 1.6;">
+      <p>Dubai is a city of endless possibilities, with a diverse array of property options ranging from stunning waterfront views to lush green landscapes. Each of Dubai's neighborhoods boasts its own distinct charm, making every area unique for buyers and renters alike. Contrary to common belief, the city's various neighborhoods offer specialized living experiences, from vibrant urban hubs to serene retreats. Whether you're moving to Dubai or relocating within the city, it's crucial to choose the neighborhood that best suits your needs. Thorough research is essential to consider the ready and off-plan projects each community offers. Let us guide you to the most popular neighborhoods hosting exquisite Dubai properties across the city:</p>
+    </div>
+    
+    <!-- Featured Communities 卡片 -->
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="position: relative; overflow: hidden; margin: 2rem 0;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; justify-content: center; width: 100%;">
+          <!-- 卡片1 -->
+          <div style="perspective: 1000px;">
+            <div class="company-stat" style="background-image: url('/Communities/1.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+              <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
+              <!-- 卡片内容容器 -->
+              <div class="card-content" style="position: relative; z-index: 999;">
+                <h3 style="color: white; font-size: 22px; font-weight: 700; margin-bottom: 8px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Terra Gardens</h3>
+                <div style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 12px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.5; opacity: 0.9;">Dubai Creek Harbour The Lagoon</div>
+                <!-- 位置标签 -->
+                <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Al Furjan</div>
+              </div>
+              <!-- 右下角箭头按钮 -->
+              <button data-modal-id="modal-1" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- 卡片2 -->
+          <div style="perspective: 1000px;">
+            <div class="company-stat" style="background-image: url('/Communities/2.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+              <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
+              <!-- 卡片内容容器 -->
+              <div class="card-content" style="position: relative; z-index: 999;">
+                <h3 style="color: white; font-size: 22px; font-weight: 700; margin-bottom: 8px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Greenridge</h3>
+                <div style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 12px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.5; opacity: 0.9;">Dubai Marina</div>
+                <!-- 位置标签 -->
+                <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Al Jaddaf</div>
+              </div>
+              <!-- 右下角箭头按钮 -->
+              <button data-modal-id="modal-2" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- 卡片3 -->
+          <div style="perspective: 1000px;">
+            <div class="company-stat" style="background-image: url('/Communities/3.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+              <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
+              <!-- 卡片内容容器 -->
+              <div class="card-content" style="position: relative; z-index: 999;">
+                <h3 style="color: white; font-size: 22px; font-weight: 700; margin-bottom: 8px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Marina Vist</h3>
+                <div style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 12px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.5; opacity: 0.9;">Dubai Marina</div>
+                <!-- 位置标签 -->
+                <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Arjan</div>
+              </div>
+              <!-- 右下角箭头按钮 -->
+              <button data-modal-id="modal-3" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- 卡片4 -->
+          <div style="perspective: 1000px;">
+            <div class="company-stat" style="background-image: url('/Communities/4.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+              <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
+              <!-- 卡片内容容器 -->
+              <div class="card-content" style="position: relative; z-index: 999;">
+                <h3 style="color: white; font-size: 22px; font-weight: 700; margin-bottom: 8px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Palm Jumeirah Villas</h3>
+                <div style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 12px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.5; opacity: 0.9;">Palm Jumeirah</div>
+                <!-- 位置标签 -->
+                <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Business Bay</div>
+              </div>
+              <!-- 右下角箭头按钮 -->
+              <button data-modal-id="modal-4" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- 卡片5 -->
+          <div style="perspective: 1000px;">
+            <div class="company-stat" style="background-image: url('/Communities/5.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+              <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
+              <!-- 卡片内容容器 -->
+              <div class="card-content" style="position: relative; z-index: 999;">
+                <h3 style="color: white; font-size: 22px; font-weight: 700; margin-bottom: 8px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Jumeirah Beach Residence</h3>
+                <div style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 12px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.5; opacity: 0.9;">Jumeirah Beach</div>
+                <!-- 位置标签 -->
+                <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">City Walk</div>
+              </div>
+              <!-- 右下角箭头按钮 -->
+              <button data-modal-id="modal-5" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- 卡片6 -->
+          <div style="perspective: 1000px;">
+            <div class="company-stat" style="background-image: url('/Communities/6.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+              <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
+              <!-- 卡片内容容器 -->
+              <div class="card-content" style="position: relative; z-index: 999;">
+                <h3 style="color: white; font-size: 22px; font-weight: 700; margin-bottom: 8px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Dubai Hills Estate</h3>
+                <div style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 12px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.5; opacity: 0.9;">Dubai Hills</div>
+                <!-- 位置标签 -->
+                <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">DAMAC Hills</div>
+              </div>
+              <!-- 右下角箭头按钮 -->
+              <button data-modal-id="modal-6" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- 卡片7 -->
+          <div style="perspective: 1000px;">
+            <div class="company-stat" style="background-image: url('/Communities/7.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+              <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
+              <!-- 卡片内容容器 -->
+              <div class="card-content" style="position: relative; z-index: 999;">
+                <h3 style="color: white; font-size: 22px; font-weight: 700; margin-bottom: 8px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Emaar Beachfront</h3>
+                <div style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 12px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.5; opacity: 0.9;">Emaar Beachfront</div>
+                <!-- 位置标签 -->
+                <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Damac Hills 2</div>
+              </div>
+              <!-- 右下角箭头按钮 -->
+              <button data-modal-id="modal-7" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- 卡片8 -->
+          <div style="perspective: 1000px;">
+            <div class="company-stat" style="background-image: url('/Communities/8.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+              <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
+              <!-- 卡片内容容器 -->
+              <div class="card-content" style="position: relative; z-index: 999;">
+                <h3 style="color: white; font-size: 22px; font-weight: 700; margin-bottom: 8px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">JBR Apartments</h3>
+                <div style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 12px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.5; opacity: 0.9;">Jumeirah Beach Residence</div>
+                <!-- 位置标签 -->
+                <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Damac Lagoons</div>
+              </div>
+              <!-- 右下角箭头按钮 -->
+              <button data-modal-id="modal-8" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- 卡片9 -->
+          <div style="perspective: 1000px;">
+            <div class="company-stat" style="background-image: url('/Communities/9.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+              <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
+              <!-- 卡片内容容器 -->
+              <div class="card-content" style="position: relative; z-index: 999;">
+                <h3 style="color: white; font-size: 22px; font-weight: 700; margin-bottom: 8px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Arabian Ranches Villas</h3>
+                <div style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 12px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.5; opacity: 0.9;">Arabian Ranches</div>
+                <!-- 位置标签 -->
+                <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Creek Harbour The Lagoon</div>
+              </div>
+              <!-- 右下角箭头按钮 -->
+              <button data-modal-id="modal-9" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- 卡片10 -->
+          <div style="perspective: 1000px;">
+            <div class="company-stat" style="background-image: url('/Communities/10.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+              <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
+              <!-- 卡片内容容器 -->
+              <div class="card-content" style="position: relative; z-index: 999;">
+                <h3 style="color: white; font-size: 22px; font-weight: 700; margin-bottom: 8px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Bluewaters Residences</h3>
+                <div style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 12px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.5; opacity: 0.9;">Bluewaters Island</div>
+                <!-- 位置标签 -->
+                <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Creek Harbour</div>
+              </div>
+              <!-- 右下角箭头按钮 -->
+              <button data-modal-id="modal-10" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- 卡片11 -->
+          <div style="perspective: 1000px;">
+            <div class="company-stat" style="background-image: url('/Communities/11.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+              <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
+              <!-- 卡片内容容器 -->
+              <div class="card-content" style="position: relative; z-index: 999;">
+                <h3 style="color: white; font-size: 22px; font-weight: 700; margin-bottom: 8px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">City Walk Apartments</h3>
+                <div style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 12px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.5; opacity: 0.9;">City Walk</div>
+                <!-- 位置标签 -->
+                <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Design District</div>
+              </div>
+              <!-- 右下角箭头按钮 -->
+              <button data-modal-id="modal-11" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- 卡片12 -->
+          <div style="perspective: 1000px;">
+            <div class="company-stat" style="background-image: url('/Communities/12.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+              <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
+              <!-- 卡片内容容器 -->
+              <div class="card-content" style="position: relative; z-index: 999;">
+                <h3 style="color: white; font-size: 22px; font-weight: 700; margin-bottom: 8px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Dubai Creek Residences</h3>
+                <div style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 12px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.5; opacity: 0.9;">Dubai Creek Harbour</div>
+                <!-- 位置标签 -->
+                <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Downtown</div>
+              </div>
+              <!-- 右下角箭头按钮 -->
+              <button data-modal-id="modal-12" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- 卡片13 -->
+          <div style="perspective: 1000px;">
+            <div class="company-stat" style="background-image: url('/Communities/13.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+              <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
+              <!-- 卡片内容容器 -->
+              <div class="card-content" style="position: relative; z-index: 999;">
+                <h3 style="color: white; font-size: 22px; font-weight: 700; margin-bottom: 8px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">Park Heights Villas</h3>
+                <div style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 12px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.5; opacity: 0.9;">Dubai Hills Estate</div>
+                <!-- 位置标签 -->
+                <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Hills Estate</div>
+              </div>
+              <!-- 右下角箭头按钮 -->
+              <button data-modal-id="modal-13" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- 卡片14 -->
+          <div style="perspective: 1000px;">
+            <div class="company-stat" style="background-image: url('/Communities/14.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+              <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
+              <!-- 卡片内容容器 -->
+              <div class="card-content" style="position: relative; z-index: 999;">
+                <h3 style="color: white; font-size: 22px; font-weight: 700; margin-bottom: 8px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">The Springs Villas</h3>
+                <div style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 12px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.5; opacity: 0.9;">The Springs</div>
+                <!-- 位置标签 -->
+                <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Marina</div>
+              </div>
+              <!-- 右下角箭头按钮 -->
+              <button data-modal-id="modal-14" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- 卡片15 -->
+          <div style="perspective: 1000px;">
+            <div class="company-stat" style="background-image: url('/Communities/15.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+              <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
+              <!-- 卡片内容容器 -->
+              <div class="card-content" style="position: relative; z-index: 999;">
+                <h3 style="color: white; font-size: 22px; font-weight: 700; margin-bottom: 8px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">The Meadows Apartments</h3>
+                <div style="color: rgba(255, 255, 255, 0.9); font-size: 14px; margin-bottom: 12px; margin-left: 0; margin-right: 0; text-align: left; line-height: 1.5; opacity: 0.9;">The Meadows</div>
+                <!-- 位置标签 -->
+                <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Science Park</div>
+              </div>
+              <!-- 右下角箭头按钮 -->
+              <button data-modal-id="modal-15" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    
+
+    
+    <!-- 弹窗结构 -->
+    <!-- 弹窗1 -->
+    <div id="modal-1" class="modal">
+      <div class="modal-overlay" data-modal-close="modal-1"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>Properties in Al Furjan</h2>
+          <button class="modal-close" data-modal-close="modal-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3>Community Living with Villa and Townhouse Options</h3>
+          <p>Al Furjan is a vibrant neighborhood offering a mix of villas, townhouses, and low-rise apartments organized around community parks, retail plazas, and leisure facilities. This iconic neighborhood offers a lifestyle defined by luxury, connectivity, and a rich selection of entertainment, dining, and cultural experiences for residents and visitors alike.</p>
+          
+          <h3>About Al Furjan</h3>
+          <p>Residents benefit from community markets, waterways, and extensive bus networks connecting to key city hubs. Residents benefit from easy access to major highways, premium facilities, and a community atmosphere that supports both an active lifestyle and serene moments at home.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗2 -->
+    <div id="modal-2" class="modal">
+      <div class="modal-overlay" data-modal-close="modal-2"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>Properties in Al Jaddaf</h2>
+          <button class="modal-close" data-modal-close="modal-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3>Cultural District with Modern Residences</h3>
+          <p>Al Jaddaf is a dynamic cultural and hospitality precinct featuring luxury hotels, art galleries, and residential towers with views of Dubai Creek. This iconic neighborhood offers a lifestyle defined by luxury, connectivity, and a rich selection of entertainment, dining, and cultural experiences for residents and visitors alike.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗3 -->
+    <div id="modal-3" class="modal">
+      <div class="modal-overlay" data-modal-close="modal-3"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>Properties in Arjan</h2>
+          <button class="modal-close" data-modal-close="modal-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3>Vibrant Community at Dubai's Green Heart</h3>
+          <p>Arjan is an emerging residential district known for its modern apartments set around the Dubai Miracle Garden and Cityland Mall. Enjoy easy access to stunning floral displays and family-friendly parks.</p>
+          <h3>About Arjan</h3>
+          <p>A boutique community combining upscale residences with green spaces and family-centric amenities along a scenic canal.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗4 -->
+    <div id="modal-4" class="modal">
+      <div class="modal-overlay" data-modal-close="modal-4"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>Properties in Business Bay</h2>
+          <button class="modal-close" data-modal-close="modal-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3>Dynamic Canal-Side Urban Hub</h3>
+          <p>Business Bay is a bustling business and residential district lining the Dubai Water Canal with high-rise towers, premium offices, and stylish apartments. The community features an array of dining, retail, and leisure options alongside waterfront promenades. This iconic neighborhood offers a lifestyle defined by luxury, connectivity, and a rich selection of entertainment, dining, and cultural experiences for residents and visitors alike.</p>
+          <h3>About Business Bay</h3>
+          <p>Residents enjoy an active sports-centric lifestyle with world-class golfing, tennis courts, fitness facilities, and gourmet dining at the on-site clubhouse. The community also provides easy access to major road networks, making it convenient to reach Dubai's business districts and city attractions. Residents benefit from easy access to major highways, premium facilities, and a community atmosphere that supports both an active lifestyle and serene moments at home.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗5 -->
+    <div id="modal-5" class="modal">
+      <div class="modal-overlay" data-modal-close="modal-5"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>Properties in City Walk</h2>
+          <button class="modal-close" data-modal-close="modal-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3>Urban Lifestyle Destination with Art and Leisure</h3>
+          <p>City Walk is a sophisticated mixed-use neighborhood by Meraas, combining contemporary residential towers with retail promenades, street art installations, and gourmet dining options. Its vibrant outdoor spaces and family-friendly zones make it one of Dubai’s most dynamic urban communities.</p>
+          <h3>About City Walk</h3>
+          <p>JVC provides a laid-back yet connected environment, combining community parks, cycling tracks, and a retail centre with proximity to Dubai’s major hubs. Residents benefit from easy access to major highways, premium facilities, and a community atmosphere that supports both an active lifestyle and serene moments at home.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗6 -->
+    <div id="modal-6" class="modal">
+      <div class="modal-overlay" data-modal-close="modal-6"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>About City Walk</h2>
+          <button class="modal-close" data-modal-close="modal-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>JVC provides a laid-back yet connected environment, combining community parks, cycling tracks, and a retail centre with proximity to Dubai’s major hubs. Residents benefit from easy access to major highways, premium facilities, and a community atmosphere that supports both an active lifestyle and serene moments at home.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗7 -->
+    <div id="modal-7" class="modal">
+      <div class="modal-overlay" data-modal-close="modal-7"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>Properties in DAMAC Hills 2</h2>
+          <button class="modal-close" data-modal-close="modal-7">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3>Golf-Resort Living with Modern Residences</h3>
+          <p>DAMAC Hills 2 (Akoya Oxygen) is a resort-style community centered around luxury villas, townhouses, and apartments amidst verdant fairways and parks. Residents have access to championship-inspired golf courses and themed parks.</p>
+          <h3>About DAMAC Hills 2</h3>
+          <p>Residents enjoy serene beachfront promenades, private marinas, and resort-style leisure facilities. Residents benefit from easy access to major highways, premium facilities, and a community atmosphere that supports both an active lifestyle and serene moments at home.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗8 -->
+    <div id="modal-8" class="modal">
+      <div class="modal-overlay" data-modal-close="modal-8"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>Properties in DAMAC Lagoons</h2>
+          <button class="modal-close" data-modal-close="modal-8">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3>Resort-Style Living with Tranquil Lagoons</h3>
+          <p>DAMAC Lagoons is a themed residential development inspired by Mediterranean coastal retreats, featuring elegant villas and townhouses set around a network of crystal-clear lagoons and private beaches. This iconic neighborhood offers a lifestyle defined by luxury, connectivity, and a rich selection of entertainment, dining, and cultural experiences for residents and visitors alike.</p>
+          <h3>About DAMAC Lagoons</h3>
+          <p>Set within the historic port area, the community combines elegant residences with a private marina, leisure promenades, and waterfront dining. Residents benefit from easy access to major highways, premium maritime facilities, and a community atmosphere that supports both an active lifestyle and serene moments at home.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗9 -->
+    <div id="modal-9" class="modal">
+      <div class="modal-overlay" data-modal-close="modal-9"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>Dubai Creek Harbour: A Modern Waterfront with Iconic Views</h2>
+          <button class="modal-close" data-modal-close="modal-9">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>A Thriving Waterfront Destination with Luxury Living, Innovation, and Scenic Views.</p>
+          <p>Dubai Creek Harbour is a dynamic waterfront development that seamlessly blends modern living with nature, offering an innovative urban lifestyle. Located along the historic Dubai Creek, this ambitious community is designed to be a future hub of commerce, culture, and luxury.</p>
+          <p>At the heart of Dubai Creek Harbour is the iconic Dubai Creek Tower, set to be the world’s tallest structure, alongside the vibrant Creek Marina and expansive Creek Beach. The community features a mix of contemporary apartments, townhouses, and villas with stunning views of the Creek and Dubai’s skyline.</p>
+          <p>With lush green spaces, pedestrian-friendly promenades, and world-class amenities, Dubai Creek Harbour provides residents with a balanced lifestyle. The development is also home to shopping, dining, entertainment options, and cultural venues, making it an ideal place for both work and play.</p>
+          <p>Offering a modern, sustainable, and luxury living experience, Dubai Creek Harbour is poised to become one of the most sought-after destinations in Dubai.</p>
+          <h3>About Dubai Creek Harbour</h3>
+          <p>Dubai Creek Harbour is a large-scale, waterfront development that features a mix of residential, retail, commercial and entertainment venues, complete with green spaces, a marina and a yacht club. Dubai Creek Harbour is a flagship project of Emaar Properties and Dubai Holding, designed for integrated living, work and play in harmony with nature. The project covers 1359 acres of Dubai Creek area, where the mall occupies around 8,826 sq. ft, with more than 710,000 sq. ft designated to public and retail spaces, and 78.6M sq. ft of residential areas.</p>
+          <p>The development has been delivered in several phases and now contains several independent, though connected into one ecosystem, communities. The first established residential clusters include the Island District, Creek Beach and Dubai Square, followed by the Sanctuary District, Retail District, Urban Core District and Dubai Festival City.</p>
+          <h3>Landmarks and Attractions</h3>
+          <p>Dubai Creek Harbour is an iconic waterfront destination, blending modern living with rich cultural heritage. Home to some of the city's most exciting landmarks, including the Dubai Creek Tower, set to surpass the Burj Khalifa, this area promises a future of world-class architecture and innovative designs. The Lagoon, a stunning man-made water feature, provides residents and visitors with serene views, waterfront dining, and recreational spaces. Just minutes from the heart of Dubai, this vibrant community offers easy access to a range of attractions, from the bustling Dubai Mall and Dubai Opera to the tranquil walking paths along the Creek. Whether you're enjoying the panoramic views, exploring the nearby parks, or shopping in world-class boutiques, Dubai Creek Harbour is a destination where every moment feels extraordinary.</p>
+          <h3>Economic Attractiveness</h3>
+          <p>Dubai Creek Harbour is quickly emerging as one of the most dynamic and economically promising developments in Dubai. Strategically located near major business hubs, transportation networks, and Dubai International Airport, this vibrant district is poised to become a key player in the city’s economy. The area offers lucrative investment opportunities, with significant growth potential in residential, commercial, and retail sectors. The Lagoon, as a prime waterfront development, enhances the area’s appeal, attracting both international and local investors. With its futuristic design, sustainability initiatives, and proximity to established economic centers, Dubai Creek Harbour is set to offer impressive returns for real estate investors, businesses, and entrepreneurs seeking to capitalize on the city’s ongoing economic expansion and diversification.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗10 -->
+    <div id="modal-10" class="modal">
+      <div class="modal-overlay" data-modal-close="modal-10"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>Properties in Dubai Creek Harbour (The Lagoons)</h2>
+          <button class="modal-close" data-modal-close="modal-10">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Live by the Water, Stay Close to the City</p>
+          <p>Dubai Creek Harbour is one of Dubai’s most exciting new waterfront communities, blending natural beauty, smart design, and modern living. With stunning views of Downtown Dubai, the Burj Khalifa, and the Dubai Creek Tower site, this future-forward district offers a lifestyle like no other — elegant, connected, and full of opportunity.</p>
+          <p>Located just 10 minutes from Downtown Dubai, Dubai Creek Harbour provides the perfect balance between urban energy and serene surroundings. Residents enjoy easy access to Ras Al Khor Wildlife Sanctuary, pristine walkways, cycling trails, and a vibrant marina promenade — all set against breathtaking skyline views.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗11 -->
+    <div id="modal-11" class="modal">
+      <div class="modal-overlay" data-modal-close="modal-11"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>Properties in Dubai Design District</h2>
+          <button class="modal-close" data-modal-close="modal-11">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>The Best Agents in Dubai Design District</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗12 -->
+    <div id="modal-12" class="modal">
+      <div class="modal-overlay" data-modal-close="modal-12"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>Properties in Dubai Downtown</h2>
+          <button class="modal-close" data-modal-close="modal-12">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Providing The Ultimate Lifestyle</p>
+          <p>Downtown Dubai is a large-scale, mixed-use complex featuring some of the city’s most iconic architecture. It is located at the epicenter of Dubai, adjacent to the Burj Khalifa, the world’s tallest building. Downtown Dubai is home to a number of luxury hotels and shopping malls, as well as a vibrant nightlife scene.</p>
+          <p>About Dubai Downtown</p>
+          <p>Downtown is also a popular tourist destination, with many visitors coming to experience its stunning skyline and unique atmosphere. If you’re looking for properties for sale in downtown Dubai, there are a number of options available. With so many different developers in Dubai, the number of off-plan properties in Downtown is continuous and in high-demand. With its central location and wide range of amenities, it is the perfect place to call home or to secure as an investment. The neighbourhood, a hotspot for investments and housing, is the ideal fusion of a quaint way of life, urban living, and the business world. Modern, luxurious off-plan properties for sale in Downtown Dubai are available, ranging from studios to 4-bedroom apartments with breath-taking views of the Dubai cityscape. Downtown Dubai, a city inside a city, is a happy and active hub of activity.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗13 -->
+    <div id="modal-13" class="modal">
+      <div class="modal-overlay" data-modal-close="modal-13"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>Properties in Dubai Hills Estate</h2>
+          <button class="modal-close" data-modal-close="modal-13">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Wake Up To Luscious Landscaped</p>
+          <p>Dubai Hills Estate is one of the newest and most luxurious developments in the city. However, Dubai Hills Estate is more than just a wealthy enclave; it is also a community that offers its residents the best of Dubai living.</p>
+          <p>About Dubai Hills Estate</p>
+          <p>Located just minutes from Downtown Dubai, Dubai Hills Estate provides the perfect balance of urban convenience and suburban tranquillity. With miles of green space, world-class amenities, and breath-taking views, it is no wonder that Dubai Hills Estate is one of the most sought-after addresses in the city. Off plan properties in Dubai Hills Estate are a fantastic investment opportunity. This world-class development offers a stunning range of apartments, villas, and townhouses, all set within a beautifully landscaped community. Off plan properties provide investors the chance to purchase property at a reduced price, before it is built. This makes off plan properties an excellent investment opportunity, as they are likely to appreciate in value over time. Thanks to its prime location and exceptional facilities, Dubai Hills Estate is the perfect place to invest in off plan property.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗14 -->
+    <div id="modal-14" class="modal">
+      <div class="modal-overlay" data-modal-close="modal-14"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>Properties in Dubai Marina</h2>
+          <button class="modal-close" data-modal-close="modal-14">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>High-Rise Living by the Waterfront</p>
+          <p>Dubai Marina is a buzzing residential district offering waterfront views, vibrant nightlife, and modern skyscrapers. Known for its marina walk, it features luxury apartments, dining destinations, and proximity to beaches and public transport. This iconic neighborhood offers a lifestyle defined by luxury, connectivity, and a rich selection of entertainment, dining, and cultural experiences for residents and visitors alike.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗15 -->
+    <div id="modal-15" class="modal">
+      <div class="modal-overlay" data-modal-close="modal-15"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>Properties in Dubai Science Park</h2>
+          <button class="modal-close" data-modal-close="modal-15">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Innovative Hub for Science and Business</p>
+          <p>Dubai Science Park is a world-class science and innovation district integrating research facilities, laboratories, and business offices within eco-friendly campus settings. This iconic neighborhood offers a lifestyle defined by luxury, connectivity, and a rich selection of entertainment, dining, and cultural experiences for residents and visitors alike.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 导航栏滚动效果
+      window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+          navbar.style.padding = '1rem 4rem';
+        } else {
+          navbar.style.padding = '1.5rem 4rem';
+        }
+      });
+
+      // 弹窗功能实现
+      document.addEventListener('DOMContentLoaded', function() {
+        // 获取所有弹窗按钮
+        const modalButtons = document.querySelectorAll('[data-modal-id]');
+        // 获取所有关闭按钮
+        const closeButtons = document.querySelectorAll('[data-modal-close]');
+        // 获取所有弹窗
+        const modals = document.querySelectorAll('.modal');
+
+        // 显示弹窗函数
+        function showModal(modalId) {
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            // 获取触发按钮
+            const button = document.querySelector(`[data-modal-id="${modalId}"]`);
+            if (button) {
+              // 找到对应的卡片元素
+              const card = button.closest('.company-stat');
+              if (card) {
+                // 获取卡片的背景图片
+                const backgroundImage = card.style.backgroundImage;
+                // 设置到弹窗的overlay上
+                const overlay = modal.querySelector('.modal-overlay');
+                if (overlay) {
+                  overlay.style.backgroundImage = backgroundImage;
+                }
+              }
+            }
+            
+            modal.style.display = 'block';
+            // 禁止页面滚动
+            document.body.style.overflow = 'hidden';
+          }
+        }
+
+        // 隐藏弹窗函数
+        function hideModal(modalId) {
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.style.display = 'none';
+            // 恢复页面滚动
+            document.body.style.overflow = 'auto';
+          }
+        }
+
+        // 隐藏所有弹窗函数
+        function hideAllModals() {
+          modals.forEach(modal => {
+            modal.style.display = 'none';
+          });
+          // 恢复页面滚动
+          document.body.style.overflow = 'auto';
+        }
+
+        // 为每个弹窗按钮添加点击事件
+        modalButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            const modalId = this.getAttribute('data-modal-id');
+            showModal(modalId);
+          });
+        });
+
+        // 为每个关闭按钮添加点击事件
+        closeButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            const modalId = this.getAttribute('data-modal-close');
+            hideModal(modalId);
+          });
+        });
+
+        // 点击弹窗外部区域关闭弹窗
+        modals.forEach(modal => {
+          modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+              hideModal(this.id);
+            }
+          });
+        });
+
+        // 按ESC键关闭弹窗
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            hideAllModals();
+          }
+        });
+      });
+    </script>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- 左侧Logo区域 -->
+      <div class="footer-brand">
+        <div class="footer-logo" style="display: flex; align-items: center; gap: 10px;">
+          <img src="/img/logo.png" alt="HOUSE Logo" style="height: 40px;">
+        </div>
+      </div>
+      
+      <!-- 中间简化链接区域 -->
+      <div class="footer-simple-links">
+        <span><a href="/featured-properties.html">Buy</a></span>
+        <span>•</span>
+        <span><a href="/communities.html">communities</a></span>
+        <span>•</span>
+        <span><a href="/developers.html">Developers</a></span>
+        <span>•</span>
+        <span><a href="/services.html">Services</a></span>
+        <span>•</span>
+        <span><a href="/about.html">About Us</a></span>
+      </div>
+    </div>
+    
+    <!-- 底部条款区域 -->
+    <div class="footer-bottom">
+      <div class="footer-terms">
+        <a href="#" data-translate="footerPrivacyPolicy">Privacy Policy</a>
+        <a href="#" data-translate="footerTermsOfService">Terms of Service</a>
+        <a href="#" data-translate="footerCookiePolicy">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

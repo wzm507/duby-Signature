@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HAWSON HOUSE PROPERTIES</title>
+    <title>Signature Homes</title>
+    <link rel="icon" href="/img/logo2.jpg" type="image/jpeg" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* 全局样式 */
@@ -28,8 +29,36 @@
             width: 100%;
             height: 100vh;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+            z-index: 2;
+        }
+        
+        /* 视频加载错误时显示的备用图片 */
+        .video-fallback-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/img/banner/1.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            display: none;
+        }
+        
+        /* 视频样式 */
         .hero-video {
             position: absolute;
             top: 0;
@@ -37,7 +66,17 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -1;
+            z-index: 1;
+        }
+        
+        /* 轮播指示器样式 - 已移除 */
+        .carousel-indicators {
+            display: none;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            /* 响应式样式 */
         }
         
         .hero-content {
@@ -46,22 +85,28 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            z-index: 1;
+            z-index: 3;
             max-width: 800px;
             padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.4); /* 半透明黑色背景遮罩 */
+            border-radius: 12px; /* 添加圆角，增强视觉效果 */
         }
         
         .hero-content h1 {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 3px 20px rgba(0, 0, 0, 0.8); /* 增强阴影效果 */
+            white-space: normal;
+            line-height: 1.2;
+            font-weight: bold; /* 增加字体粗细 */
+            color: white; /* 明确设置白色文本，确保在深色背景上清晰可见 */
         }
         
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        /* 响应式字体大小 */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
         }
         
         /* 导航栏样式 */
@@ -69,15 +114,20 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
+            right: 0;
+            width: 100% !important;
+            min-width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 1.5rem 2rem !important;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 2rem;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: transparent;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: none;
             z-index: 1000;
+            box-sizing: border-box !important;
         }
         
         .logo {
@@ -88,9 +138,12 @@
         }
         
         .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
+          display: flex;
+          gap: 3rem;
+          align-items: center;
+      }
+        
+
         
         .nav-links a {
             text-decoration: none;
@@ -122,51 +175,72 @@
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
-        <a href="#" class="logo">HAWSON HOUSE PROPERTIES</a>
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Buy</a>
-            <a href="#">Projects</a>
-            <a href="#">Services</a>
-            <a href="#">Contact</a>
+        <div class="logo" style="display: flex; align-items: center;">
+            <a href="/" style="display: flex; align-items: center;">
+                <img src="/img/logo.png" alt="Logo" class="logo-image" style="width: 100px; height: auto;">
+            </a>
+        </div>
+        <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
+            <a href="/featured-properties.html">Buy</a>
+            <a href="/communities.html">communities</a>
+            <a href="/developers.html">Developers</a>
+            <a href="/services.html">Services</a>
+            <a href="/about.html">About Us</a>
         </div>
     </nav>
     
-    <!-- 英雄区域，直接包含视频 -->
+    <!-- 英雄区域，使用视频背景 -->
     <section class="hero">
-        <video id="hero-video" class="hero-video" autoplay muted loop playsinline>
-            <source src="videos/2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <!-- 视频加载错误时显示的备用图片 -->
+        <div class="video-fallback-image" id="videoFallback" style="display: block;"></div>
+        <!-- 视频背景 -->
+    <video autoplay muted loop playsinline preload="none" class="hero-video" id="heroVideo" style="display: none;" poster="/img/banner/1.png">
+        <source src="/videos/1.mp4" type="video/mp4">
+    </video>
+        <div class="hero-overlay"></div>
         <div id="hero-content" class="hero-content">
-            <h1>Find Your Dream</h1>
-            <p>Premium real estate platform in Dubai and UAE</p>
+            <h1>Your Real Estate <br>Expert is Here.<br>Now you can find more than 200+ property choices with our professional agents! Contact us today to find your dream property.</h1>
         </div>
     </section>
     
     <script>
-        console.log('首页已加载，尝试播放视频...');
-        const video = document.getElementById('hero-video');
+        // 简化版视频播放逻辑，减少性能消耗
         const heroContent = document.getElementById('hero-content');
+        const heroVideo = document.getElementById('heroVideo');
+        const videoFallback = document.getElementById('videoFallback');
         
-        // 添加错误处理
-        video.addEventListener('error', (e) => {
-            console.error('视频加载错误:', e);
-            alert('视频加载失败，请刷新页面重试或联系管理员');
+        // 立即显示内容，没有延迟
+        heroContent.style.opacity = '1';
+        heroContent.style.transition = 'none';
+        
+        // 只在用户交互时尝试播放视频，减少初始加载压力
+        function handleUserInteraction() {
+            // 尝试播放视频
+            heroVideo.play().then(function() {
+                heroVideo.style.display = 'block';
+                videoFallback.style.display = 'none';
+            }).catch(function() {
+                // 忽略播放错误，不影响用户体验
+            });
+            
+            // 移除事件监听器，避免重复执行
+            document.removeEventListener('click', handleUserInteraction);
+            document.removeEventListener('touchstart', handleUserInteraction);
+            document.removeEventListener('keydown', handleUserInteraction);
+        }
+        
+        // 只添加必要的事件监听器
+        document.addEventListener('click', handleUserInteraction);
+        document.addEventListener('touchstart', handleUserInteraction);
+        document.addEventListener('keydown', handleUserInteraction);
+        
+        // 视频错误处理
+        heroVideo.addEventListener('error', function() {
+            // 确保备用图片显示
+            videoFallback.style.display = 'block';
+            heroVideo.style.display = 'none';
         });
-        
-        // 视频可以播放时显示内容
-        video.addEventListener('canplay', () => {
-            console.log('视频可以播放了!');
-            // 5秒后显示文字内容
-            setTimeout(() => {
-                heroContent.style.opacity = '1';
-            }, 5000);
-        });
-        
-        // 初始设置内容为透明
-        heroContent.style.opacity = '0';
-        heroContent.style.transition = 'opacity 0.8s ease-in-out';
     </script>
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>

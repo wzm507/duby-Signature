@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developers - Signature Homes</title>
+  <link rel="icon" href="/img/logo2.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+        /* 更新全局变量为更高级的配色方案 */
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #6366f1;
+            --accent-color: #f59e0b;
+            --light-color: #f8fafc;
+            --dark-color: #1e293b;
+            --light-text: #64748b;
+            --medium-text: #475569;
+            --border-color: #e2e8f0;
+            --border-radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.12);
+            --shadow-deep: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+        }
+        
+        /* 右侧固定语言切换按钮样式 */
+        .fixed-language-switcher {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+        
+        .language-button {
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+        
+        .language-button:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+    body {
+      line-height: 1.7;
+      color: var(--primary-color);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--light-color);
+    }
+
+    /* 导航栏 */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      transition: var(--transition);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--medium-text);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: var(--transition-fast);
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-primary);
+      transition: var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* 页面内容 */
+    .developers-page {
+      padding-top: 20px;
+      min-height: 100vh;
+    }
+
+    /* 开发者头部 */
+    .developers-header {
+      background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('/images_new/about/snapedit_17446406911301.jpeg');
+      background-size: cover;
+      background-position: center;
+      padding: 10rem 2rem 8rem;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .developers-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(99, 102, 241, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+      animation: shimmer 15s infinite linear;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .developers-header h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .developers-header p {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.95;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 开发者列表 */
+    .developers-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 2rem;
+    }
+
+    /* 开发者卡片网格 */
+    .developers-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2rem;
+      margin-bottom: 6rem;
+    }
+
+    /* 开发者卡片样式 */
+    .developer-card {
+      background-color: #f8f9fa;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      overflow: hidden;
+      position: relative;
+      /* 16:9 aspect ratio */
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .developer-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .developer-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 20px;
+      max-width: 100%;
+      max-height: 100%;
+      box-sizing: border-box;
+      transition: var(--transition);
+    }
+
+    .developer-card:hover img {
+      transform: scale(1.1);
+    }
+
+    /* 语言切换器样式 */
+    .fixed-language-switcher {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+    }
+
+    .language-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .language-button {
+      background-color: white;
+      color: var(--primary-color);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .language-button:hover {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .language-dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: white;
+      min-width: 120px;
+      box-shadow: var(--shadow-hover);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      z-index: 1;
+      margin-top: 10px;
+    }
+
+    .language-dropdown-content.show {
+      display: block;
+    }
+
+    .language-option {
+      color: var(--primary-color);
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      text-align: center;
+    }
+
+    .language-option:hover {
+      background-color: var(--light-color);
+    }
+
+    /* 页脚 */
+    .footer {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 6rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-section h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+    }
+
+    .footer-section p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-links a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 1200px) {
+      .developers-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 992px) {
+      .developers-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .developers-header h1 {
+        font-size: 3rem;
+      }
+
+      .navbar {
+        padding: 1.5rem 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .developers-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .developers-header {
+        padding: 8rem 2rem 6rem;
+      }
+
+      .developers-header h1 {
+        font-size: 2.5rem;
+      }
+
+      .developers-header p {
+        font-size: 1.1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .developers-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .developers-header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar" style="background-color: transparent; backdrop-filter: blur(10px); box-shadow: none;">
+    <div class="logo" style="display: flex; align-items: center;">
+      <a href="/" style="display: flex; align-items: center;">
+        <img src="/img/logo.png" alt="Logo" class="logo-image" style="width: 100px; height: auto;">
+      </a>
+    </div>
+    <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
+      <a href="/featured-properties.html">Buy</a>
+      <a href="/communities.html">communities</a>
+      <a href="/developers.html">Developers</a>
+      <a href="/services.html">Services</a>
+      <a href="/about.html">About Us</a>
+    </div>
+  </nav>
+
+  <!-- 开发者页面头部 -->
+  <section class="developers-header">
+    <h1>Developers in Dubai</h1>
+  </section>
+
+  <!-- 开发者页面内容 -->
+  <section class="developers-page">
+    <div class="developers-content">
+      <p style="font-size: 1rem; line-height: 1.6; color: var(--medium-text); font-weight: 300; margin-bottom: 2rem;">Explore the leading developers shaping Dubai's real estate landscape. We partner with top industry experts to bring you the best investment opportunities and exceptional homes. Discover their innovative projects and see how their expertise is transforming the city's skyline and community spaces.</p>
+      <div class="developers-grid">
+        <!-- 开发者卡片 1-28 -->
+        <div class="developer-card">
+          <img src="/public/Developers/1.png" alt="Developer 1">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/2.png" alt="Developer 2">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/3.png" alt="Developer 3">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/4.png" alt="Developer 4">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/5.png" alt="Developer 5">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/6.png" alt="Developer 6">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/7.png" alt="Developer 7">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/8.png" alt="Developer 8">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/9.png" alt="Developer 9">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/10.png" alt="Developer 10">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/11.png" alt="Developer 11">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/12.png" alt="Developer 12">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/13.png" alt="Developer 13">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/14.png" alt="Developer 14">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/15.png" alt="Developer 15">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/16.png" alt="Developer 16">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/17.png" alt="Developer 17">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/18.png" alt="Developer 18">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/19.png" alt="Developer 19">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/20.png" alt="Developer 20">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/21.png" alt="Developer 21">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/22.png" alt="Developer 22">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/23.png" alt="Developer 23">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/24.png" alt="Developer 24">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/25.png" alt="Developer 25">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/26.png" alt="Developer 26">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/27.png" alt="Developer 27">
+        </div>
+        <div class="developer-card">
+          <img src="/public/Developers/28.png" alt="Developer 28">
+        </div>
+
+      </div>
+      <p style="font-size: 1rem; line-height: 1.6; color: var(--medium-text); font-weight: 300; margin-top: 3rem; margin-bottom: 2rem;">At D&B, we provide real estate developers with a comprehensive suite of services designed to enhance project success. From project marketing and sales to market analysis and customer service, our expert team offers tailored solutions that help developers reach their goals. Whether you are launching a new residential development, commercial space, or mixed-use project, D&B’s extensive network and in-depth market knowledge ensure your project stands out and attracts the right buyers. With our end-to-end support and commitment to excellence, we help developers maximize their investments and navigate the Dubai real estate market with confidence.</p>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- 左侧Logo区域 -->
+      <div class="footer-brand">
+        <div class="footer-logo" style="display: flex; align-items: center; gap: 10px;">
+          <img src="/img/logo.png" alt="HOUSE Logo" style="height: 40px;">
+        </div>
+      </div>
+      
+      <!-- 中间简化链接区域 -->
+      <div class="footer-simple-links">
+        <span><a href="/featured-properties.html">Buy</a></span>
+        <span>•</span>
+        <span><a href="/communities.html">communities</a></span>
+        <span>•</span>
+        <span><a href="/developers.html">Developers</a></span>
+        <span>•</span>
+        <span><a href="/services.html">Services</a></span>
+        <span>•</span>
+        <span><a href="/about.html">About Us</a></span>
+      </div>
+    </div>
+    
+    <!-- 底部条款区域 -->
+    <div class="footer-bottom">
+      <div class="footer-terms">
+        <a href="#" data-translate="footerPrivacyPolicy">Privacy Policy</a>
+        <a href="#" data-translate="footerTermsOfService">Terms of Service</a>
+        <a href="#" data-translate="footerCookiePolicy">Cookie Policy</a>
+      </div>
+    </div>
+    
+    <style>
+      .footer {
+        background-color: #ffffff;
+        color: #000000;
+        padding: 3rem 2rem;
+        position: relative;
+        margin-top: 0;
+      }
+      
+      .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+      
+      /* 简化链接样式 */
+      .footer-simple-links {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .footer-simple-links span {
+        color: rgba(0, 0, 0, 0.7);
+        font-size: 1rem;
+      }
+      
+      .footer-simple-links a {
+        color: rgba(0, 0, 0, 0.7);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      
+      .footer-simple-links a:hover {
+        color: #000000;
+      }
+      
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .footer-tagline {
+        color: rgba(0, 0, 0, 0.7);
+        font-size: 1rem;
+        max-width: 300px;
+      }
+      
+      .footer-links-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+      
+      .footer-column h4 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        color: #000000;
+      }
+      
+      .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      
+      .footer-links li a {
+        color: rgba(0, 0, 0, 0.7);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      
+      .footer-links li a:hover {
+        color: #000000;
+      }
+      
+      .footer-links li {
+        color: rgba(0, 0, 0, 0.7);
+      }
+      
+      .footer-social-subscribe {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      
+      .social-link {
+        color: rgba(0, 0, 0, 0.7);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      
+      .social-link:hover {
+        color: #000000;
+      }
+      
+      .footer-subscribe p {
+        color: rgba(0, 0, 0, 0.7);
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+      }
+      
+      .footer-bottom {
+        max-width: 1400px;
+        margin: 2rem auto 0;
+        padding-top: 2rem;
+        display: flex;
+        justify-content: center; /* 内容居中对齐 */
+        align-items: center;
+      }
+      
+      .footer-terms {
+        display: flex;
+        gap: 1.5rem;
+      }
+      
+      .footer-terms a {
+        color: rgba(0, 0, 0, 0.7);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+      }
+      
+      .footer-terms a:hover {
+        color: #000000;
+      }
+      
+      @media (max-width: 992px) {
+        .footer-container {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        
+        .footer-links-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .footer-bottom {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+      }
+    </style>
+  </footer>
+</body>
+</html>

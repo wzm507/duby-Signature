@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片加载测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-container {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid transparent;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+        .test-info {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>轮播图图片加载测试</h1>
+    
+    <div class="test-container">
+        <h2>测试图片1 (png)</h2>
+        <img id="img1" src="/images_new/lunbotu/4141ab88-6dc1-4253-94d8-f4692ab7272f.png" alt="图片1">
+        <div class="test-info">
+            <p>路径: /images_new/lunbotu/4141ab88-6dc1-4253-94d8-f4692ab7272f.png</p>
+            <p id="status1">加载状态: 检查中...</p>
+        </div>
+    </div>
+    
+    <div class="test-container">
+        <h2>测试图片2 (webp)</h2>
+        <img id="img2" src="/images_new/lunbotu/4c97ca9f-75a1-48b3-a48a-b1c609933793.webp" alt="图片2">
+        <div class="test-info">
+            <p>路径: /images_new/lunbotu/4c97ca9f-75a1-48b3-a48a-b1c609933793.webp</p>
+            <p id="status2">加载状态: 检查中...</p>
+        </div>
+    </div>
+    
+    <div class="test-container">
+        <h2>测试图片3 (中文文件名)</h2>
+        <img id="img3" src="/images_new/lunbotu/微信图片_20250825105422.png" alt="图片3">
+        <div class="test-info">
+            <p>路径: /images_new/lunbotu/微信图片_20250825105422.png</p>
+            <p id="status3">加载状态: 检查中...</p>
+        </div>
+    </div>
+    
+    <script>
+        // 图片加载测试函数
+        function testImageLoad(imgId, statusId) {
+            const img = document.getElementById(imgId);
+            const status = document.getElementById(statusId);
+            
+            img.onload = function() {
+                img.style.borderColor = 'green';
+                status.textContent = '加载状态: 成功!';
+                status.className = 'success';
+            };
+            
+            img.onerror = function() {
+                img.style.borderColor = 'red';
+                status.textContent = '加载状态: 失败!';
+                status.className = 'error';
+            };
+        }
+        
+        // 为每个图片添加事件监听
+        testImageLoad('img1', 'status1');
+        testImageLoad('img2', 'status2');
+        testImageLoad('img3', 'status3');
+        
+        // 显示当前路径信息
+        console.log('当前页面路径:', window.location.href);
+    </script>
+</body>
+</html>

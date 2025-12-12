@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Images Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .image-wrapper {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .image-wrapper img {
+            max-width: 100%;
+            height: auto;
+        }
+        .path-info {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carousel Images Test</h1>
+    
+    <div class="test-container">
+        <!-- Root-relative path test -->
+        <div class="image-wrapper">
+            <div class="path-info">Path: /images_new/lunbotu/L1.webp</div>
+            <img src="/images_new/lunbotu/L1.webp" alt="L1.webp" onerror="this.onerror=null;this.src='/images_new/lunbotu/L2.png';console.error('Failed to load L1.webp');">
+        </div>
+        
+        <div class="image-wrapper">
+            <div class="path-info">Path: /images_new/lunbotu/L3.png</div>
+            <img src="/images_new/lunbotu/L3.png" alt="L3.png" onerror="this.onerror=null;this.src='/images_new/lunbotu/L2.png';console.error('Failed to load L3.png');">
+        </div>
+        
+        <!-- Absolute path test -->
+        <div class="image-wrapper">
+            <div class="path-info">Path: /images_new/lunbotu/L1.webp (with timestamp)</div>
+            <img src="/images_new/lunbotu/L1.webp?t=123456" alt="L1.webp with timestamp" onerror="this.onerror=null;this.src='/images_new/lunbotu/L2.png';console.error('Failed to load L1.webp with timestamp');">
+        </div>
+        
+        <div class="image-wrapper">
+            <div class="path-info">Path: /images_new/lunbotu/L2.png (fallback image)</div>
+            <img src="/images_new/lunbotu/L2.png" alt="L2.png">
+        </div>
+    </div>
+    
+    <script>
+        console.log('Testing carousel images...');
+        
+        // Check if images are loaded
+        document.querySelectorAll('img').forEach(img => {
+            img.onload = function() {
+                console.log('Successfully loaded:', this.src);
+                this.parentElement.style.borderColor = '#4CAF50';
+            };
+            
+            img.onerror = function() {
+                console.error('Failed to load:', this.src);
+                this.parentElement.style.borderColor = '#f44336';
+                this.alt = 'Failed to load: ' + this.src;
+                this.src = '/images_new/lunbotu/L2.png'; // Fallback to L2.png
+            };
+        });
+    </script>
+</body>
+</html>

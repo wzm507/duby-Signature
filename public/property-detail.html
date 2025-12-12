@@ -1,0 +1,2556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terra Gardens - Dubai Properties</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #6c63ff;
+        }
+
+        /* Hero 区域 - 图文叠加设计 */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 0.7;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+            opacity: 0.7;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* WhatsApp 按钮 */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* 操作按钮样式 */
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background-color: #6c63ff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #5a52e6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        /* 主要内容区域 */
+        .main-content {
+            background-color: white;
+            position: relative;
+            z-index: 4;
+            margin-top: -100px;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 关键信息卡片 - 悬浮设计 */
+        .key-info-section {
+            padding: 4rem 2rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .key-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .key-info-card {
+            background: white;
+            color: #333;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+
+        .key-info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #6c63ff 0%, #5a52e6 100%);
+        }
+
+        .key-info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .key-info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .key-info-icon {
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .key-info-tag {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #6c63ff;
+            background-color: rgba(108, 99, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+        }
+
+        .key-info-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .key-info-label {
+            font-size: 1rem;
+            opacity: 0.6;
+            font-weight: 300;
+        }
+
+        /* 描述区域 */
+        .description-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .description-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .description-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .description-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .description-image:hover {
+            transform: scale(1.05);
+        }
+
+        .description-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 照片画廊 - 现代化网格设计 */
+        .gallery-section {
+            padding: 2rem;
+            background-color: #f8f9fa;
+        }
+
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* 关于项目区域 */
+        .about-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-30px, 30px) rotate(240deg); }
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* WhatsApp 按钮 */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* 页脚样式 */
+        .footer {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 40px;
+        }
+
+        .footer-simple-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-simple-links span {
+            color: #000000;
+        }
+
+        .footer-simple-links a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-simple-links a:hover {
+            color: #6c63ff;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .footer-terms {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-terms a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-terms a:hover {
+            color: #6c63ff;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .description-content,
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .main-content {
+                margin-top: -50px;
+                border-radius: 10px 10px 0 0;
+            }
+
+            .key-info-section {
+                padding: 2rem 1rem 1rem;
+            }
+
+            .key-info-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .key-info-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .key-info-value {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .description-section,
+            .gallery-section,
+            .about-section {
+                padding: 2rem 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .gallery-item {
+                aspect-ratio: 16/9;
+            }
+
+            .about-content {
+                gap: 2rem;
+            }
+
+            .footer-simple-links {
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .footer-terms {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .key-info-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .key-info-value {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo" style="display: flex; align-items: center;">
+            <a href="/" style="display: flex; align-items: center;">
+                <img src="/img/logo.png" alt="Logo" class="logo-image" style="width: 100px; height: auto;">
+            </a>
+        </div>
+        <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
+            <a href="/featured-properties.html">Buy</a>
+            <a href="/communities.html">communities</a>
+            <a href="/developers.html">Developers</a>
+            <a href="/services.html">Services</a>
+            <a href="/about.html">About Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 - 图文叠加设计 -->
+    <section class="hero-section">
+        <img src="/Terra Gardens/1.png" alt="Terra Gardens" class="hero-background">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Terra Gardens</h1>
+            <p class="hero-subtitle">By Emaar in Expo Living, Dubai South</p>
+        </div>
+    </section>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <!-- 关键信息卡片 -->
+        <section class="key-info-section">
+            <div class="key-info-grid">
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">📊</div>
+                        <div class="key-info-tag">Payment Plan</div>
+                    </div>
+                    <div class="key-info-value">80/20</div>
+                    <div class="key-info-label">Flexible payment options available</div>
+                </div>
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">💲</div>
+                        <div class="key-info-tag">Starting Price</div>
+                    </div>
+                    <div class="key-info-value">AED 1.5M</div>
+                    <div class="key-info-label">Competitive pricing for premium living</div>
+                </div>
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">⏱️</div>
+                        <div class="key-info-tag">Handover in</div>
+                    </div>
+                    <div class="key-info-value">2029 Q1</div>
+                    <div class="key-info-label">Expected completion date</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 描述区域 -->
+        <section class="description-section">
+            <h2 class="section-title">Discover Terra Gardens</h2>
+            <div class="description-content">
+                <div class="description-text">
+                    <p>Introducing Terra Gardens, the latest residential revelation by Emaar Properties, situated in the visionary new community of Expo Living. Perfectly bridging the gap between urban innovation and natural serenity, Terra Gardens offers a premium collection of 1, 2, and 3-bedroom apartments and exclusive 3-bedroom townhouses.</p>
+                    <br>
+                    <p>Designed for the modern visionary, this development is located just steps from Expo City Dubai, offering a lifestyle defined by sustainability, connectivity, and lush green landscapes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 照片画廊 -->
+        <section class="gallery-section">
+            <div class="gallery-container">
+                <h2 class="section-title">Photo Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="/Terra Gardens/2.png" alt="Property Image 1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/Terra Gardens/3.png" alt="Property Image 2">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/Terra Gardens/4.png" alt="Property Image 3">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/Terra Gardens/5.png" alt="Property Image 4">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/Terra Gardens/6.png" alt="Property Image 5">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/Terra Gardens/7.png" alt="Property Image 6">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关于项目 -->
+        <section class="about-section">
+            <h2 class="section-title">About Terra Gardens</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/Terra Gardens/8.png" alt="Terra Gardens by Emaar">
+                </div>
+                <div class="about-text">
+                    <p>Terra Gardens is crafted to be a refreshing escape from the city's pace. The architecture features sleek, contemporary lines framed by blooming greenery and sunlit courtyards. Inside, the residences are a testament to Emaar's quality, featuring open-plan layouts, neutral palettes, and floor-to-ceiling windows that offer views of the landscaped podiums and the evolving Expo skyline.</p>
+                    <br>
+                    <p>Residents will enjoy access to world-class amenities including a fully-equipped fitness center, swimming pools, children's play areas, and beautifully landscaped gardens. The development's strategic location offers easy access to major highways, public transportation, and key destinations across Dubai.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 物业详情 -->
+        <section class="property-details-section" style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">Property Details</h2>
+            <div id="property-details-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;"></div>
+        </section>
+
+        <!-- 设施列表 -->
+        <section class="amenities-section" style="padding: 2rem; background-color: #f8f9fa;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <h2 class="section-title">Amenities</h2>
+                <div id="amenities-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- WhatsApp 按钮 -->
+    <div class="whatsapp-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+        </svg>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- 左侧Logo区域 -->
+            <div class="footer-brand">
+                <div class="footer-logo" style="display: flex; align-items: center; gap: 10px;">
+                    <img src="/img/logo.png" alt="HOUSE Logo" style="height: 40px;">
+                </div>
+            </div>
+            
+            <!-- 中间简化链接区域 -->
+            <div class="footer-simple-links">
+                <span><a href="/featured-properties.html">Buy</a></span>
+                <span>•</span>
+                <span><a href="/communities.html">communities</a></span>
+                <span>•</span>
+                <span><a href="/developers.html">Developers</a></span>
+                <span>•</span>
+                <span><a href="/services.html">Services</a></span>
+                <span>•</span>
+                <span><a href="/about.html">About Us</a></span>
+            </div>
+        </div>
+        
+        <!-- 底部条款区域 -->
+        <div class="footer-bottom">
+            <div class="footer-terms">
+                <a href="#" data-translate="footerPrivacyPolicy">Privacy Policy</a>
+                <a href="#" data-translate="footerTermsOfService">Terms of Service</a>
+                <a href="#" data-translate="footerCookiePolicy">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 页面加载时，根据URL参数获取房产信息
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const propertyType = urlParams.get('property');
+            
+            // 根据不同的propertyType更新页面内容
+            if (propertyType === 'property-1') {
+                // 更新页面标题
+                document.title = 'Harbour Gate Tower 1 - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/1/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN HARBOUR GATE TOWER 1';
+                document.querySelector('.hero-subtitle').textContent = 'HARBOUR GATE, DUBAI CREEK HARBOUR';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
+                document.querySelector('.description-text').innerHTML = 'AED 2,800,000<br>Own this from just 11,517 AED/month<br>Full Park View | High Floor | Lowest | Furnished<br><br>Apartment for sale in Harbour Gate Tower 1, Harbour Gate<br><br>Introducing a stunning 2-bedroom apartment in Harbour Gate Tower 1, located in the highly sought-after Dubai Creek Harbour (The Lagoons). This exquisite residence spans 1,149 sq.ft and offers a perfect blend of luxury and comfort with breathtaking views of the serene waterfront.<br><br>Key Highlights:<br>- 2 spacious bedrooms and 2 modern bathrooms<br>- Generous built-up area of 1,149 sq.ft<br>- Fully furnished with built-in kitchen appliances and wardrobes<br>- Enjoy a private balcony with captivating views<br>- Exclusive access to a shared pool, gym, and spa<br>- Ample parking in a covered facility<br>- Pet-friendly environment with children\'s play areas<br>- Ideal for both end-users and investment opportunities<br><br>Nearby Facilities:<br>Nearest school: The International School of Choueifat – 5 km<br>Nearest restaurant: The Lighthouse – 1 km<br>Nearest airport: Dubai International Airport – 15 km<br><br>Step inside to discover an open-concept layout that maximizes natural light, complemented by lavish finishes and premium fixtures. Whether you\'re entertaining guests or enjoying a quiet evening, this apartment is designed for both relaxation and sophistication, making it perfect for families or discerning investors.<br><br>Nestled in a vibrant community, Harbour Gate offers unparalleled access to stunning waterfront promenades, parks, and an array of dining and retail options, enhancing the luxurious lifestyle you deserve.<br><br>For further details or to schedule a viewing, please contact Signature Homes today. Your dream home awaits!';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '2 Bed';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '2 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '1,149 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Harbour Gate, Dubai';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 2.8M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Harbour Gate Tower 1';
+                document.querySelector('.about-text').innerHTML = 'Harbour Gate Tower 1 is a premium residential development located in Dubai Creek Harbour (The Lagoons), offering luxurious apartments with stunning waterfront views. This modern tower features state-of-the-art amenities, including a shared pool, gym, spa, and 24-hour security, providing residents with a sophisticated and comfortable living environment. Nestled in a vibrant community, Harbour Gate offers easy access to waterfront promenades, parks, dining, and retail options, making it an ideal choice for families and investors alike.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/1/2.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/1/${i + 2}.png`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">1,149 sqft / 107 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">2</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">2</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Service Charges</h3>
+                        <p style="color: #666;">20.35 AED per sqft</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '💆', name: 'Shared Spa' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '👗', name: 'Walk-in Closet' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🐶', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: 'Children\'s Pool' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-2') {
+                // 更新页面标题
+                document.title = 'Burj Crown - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/2/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN BURJ CROWN';
+                document.querySelector('.hero-subtitle').textContent = 'DOWNTOWN DUBAI';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
+                document.querySelector('.description-text').innerHTML = 'AED 2,040,000<br>Own this from just 8,391 AED/month<br>Pool View | Vacant | Agents Welcome<br><br>Apartment for sale in Burj Crown, Downtown Dubai<br><br>Discover the luxurious Burj Crown, a premium one-bedroom apartment nestled in the heart of Downtown Dubai. With a built-up area of 578 sq.ft., this stunning residence features breathtaking views of the iconic skyline and shimmering waters. Enjoy an abundance of amenities that promise a lifestyle of comfort and convenience.<br><br>Key Highlights:<br>- 1 Bedroom, 1 Bathroom<br>- 578 sq.ft built-up area<br>- Modern finishes with built-in kitchen appliances<br>- Spectacular views of city and pool<br>- Central A/C & heating, walk-in closet, and balcony<br>- Shared pool, gym, spa, and barbecue area<br>- Covered parking and 24/7 concierge service<br>- Vastu-compliant for enhanced living<br><br>Nearby Facilities:<br>Nearest school: Dubai International School – 2 km<br>Nearest restaurant: The Dubai Mall Food Court – 1 km<br>Nearest airport: Dubai International Airport – 12 km<br><br>Experience refined living in Burj Crown with its carefully designed layout and premium features that enhance your everyday lifestyle. Perfect for both end-users and investors, this property is surrounded by lifestyle attractions and offers unmatched convenience.<br><br>For further details or to schedule a viewing, please contact Signature Homes. Your dream home awaits!';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '1 Bed';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '1 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '578 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Downtown Dubai';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 2.04M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Burj Crown';
+                document.querySelector('.about-text').innerHTML = 'Burj Crown is a premium residential development located in the heart of Downtown Dubai, offering luxurious apartments with stunning views of the iconic skyline. This modern tower features state-of-the-art amenities, including a shared pool, gym, spa, and 24-hour concierge service, providing residents with a sophisticated and comfortable living environment. Nestled in one of Dubai\'s most vibrant neighborhoods, Burj Crown offers easy access to world-class shopping, dining, and entertainment options, making it an ideal choice for families and investors alike.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/2/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const imageFiles = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/2/${imageFiles[i] || 'image.png'}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">578 sqft / 54 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">1</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">1</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '❄️', name: 'Central A/C' },
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '💆', name: 'Shared Spa' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '👨‍💼', name: 'Concierge' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '👗', name: 'Walk-in Closet' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🌊', name: 'View of Water' },
+                    { icon: '🗼', name: 'View of Landmark' },
+                    { icon: '🐶', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '🕉️', name: 'Vastu-compliant' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-3') {
+                // 更新页面标题
+                document.title = 'Burj Royale - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/3/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN BURJ ROYALE';
+                document.querySelector('.hero-subtitle').textContent = 'DOWNTOWN DUBAI';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
+                document.querySelector('.description-text').innerHTML = 'AED 2,250,000<br>Own this from just 9,254 AED/month<br>High Floor | Tenanted | Best Priced<br><br>Apartment for sale in Burj Royale, Downtown Dubai<br><br>Signature Homes Real Estate Broker is pleased to offer you this 1 Bed Apartment in Burj Royale for sale<br><br>Property Features:<br>* 1 bedroom<br>* 1 bathroom<br>* High floor<br>* Balcony<br>* Modern kitchen<br>* Spacious living area<br>* High-quality finishes<br>* Built-in wardrobes<br>* Covered parking<br><br>Building Amenities:<br>- 24/7 Security<br>- Burj Khalifa view Swimming Pool<br>- Fitness Center<br>- 1 Covered Parking<br>- Concierge Service<br><br>Location Highlights:<br>- Proximity to Dubai Mall: Just a short walk away from the world-renowned Dubai Mall, offering a wide range of shopping, dining, and entertainment options.<br>- Transport Links: Excellent connectivity with easy access to the Dubai Metro and major highways.<br>- Nearby Attractions: Close to Burj Khalifa, Dubai Opera, and other major attractions in Downtown Dubai.<br><br>For further details or to schedule a viewing, please contact Signature Homes. Your dream home awaits!';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '1 Bed';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '1 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '639 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Downtown Dubai';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 2.25M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Burj Royale';
+                document.querySelector('.about-text').innerHTML = 'Burj Royale is a premium residential development located in the heart of Downtown Dubai, offering luxurious apartments with stunning views of the iconic Burj Khalifa. This modern tower features state-of-the-art amenities, including a shared pool, gym, spa, and 24-hour concierge service, providing residents with a sophisticated and comfortable living environment. Nestled in one of Dubai\'s most vibrant neighborhoods, Burj Royale offers easy access to world-class shopping, dining, and entertainment options, making it an ideal choice for families and investors alike.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/3/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const imageFiles = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/3/${imageFiles[i] || 'image.png'}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">639 sqft / 59 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">1</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">1</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '❄️', name: 'Central A/C' },
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '💆', name: 'Shared Spa' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '👗', name: 'Walk-in Closet' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🐶', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: 'Children\'s Pool' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-4') {
+                // 更新页面标题
+                document.title = 'Opera Grand - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/4/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN OPERA GRAND';
+                document.querySelector('.hero-subtitle').textContent = 'BURJ KHALIFA AREA';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Penthouse';
+                document.querySelector('.description-text').innerHTML = 'AED 16,500,000<br>Own this from just 59,382 AED/month<br>Burj Khalifa View | Negotiable | Furnished<br><br>Apartment for sale in Opera Grand, Burj Khalifa Area<br><br>Signature Reality Homes Real Estate is delighted to offer you this stunning 4 bedroom\'s penthouse in Opera Grand at Downtown<br><br>OPEN TO OFFERS, AGENTS WELCOME!<br><br>Features and Amenities<br><br>- 4 Bedrooms<br>- 5 bathrooms<br>- Size: 3,056.09 sqft<br>- Gymnasium<br>- Breathtaking views<br>- Rooftop Swimming Pool<br>- Homegrown cafes and Restaurants<br>- Schools and Nurseries<br>- Healthcare Centres<br>- Retail Outlets<br>- Kids Play Area<br>- Shopping Malls<br><br>The penthouse also features a private balcony, perfect for enjoying panoramic views of the iconic Burj Khalifa and The Opera District. High-quality finishes and meticulous attention to detail are evident throughout, from the premium flooring to the luxurious bathroom fixtures. Living in this penthouse means experiencing the epitome of luxury and comfort, with access to exclusive amenities and the vibrant lifestyle of Downtown Dubai right at your doorstep.<br><br>For further details or to schedule a viewing, please contact Signature Homes. Your dream home awaits!';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '4 Bed';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '5 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '3,056 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Burj Khalifa Area, Dubai';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 16.5M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Opera Grand';
+                document.querySelector('.about-text').innerHTML = 'Opera Grand is a premium residential development located in the heart of Burj Khalifa Area, offering luxurious apartments and penthouses with stunning views of the iconic Burj Khalifa and The Opera District. This modern development features state-of-the-art amenities, including a rooftop swimming pool, gym, spa, and 24-hour concierge service, providing residents with a sophisticated and comfortable living environment. Nestled in one of Dubai\'s most vibrant neighborhoods, Opera Grand offers easy access to world-class shopping, dining, and entertainment options, making it an ideal choice for families and investors alike.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/4/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const imageFiles = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/4/${imageFiles[i] || 'image.png'}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">3,056 sqft / 284 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">4</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">5</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Service Charges</h3>
+                        <p style="color: #666;">21.03 AED per sqft</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '💆', name: 'Shared Spa' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '👨‍💼', name: 'Concierge' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '👗', name: 'Walk-in Closet' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🌊', name: 'View of Water' },
+                    { icon: '🗼', name: 'View of Landmark' },
+                    { icon: '🐶', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: 'Children\'s Pool' },
+                    { icon: '🕉️', name: 'Vastu-compliant' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-5') {
+                // 更新页面标题
+                document.title = 'Burj Crown - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/5/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN BURJ CROWN';
+                document.querySelector('.hero-subtitle').textContent = 'DOWNTOWN DUBAI';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
+                document.querySelector('.description-text').innerHTML = 'AED 4,100,000<br>Own this from just 16,864 AED/month<br>Burj Khalifa View | High Floor | Lowest in Market<br><br>Apartment for sale in Burj Crown, Downtown Dubai<br><br>Discover elevated living in this stunning 3-bedroom apartment located in the prestigious Burj Crown, Downtown Dubai. This elegant residence offers captivating views and an array of premium amenities, exemplifying modern luxury.<br><br>Key Highlights:<br>- Layout: 3 bedrooms, 4 bathrooms<br>- Built-up area: 1356 Sq.ft<br>- Furnishings: Central A/C & Heating<br>- Views: Iconic Landmark and Burj Khalifa views<br>- Amenities: Shared pool, spa, gym, barbecue area, pets allowed<br>- Parking: Covered parking available<br><br>Nearby Facilities:<br>Nearest school: International School of Arts & Sciences – 1.2 km<br>Nearest restaurant: At.mosphere – 800 m<br>Nearest airport: Dubai International Airport – 12 km<br><br>With its thoughtfully designed layout, this apartment boasts spacious living areas, built-in wardrobes, and a balcony perfect for soaking in the vibrant atmosphere of Downtown. Perfect for both end-users and savvy investors, Burj Crown elevates lifestyle to new heights.<br><br>Explore exceptional living at Burj Crown. Contact Signature Homes today to learn more or to schedule your private viewing.';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '3 Bed';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '4 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '1,356 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Downtown Dubai';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 4.1M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Burj Crown';
+                document.querySelector('.about-text').innerHTML = 'Burj Crown is a premium residential development located in the heart of Downtown Dubai, offering luxurious apartments with stunning views of the iconic Burj Khalifa. This modern tower features state-of-the-art amenities, including a shared pool, gym, spa, and 24-hour concierge service, providing residents with a sophisticated and comfortable living environment. Nestled in one of Dubai\'s most vibrant neighborhoods, Burj Crown offers easy access to world-class shopping, dining, and entertainment options, making it an ideal choice for families and investors alike.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/5/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const imageFiles = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/5/${imageFiles[i] || 'image.png'}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">1,356 sqft / 126 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">3</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">4</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '❄️', name: 'Central A/C' },
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '💆', name: 'Shared Spa' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '👗', name: 'Walk-in Closet' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🌊', name: 'View of Water' },
+                    { icon: '🗼', name: 'View of Landmark' },
+                    { icon: '🐶', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: 'Children\'s Pool' },
+                    { icon: '🕉️', name: 'Vastu-compliant' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-6') {
+                // 更新页面标题
+                document.title = 'Creekside 18 B - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/6/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN CREEKSIDE 18 B';
+                document.querySelector('.hero-subtitle').textContent = 'CREEKSIDE 18, DUBAI CREEK HARBOUR';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
+                document.querySelector('.description-text').innerHTML = 'AED 1,800,000<br>Own this from just 7,403 AED/month<br>Breathtaking View | Tenanted | Furnished | Balcony<br><br>Apartment for sale in Creekside 18 B, Creekside 18<br><br>Signature Reality Homes Real Estate is delighted to offer you this 1 Bedroom Apartment is located in Creekside 18 B, Dubai Creek Harbour.<br><br>Unit Details:<br>- Vacant<br>- Open and Fully Fitted kitchen<br>- 1 Bedroom<br>- 1 Bathroom<br>- 673.49 square feet<br>- N1 parking slot<br>- Semi Furnished<br><br>Features:<br>- Balcony<br>- Basement parking<br>- Built in wardrobes<br>- Broadband ready<br>- Central air conditioning<br>- Concierge Service<br>- Public parking<br>- Security<br>- Shops<br>- Restaurants<br>- Public Park<br><br>Both towers are designed to take full advantage of the vibrant skyline views and within proximity to the bird sanctuary and luscious green mangroves. With its polished, timeless aesthetic and elegant, clean lines, Creekside 18 showcases Emaar\'s uncompromising creative vision and the pursuit of perfection.<br><br>For further details or to schedule a viewing, please contact Signature Homes today. Your dream home awaits!';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '1 Bed';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '1 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '673 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Creekside 18, Dubai';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 1.8M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Creekside 18';
+                document.querySelector('.about-text').innerHTML = 'Creekside 18 is a prestigious residential development located in Dubai Creek Harbour, offering luxurious apartments with stunning views of the city skyline and mangroves. This modern development features state-of-the-art amenities, including a shared pool, gym, and 24-hour concierge service, providing residents with a sophisticated and comfortable living environment. With its polished, timeless aesthetic and elegant, clean lines, Creekside 18 showcases Emaar\'s uncompromising creative vision and the pursuit of perfection.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/6/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const imageFiles = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/6/${imageFiles[i] || 'image.png'}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">673 sqft / 63 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">1</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">1</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Service Charges</h3>
+                        <p style="color: #666;">20.01 AED per sqft</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '👨‍💼', name: 'Concierge' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '👗', name: 'Walk-in Closet' },
+                    { icon: '🗼', name: 'View of Landmark' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: 'Children\'s Pool' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-7') {
+                // 更新页面标题
+                document.title = 'St Regis The Residences - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/7/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN ST REGIS THE RESIDENCES';
+                document.querySelector('.hero-subtitle').textContent = 'BURJ KHALIFA AREA, DOWNTOWN DUBAI';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
+                document.querySelector('.description-text').innerHTML = 'AED 2,807,294<br>Own this from just 11,547 AED/month<br>Biggest Layout | Best Priced | 1 BR | Grab Now<br><br>Apartment for sale in St Regis The Residences, Burj Khalifa Area<br><br>Discover the epitome of luxury living at St Regis The Residences, nestled in the prestigious Burj Khalifa area of Downtown Dubai. This exquisite 1-bedroom apartment, spanning 901 Sq.ft, offers a perfect blend of elegance and comfort, highlighted by an exclusive private pool and a dedicated study that enhances your lifestyle.<br><br>Key Highlights:<br>- 1 Bedroom, 1 Bathroom<br>- Generous built-up area of 901 Sq.ft<br>- Modern built-in kitchen appliances and walk-in closet<br>- Access to community amenities, including shared pools, spa, and gym<br>- Covered parking and 24-hour concierge service<br>- Spectacular landmark views and balcony<br><br>Step inside this thoughtfully designed apartment, where premium fixtures and stylish finishes create an ambiance of sophistication. The seamless layout is ideal for both end-users and savvy investors looking to elevate their lifestyle in one of the world\'s most vibrant cities.<br><br>St Regis The Residences is not just about luxury; it offers an extraordinary lifestyle with exceptional amenities and excellent connectivity to renowned attractions, dining, and entertainment.<br><br>Don\'t miss this chance to own a piece of Dubai\'s skyline! Contact Signature Homes today to schedule your viewing or for more details.';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '1 Bed';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '1 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '901 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Burj Khalifa Area, Dubai';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 2.81M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About St Regis The Residences';
+                document.querySelector('.about-text').innerHTML = 'St Regis The Residences is a prestigious development located in the heart of Burj Khalifa Area, Downtown Dubai. Offering luxurious apartments with stunning views and exceptional amenities, this development epitomizes modern luxury living. Residents enjoy access to shared pools, spa, gym, 24-hour concierge service, and covered parking, all within close proximity to world-class shopping, dining, and entertainment options.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/7/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const imageFiles = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/7/${imageFiles[i] || 'image.png'}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">901 sqft / 84 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">1</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">1</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '📚', name: 'Study' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-8') {
+                // 更新页面标题
+                document.title = 'Jumeirah Emirates Tower - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/8/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN JUMEIRAH EMIRATES TOWER';
+                document.querySelector('.hero-subtitle').textContent = 'EMIRATES TOWERS, SHEIKH ZAYED ROAD';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
+                document.querySelector('.description-text').innerHTML = 'AED 8,000,000<br>Own this from just 28,791 AED/month<br>Large 2BR | Jumeirah Residences | Skyline Luxury<br><br>Apartment for sale in Jumeirah Emirates Tower, Emirates Towers<br><br>Welcome to the Jumeirah Emirates Tower, an exquisite two-bedroom apartment located on the prestigious Sheikh Zayed Road. This stunning residence boasts an expansive built-up area of 1484.02 sq. ft., featuring a blend of modern elegance and comfort with breathtaking views of the iconic skyline.<br><br>Key Highlights:<br>- 2 spacious bedrooms, 2 contemporary bathrooms<br>- Expansive 1484.02 sq. ft. layout<br>- Elegant built-in kitchen appliances<br>- Inviting balcony with landmark views<br>- Private pool and gym facilities<br>- Shared pool and gym access<br>- Children\'s pool for added family enjoyment<br>- Secure, welcoming lobby<br><br>Nearby Facilities:<br>Nearest school: Emirates International School – 3 km<br>Nearest restaurant: Zuma – 2 km<br>Nearest airport: Dubai International Airport – 10 km<br><br>This apartment offers a remarkable lifestyle, complete with premium amenities that cater to both relaxation and active living. The Jumeirah Emirates Tower community surrounds you with a wealth of attractions and facilities, ensuring convenience for resident life or a lucrative investment opportunity.<br><br>Contact Signature Homes today to arrange a viewing and explore this unparalleled living experience.';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '2 Bed';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '2 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '1,484 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Emirates Towers, Dubai';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 8.0M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Jumeirah Emirates Tower';
+                document.querySelector('.about-text').innerHTML = 'Jumeirah Emirates Tower is a prestigious residential development located on the iconic Sheikh Zayed Road, offering luxurious apartments with stunning views of the Dubai skyline. This modern tower features state-of-the-art amenities, including private and shared pools, gym facilities, and 24-hour security, providing residents with a sophisticated and comfortable living environment. Nestled in the heart of Emirates Towers, this development offers easy access to world-class shopping, dining, and entertainment options, making it an ideal choice for families and investors alike.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/8/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const imageFiles = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/8/${imageFiles[i] || 'image.png'}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">1,484 sqft / 138 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">2</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">2</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '💪', name: 'Private Gym' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🗼', name: 'View of Landmark' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-9') {
+                // 更新页面标题
+                document.title = 'Orchid at Creek Beach - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/9/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN ORCHID AT CREEK BEACH';
+                document.querySelector('.hero-subtitle').textContent = 'CREEK BEACH, DUBAI CREEK HARBOUR';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
+                document.querySelector('.description-text').innerHTML = 'AED 1,900,000<br>Own this from just 7,815 AED/month<br>Creek Beach | Spacious 1BR | Tenanted<br><br>Apartment for sale in Orchid at Creek Beach Building 1, Orchid at Creek Beach<br><br>Welcome to Orchid, a captivating 1-bedroom apartment nestled in the serene Dubai Creek Harbour (The Lagoons) community. This exquisite residence spans 690.4 sq.ft and boasts a blend of contemporary design and luxurious amenities, offering an exceptional living experience.<br><br>Key Highlights:<br>- 1 spacious bedroom, 1 modern bathroom<br>- Built-up area of 690 sq.ft<br>- Stylish balcony with views<br>- Built-in wardrobes for ample storage<br>- Access to exclusive amenities including shared pool, gym, and children\'s play area<br>- Covered parking available<br>- Pet-friendly community<br>- Ideal for end-users or investors seeking value<br><br>Nearby Facilities:<br>Nearest school: Dubai International School – 10 mins<br>Nearest restaurant: The Lighthouse – 5 mins<br>Nearest airport: Dubai International Airport – 20 mins<br><br>This apartment\'s intelligent layout maximizes space and natural light, complemented by high-end finishes and sleek fixtures. The surrounding community offers picturesque waterfront views and a host of leisure options, making it perfect for those seeking a vibrant lifestyle.<br><br>Don\’t miss out on this unique opportunity! Contact Signature Homes today to schedule your viewing and explore the possibilities at Orchid.';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '1 Bed';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '1 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '690 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Creek Beach, Dubai';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 1.9M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Orchid at Creek Beach';
+                document.querySelector('.about-text').innerHTML = 'Orchid at Creek Beach is a captivating residential development located in Dubai Creek Harbour (The Lagoons), offering luxurious 1-bedroom apartments with contemporary design and exceptional amenities. Nestled in a serene community, residents enjoy access to shared pools, gym facilities, and children\'s play areas, all within close proximity to waterfront views and leisure options. This pet-friendly community is ideal for both end-users and investors seeking value in one of Dubai\'s most vibrant neighborhoods.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/9/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const imageFiles = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/9/${imageFiles[i] || 'image.png'}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">690 sqft / 64 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">1</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">1</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '👨‍💼', name: 'Concierge' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '🐶', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: 'Children\'s Pool' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-10') {
+                // 更新页面标题
+                document.title = 'Creek Waters 2 - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/10/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN CREEK WATERS 2';
+                document.querySelector('.hero-subtitle').textContent = 'DUBAI CREEK HARBOUR (THE LAGOONS)';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
+                document.querySelector('.description-text').innerHTML = 'AED 2,972,265<br>Own this from just 12,225 AED/month<br>Incredible Location | Spacious Layout | 08 series<br><br>Apartment for sale in Creek Waters 2, Dubai Creek Harbour (The Lagoons)<br><br>Introducing a magnificent 2-bedroom apartment in Creek Waters 2, nestled in the vibrant Dubai Creek Harbour. This exquisite residence offers a spacious built-up area of 1216.75 sq. ft. and is designed with an emphasis on modern living, featuring breathtaking views of the water and iconic landmarks.<br><br>Key Highlights:<br>- 2 Bedrooms, 2 Bathrooms<br>- Balcony with scenic views<br>- Private garden and jacuzzi<br>- Maid\'s room with maid service<br>- Vastu-compliant layout<br>- Access to a shared pool, gym, and spa<br>- Covered parking and concierge service<br>- Children\'s play area and barbecue zone<br><br>This stylish apartment boasts an open-plan layout, showcasing a contemporary design with built-in kitchen appliances, walk-in closets, and ample natural light. Ideal for families or investors, this property promises a lifestyle of comfort and exclusivity.<br><br>Creek Waters 2 is part of a dynamic community that redefines modern living, offering exceptional amenities and seamless connectivity to nearby attractions.<br><br>Don\’t miss out on this exquisite opportunity! Contact Signature Homes today for more details or to schedule your private viewing.';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '2 Bed + Maid';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '2 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '1,216 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Dubai Creek Harbour, The Lagoons';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 2.97M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Creek Waters 2';
+                document.querySelector('.about-text').innerHTML = 'Creek Waters 2 is a premium residential development located in Dubai Creek Harbour (The Lagoons), offering luxurious 2-bedroom apartments with modern design and exceptional amenities. This vibrant community redefines modern living with spacious layouts, breathtaking views, and seamless connectivity to nearby attractions. Residents enjoy access to exclusive amenities including shared pools, gyms, spas, and children\'s play areas, making it an ideal choice for families and investors alike.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/10/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const imageFiles = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/10/${imageFiles[i] || 'image.png'}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">1,216 sqft / 113 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">2 + Maid</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">2</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '👩‍🏭', name: 'Maids Room' },
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🌳', name: 'Private Garden' },
+                    { icon: '💪', name: 'Private Gym' },
+                    { icon: '🛁', name: 'Private Jacuzzi' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '💆', name: 'Shared Spa' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '👨‍💼', name: 'Concierge' },
+                    { icon: '👩‍🍳', name: 'Maid Service' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '👗', name: 'Walk-in Closet' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🌊', name: 'View of Water' },
+                    { icon: '🗼', name: 'View of Landmark' },
+                    { icon: '🐶', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: 'Children\'s Pool' },
+                    { icon: '🕉️', name: 'Vastu-compliant' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-11') {
+                // 更新页面标题
+                document.title = 'VILLA FOR SALE IN PALM JEBEL ALI- FROND P - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/11/1.png';
+                document.querySelector('.hero-title').textContent = 'VILLA FOR SALE IN PALM JEBEL ALI- FROND P';
+                document.querySelector('.hero-subtitle').textContent = 'Palm Jebel Ali';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Villa';
+                document.querySelector('.description-text').innerHTML = 'AED 23,500,000<br>Own this from just84,575 AED/month<br>Private Beach | Sea View | Luxury | Freehold<br><br>Villa for sale in Palm Jebel Ali- Frond P, Palm Jebel Ali<br><br>Signature Reality Homes, an award-winning real estate company and an alliance with EMAAR, is proud to offer this exquisite villa in Palm Jebel Ali, an iconic waterfront destination redefining luxury living in Dubai.<br><br>Highlights:<br>-Beachfront villa<br>-Panoramic sea views<br>-Floor-to-ceiling windows<br>-Luxury finishes<br>-Private frond location<br><br>Features:<br>-Resort-style amenities<br>-Walkable streets<br>-Pocketed parks<br>-Beach & cycling access<br>-Lush landscaped surroundings<br><br>This stunning villa features floor-to-ceiling windows, offering breathtaking panoramic beach views while filling the interiors with natural light. Designed with a soft, neutral palette and premium luxury finishes, it creates an atmosphere of elegance and tranquility.<br><br>Nestled in an exclusive private frond neighborhood, residents enjoy walkable streets, lush landscaping, and direct private beach access. The seamless blend of nature, sand, and water makes this a truly aspirational place to call home.<br><br>Wake up to serene waterfront views and experience a lifestyle beyond compare in one of Dubai\'s most prestigious communities.<br><br>For more details or to schedule a viewing, contact Signature Reality Homes Real Estate today!';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '6 + Maid';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '7 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '7,640 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Palm Jebel Ali';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 23.5M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Palm Jebel Ali';
+                document.querySelector('.about-text').innerHTML = 'Palm Jebel Ali is an iconic waterfront destination redefining luxury living in Dubai. This prestigious community offers exclusive beachfront properties with panoramic sea views, lush landscaping, and direct private beach access. Residents enjoy resort-style amenities, walkable streets, and a tranquil atmosphere in one of Dubai\'s most aspirational locations.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/11/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const images = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/11/${images[i % images.length]}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Villa</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">7,640 sqft / 710 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">6 + Maid</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">7</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '👩', name: 'Maids Room' },
+                    { icon: '📚', name: 'Study' },
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🌳', name: 'Private Garden' },
+                    { icon: '🏊', name: 'Private Pool' },
+                    { icon: '💪', name: 'Private Gym' },
+                    { icon: '🛁', name: 'Private Jacuzzi' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '👩‍🍳', name: 'Maid Service' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '👗', name: 'Walk-in Closet' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🌊', name: 'View of Water' },
+                    { icon: '🗼', name: 'View of Landmark' },
+                    { icon: '🐶', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: 'Children\'s Pool' },
+                    { icon: '🕉️', name: 'Vastu-compliant' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-12') {
+                // 更新页面标题
+                document.title = 'Creek Waters - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/12/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN CREEK WATERS';
+                document.querySelector('.hero-subtitle').textContent = 'DUBAI CREEK HARBOUR (THE LAGOONS)';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
+                document.querySelector('.description-text').innerHTML = 'AED 1,902,839<br>Own this from just7,826 AED/month<br>Waterfront Living | Cheapest Deal | 05 Series<br><br>Apartment for sale in Creek Waters, Dubai Creek Harbour (The Lagoons)<br><br>Presenting a fabulous 1-bedroom apartment in the prestigious Creek Waters located in Dubai Creek Harbour (The Lagoons). This exquisite residence boasts a built-up area of 775 Sq.ft, showcasing a perfect blend of luxury and comfort, with picturesque views of the water and surrounding landmarks.<br><br>Key Highlights:<br>- 1 bedroom and 1 bathroom<br>- Modern layout<br>- Central A/C and heating<br>- Balcony with stunning views<br>- Built-in kitchen appliances and wardrobes<br>- Covered parking and pets allowed<br>- Exceptional amenities including shared pool, gym, spa, children\'s play area, and barbecue area<br>- Well-secured building with a lobby and conference room<br>- Ideal for end-users or as a lucrative investment opportunity<br><br>This apartment offers contemporary living with premium features designed to enhance your lifestyle. Enjoy leisure time at the shared pool, stay active in the gym, or unwind in the shared spa. Creek Waters redefines modern living in a community rich with amenities and bespoke experiences.<br><br>Contact Signature Homes today to schedule a viewing and explore this exceptional property that could be your next home or investment gem!';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '1 Bed';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '1 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '775 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Dubai Creek Harbour';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 1.90M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Creek Waters';
+                document.querySelector('.about-text').innerHTML = 'Creek Waters is a prestigious residential development located in Dubai Creek Harbour (The Lagoons). This waterfront community offers luxury apartments with stunning views of the water and surrounding landmarks, complemented by exceptional amenities including shared pool, gym, spa, and children\'s play area. Creek Waters redefines modern living in one of Dubai\'s most sought-after locations.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/12/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const images = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/12/${images[i % images.length]}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">775 sqft / 72 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">1</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">1</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '💆', name: 'Shared Spa' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '👗', name: 'Walk-in Closet' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🌊', name: 'View of Water' },
+                    { icon: '🗼', name: 'View of Landmark' },
+                    { icon: '🐶', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: 'Children\'s Pool' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-13') {
+                // 更新页面标题
+                document.title = 'Parkside Views - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/13/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN PARKSIDE VIEWS';
+                document.querySelector('.hero-subtitle').textContent = 'DUBAI HILLS ESTATE';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
+                document.querySelector('.description-text').innerHTML = 'AED 3,704,279<br>Own this from just15,236 AED/month<br>Spacious 3 BR | Parkside Views | EMAAR Developer<br><br>Apartment for sale in Parkside Views, Dubai Hills Estate<br><br>Introducing a stunning 3-bedroom apartment in the prestigious Parkside Views, nestled within the sought-after Dubai Hills Estate. This exquisite residence boasts a generous built-up area of 1,514 sq. ft., offering unparalleled comfort and modern elegance.<br><br>Key Highlights:<br>- 3 spacious bedrooms with en-suite bathrooms<br>- Open-plan living and dining areas with abundant natural light<br>- Contemporary kitchen with premium finishes<br>- Scenic views of lush parklands<br>- Access to a range of amenities including pool, gym, and children\'s play areas<br>- Secure parking available<br><br>This apartment\'s layout merges functionality with style, making it perfect for families and investors alike. Residents will enjoy a luxurious lifestyle, surrounded by stunning green spaces and top-notch facilities.<br><br>Dubai Hills Estate is renowned for its vibrant community, with excellent connectivity to retail, dining, and leisure options. Experience modern living at its finest.<br><br>Contact Signature Homes today to discover more or schedule your viewing of this exceptional property.';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '3 Bed';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '3 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '1,514 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Dubai Hills Estate';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 3.70M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Parkside Views';
+                document.querySelector('.about-text').innerHTML = 'Parkside Views is a prestigious residential development located in Dubai Hills Estate, offering luxurious apartments with scenic views of lush parklands. Developed by EMAAR, this community features modern design, premium finishes, and access to world-class amenities including pools, gyms, and children\'s play areas. Dubai Hills Estate is renowned for its vibrant community and excellent connectivity to retail, dining, and leisure options.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/13/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const images = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/13/${images[i % images.length]}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">1,514 sqft / 141 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">3</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">3</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '💆', name: 'Shared Spa' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '👗', name: 'Walk-in Closet' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🌳', name: 'View of Park' },
+                    { icon: '🐶', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: 'Children\'s Pool' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-14') {
+                // 更新页面标题
+                document.title = 'Bayview - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/14/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN BAYVIEW';
+                document.querySelector('.hero-subtitle').textContent = 'EMAAR BEACHFRONT';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
+                document.querySelector('.description-text').innerHTML = 'AED 4,014,239<br>Own this from just16,511 AED/month<br>Beachfront Living | Multiple Options | EMAAR<br><br>Apartment for sale in Bayview, EMAAR Beachfront<br><br>Presenting a remarkable 1-bedroom apartment in the elite Bayview at Dubai Harbour, part of the prestigious EMAAR Beachfront community. This property boasts breathtaking views of the water and the iconic landmarks that make Dubai a world-class destination.<br><br>Key Highlights:<br>- 1 spacious bedroom with a walk-in closet<br>- 2 modern bathrooms<br>- Generous built-up area of 745 sq.ft<br>- Stylish balcony perfect for relaxation<br>- Premium built-in kitchen appliances<br>- State-of-the-art shared amenities including pool, gym, spa, and children\'s play area<br>- Covered parking and concierge service available<br>- Pets allowed and Vastu-compliant<br><br>Step inside and experience an inviting layout that seamlessly blends style and comfort. The apartment features high-quality finishes, built-in wardrobes, and a thoughtful design that encourages serene waterfront living. Ideal for buyers seeking an exclusive lifestyle or a promising investment opportunity.<br><br>The Bayview community enhances your living experience with unparalleled amenities and excellent connectivity to Dubai\'s vibrant lifestyle. Nearby attractions include stunning beaches, dining options, and entertainment facilities.<br><br>For more details or to schedule a private viewing, contact Signature Homes today! Don\'t miss the chance to own this extraordinary property in Dubai Harbour.';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '1 Bed';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '2 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '745 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'EMAAR Beachfront';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 4.01M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Bayview';
+                document.querySelector('.about-text').innerHTML = 'Bayview is an elite residential development located in EMAAR Beachfront, Dubai Harbour. This prestigious community offers luxury apartments with breathtaking views of the water and iconic landmarks. Developed by EMAAR, Bayview features modern design, premium finishes, and access to world-class amenities including pools, gyms, spas, and children\'s play areas. Residents enjoy beachfront living with excellent connectivity to Dubai\'s vibrant lifestyle.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/14/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const images = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/14/${images[i % images.length]}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">745 sqft / 69 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">1</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">2</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '💆', name: 'Shared Spa' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '👨‍💼', name: 'Concierge' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '👗', name: 'Walk-in Closet' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🌊', name: 'View of Water' },
+                    { icon: '🗼', name: 'View of Landmark' },
+                    { icon: '🐶', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: 'Children\'s Pool' },
+                    { icon: '🕉️', name: 'Vastu-compliant' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-15') {
+                // 更新页面标题
+                document.title = 'The Cove II Building 5 - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/15/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN THE COVE II BUILDING 5';
+                document.querySelector('.hero-subtitle').textContent = 'THE COVE LL';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Penthouse';
+                document.querySelector('.description-text').innerHTML = 'AED 9,625,000<br>Own this from just34,640 AED/month<br>Unique Penthouse| Panoramic View | Spacious Layout<br><br>Apartment for sale in The Cove II Building 5, The Cove ll<br><br>Signature Homes Real Estate Broker is pleased to offer you this exquisite ready to move in Four Bedrooms Penthouse in Cove II Buildings 5 in Dubai Creek Harbour to the market.<br><br>Property Details:<br>Property is OFF PLAN and expected handover in Q4 2026<br>• 4 en-suite bedrooms<br>• Maid\'s Room<br>• Storage Rooms<br>•Two Entry Doors<br>• Prep and show kitchen<br>• Large open plan apartment<br><br>Large internal layout of Four spacious bedrooms all en-suite, a large living and dining areas that open to the large terrace over looking the Creek and Dubai Skyline view.<br><br>Community Highlights:<br>- Breathtaking Sunset Views<br>- Creek Marina Yacht Club<br>- Licensed Bars & Restaurants<br>- Dining at The Creek Promenade<br>- 3 Hotels in the Vicinity<br>- Swimming and Gym facilities<br>- BBQ and kids play areas<br><br>The Cove Building 5 is a world-class waterfront community in Dubai and among the best Creek Harbour units with uninterrupted views of Downtown Dubai, the Creek and Ras Al Khor wildlife sanctuary. Each living space is designed with floor-to-ceiling windows, allowing an abundance of natural light in this brand new, vacant home.Surround yourself with family and friends on the fully landscaped podium deck, or spend the day by one of the pools as the yachts float lazily by below. With fully-equipped modern gyms, children\'s play areas, multi-purpose family rooms, and more, The Cove seamlessly brings together an active living with resort-style relaxation.';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '4 Bed';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '5 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '3,884 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Dubai Creek Harbour';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 9.63M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Off Plan';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About The Cove II Building 5';
+                document.querySelector('.about-text').innerHTML = 'The Cove II Building 5 is a world-class waterfront community in Dubai Creek Harbour, offering penthouses with uninterrupted views of Downtown Dubai, the Creek, and Ras Al Khor wildlife sanctuary. Each living space features floor-to-ceiling windows, abundant natural light, and modern design. Residents enjoy resort-style amenities including pools, gyms, children\'s play areas, and landscaped podium decks.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/15/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const images = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/15/${images[i % images.length]}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">3,884 sqft / 361 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">4</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">5</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '👗', name: 'Walk-in Closet' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🐶', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: 'Children\'s Pool' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-16') {
+                // 更新页面标题
+                document.title = 'Downtown Views II Tower 1 - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/16/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN DOWNTOWN VIEWS II TOWER 1';
+                document.querySelector('.hero-subtitle').textContent = 'DOWNTOWN VIEWS II';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
+                document.querySelector('.description-text').innerHTML = 'AED 3,000,000<br>Own this from just12,339 AED/month<br>Hot Deal | Brand New | Furnished | 2 Unit in Stock<br><br>Apartment for sale in Downtown Views II Tower 1, Downtown Views II<br><br>Presenting a luxurious 2-bedroom apartment located in the highly sought-after Downtown Views II, right in the heart of Downtown Dubai. This exceptional residence spans 1,150 sqft and offers awe-inspiring views of the water, paired with a host of premium amenities.<br><br>Unit Features:<br><br>-2 Bedrooms<br>-3 Bathrooms<br>-Size: 1,150 sqft<br>-2 Units available<br>-Brand New<br>-Fully Furnished & Equipped with High-End Appliances<br><br>Key Highlights:<br><br>-Just 2 minutes from Dubai Mall Zabeel<br>-State-of-the-art gym facilities<br>-Close proximity to two major supermarkets (LuLu and Grandiose)<br>-A variety of cafés, restaurants, retail outlets, and luxury furniture brands (Armani, Fendi, etc.)<br>-Only 5 minutes\' walk via the Zabeel internal passage to Dubai Mall<br><br>This modern apartment offers a refined lifestyle, complemented by world-class amenities such as a shared pool, gym, children\'s play area, barbecue area, and conference room. The well-designed layout and vastu-compliant features make it perfect for both end-users and investors seeking a unique opportunity in one of Dubai\'s most prestigious locations.<br><br>Downtown Views II redefines city living, offering exceptional amenities and being just moments away from Dubai\'s finest dining, entertainment, and cultural experiences.<br><br>For further details or to arrange a viewing, contact Signature Homes today. Your dream home awaits!';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '2 Bed';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '3 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '1,150 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Downtown Views II';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 3.0M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Downtown Views II';
+                document.querySelector('.about-text').innerHTML = 'Downtown Views II is a prestigious residential development located in the heart of Downtown Dubai, offering luxury apartments with stunning views and premium amenities. Just moments away from Dubai Mall and other iconic attractions, this community redefines city living with its exceptional facilities and prime location. Residents enjoy world-class amenities including pools, gyms, children\'s play areas, and more, making it an ideal choice for both end-users and investors.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/16/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const images = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/16/${images[i % images.length]}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">1,150 sqft / 107 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">2</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">3</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Service Charges</h3>
+                        <p style="color: #666;">16.15 AED per sqft</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '👨‍💼', name: 'Concierge' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '👗', name: 'Walk-in Closet' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🐶', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: 'Children\'s Pool' },
+                    { icon: '🕉️', name: 'Vastu-compliant' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-17') {
+                // 更新页面标题
+                document.title = 'Club Drive Tower A - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/17/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN CLUB DRIVE TOWER A';
+                document.querySelector('.hero-subtitle').textContent = 'CLUB DRIVE';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
+                document.querySelector('.description-text').innerHTML = 'AED 4,441,919<br>Own this from just18,270 AED/month<br>Golf Course View | Multiple Options | Best Deal<br><br>Apartment for sale in Club Drive Tower A, Club Drive<br><br>Discover this exceptional 3-bedroom apartment nestled within the sought-after Dubai Hills Estate\'s Club Drive. Boasting a generous built-up area of 1,591 sq. ft., this residence combines modern elegance with a vibrant community spirit.<br><br>Key Highlights:<br>- 3 spacious bedrooms with en-suite bathrooms<br>- Expansive living area with golf views<br>- Stylish, contemporary design with high-quality finishes<br>- Access to exclusive community amenities, including parks and walking trails<br>- Secure parking available<br>- Ideal for families or investment opportunities<br><br>Step into a world of luxury as you explore the thoughtfully designed layout, flooded with natural light, and note the seamless flow between living spaces. With its premium features and exceptional community lifestyle, this apartment is perfect for both end-users and discerning investors.<br><br>Dubai Hills Estate offers unparalleled connectivity to key attractions, ensuring convenience and leisure are never far away.<br><br>Contact Signature Homes today for further details or to arrange a private viewing of this exquisite property!';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '3 Bed';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '3 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '1,591 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Club Drive';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 4.44M';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Completed';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Club Drive';
+                document.querySelector('.about-text').innerHTML = 'Club Drive is a prestigious residential development located within Dubai Hills Estate, offering luxury apartments with stunning golf course views. This community features modern design, high-quality finishes, and access to exclusive amenities including parks, walking trails, and more. Dubai Hills Estate provides excellent connectivity to key attractions, making it an ideal choice for families and investors seeking a premium lifestyle in Dubai.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/17/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const images = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/17/${images[i % images.length]}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">1,591 sqft / 148 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">3</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">3</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '👗', name: 'Walk-in Closet' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🌳', name: 'View of Golf Course' },
+                    { icon: '🐶', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: 'Children\'s Pool' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'property-18') {
+                // 更新页面标题
+                document.title = 'Golf Views Seven City - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/images_new/buy-new/18/1.png';
+                document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN GOLF VIEWS SEVEN CITY';
+                document.querySelector('.hero-subtitle').textContent = 'JUMEIRAH LAKE TOWERS';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover This Luxury Studio';
+                document.querySelector('.description-text').innerHTML = 'AED 800,000<br>Own this from just3,290 AED/month<br>Luxurious Studio | Brand New | Prime Location<br><br>Apartment for sale in Golf Views Seven City, Jumeirah Lake Towers<br><br>Introducing a captivating studio apartment at Golf Views Seven City, located in the vibrant community of Jumeirah Lake Towers. This thoughtfully designed apartment embodies modern living and offers a perfect blend of comfort and elegance, ideal for both investors and end-users.<br><br>Priced at just AED 800,000, this brand new, off-plan studio offers stunning golf course views and a contemporary lifestyle ideal for modern urban living.<br><br>Property Details:<br>- Built-in wardrobes<br>- Kitchen appliances<br>- Balcony<br>- Unfurnished layout<br>- Pool and Gym<br><br>Nearby Facilities:<br>Nearest school: International School of Arts and Sciences – 1.5 km<br>Nearest restaurant: The Noodle House – 0.5 km<br>Nearest airport: Dubai International Airport – 30 km<br><br>This studio boasts a functional layout that maximizes space while providing an inviting atmosphere. With chic finishes and modern appliances, it is perfectly suited for a dynamic lifestyle. Jumeirah Lake Towers offers an array of dining, shopping, and leisure options, making it an enviable location to call home.<br><br>Don\'t miss your chance to own this exceptional property. Contact Signature Homes today for more details or to schedule a viewing!';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = 'studio';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = '1 Bath';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = '387 sq-ft';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Jumeirah Lake Towers';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 800K';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Off Plan';
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Golf Views Seven City';
+                document.querySelector('.about-text').innerHTML = 'Golf Views Seven City is a modern residential development located in Jumeirah Lake Towers, offering luxurious studio apartments with stunning golf course views. This development provides a contemporary lifestyle with access to world-class amenities including pools, gyms, and more. Jumeirah Lake Towers is a vibrant community with excellent dining, shopping, and leisure options, making it an ideal location for both investors and end-users.';
+                document.querySelector('.about-image img').src = '/images_new/buy-new/18/image.png';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                const images = [
+                    'image.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png'
+                ];
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/images_new/buy-new/18/${images[i % images.length]}`;
+                }
+                
+                // 更新物业详情
+                const propertyDetailsContainer = document.getElementById('property-details-container');
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">387 sqft / 36 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">studio</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">1</p>
+                    </div>
+                `;
+                
+                // 更新设施列表
+                const amenitiesContainer = document.getElementById('amenities-container');
+                const amenities = [
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '📦', name: 'Built in Wardrobes' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🌳', name: 'View of Golf Course' },
+                    { icon: '🐶', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: 'Children\'s Pool' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            } else if (propertyType === 'azure-residences') {
+                // 更新页面标题
+                document.title = 'Greenridge - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/Greenridge/1.png';
+                document.querySelector('.hero-title').textContent = 'Greenridge';
+                document.querySelector('.hero-subtitle').textContent = 'By Emaar in Emaar South';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover Greenridge';
+                document.querySelector('.description-text').innerHTML = 'Greenridge at Emaar South is Emaar Properties\' latest residential gem, featuring exclusive 3 and 4-bedroom townhouses nestled within a vibrant community. With a façade that promises serene living amidst lush greenery, these homes embody contemporary elegance, ideal for families and individuals seeking luxury and tranquility';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '80/20';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = 'Flexible payment options available';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = 'AED 2.9M';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Competitive pricing for premium living';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = '2028';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Expected completion date';
+                
+                // 删除Photo Gallery区域
+                const gallerySection = document.querySelector('.gallery-section');
+                if (gallerySection) {
+                    gallerySection.remove();
+                }
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Greenridge';
+                document.querySelector('.about-text').innerHTML = 'Greenridge By Emaar Properties<br><br>Located near Expo City Dubai and Al Maktoum International Airport, this prime address offers seamless access to Dubai\'s top business hubs and attractions. Each thoughtfully designed townhouse harmonizes modern architecture with nature, boasting spacious interiors that promote comfort and community interaction. Residents enjoy an array of amenities, including an 18-hole championship golf course, a community center with a gym and pool, and outdoor fitness areas, ensuring a lifestyle filled with leisure and connection. Experience the perfect balance of luxury and community at Greenridge.';
+                document.querySelector('.about-image img').src = '/Greenridge/2.png';
+            } else if (propertyType === 'marina-vista') {
+                // 更新页面标题
+                document.title = 'DAMAC Islands - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/DAMAC Islands/1.png';
+                document.querySelector('.hero-title').textContent = 'DAMAC Islands';
+                document.querySelector('.hero-subtitle').textContent = 'Luxury Townhouses & Villas in Dubailand';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover DAMAC Islands';
+                document.querySelector('.description-text').innerHTML = 'DAMAC Islands Dubailand: Luxury Townhouses & Villas for Sale | Island Living in Dubai<br><br>DAMAC Islands (also known as DAMAC Islands Phase 2) is the highly anticipated new residential launch by DAMAC Properties in the thriving heart of Dubailand. This master community transcends conventional living, offering an exclusive "island state of mind" inspired by six of the world\'s most spectacular tropical destinations, including the Maldives, Seychelles, and Hawaii.';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '75/25';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = 'Flexible payment options available';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = 'AED 2.8M';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Competitive pricing for premium living';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = 'TCB';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Expected completion date';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/DAMAC Islands/${i + 2}.png`;
+                }
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About DAMAC Islands';
+                document.querySelector('.about-text').innerHTML = 'Damac Islands by Damac Propertiees<br><br>At the heart of DAMAC Islands is a commitment to creating a perpetual vacation experience. Residents will enjoy an array of exhilarating and serene amenities centered around stunning water features:';
+                document.querySelector('.about-image img').src = '/DAMAC Islands/8.png';
+            } else if (propertyType === 'sky-heights') {
+                // 更新页面标题
+                document.title = 'Lyvia by Palace - Dubai Properties';
+                
+                // 更新Hero区域
+                document.querySelector('.hero-background').src = '/Lyvia by Palace/1.png';
+                document.querySelector('.hero-title').textContent = 'Lyvia by Palace';
+                document.querySelector('.hero-subtitle').textContent = 'Branded Waterfront Living at Dubai Creek Harbour';
+                
+                // 更新描述区域
+                document.querySelector('.description-section h2').textContent = 'Discover Lyvia by Palace';
+                document.querySelector('.description-text').innerHTML = 'Lyvia by Palace: Branded Waterfront Living at Dubai Creek Harbour<br><br>Experience the pinnacle of sophisticated living at Lyvia by Palace, the latest off-plan masterpiece by Emaar Properties. Located in the serene Green Gate district of Dubai Creek Harbour, this 50-storey residential tower brings the five-star elegance of the Palace brand to a stunning waterfront address.<br><br>Lyvia offers an exclusive collection of 1, 2, and 3-bedroom apartments and a limited selection of 3-bedroom townhouses. Each residence is meticulously designed to offer a harmonious blend of nature-inspired design and contemporary luxury, complete with breathtaking views of the Creek waterfront and the iconic Dubai skyline.';
+                
+                // 更新关键信息卡片
+                const keyInfoCards = document.querySelectorAll('.key-info-card');
+                keyInfoCards[0].querySelector('.key-info-value').textContent = '80/20';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = 'Flexible payment options available';
+                keyInfoCards[1].querySelector('.key-info-value').textContent = 'AED 2.0M';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Competitive pricing for premium living';
+                keyInfoCards[2].querySelector('.key-info-value').textContent = '2029 Q3';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Expected completion date';
+                
+                // 更新照片画廊
+                const galleryImages = document.querySelectorAll('.gallery-item img');
+                for (let i = 0; i < galleryImages.length; i++) {
+                    galleryImages[i].src = `/Lyvia by Palace/${i + 2}.png`;
+                }
+                
+                // 更新关于区域
+                document.querySelector('.about-section h2').textContent = 'About Lyvia by Palace';
+                document.querySelector('.about-text').innerHTML = 'A Sanctuary of Branded Elegance<br><br>As a Palace-branded residence, Lyvia infuses every detail with a sense of curated luxury. The interiors are defined by warm neutral palettes, rich textures, and elegant finishes that reflect the signature style of Palace Hotels + Resorts. Floor-to-ceiling windows flood the open-plan layouts with natural light, seamlessly connecting your home to the tranquil, green surroundings.';
+                document.querySelector('.about-image img').src = '/Lyvia by Palace/8.png';
+            }
+        });
+        
+        // WhatsApp按钮点击事件
+        document.querySelector('.whatsapp-btn').addEventListener('click', function() {
+            // 这里可以添加WhatsApp联系功能
+            alert('Connecting to WhatsApp support...');
+        });
+        
+        // 平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>

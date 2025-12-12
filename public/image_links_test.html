@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图图片链接测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .link-container {
+            margin: 20px 0;
+        }
+        a {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            background-color: #e0e0e0;
+        }
+        .info {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>轮播图图片链接测试</h1>
+    <p>请点击以下链接测试图片是否可以正常访问：</p>
+    
+    <div class="link-container">
+        <a href="/images_new/lunbotu/4141ab88-6dc1-4253-94d8-f4692ab7272f.png" target="_blank">
+            图片1 (4141ab88-6dc1-4253-94d8-f4692ab7272f.png)
+        </a>
+        
+        <a href="/images_new/lunbotu/4c97ca9f-75a1-48b3-a48a-b1c609933793.webp" target="_blank">
+            图片2 (4c97ca9f-75a1-48b3-a48a-b1c609933793.webp)
+        </a>
+        
+        <a href="/images_new/lunbotu/微信图片_20250825105422.png" target="_blank">
+            图片3 (微信图片_20250825105422.png)
+        </a>
+    </div>
+    
+    <div class="info">
+        <h3>技术说明：</h3>
+        <p>1. 如果点击链接后能正常显示图片，表示图片路径正确。</p>
+        <p>2. 如果无法显示图片，可能是由于：</p>
+        <ul>
+            <li>- 服务器配置问题</li>
+            <li>- 文件格式不兼容（尤其是WebP格式可能需要浏览器支持）</li>
+            <li>- 文件路径中的特殊字符（如中文）导致的编码问题</li>
+        </ul>
+        <p>3. 已知问题：我们已经确认文件确实存在于服务器上，但可能由于上述原因导致无法在轮播图中加载。</p>
+    </div>
+</body>
+</html>

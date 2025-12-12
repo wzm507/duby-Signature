@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation Test</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 定义各语言的翻译内容
+            const translations = {
+                en: {
+                    sectionTitle: 'Featured Properties',
+                    sectionSubtitle: 'Explore our premium selection of properties',
+                    propertyMeta: {
+                        developer: 'Developer',
+                        area: 'Area',
+                        handoverDate: 'Handover Date'
+                    }
+                },
+                zh: {
+                    sectionTitle: '精选房产',
+                    sectionSubtitle: '探索我们精选的优质房产',
+                    propertyMeta: {
+                        developer: '开发商',
+                        area: '区域',
+                        handoverDate: '交付日期'
+                    }
+                },
+                ar: {
+                    sectionTitle: 'العقارات المميزة',
+                    sectionSubtitle: 'استكشف مجموعتنا المختارة من العقارات العالية الجودة',
+                    propertyMeta: {
+                        developer: 'المطور',
+                        area: 'المنطقة',
+                        handoverDate: 'تاريخ التسليم'
+                    }
+                }
+            };
+
+            // 测试按钮
+            document.getElementById('test-btn').addEventListener('click', function() {
+                const lang = document.getElementById('lang-select').value;
+                testTranslation(lang);
+            });
+
+            // 测试翻译函数
+            function testTranslation(lang) {
+                console.log(`Testing translation for: ${lang}`);
+                const translationsObj = translations[lang];
+                
+                if (translationsObj) {
+                    // 显示当前选择的语言
+                    document.getElementById('current-lang').textContent = `当前语言: ${lang}`;
+                    
+                    // 测试房产元数据翻译
+                    const metaItems = document.querySelectorAll('.property-meta .meta-item');
+                    metaItems.forEach(item => {
+                        const text = item.textContent.trim();
+                        console.log('Original text:', text);
+                        
+                        // 测试我们修改过的翻译逻辑
+                        if (text.includes('Developer:') || text.includes('开发商:') || text.includes('المطور:')) {
+                            item.innerHTML = item.innerHTML.replace('Developer:', translationsObj.propertyMeta.developer + ':')
+                                                          .replace('开发商:', translationsObj.propertyMeta.developer + ':')
+                                                          .replace('المطور:', translationsObj.propertyMeta.developer + ':');
+                        }
+                         
+                        if (text.includes('Area:') || text.includes('区域:') || text.includes('المنطقة:')) {
+                            item.innerHTML = item.innerHTML.replace('Area:', translationsObj.propertyMeta.area + ':')
+                                                          .replace('区域:', translationsObj.propertyMeta.area + ':')
+                                                          .replace('المنطقة:', translationsObj.propertyMeta.area + ':');
+                        }
+                         
+                        if (text.includes('Handover Date:') || text.includes('交付日期:') || text.includes('تاريخ التسليم:')) {
+                            item.innerHTML = item.innerHTML.replace('Handover Date:', translationsObj.propertyMeta.handoverDate + ':')
+                                                          .replace('交付日期:', translationsObj.propertyMeta.handoverDate + ':')
+                                                          .replace('تاريخ التسليم:', translationsObj.propertyMeta.handoverDate + ':');
+                        }
+                        
+                        console.log('Translated text:', item.textContent.trim());
+                    });
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+        <h1>Translation Test Tool</h1>
+        
+        <div style="margin-bottom: 20px;">
+            <select id="lang-select">
+                <option value="en">English</option>
+                <option value="zh">中文</option>
+                <option value="ar">العربية</option>
+            </select>
+            <button id="test-btn">Test Translation</button>
+            <p id="current-lang">当前语言: en</p>
+        </div>
+        
+        <div class="property-meta">
+            <div class="meta-item">Developer: Emaar</div>
+            <div class="meta-item">Area: Dubai Creek Harbour, Dubai</div>
+            <div class="meta-item">Handover Date: 09-2029</div>
+        </div>
+        
+        <p>请打开浏览器控制台查看详细日志。</p>
+    </div>
+</body>
+</html>
