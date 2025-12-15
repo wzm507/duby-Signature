@@ -438,40 +438,40 @@ function updatePropertyPriceLabels() {
 }
 
 // 更新翻译元素的函数
-  function updateTranslatedElements() {
-    // 确保currentLang是最新的
-    currentLang = localStorage.getItem('preferredLanguage') || currentLang || 'en';
-    
-    // 使用已定义的translations对象，简化处理
-    const t = {};
-    
-    console.log(`Updating translated elements for language: ${currentLang}`);
-    
-    // 更新所有带有data-translate属性的元素
-    document.querySelectorAll('[data-translate]').forEach(element => {
-      const key = element.getAttribute('data-translate');
-      if (t[key]) {
-        element.textContent = t[key];
-      }
-    });
-    
-    // 更新所有带有data-translate-placeholder属性的元素的占位符文本
-    document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
-      const key = element.getAttribute('data-translate-placeholder');
-      if (t[key]) {
-        element.placeholder = t[key];
-      }
-    });
-    
-    // 导航栏文本现在通过data-translate属性自动更新，不再需要手动设置
-    
-    // Hero区域文本现在通过data-translate属性自动更新，不再需要手动设置
-    
-    // 按钮文本现在通过data-translate属性自动更新，不再需要手动设置
-    
-    // 特别处理房产价格标签
-    updatePropertyPriceLabels();
-  }
+function updateTranslatedElements() {
+  // 确保currentLang是最新的
+  currentLang = localStorage.getItem('preferredLanguage') || currentLang || 'en';
+  
+  // 使用已定义的translations对象，简化处理
+  const t = {};
+  
+  console.log(`Updating translated elements for language: ${currentLang}`);
+  
+  // 更新所有带有data-translate属性的元素
+  document.querySelectorAll('[data-translate]').forEach(element => {
+    const key = element.getAttribute('data-translate');
+    if (t[key]) {
+      element.textContent = t[key];
+    }
+  });
+  
+  // 更新所有带有data-translate-placeholder属性的元素的占位符文本
+  document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+    const key = element.getAttribute('data-translate-placeholder');
+    if (t[key]) {
+      element.placeholder = t[key];
+    }
+  });
+  
+  // 导航栏文本现在通过data-translate属性自动更新，不再需要手动设置
+  
+  // Hero区域文本现在通过data-translate属性自动更新，不再需要手动设置
+  
+  // 按钮文本现在通过data-translate属性自动更新，不再需要手动设置
+  
+  // 特别处理房产价格标签
+  updatePropertyPriceLabels();
+}
 
 // 初始化应用
 document.addEventListener('DOMContentLoaded', () => {
@@ -514,6 +514,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   console.log('Starting page rendering...');
+  
+  // 确保app元素存在
+  if (!app) {
+    console.error('App element not found!');
+    return;
+  }
   
   // 添加页面样式增强质感
   const style = document.createElement('style');
