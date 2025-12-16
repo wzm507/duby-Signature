@@ -82,7 +82,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 4rem;
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: #ffffff;
       backdrop-filter: blur(20px);
       transition: var(--transition);
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
@@ -91,7 +91,7 @@
     .logo {
       font-size: 1.5rem;
       font-weight: bold;
-      color: white;
+      color: var(--primary-color);
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -149,7 +149,7 @@
 
     /* 关于我们头部 */
     .about-header {
-      background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('/images_new/about/snapedit_17446406911301.jpeg');
+      background-image: url('/aboutus/hero/c9e30fcb766e7031ff70c79d19f8148c.jpg');
       background-size: cover;
       background-position: center;
       padding: 10rem 2rem 8rem;
@@ -166,13 +166,9 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(45deg, rgba(99, 102, 241, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
-      animation: shimmer 15s infinite linear;
-    }
-
-    @keyframes shimmer {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 0;
     }
 
     .about-header h1 {
@@ -182,6 +178,7 @@
       letter-spacing: -0.02em;
       position: relative;
       z-index: 1;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     .about-header p {
@@ -191,6 +188,7 @@
       opacity: 0.95;
       position: relative;
       z-index: 1;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     }
 
     /* 关于我们内容 */

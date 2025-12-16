@@ -82,7 +82,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 4rem;
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: #ffffff;
       backdrop-filter: blur(20px);
       transition: var(--transition);
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
@@ -91,7 +91,7 @@
     .logo {
       font-size: 1.5rem;
       font-weight: bold;
-      color: white;
+      color: var(--primary-color);
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -108,7 +108,7 @@
     }
 
     .nav-links a {
-      color: var(--medium-text);
+      color: black;
       text-decoration: none;
       font-size: 1rem;
       font-weight: 500;
@@ -144,7 +144,7 @@
 
     /* 开发者头部 */
     .developers-header {
-      background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('/images_new/about/snapedit_17446406911301.jpeg');
+      background-image: url('/Developers/hero/27161eb4c8194be150fde83b02bb8df5.jpg');
       background-size: cover;
       background-position: center;
       padding: 10rem 2rem 8rem;
@@ -161,13 +161,9 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(45deg, rgba(99, 102, 241, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
-      animation: shimmer 15s infinite linear;
-    }
-
-    @keyframes shimmer {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 0;
     }
 
     .developers-header h1 {
@@ -177,15 +173,17 @@
       letter-spacing: -0.02em;
       position: relative;
       z-index: 1;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     .developers-header p {
       font-size: 1.3rem;
-      max-width: 800px;
+      max-width: 1200px;
       margin: 0 auto;
       opacity: 0.95;
       position: relative;
       z-index: 1;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     }
 
     /* 开发者列表 */
