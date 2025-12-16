@@ -544,6 +544,67 @@
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
+            
+            // 照片画廊弹窗功能
+            const modal = document.getElementById('gallery-modal');
+            const modalImg = document.getElementById('gallery-modal-img');
+            const currentIndexSpan = document.getElementById('gallery-current-index');
+            const totalSpan = document.getElementById('gallery-total');
+            const closeBtn = document.querySelector('.gallery-close');
+            const prevBtn = document.querySelector('.gallery-prev');
+            const nextBtn = document.querySelector('.gallery-next');
+            
+            // 设置画廊弹窗的总图片数
+            totalSpan.textContent = currentImages.length;
+            
+            // 点击图片打开弹窗
+            document.querySelectorAll('.gallery-item').forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    modal.style.display = 'block';
+                    currentImageIndex = index;
+                    modalImg.src = currentImages[index];
+                    currentIndexSpan.textContent = currentImageIndex + 1;
+                });
+            });
+            
+            // 关闭弹窗
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+            
+            // 点击弹窗外部关闭弹窗
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // 上一张图片
+            prevBtn.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+                modalImg.src = currentImages[currentImageIndex];
+                currentIndexSpan.textContent = currentImageIndex + 1;
+            });
+            
+            // 下一张图片
+            nextBtn.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+                modalImg.src = currentImages[currentImageIndex];
+                currentIndexSpan.textContent = currentImageIndex + 1;
+            });
+            
+            // 键盘导航
+            document.addEventListener('keydown', (event) => {
+                if (modal.style.display === 'block') {
+                    if (event.key === 'Escape') {
+                        modal.style.display = 'none';
+                    } else if (event.key === 'ArrowLeft') {
+                        prevBtn.click();
+                    } else if (event.key === 'ArrowRight') {
+                        nextBtn.click();
+                    }
+                }
+            });
         }
 
         @media (max-width: 768px) {
@@ -775,14 +836,106 @@
         </section>
     </main>
 
-    <!-- WhatsApp 按钮 -->
-    <div class="whatsapp-btn">
+    <!-- 电话按钮 -->
+    <div class="phone-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-            <rect x="2" y="9" width="4" height="12"></rect>
-            <circle cx="4" cy="4" r="2"></circle>
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
         </svg>
     </div>
+
+    <!-- 电话弹窗 -->
+    <div id="phone-popup" class="phone-popup">
+        <div class="phone-popup-content">
+            <span class="phone-popup-close">&times;</span>
+            <div class="phone-popup-text">+971 52 145 0498</div>
+        </div>
+    </div>
+
+    <style>
+        /* 电话按钮样式 */
+        .phone-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .phone-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* 电话弹窗样式 */
+        .phone-popup {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .phone-popup-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 2rem;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: phonePopupFadeIn 0.3s ease;
+        }
+
+        .phone-popup-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .phone-popup-close:hover,
+        .phone-popup-close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .phone-popup-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin: 1rem 0;
+        }
+
+        @keyframes phonePopupFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+    </style>
 
     <!-- 页脚 -->
     <footer class="footer">
@@ -818,11 +971,132 @@
         </div>
     </footer>
 
+    <!-- 照片画廊弹窗 -->
+    <div id="gallery-modal" class="gallery-modal">
+        <div class="gallery-modal-content">
+            <span class="gallery-close">&times;</span>
+            <div class="gallery-modal-image-container">
+                <button class="gallery-prev">&lt;</button>
+                <img id="gallery-modal-img" class="gallery-modal-img" src="" alt="Property Image">
+                <button class="gallery-next">&gt;</button>
+            </div>
+            <div class="gallery-modal-info">
+                <span id="gallery-current-index">1</span> / <span id="gallery-total">1</span>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* 照片画廊弹窗样式 */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .gallery-modal-content {
+            position: relative;
+            margin: 5% auto;
+            padding: 0;
+            width: 90%;
+            max-width: 1200px;
+            background: transparent;
+        }
+
+        .gallery-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .gallery-close:hover,
+        .gallery-close:focus {
+            color: #ccc;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .gallery-modal-image-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .gallery-modal-img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .gallery-prev,
+        .gallery-next {
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            cursor: pointer;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+        }
+
+        .gallery-next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .gallery-prev:hover,
+        .gallery-next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .gallery-modal-info {
+            text-align: center;
+            color: #f2f2f2;
+            padding: 10px 0;
+            font-size: 18px;
+        }
+
+        /* 添加平滑过渡效果 */
+        .gallery-modal-img {
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0)}
+            to {transform:scale(1)}
+        }
+    </style>
+
     <script>
         // 页面加载时，根据URL参数获取房产信息
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const propertyType = urlParams.get('property');
+            
+            // 存储当前页面的图片数组
+            let currentImages = [];
+            let currentImageIndex = 0;
             
             // 根据不同的propertyType更新页面内容
             if (propertyType === 'property-1') {
@@ -854,6 +1128,13 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 生成从1.png到25.png的图片URL列表
+                for (let i = 1; i <= 25; i++) {
+                    currentImages.push(`/images_new/buy-new/1/${i}.png`);
+                }
+                // 更新页面上显示的6个图片
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/1/${i + 2}.png`;
                 }
@@ -935,7 +1216,35 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const imageFiles = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImageFiles = [
+                    '1.png',
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 添加所有图片到currentImages数组
+                allImageFiles.forEach(file => {
+                    currentImages.push(`/images_new/buy-new/2/${file}`);
+                });
+                // 更新页面上显示的6个图片
+                const displayImageFiles = [
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -944,7 +1253,7 @@
                     'image copy 5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/2/${imageFiles[i] || 'image.png'}`;
+                    galleryImages[i].src = `/images_new/buy-new/2/${displayImageFiles[i] || 'image.png'}`;
                 }
                 
                 // 更新物业详情
@@ -1024,7 +1333,35 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const imageFiles = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImageFiles = [
+                    '1.png',
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 添加所有图片到currentImages数组
+                allImageFiles.forEach(file => {
+                    currentImages.push(`/images_new/buy-new/3/${file}`);
+                });
+                // 更新页面上显示的6个图片
+                const displayImageFiles = [
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -1033,7 +1370,7 @@
                     'image copy 5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/3/${imageFiles[i] || 'image.png'}`;
+                    galleryImages[i].src = `/images_new/buy-new/3/${displayImageFiles[i] || 'image.png'}`;
                 }
                 
                 // 更新物业详情
@@ -1110,7 +1447,35 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const imageFiles = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImageFiles = [
+                    '1.png',
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 添加所有图片到currentImages数组
+                allImageFiles.forEach(file => {
+                    currentImages.push(`/images_new/buy-new/4/${file}`);
+                });
+                // 更新页面上显示的6个图片
+                const displayImageFiles = [
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -1119,7 +1484,7 @@
                     'image copy 5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/4/${imageFiles[i] || 'image.png'}`;
+                    galleryImages[i].src = `/images_new/buy-new/4/${displayImageFiles[i] || 'image.png'}`;
                 }
                 
                 // 更新物业详情
@@ -1203,7 +1568,35 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const imageFiles = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImageFiles = [
+                    '1.png',
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 添加所有图片到currentImages数组
+                allImageFiles.forEach(file => {
+                    currentImages.push(`/images_new/buy-new/5/${file}`);
+                });
+                // 更新页面上显示的6个图片
+                const displayImageFiles = [
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -1212,7 +1605,7 @@
                     'image copy 5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/5/${imageFiles[i] || 'image.png'}`;
+                    galleryImages[i].src = `/images_new/buy-new/5/${displayImageFiles[i] || 'image.png'}`;
                 }
                 
                 // 更新物业详情
@@ -1292,7 +1685,35 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const imageFiles = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImageFiles = [
+                    '1.png',
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 添加所有图片到currentImages数组
+                allImageFiles.forEach(file => {
+                    currentImages.push(`/images_new/buy-new/6/${file}`);
+                });
+                // 更新页面上显示的6个图片
+                const displayImageFiles = [
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -1301,7 +1722,7 @@
                     'image copy 5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/6/${imageFiles[i] || 'image.png'}`;
+                    galleryImages[i].src = `/images_new/buy-new/6/${displayImageFiles[i] || 'image.png'}`;
                 }
                 
                 // 更新物业详情
@@ -1380,7 +1801,35 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const imageFiles = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImageFiles = [
+                    '1.png',
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 添加所有图片到currentImages数组
+                allImageFiles.forEach(file => {
+                    currentImages.push(`/images_new/buy-new/7/${file}`);
+                });
+                // 更新页面上显示的6个图片
+                const displayImageFiles = [
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -1389,7 +1838,7 @@
                     'image copy 5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/7/${imageFiles[i] || 'image.png'}`;
+                    galleryImages[i].src = `/images_new/buy-new/7/${displayImageFiles[i] || 'image.png'}`;
                 }
                 
                 // 更新物业详情
@@ -1454,7 +1903,35 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const imageFiles = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImageFiles = [
+                    '1.png',
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 添加所有图片到currentImages数组
+                allImageFiles.forEach(file => {
+                    currentImages.push(`/images_new/buy-new/8/${file}`);
+                });
+                // 更新页面上显示的6个图片
+                const displayImageFiles = [
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -1463,7 +1940,7 @@
                     'image copy 5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/8/${imageFiles[i] || 'image.png'}`;
+                    galleryImages[i].src = `/images_new/buy-new/8/${displayImageFiles[i] || 'image.png'}`;
                 }
                 
                 // 更新物业详情
@@ -1535,7 +2012,35 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const imageFiles = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImageFiles = [
+                    '1.png',
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 添加所有图片到currentImages数组
+                allImageFiles.forEach(file => {
+                    currentImages.push(`/images_new/buy-new/9/${file}`);
+                });
+                // 更新页面上显示的6个图片
+                const displayImageFiles = [
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -1544,7 +2049,7 @@
                     'image copy 5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/9/${imageFiles[i] || 'image.png'}`;
+                    galleryImages[i].src = `/images_new/buy-new/9/${displayImageFiles[i] || 'image.png'}`;
                 }
                 
                 // 更新物业详情
@@ -1618,7 +2123,35 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const imageFiles = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImageFiles = [
+                    '1.png',
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 添加所有图片到currentImages数组
+                allImageFiles.forEach(file => {
+                    currentImages.push(`/images_new/buy-new/10/${file}`);
+                });
+                // 更新页面上显示的6个图片
+                const displayImageFiles = [
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -1627,7 +2160,7 @@
                     'image copy 5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/10/${imageFiles[i] || 'image.png'}`;
+                    galleryImages[i].src = `/images_new/buy-new/10/${displayImageFiles[i] || 'image.png'}`;
                 }
                 
                 // 更新物业详情
@@ -1712,7 +2245,35 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const images = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImages = [
+                    '1.png',
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 添加所有图片到currentImages数组
+                allImages.forEach(image => {
+                    currentImages.push(`/images_new/buy-new/11/${image}`);
+                });
+                // 页面上显示的图片数组
+                const displayImages = [
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -1724,8 +2285,9 @@
                     'image copy 8.png',
                     'image copy 9.png'
                 ];
+                // 更新页面上显示的6个图片
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/11/${images[i % images.length]}`;
+                    galleryImages[i].src = `/images_new/buy-new/11/${displayImages[i % displayImages.length]}`;
                 }
                 
                 // 更新物业详情
@@ -1810,7 +2372,35 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const images = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImages = [
+                    '1.png',
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 添加所有图片到currentImages数组
+                allImages.forEach(image => {
+                    currentImages.push(`/images_new/buy-new/12/${image}`);
+                });
+                // 页面上显示的图片数组
+                const displayImages = [
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -1819,8 +2409,9 @@
                     'image copy 5.png',
                     'image copy 6.png'
                 ];
+                // 更新页面上显示的6个图片
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/12/${images[i % images.length]}`;
+                    galleryImages[i].src = `/images_new/buy-new/12/${displayImages[i % displayImages.length]}`;
                 }
                 
                 // 更新物业详情
@@ -1898,7 +2489,11 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const images = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImages = [
+                    '1.png',
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -1917,8 +2512,33 @@
                     'image copy 15.png',
                     'image copy 16.png'
                 ];
+                // 添加所有图片到currentImages数组
+                allImages.forEach(image => {
+                    currentImages.push(`/images_new/buy-new/13/${image}`);
+                });
+                // 页面上显示的图片数组
+                const displayImages = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 更新页面上显示的6个图片
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/13/${images[i % images.length]}`;
+                    galleryImages[i].src = `/images_new/buy-new/13/${displayImages[i % displayImages.length]}`;
                 }
                 
                 // 更新物业详情
@@ -1995,7 +2615,35 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const images = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImages = [
+                    '1.png',
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 添加所有图片到currentImages数组
+                allImages.forEach(image => {
+                    currentImages.push(`/images_new/buy-new/14/${image}`);
+                });
+                // 页面上显示的图片数组
+                const displayImages = [
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -2006,8 +2654,9 @@
                     'image copy 7.png',
                     'image copy 8.png'
                 ];
+                // 更新页面上显示的6个图片
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/14/${images[i % images.length]}`;
+                    galleryImages[i].src = `/images_new/buy-new/14/${displayImages[i % displayImages.length]}`;
                 }
                 
                 // 更新物业详情
@@ -2087,7 +2736,35 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const images = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImages = [
+                    '1.png',
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 添加所有图片到currentImages数组
+                allImages.forEach(image => {
+                    currentImages.push(`/images_new/buy-new/15/${image}`);
+                });
+                // 页面上显示的图片数组
+                const displayImages = [
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -2103,8 +2780,9 @@
                     'image copy 12.png',
                     'image copy 13.png'
                 ];
+                // 更新页面上显示的6个图片
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/15/${images[i % images.length]}`;
+                    galleryImages[i].src = `/images_new/buy-new/15/${displayImages[i % displayImages.length]}`;
                 }
                 
                 // 更新物业详情
@@ -2179,7 +2857,11 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const images = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImages = [
+                    '1.png',
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -2198,8 +2880,33 @@
                     'image copy 15.png',
                     'image copy 16.png'
                 ];
+                // 添加所有图片到currentImages数组
+                allImages.forEach(image => {
+                    currentImages.push(`/images_new/buy-new/16/${image}`);
+                });
+                // 页面上显示的图片数组
+                const displayImages = [
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 更新页面上显示的6个图片
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/16/${images[i % images.length]}`;
+                    galleryImages[i].src = `/images_new/buy-new/16/${displayImages[i % displayImages.length]}`;
                 }
                 
                 // 更新物业详情
@@ -2280,7 +2987,35 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const images = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImages = [
+                    '1.png',
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 添加所有图片到currentImages数组
+                allImages.forEach(image => {
+                    currentImages.push(`/images_new/buy-new/17/${image}`);
+                });
+                // 页面上显示的图片数组
+                const displayImages = [
                     'image.png',
                     'image copy.png',
                     'image copy 2.png',
@@ -2295,8 +3030,9 @@
                     'image copy 11.png',
                     'image copy 12.png'
                 ];
+                // 更新页面上显示的6个图片
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/17/${images[i % images.length]}`;
+                    galleryImages[i].src = `/images_new/buy-new/17/${displayImages[i % displayImages.length]}`;
                 }
                 
                 // 更新物业详情
@@ -2372,7 +3108,35 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                const images = [
+                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                currentImages = [];
+                // 所有图片文件名列表
+                const allImages = [
+                    '1.png',
+                    'image.png',
+                    'image copy.png',
+                    'image copy 2.png',
+                    'image copy 3.png',
+                    'image copy 4.png',
+                    'image copy 5.png',
+                    'image copy 6.png',
+                    'image copy 7.png',
+                    'image copy 8.png',
+                    'image copy 9.png',
+                    'image copy 10.png',
+                    'image copy 11.png',
+                    'image copy 12.png',
+                    'image copy 13.png',
+                    'image copy 14.png',
+                    'image copy 15.png',
+                    'image copy 16.png'
+                ];
+                // 添加所有图片到currentImages数组
+                allImages.forEach(image => {
+                    currentImages.push(`/images_new/buy-new/18/${image}`);
+                });
+                // 页面上显示的图片数组
+                const displayImages = [
                     'image.png',
                     'image copy 2.png',
                     'image copy 3.png',
@@ -2389,8 +3153,9 @@
                     'image copy 14.png',
                     'image copy 15.png'
                 ];
+                // 更新页面上显示的6个图片
                 for (let i = 0; i < galleryImages.length; i++) {
-                    galleryImages[i].src = `/images_new/buy-new/18/${images[i % images.length]}`;
+                    galleryImages[i].src = `/images_new/buy-new/18/${displayImages[i % displayImages.length]}`;
                 }
                 
                 // 更新物业详情
@@ -2533,21 +3298,98 @@
                 document.querySelector('.about-text').innerHTML = 'A Sanctuary of Branded Elegance<br><br>As a Palace-branded residence, Lyvia infuses every detail with a sense of curated luxury. The interiors are defined by warm neutral palettes, rich textures, and elegant finishes that reflect the signature style of Palace Hotels + Resorts. Floor-to-ceiling windows flood the open-plan layouts with natural light, seamlessly connecting your home to the tranquil, green surroundings.';
                 document.querySelector('.about-image img').src = '/Lyvia by Palace/8.png';
             }
-        });
-        
-        // WhatsApp按钮点击事件
-        document.querySelector('.whatsapp-btn').addEventListener('click', function() {
-            // 这里可以添加WhatsApp联系功能
-            alert('Connecting to WhatsApp support...');
-        });
-        
-        // 平滑滚动效果
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+            
+            // 照片画廊弹窗功能
+            const modal = document.getElementById('gallery-modal');
+            const modalImg = document.getElementById('gallery-modal-img');
+            const currentIndexSpan = document.getElementById('gallery-current-index');
+            const totalSpan = document.getElementById('gallery-total');
+            const closeBtn = document.querySelector('.gallery-close');
+            const prevBtn = document.querySelector('.gallery-prev');
+            const nextBtn = document.querySelector('.gallery-next');
+            
+            // 设置画廊弹窗的总图片数
+            totalSpan.textContent = currentImages.length;
+            
+            // 点击图片打开弹窗
+            document.querySelectorAll('.gallery-item').forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    modal.style.display = 'block';
+                    currentImageIndex = index;
+                    modalImg.src = currentImages[index];
+                    currentIndexSpan.textContent = currentImageIndex + 1;
                 });
+            });
+            
+            // 关闭弹窗
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+            
+            // 点击弹窗外部关闭弹窗
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // 上一张图片
+            prevBtn.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+                modalImg.src = currentImages[currentImageIndex];
+                currentIndexSpan.textContent = currentImageIndex + 1;
+            });
+            
+            // 下一张图片
+            nextBtn.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+                modalImg.src = currentImages[currentImageIndex];
+                currentIndexSpan.textContent = currentImageIndex + 1;
+            });
+            
+            // 键盘导航
+            document.addEventListener('keydown', (event) => {
+                if (modal.style.display === 'block') {
+                    if (event.key === 'Escape') {
+                        modal.style.display = 'none';
+                    } else if (event.key === 'ArrowLeft') {
+                        prevBtn.click();
+                    } else if (event.key === 'ArrowRight') {
+                        nextBtn.click();
+                    }
+                }
+            });
+
+            // 平滑滚动效果
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // 电话按钮点击事件
+            const phoneBtn = document.querySelector('.phone-btn');
+            const phonePopup = document.getElementById('phone-popup');
+            const phonePopupClose = document.querySelector('.phone-popup-close');
+
+            // 显示电话弹窗
+            phoneBtn.addEventListener('click', function() {
+                phonePopup.style.display = 'block';
+            });
+
+            // 关闭电话弹窗
+            phonePopupClose.addEventListener('click', function() {
+                phonePopup.style.display = 'none';
+            });
+
+            // 点击弹窗外部关闭弹窗
+            window.addEventListener('click', function(e) {
+                if (e.target === phonePopup) {
+                    phonePopup.style.display = 'none';
+                }
             });
         });
     </script>
