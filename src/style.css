@@ -383,7 +383,8 @@ a:hover {
   overflow: hidden;
 }
 
-.hero-video {
+.hero-video,
+.hero-background {
   position: absolute;
   top: 0;
   left: 0;

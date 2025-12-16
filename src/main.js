@@ -1862,24 +1862,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroSection = document.createElement('section');
   heroSection.className = 'hero';
   
-  // 视频列表 - 包含public/videos文件夹中的视频
-  const videos = [
-    '/videos/1.mp4'
-  ];
+  // 使用图片替换视频作为背景
+  const bannerImage = '/banner/be4761502e5ac0091dba5fcdf2862dc1.png';
   
-  // 创建视频轮播HTML结构
-  let videoHTML = '';
-  videos.forEach((videoSrc, index) => {
-    videoHTML += `
-      <video id="hero-video-${index}" class="hero-video" preload="auto" autoplay muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; ${index > 0 ? 'display: none;' : 'display: block;'}">
-        <source src="${videoSrc}" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    `;
-  });
+  // 创建背景图片HTML结构
+  const backgroundImageHTML = `
+    <img id="hero-background" class="hero-background" src="${bannerImage}" alt="Luxury Real Estate" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; display: block;">
+  `;
   
   heroSection.innerHTML = `
-    ${videoHTML}
+    ${backgroundImageHTML}
     <div id="hero-content" class="hero-content" style="opacity: 0; transition: opacity 1s ease-in-out;">
       <div class="hero-intro">
         <span class="hero-badge">YOUR REAL ESTATE EXPERT</span>
@@ -2081,7 +2073,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 添加文字内容显示/隐藏的循环逻辑
   const heroContent = heroSection.querySelector('#hero-content');
-  const heroVideos = heroSection.querySelectorAll('.hero-video');
+  const heroBackground = heroSection.querySelector('#hero-background');
   
   // 显示文字函数 - 简化版本，直接显示文字
   function showHeroContent() {
@@ -2089,58 +2081,8 @@ document.addEventListener('DOMContentLoaded', () => {
     heroContent.style.opacity = '1';
   }
   
-  // 视频事件处理 - 简化版本，只处理单个视频
-  if (heroVideos.length > 0) {
-    const video = heroVideos[0];
-    
-    // 视频错误处理
-    video.addEventListener('error', function(e) {
-      console.error('视频加载失败:', e);
-      console.error('错误类型:', e.type);
-      if (e.target.error) {
-        console.error('错误代码:', e.target.error.code);
-        console.error('错误信息:', e.target.error.message);
-      }
-    });
-    
-    // 监听视频加载开始事件
-    video.addEventListener('loadstart', function() {
-      console.log('视频开始加载');
-    });
-    
-    // 监听视频加载元数据事件
-    video.addEventListener('loadedmetadata', function() {
-      console.log('视频元数据加载完成，时长:', video.duration, '秒');
-    });
-    
-    // 监听视频可以播放事件
-    video.addEventListener('canplay', function() {
-      console.log('视频可以播放');
-      // 尝试播放视频
-      video.play().catch(error => {
-        console.error('播放视频失败:', error);
-      });
-    });
-    
-    // 监听视频开始播放事件
-    video.addEventListener('play', function() {
-      console.log('视频开始播放');
-    });
-    
-    // 监听视频暂停事件
-    video.addEventListener('pause', function() {
-      console.log('视频暂停播放');
-    });
-    
-    // 监听视频结束事件，重新播放
-    video.addEventListener('ended', function() {
-      console.log('视频播放结束，重新开始播放');
-      video.currentTime = 0;
-      video.play().catch(error => {
-        console.error('重新播放视频失败:', error);
-      });
-    });
-    
+  // 图片加载完成后显示文字内容
+  if (heroBackground) {
     // 直接显示文字内容，不使用延迟
     showHeroContent();
   }
@@ -2166,23 +2108,26 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="properties-carousel-container">
       <div class="properties-grid">
             <!-- 第一个房产卡片 -->
-            <div class="property-card">
+            <div class="property-card" data-beds="2" data-baths="2">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
-                            <img src="/images_new/image/1/71.jpg" alt="Montiva by Vida" />
+                            <img src="/images_new/buy-new/1/1.png" alt="Property Image 1" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/1/271.jpg" alt="Montiva by Vida" />
+                            <img src="/images_new/buy-new/1/2.png" alt="Property Image 2" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/1/281.jpg" alt="Montiva by Vida" />
+                            <img src="/images_new/buy-new/1/3.png" alt="Property Image 3" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/1/291.jpg" alt="Montiva by Vida" />
+                            <img src="/images_new/buy-new/1/4.png" alt="Property Image 4" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/1/611.jpg" alt="Montiva by Vida" />
+                            <img src="/images_new/buy-new/1/5.png" alt="Property Image 5" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/1/6.png" alt="Property Image 6" />
                         </div>
                     </div>
                     <div class="carousel-indicators">
@@ -2191,18 +2136,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button class="carousel-indicator"></button>
                         <button class="carousel-indicator"></button>
                         <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
                     </div>
                 </div>
                 <div class="property-details">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                        <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">4 350,000</div>
+                        <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">AED 2,800,000</div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                         </svg>
                     </div>
                     
                     <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
-                        Upgraded Fully FurnishedVacant  Duplex
+                        Harbour Gate, Dubai Creek Harbour
                     </div>
                     
                     <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem;">
@@ -2218,14 +2164,14 @@ document.addEventListener('DOMContentLoaded', () => {
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
                             </svg>
-                            <span style="color: #000;">4 Bath</span>
+                            <span style="color: #000;">2 Bath</span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
                             </svg>
-                            <span style="color: #000;">1866 sq-ft</span>
+                            <span style="color: #000;">1,149 sq-ft</span>
                         </div>
                     </div>
                     
@@ -2235,35 +2181,38 @@ document.addEventListener('DOMContentLoaded', () => {
                             <line x1="2" y1="12" x2="22" y2="12"></line>
                             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                         </svg>
-                        <span style="color: #000;">Business Bay, Dubai</span>
+                        <span style="color: #000;">Dubai Creek Harbour</span>
                     </div>
                     
                     <hr style="border: none; border-top: 1px dashed #ddd; margin-bottom: 0.5rem;" />
                     <div style="display: flex; gap: 0.3rem; margin: 0 0.5rem;">
-                        <button style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">Call Us</button>
-                        <button style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">View Details</button>
+                        <button class="call-us-btn" style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">Call Us</button>
+                        <button onclick="window.location.href='/property-detail.html?property=property-1'" style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">View Details</button>
                     </div>
                 </div>
             </div>
 
             <!-- 第二个房产卡片 -->
-            <div class="property-card">
+            <div class="property-card" data-beds="1" data-baths="1">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
-                            <img src="/images_new/image/2/snapedit_17424527004121.jpg" alt="The Palace Villas Ostra" />
+                            <img src="/images_new/buy-new/2/1.png" alt="Property Image 1" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/2/snapedit_17424527819781.jpg" alt="The Palace Villas Ostra" />
+                            <img src="/images_new/buy-new/2/image.png" alt="Property Image 2" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/2/snapedit_17424529503561.jpg" alt="The Palace Villas Ostra" />
+                            <img src="/images_new/buy-new/2/image copy.png" alt="Property Image 3" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/2/snapedit_17424530803781.jpg" alt="The Palace Villas Ostra" />
+                            <img src="/images_new/buy-new/2/image copy 2.png" alt="Property Image 4" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/2/snapedit_17424532045721.jpg" alt="The Palace Villas Ostra" />
+                            <img src="/images_new/buy-new/2/image copy 3.png" alt="Property Image 5" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/2/image copy 4.png" alt="Property Image 6" />
                         </div>
                     </div>
                     <div class="carousel-indicators">
@@ -2272,18 +2221,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button class="carousel-indicator"></button>
                         <button class="carousel-indicator"></button>
                         <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
                     </div>
                 </div>
                 <div class="property-details">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                        <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">8,000,000</div>
+                        <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">AED 2,040,000</div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                         </svg>
                     </div>
                     
                     <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
-                        Ultra Luxury|Private Garden andPool Access
+                        APARTMENT FOR SALE IN BURJ CROWN
                     </div>
                     
                     <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem;">
@@ -2293,20 +2243,20 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <line x1="3" y1="9" x2="21" y2="9"></line>
                                 <line x1="9" y1="21" x2="9" y2="9"></line>
                             </svg>
-                            <span style="color: #000;">2 Bed</span>
+                            <span style="color: #000;">1 Bed</span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
                             </svg>
-                            <span style="color: #000;">4 Bath</span>
+                            <span style="color: #000;">1 Bath</span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
                             </svg>
-                            <span style="color: #000;">1990 sq-ft</span>
+                            <span style="color: #000;">578 sq-ft</span>
                         </div>
                     </div>
                     
@@ -2316,13 +2266,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             <line x1="2" y1="12" x2="22" y2="12"></line>
                             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                         </svg>
-                        <span style="color: #000;">Palm Jumeirah, Dubai</span>
+                        <span style="color: #000;">Downtown Dubai</span>
                     </div>
                     
                     <hr style="border: none; border-top: 1px dashed #ddd; margin-bottom: 0.5rem;" />
                     <div style="display: flex; gap: 0.3rem; margin: 0 0.5rem;">
-                        <button style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">Call Us</button>
-                        <button style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">View Details</button>
+                        <button class="call-us-btn" style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">Call Us</button>
+                        <button onclick="window.location.href='/property-detail.html?property=property-2'" style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">View Details</button>
                     </div>
                 </div>
             </div>
@@ -2332,19 +2282,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
-                            <img src="/images_new/image/3/11.jpg" alt="Rosehill" />
+                            <img src="/aboutus/ryuan/11.jpg" alt="Rosehill" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/3/snapedit_17521374158161.jpg" alt="Rosehill" />
+                            <img src="/Communities/1.png" alt="Rosehill" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/3/snapedit_17521374465641.jpg" alt="Rosehill" />
+                            <img src="/Communities/2.png" alt="Rosehill" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/3/snapedit_17521375260501.jpg" alt="Rosehill" />
+                            <img src="/Communities/3.png" alt="Rosehill" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/3/snapedit_17521376417081.jpg" alt="Rosehill" />
+                            <img src="/Communities/4.png" alt="Rosehill" />
                         </div>
                     </div>
                     <div class="carousel-indicators">
