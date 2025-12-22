@@ -1,5 +1,148 @@
 import './style.css'
 
+// 页面加载动画
+function initLoadingAnimation() {
+  // 创建加载遮罩
+  const loadingOverlay = document.createElement('div');
+  loadingOverlay.className = 'loading-overlay';
+  
+  const loadingSpinner = document.createElement('div');
+  loadingSpinner.className = 'loading-spinner';
+  
+  loadingOverlay.appendChild(loadingSpinner);
+  document.body.appendChild(loadingOverlay);
+  
+  // 页面加载完成后移除加载动画
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      loadingOverlay.style.opacity = '0';
+      loadingOverlay.addEventListener('transitionend', () => {
+        if (loadingOverlay.parentNode) {
+          loadingOverlay.parentNode.removeChild(loadingOverlay);
+        }
+      });
+    }, 300);
+  });
+}
+
+// 滚动进度指示器
+function initScrollProgress() {
+  const progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress';
+  document.body.appendChild(progressBar);
+  
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+    const scrollPercentage = (scrollTop / (scrollHeight - clientHeight)) * 100;
+    
+    progressBar.style.width = scrollPercentage + '%';
+  });
+}
+
+// 滚动动画功能实现
+function initScrollAnimations() {
+  const animatedElements = document.querySelectorAll('.animate-on-scroll');
+  
+  // 检查元素是否在视口中
+  function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+    const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+    
+    // 计算元素可见性阈值（默认80%可见时触发动画）
+    const vHeight = rect.height > windowHeight ? 0 : (windowHeight - rect.top) / (windowHeight + rect.height);
+    const vWidth = rect.width > windowWidth ? 0 : (windowWidth - rect.left) / (windowWidth + rect.width);
+    const visibility = Math.min(vHeight, vWidth);
+    
+    return visibility > 0.2;
+  }
+  
+  // 处理滚动事件
+  function handleScroll() {
+    animatedElements.forEach(el => {
+      if (isElementInViewport(el)) {
+        el.classList.add('animate-active');
+      } else {
+        // 如果需要滚动回顶部时重新隐藏动画，可以取消下面的注释
+        // el.classList.remove('animate-active');
+      }
+    });
+  }
+  
+  // 初始化时检查一次
+  handleScroll();
+  
+  // 添加滚动监听
+  window.addEventListener('scroll', handleScroll);
+  
+  // 添加窗口大小变化监听
+  window.addEventListener('resize', handleScroll);
+}
+
+// 增强的用户交互功能
+function initEnhancedInteractions() {
+  // 添加页面过渡效果
+  document.body.classList.add('page-transition');
+  
+  // 为所有可点击元素添加微交互
+  const interactiveElements = document.querySelectorAll('a, button, .property-card, .hover-effect');
+  
+  interactiveElements.forEach(el => {
+    // 添加点击波纹效果
+    el.addEventListener('click', (e) => {
+      const ripple = document.createElement('span');
+      const rect = el.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+      
+      ripple.style.cssText = `
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.3);
+        width: ${size}px;
+        height: ${size}px;
+        left: ${x}px;
+        top: ${y}px;
+        transform: scale(0);
+        animation: ripple 0.6s ease-out;
+        pointer-events: none;
+        z-index: 1000;
+      `;
+      
+      el.style.position = 'relative';
+      el.style.overflow = 'hidden';
+      el.appendChild(ripple);
+      
+      setTimeout(() => {
+        ripple.remove();
+      }, 600);
+    });
+  });
+}
+
+// 添加波纹动画样式
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes ripple {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+`;
+document.head.appendChild(style);
+
+// 页面加载完成后初始化所有交互功能
+document.addEventListener('DOMContentLoaded', () => {
+  initLoadingAnimation();
+  initScrollProgress();
+  initScrollAnimations();
+  initEnhancedInteractions();
+});
+
 // 全局翻译数据
 // 不再支持多语言切换功能
 // 已删除全局翻译数据
@@ -487,16 +630,21 @@ document.addEventListener('DOMContentLoaded', () => {
                           window.location.pathname.includes('property-detail.html');
 
   
-  // 对于独立页面，不再需要翻译功能
+  // 对于独立页面，只执行必要的功能（如弹窗）
   if (isStandalonePage) {
     // 不再支持多语言切换功能，页面将保持默认语言（英语）
     
-    // 提前返回，避免执行需要主页DOM结构的代码
-    return;
+    // 只初始化弹窗功能，不执行需要主页DOM结构的代码
+    // 弹窗功能的代码将在后续执行
+  } else {
+    // 对于主页，先应用保存的语言设置
+    updateTranslatedElements();
+    
+    // 如果存在window.updateMainJsLanguage函数，也调用它确保语言设置同步
+    if (window.updateMainJsLanguage) {
+      window.updateMainJsLanguage(currentLang);
+    }
   }
-  
-  // 对于主页，先应用保存的语言设置
-  updateTranslatedElements();
   
   // 如果存在window.updateMainJsLanguage函数，也调用它确保语言设置同步
   if (window.updateMainJsLanguage) {
@@ -518,7 +666,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 确保app元素存在
   if (!app) {
     console.error('App element not found!');
-    return;
+    // 继续执行，不return，以便弹窗功能仍然可以工作
   }
   
   // 添加页面样式增强质感
@@ -598,10 +746,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     /* View All Properties 按钮样式 */
     .view-all-btn {
-      background-color: white; /* 白色背景 */
-      color: #2563eb;
+      background-color: #0C1559; /* 深紫色背景 */
+      color: white;
       transition: all 0.3s ease;
-      border-radius: 8px;
+      border-radius: 50px; /* 胶囊形状 */
       transform: translateY(0);
     }
     
@@ -875,480 +1023,214 @@ document.addEventListener('DOMContentLoaded', () => {
   
 
   
-  // 创建弹窗元素 - 支持多种类型弹窗
-  const popupContainer = document.createElement('div');
-  popupContainer.className = 'popup-container';
-  popupContainer.innerHTML = `
-    <div class="popup-content">
-      <div class="popup-header">
-        <div style="display: flex; align-items: center;">
-          <img src="/images_new/LOGO/1.png" alt="Logo" style="height: 24px; margin-right: 8px;">
-          <h3 id="popup-title" style="margin: 0;">HOUSE</h3>
-        </div>
-        <button class="popup-close">&times;</button>
-      </div>
-      <!-- 电话弹窗内容 -->
-      <div id="phone-content" class="popup-content-type">
-        <div class="phone-number-container">
-          <p id="phone-number" class="phone-number">+971 52 145 0498</p>
-          <button id="copy-button" class="copy-button">
-            <i class="fas fa-copy"></i> Copy
-          </button>
-        </div>
-        <div class="popup-actions">
-          <a href="tel:+971521450498" class="call-button">
-            <i class="fas fa-phone-alt"></i> Call Now
-          </a>
-        </div>
-      </div>
-      
-      <!-- AI聊天弹窗内容 -->
-      <div id="chat-content" class="popup-content-type" style="display: none;">
-        <div class="chat-container" style="height: 400px; display: flex; flex-direction: column;">
-          <!-- 聊天消息区域 -->
-          <div id="chat-messages" class="chat-messages" style="flex: 1; overflow-y: auto; padding: 1rem 0;">
-            <!-- 初始欢迎消息 -->
-            <div class="message bot-message">
-              <div class="message-content">
-                <p>Hello! I'm your real estate assistant. How can I help you today? You can ask about properties, services, or contact information.</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- 输入区域 -->
-          <div class="chat-input-container">
-            <input type="text" id="chat-input" placeholder="Type your message here..." />
-            <button id="send-message" class="send-button">
-              <i class="fas fa-paper-plane"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(popupContainer);
+
+    
+
   
-  // 添加弹窗样式
-  const popupStyle = document.createElement('style');
-  popupStyle.textContent = `
-    .popup-container {
+
+  
+  // 创建并初始化phone-modal弹窗
+  function createPhoneModal() {
+    // 检查页面中是否已经存在phone-modal元素
+    if (document.getElementById('phone-modal')) {
+      return; // 如果已存在，直接返回
+    }
+    
+    // 创建弹窗元素
+    const phoneModal = document.createElement('div');
+    phoneModal.id = 'phone-modal';
+    phoneModal.className = 'phone-modal';
+    phoneModal.style.cssText = `
       display: none;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      backdrop-filter: blur(5px);
-      animation: fadeIn 0.2s ease;
-    }
-    
-    .popup-content {
-      background-color: white;
-      border-radius: 16px;
-      padding: 2rem;
-      width: 90%;
-      max-width: 420px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-      animation: popupFadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      text-align: center;
-    }
-    
-    .popup-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid #e1e5e9;
-    }
-    
-    .popup-header h3 {
-      margin: 0;
-      font-size: 1.5rem;
-      color: #333;
-      font-weight: 600;
-    }
-    
-    .popup-close {
-      background: none;
-      border: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: #999;
-      transition: all 0.3s ease;
-      padding: 0;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-    }
-    
-    .popup-close:hover {
-      background-color: #f5f5f5;
-      color: #666;
-    }
-    
-    .phone-number-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      padding: 1rem;
-      background-color: #f8f9fa;
-      border-radius: 12px;
-      border: 1px solid #e9ecef;
-    }
-    
-    .phone-number {
-      margin: 0;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: #2563eb;
-      letter-spacing: 0.5px;
-    }
-    
-    .copy-button {
-      background-color: #fff;
-      border: 1px solid #dee2e6;
-      color: #6c757d;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.3s ease;
-    }
-    
-    .copy-button:hover {
-      background-color: #6c757d;
-      color: white;
-      border-color: #6c757d;
-    }
-    
-    .popup-actions {
+      background: rgba(108, 99, 255, 0.15);
+      backdrop-filter: blur(15px);
+      z-index: 9999;
       display: flex;
       justify-content: center;
-      margin-top: 1.5rem;
-    }
-    
-    .call-button {
-      background-color: white;
-      color: #2563eb;
-      padding: 0.875rem 1.75rem;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 500;
-      display: flex;
       align-items: center;
-      gap: 0.75rem;
-      transition: all 0.3s ease;
-      border: 1px solid #2563eb;
-      cursor: pointer;
-      font-size: 1rem;
-      width: 100%;
-      max-width: 200px;
-      justify-content: center;
-      margin: 0 auto;
-    }
+    `;
     
-    .call-button:hover {
-      background-color: #2563eb;
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
-    }
+    // 创建弹窗内容
+    phoneModal.innerHTML = `
+      <div class="phone-modal-content">
+        <!-- 装饰元素 -->
+        <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(108, 99, 255, 0.1), rgba(108, 99, 255, 0.05)); border-radius: 50%; z-index: 0;"></div>
+        <div style="position: absolute; bottom: -80px; left: -80px; width: 200px; height: 200px; background: linear-gradient(135deg, rgba(108, 99, 255, 0.15), rgba(108, 99, 255, 0.08)); border-radius: 50%; z-index: 0;"></div>
+        
+        <div style="margin-bottom: 2rem; position: relative; z-index: 1;">
+          <div style="display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: linear-gradient(135deg, #6c63ff, #5a52e6); border-radius: 50%; box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3); margin: 0 auto 1.5rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+          </div>
+          <h3 style="font-size: 2rem; font-weight: 800; color: #1a1a2e; margin: 0 0 0.75rem 0; letter-spacing: -0.02em; font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.2;">Contact Us</h3>
+          <p style="font-size: 1rem; color: #666; margin: 0; line-height: 1.6; max-width: 300px; margin: 0 auto;">For inquiries, please call our dedicated team</p>
+        </div>
+        <div style="position: relative; z-index: 1; margin-bottom: 2.5rem;">
+          <p id="phone-number" class="animated-phone" style="font-size: 2.5rem; font-weight: 900; color: #6c63ff; margin: 0; letter-spacing: 0.05em; font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.2; text-shadow: 0 4px 8px rgba(108, 99, 255, 0.2); background: linear-gradient(135deg, #6c63ff, #5a52e6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">+971 52 145 0498</p>
+        </div>
+        <div style="display: flex; gap: 1.25rem; justify-content: center; margin-bottom: 0.5rem; flex-wrap: wrap; position: relative; z-index: 1;">
+          <button id="copy-phone" class="copy-phone-btn" style="padding: 1rem 2.25rem; background: linear-gradient(135deg, #6c63ff, #5a52e6); color: white; border: none; border-radius: 16px; cursor: pointer; font-size: 1.05rem; font-weight: 700; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 6px 20px rgba(108, 99, 255, 0.35); text-transform: uppercase; letter-spacing: 0.05em; position: relative; overflow: hidden;">
+            <span style="position: relative; z-index: 1;">Copy</span>
+            <span style="position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: rgba(255, 255, 255, 0.2); transform: translate(-50%, -50%); transition: width 0.6s, height 0.6s;"></span>
+          </button>
+          <button id="close-modal" class="close-modal" style="padding: 1rem 2.25rem; background: white; color: #333; border: 2px solid #e0e0e0; border-radius: 16px; cursor: pointer; font-size: 1.05rem; font-weight: 700; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-transform: uppercase; letter-spacing: 0.05em; position: relative; overflow: hidden;">
+            <span style="position: relative; z-index: 1;">Close</span>
+            <span style="position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: rgba(0, 0, 0, 0.05); transform: translate(-50%, -50%); transition: width 0.6s, height 0.6s;"></span>
+          </button>
+        </div>
+        <div style="position: relative; z-index: 1;">
+          <div id="copy-feedback" class="copy-feedback" style="font-size: 1rem; color: #22c55e; margin: 0.75rem 0 0; opacity: 0; transform: translateY(10px); transition: all 0.4s ease; font-weight: 700; font-style: italic; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#22c55e" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+            Copied to clipboard!
+          </div>
+        </div>
+      </div>
+    `;
     
-    /* AI聊天样式 */
-    .chat-container {
-      height: 400px;
-      display: flex;
-      flex-direction: column;
-    }
+    // 添加弹窗到页面
+    document.body.appendChild(phoneModal);
     
-    .chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1rem 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    .message {
-      display: flex;
-      align-items: flex-end;
-      gap: 0.75rem;
-      animation: messageFadeIn 0.3s ease;
-    }
-    
-    .user-message .message-content {
-      text-align: right;
-      order: 1;
-    }
-    
-    .bot-message .message-content {
-      text-align: left;
-      order: 2;
-    }
-    
-    .message-content p {
-      padding: 0.75rem 1rem;
-      border-radius: 18px;
-      margin: 0;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-    
-    .user-message .message-content p {
-      background-color: #2563eb;
-      color: white;
-    }
-    
-    .bot-message .message-content p {
-      background-color: white;
-      color: #333;
-      border: 1px solid #e9ecef;
-    }
-    
-    .chat-input-container {
-      display: flex;
-      gap: 0.5rem;
-    }
-    
-    #chat-input {
-      flex: 1;
-      padding: 0.75rem 1rem;
-      border: 1px solid #dee2e6;
-      border-radius: 20px;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.3s ease;
-    }
-    
-    #chat-input:focus {
-      border-color: #2563eb;
-    }
-    
-    .send-button {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background-color: #2563eb;
-      color: white;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-    
-    .send-button:hover {
-      background-color: #1d4ed8;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
-    }
-    
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
+    // 添加弹窗样式
+    const phoneModalStyle = document.createElement('style');
+    phoneModalStyle.textContent = `
+      /* 电话号码弹窗样式 */
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
       }
-      to {
-        opacity: 1;
+      
+      /* 数字滚动动画 */
+      @keyframes numberSlide {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
       }
-    }
-    
-    @keyframes popupFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-30px) scale(0.95);
+      
+      .animated-phone {
+        animation: numberSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+      
+      .phone-modal-content {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 30px;
+        text-align: center;
+        box-shadow: 0 25px 70px rgba(108, 99, 255, 0.25);
+        border: none;
+        min-width: 320px;
+        max-width: 420px;
+        animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+        overflow: hidden;
       }
-    }
-    
-    @keyframes messageFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
+      
+      .copy-phone-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(108, 99, 255, 0.45);
       }
-      to {
-        opacity: 1;
+      
+      .copy-phone-btn:active {
         transform: translateY(0);
       }
-    }
-    
-    /* 响应式设计 */
-    @media (max-width: 576px) {
-      .popup-content {
-        padding: 1.5rem;
-        margin: 1rem;
-        width: calc(100% - 2rem);
-      }
       
-      .phone-number-container {
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-      
-      .phone-number {
-        font-size: 1.1rem;
-      }
-      
-      .chat-container {
+      .copy-phone-btn:hover span:last-child {
+        width: 300px;
         height: 300px;
       }
       
-      .message-content {
-        max-width: 80%;
+      .close-modal:hover {
+        border-color: #6c63ff;
+        color: #6c63ff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(108, 99, 255, 0.2);
       }
-    }
-  `;
-  document.head.appendChild(popupStyle);
-  
-  // 获取弹窗元素
-  const popupTitle = document.querySelector('#popup-title');
-  const popupClose = document.querySelector('.popup-close');
-  const phoneButton = document.querySelector('.phone-button');
-  const copyButton = document.querySelector('#copy-button');
-  const chatButton = document.querySelector('.chat-button');
-  const phoneContent = document.querySelector('#phone-content');
-  const chatContent = document.querySelector('#chat-content');
-  const chatInput = document.querySelector('#chat-input');
-  const sendButton = document.querySelector('#send-message');
-  const chatMessages = document.querySelector('#chat-messages');
-  
-  // 显示弹窗函数 - 支持电话和聊天两种类型
-  function showPopup(type) {
-    // 使用全局的currentLang变量
-    // 不需要额外的语言检测逻辑，因为全局变量已经包含了正确的语言设置
-    
-    // 获取翻译对象
-    const translations = {
-      en: {
-        callTitle: 'Call Us',
-        chatTitle: 'Chat with AI Assistant'
-      },
-      zh: {
-        callTitle: '致电我们',
-        chatTitle: '与AI助手聊天'
-      },
-      ar: {
-        callTitle: 'اتصل بنا',
-        chatTitle: 'تحدث مع مساعد الذكاء الاصطناعي'
+      
+      .close-modal:active {
+        transform: translateY(0);
       }
-    };
-    
-    if (type === 'phone') {
-      // 显示电话弹窗
-      popupTitle.textContent = translations[currentLang].callTitle || 'Call Us';
-      phoneContent.style.display = 'block';
-      chatContent.style.display = 'none';
-    } else if (type === 'chat') {
-      // 显示聊天弹窗
-      popupTitle.textContent = translations[currentLang].chatTitle || 'Chat with AI Assistant';
-      phoneContent.style.display = 'none';
-      chatContent.style.display = 'block';
-      // 清空之前的聊天内容（保留欢迎消息）
-      const welcomeMessage = chatMessages.querySelector('.message.bot-message');
-      if (welcomeMessage) {
-        chatMessages.innerHTML = '';
-        chatMessages.appendChild(welcomeMessage);
+      
+      .close-modal:hover span:last-child {
+        width: 300px;
+        height: 300px;
       }
-      // 聚焦输入框
-      setTimeout(() => {
-        chatInput?.focus();
-      }, 100);
-    }
-    
-    popupContainer.style.display = 'flex';
-    document.body.style.overflow = 'hidden'; // 防止背景滚动
-  }
-  
-  // 隐藏弹窗函数
-  function hidePopup() {
-    popupContainer.style.display = 'none';
-    document.body.style.overflow = 'auto'; // 恢复背景滚动
-  }
-  
-  // 为关闭按钮添加点击事件
-  popupClose.addEventListener('click', hidePopup);
-  
-  // 点击弹窗外部关闭弹窗
-  popupContainer.addEventListener('click', (e) => {
-    if (e.target === popupContainer) {
-      hidePopup();
-    }
-  });
-  
-  // 为电话按钮添加点击事件
-  if (phoneButton) {
-    phoneButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      showPopup('phone');
-    });
-  }
-  
-  // 确保Call Now按钮不调用外部软件，只在网页内显示
-  const callNowButton = document.querySelector('.call-button');
-  if (callNowButton) {
-    callNowButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      // 仅在控制台显示信息，不执行实际的拨打电话操作
-      console.log('Call functionality is simulated within the webpage');
-      // 可以添加提示消息
-      alert('This is a simulated call button within the webpage');
-    });
-  }
-  
-  // 为聊天按钮添加点击事件
-  if (chatButton) {
-    chatButton.addEventListener('click', () => {
-      showPopup('chat');
-    });
-  }
-  
-  // 添加复制功能
-  if (copyButton) {
-    copyButton.addEventListener('click', () => {
-      const phoneNumber = document.querySelector('#phone-number').textContent;
-      navigator.clipboard.writeText(phoneNumber).then(() => {
-        const originalText = copyButton.innerHTML;
-        copyButton.innerHTML = '<i class="fas fa-check"></i> Copied';
-        copyButton.classList.add('copied');
+      
+      /* 响应式设计 */
+      @media (max-width: 480px) {
+        .phone-modal-content {
+          padding: 2rem 1.5rem;
+          min-width: 280px;
+          margin: 1rem;
+        }
         
-        setTimeout(() => {
-          copyButton.innerHTML = originalText;
-          copyButton.classList.remove('copied');
-        }, 2000);
-      }).catch(err => {
-        console.error('Failed to copy: ', err);
+        #phone-number {
+          font-size: 2rem;
+        }
+        
+        .copy-phone-btn, .close-modal {
+          padding: 0.875rem 1.75rem;
+          font-size: 0.95rem;
+        }
+      }
+    `;
+    document.head.appendChild(phoneModalStyle);
+    
+    // 为复制按钮添加点击事件
+    const copyPhoneBtn = document.getElementById('copy-phone');
+    const phoneNumber = document.getElementById('phone-number');
+    const copyFeedback = document.getElementById('copy-feedback');
+    
+    if (copyPhoneBtn && phoneNumber && copyFeedback) {
+      copyPhoneBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(phoneNumber.textContent).then(() => {
+          // 显示复制成功反馈
+          copyFeedback.style.opacity = '1';
+          copyFeedback.style.transform = 'translateY(0)';
+          
+          // 3秒后隐藏反馈
+          setTimeout(() => {
+            copyFeedback.style.opacity = '0';
+            copyFeedback.style.transform = 'translateY(10px)';
+          }, 3000);
+        }).catch(err => {
+          console.error('Failed to copy phone number:', err);
+        });
       });
+    }
+    
+    // 为关闭按钮添加点击事件
+    const closeModalBtn = document.getElementById('close-modal');
+    if (closeModalBtn) {
+      closeModalBtn.addEventListener('click', () => {
+        phoneModal.style.display = 'none';
+      });
+    }
+    
+    // 点击弹窗外部关闭弹窗
+    phoneModal.addEventListener('click', (e) => {
+      if (e.target === phoneModal) {
+        phoneModal.style.display = 'none';
+      }
     });
   }
-  
-  // 添加复制成功的样式
-  const copySuccessStyle = document.createElement('style');
-  copySuccessStyle.textContent = `
-    .copy-button.copied {
-      background-color: #28a745;
-      color: white;
-      border-color: #28a745;
-    }
-  `;
-  document.head.appendChild(copySuccessStyle);
   
   // 为所有Call Us按钮添加点击事件
   function initCallUsButtons() {
@@ -1371,8 +1253,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (existingModal) {
           existingModal.style.display = 'flex';
         } else {
-          // 否则使用当前文件中的弹窗
-          showPopup('phone');
+          // 否则创建并显示新的弹窗
+          createPhoneModal();
+          document.getElementById('phone-modal').style.display = 'flex';
         }
       });
     });
@@ -1388,8 +1271,9 @@ document.addEventListener('DOMContentLoaded', () => {
           if (existingModal) {
             existingModal.style.display = 'flex';
           } else {
-            // 否则使用当前文件中的弹窗
-            showPopup('phone');
+            // 否则创建并显示新的弹窗
+            createPhoneModal();
+            document.getElementById('phone-modal').style.display = 'flex';
           }
         });
       }
@@ -1650,6 +1534,12 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // 添加消息到聊天界面
   function addMessage(text, isUser) {
+    // 确保chatMessages变量存在
+    if (typeof chatMessages === 'undefined' || !chatMessages) {
+      console.error('chatMessages element not found!');
+      return;
+    }
+    
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
     
@@ -1802,15 +1692,17 @@ document.addEventListener('DOMContentLoaded', () => {
       return response.trim();
     }
   
-  // 为发送按钮添加点击事件
-  if (sendButton) {
+  // 为发送按钮添加点击事件 - 确保变量存在
+  if (typeof sendButton !== 'undefined' && sendButton) {
     sendButton.addEventListener('click', () => {
-      handleUserMessage(chatInput.value);
+      if (typeof chatInput !== 'undefined' && chatInput) {
+        handleUserMessage(chatInput.value);
+      }
     });
   }
   
-  // 为输入框添加回车事件
-  if (chatInput) {
+  // 为输入框添加回车事件 - 确保变量存在
+  if (typeof chatInput !== 'undefined' && chatInput) {
     chatInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
         handleUserMessage(chatInput.value);
@@ -2108,7 +2000,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="properties-carousel-container">
       <div class="properties-grid">
             <!-- 第一个房产卡片 -->
-            <div class="property-card" data-beds="2" data-baths="2">
+            <div class="property-card homepage-property-card" data-beds="2" data-baths="2">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -2193,7 +2085,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
 
             <!-- 第二个房产卡片 -->
-            <div class="property-card" data-beds="1" data-baths="1">
+            <div class="property-card homepage-property-card" data-beds="1" data-baths="1">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -3189,29 +3081,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const contactSection = document.createElement('section');
   contactSection.id = 'contact';
   contactSection.className = 'contact';
+  contactSection.style.cssText = 'width: 100%; height: 230px; overflow: visible; box-sizing: border-box; background: linear-gradient(to right, #f0f2f5, #1e2a78); position: relative;';
   contactSection.innerHTML = `
-    <div class="contact-content">
-      <!-- 联系头部 -->
-      <div class="contact-header">
-        <h2 data-translate="contactTitle">Get in Touch</h2>
-        <p data-translate="contactSubtitle">Have questions? Reach out to our team for assistance.</p>
+    <div class="contact-content" style="display: flex; align-items: center; justify-content: space-between; padding: 2rem; max-width: 1200px; margin: 0 auto; height: 100%; box-sizing: border-box;">
+      <div style="z-index: 1;">
+        <h2 style="font-size: 2rem; font-weight: 700; color: #ffffff; margin-bottom: 0.5rem;">Our Expert Will Help You</h2>
+        <p style="font-size: 1rem; font-weight: 300; color: #ffffff; margin-bottom: 1.5rem;">Feel free to contact us at any time, we are online 24/7</p>
+        <button style="background-color: #ffffff; color: #1e2a78; font-size: 1rem; font-weight: 600; padding: 0.75rem 2rem; border: none; border-radius: 50px; cursor: pointer; transition: all 0.3s ease;">Get In Touch</button>
       </div>
-      
-      <!-- 联系表单 -->
-      <form class="contact-form" onsubmit="return false;">
-        <!-- 输入框和按钮容器 -->
-        <div class="form-input-group">
-          <!-- 输入框行 -->
-          <div class="form-row">
-            <input type="email" placeholder="Your Email" data-translate-placeholder="formEmailPlaceholder" required />
-          </div>
-          
-          <!-- 提交按钮 -->
-          <div class="form-submit">
-            <button type="button" onclick="this.closest('form').dispatchEvent(new Event('submit'))" data-translate="formSubmitButton">Send Message</button>
-          </div>
-        </div>
-      </form>
+      <img src="/png/627e0f1b-5ef6-40c3-90d8-7a1d97e46093.png" alt="Contact us" style="height: 305px; width: auto; object-fit: contain; position: absolute; right: 0; bottom: -60px;" />
     </div>
   `;
   
@@ -3223,31 +3101,63 @@ document.addEventListener('DOMContentLoaded', () => {
   footer.className = 'footer';
   footer.innerHTML = `
     <div class="footer-container">
-      <!-- 左侧Logo区域 -->
-      <div class="footer-brand">
-        <div class="footer-logo" style="display: flex; align-items: center; gap: 10px;">
-          <img src="/img/logo.png" alt="HOUSE Logo" style="height: 40px;">
+      <!-- 链接和联系信息区域 -->
+      <div class="footer-links-container">
+        <!-- Newsletter部分 -->
+        <div class="footer-newsletter-section">
+          <!-- 输入框和按钮容器 -->
+          <div class="form-input-group">
+            <!-- 标题和副标题 -->
+            <div class="form-header">
+              <h3 class="form-title">Newsletter</h3>
+              <p class="form-subtitle">Subscribe for our weekly newsletter and marketing updates</p>
+            </div>
+            
+            <!-- 输入框行 -->
+            <div class="form-row">
+              <input type="email" placeholder="Your Email" data-translate-placeholder="formEmailPlaceholder" required />
+            </div>
+            
+            <!-- 提交按钮 -->
+            <div class="form-submit">
+              <button type="button" onclick="this.closest('form').dispatchEvent(new Event('submit'))" data-translate="formSubmitButton">Send Message</button>
+            </div>
+          </div>
         </div>
-        <!-- 社交媒体图标 -->
-        <div class="social-links">
-          <a href="https://www.linkedin.com/company/signature-home-real-estate/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://www.instagram.com/signaturehomes.uae/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.youtube.com/@SignatureHomeUae" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.facebook.com/signaturehomesproperties" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        
+        <!-- Quick Links部分 -->
+        <div class="footer-links-section">
+          <h3 class="quick-links-title">Quick Links</h3>
+          <div class="quick-links-list">
+            <a href="#">Buy</a>
+            <a href="#communities">Communities</a>
+            <a href="#developers">Developers</a>
+            <a href="#services">Services</a>
+            <a href="#about">About Us</a>
+          </div>
         </div>
-      </div>
-      
-      <!-- 中间简化链接区域 -->
-      <div class="footer-simple-links">
-        <span><a href="#">Buy</a></span>
-        <span>•</span>
-        <span><a href="#communities">communities</a></span>
-        <span>•</span>
-        <span><a href="#developers">Developers</a></span>
-        <span>•</span>
-        <span><a href="#services">Services</a></span>
-        <span>•</span>
-        <span><a href="#about">About Us</a></span>
+        
+        <!-- Contact Us部分 -->
+        <div class="footer-contact-section">
+          <h3 class="contact-us-title">Contact Us</h3>
+          <div class="contact-info">
+            <p class="contact-address">Floor 13, Blue Bay Tower,<br>Business Bay, Dubai, UAE</p>
+            <p class="contact-phone">+97180032632</p>
+            <p class="contact-email">inquiry@dandbdubai.com</p>
+          </div>
+        </div>
+        
+        <!-- Social Media部分 -->
+        <div class="footer-social-section">
+          <h3 class="social-label">Social Media</h3>
+          <!-- 社交媒体图标 -->
+          <div class="social-links">
+            <a href="https://www.linkedin.com/company/signature-home-real-estate/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/signaturehomes.uae/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@SignatureHomeUae" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/signaturehomesproperties" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          </div>
+        </div>
       </div>
     </div>
     
@@ -3262,8 +3172,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     <style>
       .footer {
-        background-color: #ffffff;
-        color: #000000;
+        background: linear-gradient(to right, #1147AB, #0C1559);
+        color: #ffffff;
         padding: 3rem 2rem;
         position: relative;
         margin-top: 0;
@@ -3273,34 +3183,106 @@ document.addEventListener('DOMContentLoaded', () => {
         max-width: 1400px;
         margin: 0 auto;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 2rem;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 3rem;
         flex-wrap: wrap;
       }
       
-      /* 简化链接样式 */
-      .footer-simple-links {
+      /* 链接容器样式 */
+      .footer-links-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 3rem;
+        flex-wrap: wrap;
+        align-items: start;
+      }
+      
+      /* 各部分通用样式 */
+      .footer-newsletter-section,
+      .footer-links-section,
+      .footer-contact-section,
+      .footer-social-section {
         display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+        justify-content: flex-start;
       }
       
-      .footer-simple-links span {
-        color: rgba(0, 0, 0, 0.7);
+      /* Quick Links样式 */
+      .quick-links-title {
+        color: #ffffff;
+        font-size: 1.5rem;
+        font-weight: normal;
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+      }
+      
+      .quick-links-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 0;
+      }
+      
+      .quick-links-list a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
         font-size: 1rem;
+        transition: color 0.3s ease;
+        font-family: 'Roboto', sans-serif;
       }
       
-      .footer-simple-links a {
-        color: rgba(0, 0, 0, 0.7);
+      .quick-links-list a:hover {
+        color: #ffffff;
+      }
+      
+      /* Contact Us样式 */
+      .contact-us-title {
+        color: #ffffff;
+        font-size: 1.5rem;
+        font-weight: normal;
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+      }
+      
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 0;
+      }
+      
+      .contact-address,
+      .contact-phone,
+      .contact-email {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1rem;
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.5;
+      }
+      
+      .contact-email {
         text-decoration: none;
         transition: color 0.3s ease;
+        display: inline-block;
       }
       
-      .footer-simple-links a:hover {
-        color: #000000;
+      .contact-email:hover {
+        color: #ffffff;
+      }
+      
+      /* 社交媒体区域样式 */
+      .social-label {
+        color: #ffffff;
+        font-size: 1.5rem;
+        font-weight: normal;
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
       }
       
       .footer-brand {
@@ -3310,21 +3292,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       .footer-tagline {
-        color: rgba(0, 0, 0, 0.7);
+        color: rgba(255, 255, 255, 0.8);
         font-size: 1rem;
         max-width: 300px;
       }
       
-      .footer-links-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-      }
+      /* 移除重复的网格布局定义 */
       
       .footer-column h4 {
         font-size: 1.1rem;
         margin-bottom: 1rem;
-        color: #000000;
+        color: #ffffff;
       }
       
       .footer-links {
@@ -3335,17 +3313,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       .footer-links li a {
-        color: rgba(0, 0, 0, 0.7);
+        color: rgba(255, 255, 255, 0.8);
         text-decoration: none;
         transition: color 0.3s ease;
       }
       
       .footer-links li a:hover {
-        color: #000000;
+        color: #ffffff;
       }
       
       .footer-links li {
-        color: rgba(0, 0, 0, 0.7);
+        color: rgba(255, 255, 255, 0.8);
       }
       
       .footer-social-subscribe {
@@ -3361,7 +3339,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       .social-link {
-        color: rgba(0, 0, 0, 0.7);
+        color: #888888;
         text-decoration: none;
         transition: color 0.3s ease;
         background: none;
@@ -3374,7 +3352,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       .social-link:hover {
-        color: #000000;
+        color: #ffffff;
       }
       
       /* 确保Font Awesome图标没有背景 */
@@ -3387,8 +3365,78 @@ document.addEventListener('DOMContentLoaded', () => {
         font-size: 1.5rem; /* 放大图标 */
       }
       
+      /* Newsletter样式 */
+      .footer-newsletter-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      
+      /* Newsletter表单样式 */
+      .form-input-group {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        min-width: 280px;
+      }
+      
+      .form-title {
+        color: #1147AB;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0 0 0.5rem;
+        font-family: 'Roboto', sans-serif;
+      }
+      
+      .form-subtitle {
+        color: #666666;
+        font-size: 0.9rem;
+        margin: 0 0 1.5rem;
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.4;
+      }
+      
+      .form-row {
+        margin-bottom: 1.5rem;
+      }
+      
+      .form-row input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-family: 'Roboto', sans-serif;
+      }
+      
+      .form-row input:focus {
+        outline: none;
+        border-color: #1147AB;
+        box-shadow: 0 0 0 2px rgba(17, 71, 171, 0.1);
+      }
+      
+      .form-submit button {
+        background-color: #1147AB;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        font-family: 'Roboto', sans-serif;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      .form-submit button:hover {
+        background-color: #0C388A;
+      }
+      
       .footer-subscribe p {
-        color: rgba(0, 0, 0, 0.7);
+        color: rgba(255, 255, 255, 0.8);
         margin-bottom: 1rem;
         font-size: 0.9rem;
       }
@@ -3408,14 +3456,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       .footer-terms a {
-        color: rgba(0, 0, 0, 0.7);
+        color: rgba(255, 255, 255, 0.8);
         text-decoration: none;
         font-size: 0.9rem;
         transition: color 0.3s ease;
       }
       
       .footer-terms a:hover {
-        color: #000000;
+        color: #ffffff;
       }
       
       @media (max-width: 992px) {
@@ -3428,6 +3476,10 @@ document.addEventListener('DOMContentLoaded', () => {
           grid-template-columns: repeat(2, 1fr);
         }
         
+        .footer-newsletter-section {
+          grid-column: 1 / -1;
+        }
+        
         .footer-bottom {
           flex-direction: column;
           gap: 1rem;
@@ -3438,6 +3490,10 @@ document.addEventListener('DOMContentLoaded', () => {
       @media (max-width: 576px) {
         .footer-links-container {
           grid-template-columns: 1fr;
+        }
+        
+        .footer-newsletter-section {
+          grid-column: 1;
         }
         
         .social-links {
@@ -3510,9 +3566,9 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
 
   // 检查是否为独立页面（如featured-properties.html）
-  // 如果是主页（包含完整的app结构），则添加所有组件
+  // 如果是主页（包含完整的app结构）且app元素存在，则添加所有组件
   // 否则，只确保翻译功能正常工作
-  if (!isStandalonePage) {
+  if (!isStandalonePage && app) {
     // 将所有部分添加到应用中
     app.appendChild(header);
     app.appendChild(heroSection);
