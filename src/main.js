@@ -1724,9 +1724,15 @@ document.addEventListener('DOMContentLoaded', () => {
         <a href="/featured-properties.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Buy</a>
         <a href="/public/communities.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">communities</a>
         <a href="developers.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Developers</a>
+        <a href="/public/off-plan.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Off-Plan</a>
         <a href="/public/services.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Services</a>
         <a href="/about.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">About Us</a>
       </div>
+      <button class="mobile-menu-btn" style="display: none; flex-direction: column; justify-content: space-between; width: 30px; height: 21px; cursor: pointer;">
+        <span class="bar" style="height: 3px; width: 100%; background-color: #333; border-radius: 3px; transition: all 0.3s ease;"></span>
+        <span class="bar" style="height: 3px; width: 100%; background-color: #333; border-radius: 3px; transition: all 0.3s ease;"></span>
+        <span class="bar" style="height: 3px; width: 100%; background-color: #333; border-radius: 3px; transition: all 0.3s ease;"></span>
+      </button>
     </nav>
   `;
   
@@ -1747,8 +1753,30 @@ document.addEventListener('DOMContentLoaded', () => {
       // updatePageLanguage函数已删除
       // 不再支持多语言切换功能，页面将保持默认语言（英语）
   
-  // 确保在导航栏创建后初始化语言切换功能
-  // 删除了语言切换功能初始化调用
+  // 添加汉堡菜单功能
+  function initHamburgerMenu() {
+    const mobileMenuBtn = header.querySelector('.mobile-menu-btn');
+    const navLinks = header.querySelector('.nav-links');
+
+    if (mobileMenuBtn && navLinks) {
+      mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        mobileMenuBtn.classList.toggle('active');
+      });
+
+      // 点击导航链接后关闭菜单
+      const navLinkItems = navLinks.querySelectorAll('a');
+      navLinkItems.forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+          mobileMenuBtn.classList.remove('active');
+        });
+      });
+    }
+  }
+
+  // 初始化汉堡菜单
+  initHamburgerMenu();
   
   // 创建英雄区域
   const heroSection = document.createElement('section');

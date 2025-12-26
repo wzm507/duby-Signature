@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Off-Plan Property Details - Dubai Properties</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #6c63ff;
+        }
+
+        /* Hero 区域 - 图文叠加设计 */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 0.7;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+            opacity: 0.7;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* WhatsApp 按钮 */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* 操作按钮样式 */
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background-color: #6c63ff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #5a52e6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        /* 主要内容区域 */
+        .main-content {
+            background-color: white;
+            position: relative;
+            z-index: 4;
+            margin-top: -100px;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 关键信息卡片 - 悬浮设计 */
+        .key-info-section {
+            padding: 4rem 2rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .key-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .key-info-card {
+            background: white;
+            color: #333;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+
+        .key-info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #6c63ff 0%, #5a52e6 100%);
+        }
+
+        .key-info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .key-info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .key-info-icon {
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .key-info-tag {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #6c63ff;
+            background-color: rgba(108, 99, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+        }
+
+        .key-info-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .key-info-label {
+            font-size: 1rem;
+            opacity: 0.6;
+            font-weight: 300;
+        }
+
+        /* 描述区域 */
+        .description-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .description-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .description-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .description-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .description-image:hover {
+            transform: scale(1.05);
+        }
+
+        .description-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 照片画廊 - 现代化网格设计 */
+        .gallery-section {
+            padding: 2rem;
+            background-color: #f8f9fa;
+        }
+
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* 关于项目区域 */
+        .about-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-30px, 30px) rotate(240deg); }
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* WhatsApp 按钮 */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* 页脚样式 */
+        .footer {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 40px;
+        }
+
+        .footer-simple-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-simple-links span {
+            color: #000000;
+        }
+
+        .footer-simple-links a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-simple-links a:hover {
+            color: #6c63ff;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .footer-terms {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-terms a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-terms a:hover {
+            color: #6c63ff;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .description-content,
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .main-content {
+                margin-top: -50px;
+                border-radius: 10px 10px 0 0;
+            }
+
+            .key-info-section {
+                padding: 2rem 1rem 1rem;
+            }
+
+            .key-info-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .key-info-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .key-info-value {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .description-section,
+            .gallery-section,
+            .about-section {
+                padding: 2rem 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .gallery-item {
+                aspect-ratio: 16/9;
+            }
+
+            .about-content {
+                gap: 2rem;
+            }
+
+            .footer-simple-links {
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .footer-terms {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .key-info-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .key-info-value {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo" style="display: flex; align-items: center;">
+            <a href="/" style="display: flex; align-items: center;">
+                <img src="/img/logo.png" alt="Logo" class="logo-image" style="width: 100px; height: auto;">
+            </a>
+        </div>
+        <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
+            <a href="/featured-properties.html">Buy</a>
+            <a href="/off-plan.html">Off-Plan</a>
+            <a href="/communities.html">communities</a>
+            <a href="/developers.html">Developers</a>
+            <a href="/services.html">Services</a>
+            <a href="/about.html">About Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 - 图文叠加设计 -->
+    <section class="hero-section">
+        <img src="/off/4/image.png" alt="Off-Plan Property" class="hero-background">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">OFF-PLAN PROPERTY</h1>
+            <p class="hero-subtitle">Dubai Real Estate Investment</p>
+        </div>
+    </section>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <!-- 关键信息卡片 -->
+        <section class="key-info-section">
+            <div class="key-info-grid">
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">📊</div>
+                        <div class="key-info-tag">Payment Plan</div>
+                    </div>
+                    <div class="key-info-value">80/20</div>
+                    <div class="key-info-label">Flexible payment options available</div>
+                </div>
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">💲</div>
+                        <div class="key-info-tag">Starting Price</div>
+                    </div>
+                    <div class="key-info-value">AED 1.5M</div>
+                    <div class="key-info-label">Competitive pricing for premium living</div>
+                </div>
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">⏱️</div>
+                        <div class="key-info-tag">Handover in</div>
+                    </div>
+                    <div class="key-info-value">2029 Q1</div>
+                    <div class="key-info-label">Expected completion date</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 描述区域 -->
+        <section class="description-section">
+            <h2 class="section-title">Discover This Off-Plan Property</h2>
+            <div class="description-content">
+                <div class="description-text">
+                    <p>Introducing this exceptional off-plan property in Dubai. This development offers a premium collection of modern apartments with state-of-the-art amenities and breathtaking views.</p>
+                    <br>
+                    <p>Designed for the modern lifestyle, this property features open-plan layouts, premium finishes, and access to world-class facilities. Invest in your future with this exclusive off-plan opportunity.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 照片画廊 -->
+        <section class="gallery-section">
+            <div class="gallery-container">
+                <h2 class="section-title">Photo Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="/off/4/image copy.png" alt="Property Image 1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/off/4/image copy 2.png" alt="Property Image 2">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/off/4/image copy 3.png" alt="Property Image 3">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/off/1/image copy 4.png" alt="Property Image 4">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/off/1/image copy 5.png" alt="Property Image 5">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/off/1/image copy 6.png" alt="Property Image 6">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关于项目区域 -->
+        <section class="about-section">
+            <h2 class="section-title">About This Development</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/off/1/image copy 7.png" alt="Development">
+                </div>
+                <div class="about-text">
+                    <p>This off-plan development is crafted to be a masterpiece of modern living. Located in one of Dubai's most sought-after areas, it offers unparalleled access to amenities, transportation, and entertainment options.</p>
+                    <br>
+                    <p>With a focus on sustainability and luxury, this development sets new standards for modern urban living. Invest today and be part of Dubai's future skyline.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 物业详情 -->
+        <section class="property-details-section" style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">Property Details</h2>
+            <div id="property-details-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;"></div>
+        </section>
+
+        <!-- 设施列表 -->
+        <section class="amenities-section" style="padding: 2rem; background-color: #f8f9fa;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <h2 class="section-title">Amenities</h2>
+                <div id="amenities-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 电话按钮 -->
+    <div class="phone-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+    </div>
+
+    <!-- 电话弹窗 -->
+    <div id="phone-popup" class="phone-popup">
+        <div class="phone-popup-content">
+            <span class="phone-popup-close">&times;</span>
+            <div class="phone-popup-text">+971 52 145 0498</div>
+        </div>
+    </div>
+
+    <style>
+        /* 电话按钮样式 */
+        .phone-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .phone-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* 电话弹窗样式 */
+        .phone-popup {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .phone-popup-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 2rem;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: phonePopupFadeIn 0.3s ease;
+        }
+
+        .phone-popup-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .phone-popup-close:hover,
+        .phone-popup-close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .phone-popup-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin: 1rem 0;
+        }
+
+        @keyframes phonePopupFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+    </style>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- 左侧Logo区域 -->
+            <div class="footer-brand">
+                <div class="footer-logo" style="display: flex; align-items: center; gap: 10px;">
+                    <img src="/img/logo.png" alt="HOUSE Logo" style="height: 40px;">
+                </div>
+            </div>
+            
+            <!-- 中间简化链接区域 -->
+            <div class="footer-simple-links">
+                <span><a href="/featured-properties.html">Buy</a></span>
+                <span>•</span>
+                <span><a href="/communities.html">communities</a></span>
+                <span>•</span>
+                <span><a href="/developers.html">Developers</a></span>
+                <span>•</span>
+                <span><a href="/services.html">Services</a></span>
+                <span>•</span>
+                <span><a href="/about.html">About Us</a></span>
+            </div>
+        </div>
+        
+        <!-- 底部条款区域 -->
+        <div class="footer-bottom">
+            <div class="footer-terms">
+                <a href="#" data-translate="footerPrivacyPolicy">Privacy Policy</a>
+                <a href="#" data-translate="footerTermsOfService">Terms of Service</a>
+                <a href="#" data-translate="footerCookiePolicy">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 照片画廊弹窗 -->
+    <div id="gallery-modal" class="gallery-modal">
+        <div class="gallery-modal-content">
+            <span class="gallery-close">&times;</span>
+            <div class="gallery-modal-image-container">
+                <button class="gallery-prev">&lt;</button>
+                <img id="gallery-modal-img" class="gallery-modal-img" src="" alt="Property Image">
+                <button class="gallery-next">&gt;</button>
+            </div>
+            <div class="gallery-modal-info">
+                <span id="gallery-current-index">1</span> / <span id="gallery-total">1</span>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* 照片画廊弹窗样式 */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .gallery-modal-content {
+            position: relative;
+            margin: 5% auto;
+            padding: 0;
+            width: 90%;
+            max-width: 1200px;
+            background: transparent;
+        }
+
+        .gallery-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .gallery-close:hover,
+        .gallery-close:focus {
+            color: #ccc;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .gallery-modal-image-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .gallery-modal-img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .gallery-prev,
+        .gallery-next {
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            cursor: pointer;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+        }
+
+        .gallery-next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .gallery-prev:hover,
+        .gallery-next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .gallery-modal-info {
+            text-align: center;
+            color: #f2f2f2;
+            padding: 10px 0;
+            font-size: 18px;
+        }
+
+        /* 添加平滑过渡效果 */
+        .gallery-modal-img {
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0)}
+            to {transform:scale(1)}
+        }
+    </style>
+
+    <script>
+        // 页面加载时，初始化页面内容
+        document.addEventListener('DOMContentLoaded', function() {
+            // 存储当前页面的图片数组
+            let currentImages = [];
+            let currentImageIndex = 0;
+            
+            // 更新页面内容为 Bay Residences
+            
+            // 更新页面标题
+            document.title = 'Apartment for Sale in Bay Residences, Dubai Islands - AED 7,745,084';
+            
+            // 更新Hero区域
+            document.querySelector('.hero-background').src = '/off/4/image.png';
+            document.querySelector('.hero-title').textContent = 'APARTMENT FOR SALE IN BAY RESIDENCES, DUBAI ISLANDS';
+            document.querySelector('.hero-subtitle').textContent = 'Prime Location | Sea View | Huge layout';
+            
+            // 更新关键信息卡片
+            const keyInfoCards = document.querySelectorAll('.key-info-card');
+            keyInfoCards[0].querySelector('.key-info-value').textContent = 'AED 7,745,084';
+            keyInfoCards[0].querySelector('.key-info-label').textContent = 'Starting from';
+            keyInfoCards[1].querySelector('.key-info-value').textContent = '3 Bed + Maid';
+            keyInfoCards[1].querySelector('.key-info-label').textContent = '2,316 sqft / 215 sqm';
+            keyInfoCards[2].querySelector('.key-info-value').textContent = '27,874 AED/month';
+            keyInfoCards[2].querySelector('.key-info-label').textContent = 'Sea View | Prime Location';
+            
+            // 更新描述区域
+            document.querySelector('.description-section h2').textContent = 'Discover Luxury Living at Bay Residences';
+            document.querySelector('.description-text').innerHTML = 'AED 7,745,084<br>Own this from just 27,874 AED/month<br>Prime Location | Sea View | Huge layout<br><br>Apartment for sale in Bay Residences, Dubai Islands<br><br>Signature Reality Homes, an award-winning real estate company and an alliance with EMAAR, is proud to offer this exceptional 3-bedroom apartment in Bay Residences, a prestigious waterfront community offering the perfect balance of luxury and tranquility.<br><br>Spanning 2,316 sqft, this thoughtfully designed residence features a spacious open-plan layout, seamlessly blending modern interiors with breathtaking sea views. The apartment includes three generously sized bedrooms, four elegant bathrooms, a maid\'s room, and a private terrace, ensuring a lifestyle of comfort and convenience. Additional features such as a powder room and laundry room enhance everyday living.<br><br>Bay Residences offers an exclusive coastal lifestyle, with beautifully landscaped gardens and parks, along with outdoor dining areas designed for social gatherings and relaxation.';
+            
+            // 更新关于区域
+            document.querySelector('.about-section h2').textContent = 'About Bay Residences';
+            document.querySelector('.about-text').innerHTML = 'Nestled in one of Dubai\'s most sought-after waterfront communities, Bay Residences redefines elegance and coastal living. With breathtaking views, modern design, and world-class amenities, it is the perfect retreat for those seeking a serene yet luxurious lifestyle.<br><br>This premium development offers an exclusive coastal lifestyle with beautifully landscaped gardens and parks, along with outdoor dining areas designed for social gatherings and relaxation. The residence features thoughtfully designed layouts that maximize space and natural light, with high-quality finishes throughout.<br><br>Prime Location Benefits:<br>- Exclusive community with resort-style living<br>- Close to retail, dining & entertainment hubs<br>- Seamless access to key Dubai destinations<br>- Breathtaking sea views<br>- State-of-the-art fitness center';
+            document.querySelector('.about-image img').src = '/off/4/image copy 7.png';
+            
+            // 更新照片画廊
+            const galleryImages = document.querySelectorAll('.gallery-item img');
+            // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+            currentImages = [];
+            // 添加第一张图片
+            currentImages.push('/off/4/image.png');
+            // 添加从image copy.png到image copy 14.png的图片
+            for (let i = 1; i <= 14; i++) {
+                currentImages.push(`/off/4/image copy${i === 1 ? '' : ` ${i}`}.png`);
+            }
+            // 更新页面上显示的6个图片
+            const displayImages = [1, 2, 3, 4, 5, 6]; // 使用第2到第7张图片（索引1到6）
+            for (let i = 0; i < galleryImages.length; i++) {
+                galleryImages[i].src = currentImages[displayImages[i]];
+            }
+            
+            // 更新物业详情
+            const propertyDetailsContainer = document.getElementById('property-details-container');
+            propertyDetailsContainer.innerHTML = `
+                <div class="property-detail-item">
+                    <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                    <p style="color: #666;">Apartment</p>
+                </div>
+                <div class="property-detail-item">
+                    <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                    <p style="color: #666;">2,316 sqft / 215 sqm</p>
+                </div>
+                <div class="property-detail-item">
+                    <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                    <p style="color: #666;">3 + Maid</p>
+                </div>
+                <div class="property-detail-item">
+                    <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                    <p style="color: #666;">4</p>
+                </div>
+                <div class="property-detail-item">
+                    <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">View</h3>
+                    <p style="color: #666;">Sea View</p>
+                </div>
+            `;
+            
+            // 更新设施列表
+            const amenitiesContainer = document.getElementById('amenities-container');
+            const amenities = [
+                { icon: '👩‍🦰', name: 'Maids Room' },
+                { icon: '🌅', name: 'Balcony' },
+                { icon: '🏊', name: 'Shared Pool' },
+                { icon: '💆', name: 'Shared Spa' },
+                { icon: '🔒', name: 'Security' },
+                { icon: '🚗', name: 'Covered Parking' },
+                { icon: '📦', name: 'Built in Wardrobes' },
+                { icon: '👗', name: 'Walk-in Closet' },
+                { icon: '🌊', name: 'View of Water' },
+                { icon: '🏛️', name: 'View of Landmark' },
+                { icon: '🐶', name: 'Pets Allowed' },
+                { icon: '💪', name: 'Shared Gym' },
+                { icon: '👶', name: 'Children\'s Pool' },
+                { icon: '🌳', name: 'Lush Gardens & Parks' }
+            ];
+            
+            amenitiesContainer.innerHTML = amenities.map(amenity => `
+                <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                    <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                    <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                </div>
+            `).join('');
+            
+            // 设置画廊弹窗的总图片数
+            const totalSpan = document.getElementById('gallery-total');
+            totalSpan.textContent = currentImages.length;
+            
+            // 点击图片打开弹窗
+            document.querySelectorAll('.gallery-item').forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    const modal = document.getElementById('gallery-modal');
+                    const modalImg = document.getElementById('gallery-modal-img');
+                    const currentIndexSpan = document.getElementById('gallery-current-index');
+                    
+                    modal.style.display = 'block';
+                    currentImageIndex = index;
+                    modalImg.src = currentImages[index];
+                    currentIndexSpan.textContent = currentImageIndex + 1;
+                });
+            });
+            
+            // 关闭弹窗
+            const closeBtn = document.querySelector('.gallery-close');
+            closeBtn.addEventListener('click', () => {
+                const modal = document.getElementById('gallery-modal');
+                modal.style.display = 'none';
+            });
+            
+            // 点击弹窗外部关闭弹窗
+            window.addEventListener('click', (event) => {
+                const modal = document.getElementById('gallery-modal');
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // 上一张图片
+            const prevBtn = document.querySelector('.gallery-prev');
+            prevBtn.addEventListener('click', () => {
+                const modalImg = document.getElementById('gallery-modal-img');
+                const currentIndexSpan = document.getElementById('gallery-current-index');
+                
+                currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+                modalImg.src = currentImages[currentImageIndex];
+                currentIndexSpan.textContent = currentImageIndex + 1;
+            });
+            
+            // 下一张图片
+            const nextBtn = document.querySelector('.gallery-next');
+            nextBtn.addEventListener('click', () => {
+                const modalImg = document.getElementById('gallery-modal-img');
+                const currentIndexSpan = document.getElementById('gallery-current-index');
+                
+                currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+                modalImg.src = currentImages[currentImageIndex];
+                currentIndexSpan.textContent = currentImageIndex + 1;
+            });
+        });
+    </script>
+</body>
+</html>

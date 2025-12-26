@@ -472,6 +472,23 @@
       padding: 0;
       height: auto;
       margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    
+    /* 成员联系信息样式 */
+    .team-member-contact {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary-color);
+      font-size: 0.9rem;
+    }
+    
+    .team-member-contact i {
+      font-weight: 300;
     }
 
     /* 描述文本样式 - 所有成员 */
@@ -799,6 +816,14 @@
       transform: scale(1.05);
     }
 
+    /* fadeInUp动画定义 */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     /* 响应式设计 */
     @media (max-width: 768px) {
       .about-awards {
@@ -843,6 +868,7 @@
             </div>
             <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
                 <a href="/featured-properties.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Buy</a>
+                <a href="/off-plan.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Off-Plan</a>
                 <a href="/communities.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">communities</a>
                 <a href="/developers.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Developers</a>
                 <a href="/services.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Services</a>
@@ -953,8 +979,16 @@
           </div>
           <div class="team-member-text">
             <div class="team-member-info">
-              <h3>Ran Deng - 69453</h3>
-              <p>Real Estate Agent</p>
+              <div>
+                <h3>Ran Deng - 69453</h3>
+                <p>Real Estate Agent</p>
+              </div>
+              <div class="team-member-contact">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>+971 50 588 6231</span>
+              </div>
             </div>
             <p class="team-member-description">Originally from China, Ran Deng is a passionate Real Estate Agent known for her friendly approach and ability to build trust with clients. Her hard work, reliability, and focused mindset ensure exceptional service and excellent outcomes for every client. Specializing in both Off-Plan and Secondary properties, Ran has deep knowledge of property types, community features, and market prices. She provides valuable insights and professional guidance, helping clients make confident decisions. Her dedication to quick, efficient results and client satisfaction makes her a respected advisor in the real estate field.</p>
           </div>
@@ -962,8 +996,16 @@
         <div class="team-member">
           <div class="team-member-text">
             <div class="team-member-info">
-              <h3>Maria</h3>
-              <p>Real Estate Professional</p>
+              <div>
+                <h3>Maria</h3>
+                <p>Real Estate Professional</p>
+              </div>
+              <div class="team-member-contact">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>+971 58 570 2554</span>
+              </div>
             </div>
             <p class="team-member-description">Originally from Denmark, Maria is a dedicated real estate expert with a genuine passion for helping clients find their perfect property. Known for her warm personality and strong client relationships, she builds trust through honesty, commitment, and results-driven service. Specializing in both Off-Plan and Secondary Market properties, Maria delivers exceptional guidance with deep market knowledge. Her attention to detail and efficiency ensure clients receive personalized support while making confident, well-informed decisions. Whether assisting with new developments or resale properties, she consistently exceeds expectations.</p>
           </div>
@@ -977,8 +1019,16 @@
           </div>
           <div class="team-member-text">
             <div class="team-member-info">
-              <h3>Kevin Hua</h3>
-              <p>Property Advisor</p>
+              <div>
+                <h3>Kevin Hua</h3>
+                <p>Property Advisor</p>
+              </div>
+              <div class="team-member-contact">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>+971 54 398 9555</span>
+              </div>
             </div>
             <p class="team-member-description">Originally from China, Kevin Hua is a dedicated Property Consultant in Dubai with a strong passion for real estate and a results-driven mindset. Known for his professionalism, integrity, and clear communication, he helps clients feel confident throughout their property journey. Specializing in both Off-Plan and Secondary Market transactions, Kevin has deep knowledge of apartments, villas, and high-growth investment communities. His analytical approach allows him to assess market trends, rental performance, and appreciation potential, providing data-driven advice focused on long-term value and strategic asset planning.</p>
           </div>
@@ -986,8 +1036,16 @@
         <div class="team-member">
           <div class="team-member-text">
             <div class="team-member-info">
-              <h3>Tingqing Liu</h3>
-              <p>Real Estate Agent</p>
+              <div>
+                <h3>Tingqing Liu</h3>
+                <p>Real Estate Agent</p>
+              </div>
+              <div class="team-member-contact">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>+971 56 959 8989</span>
+              </div>
             </div>
             <p class="team-member-description">Tingqing Liu, originally from China, brings a strong passion for real estate and a commitment to excellence to his role as a dedicated Real Estate Agent. His friendly personality and ability to build genuine connections with clients create a comfortable and trusting environment from the very first interaction. Known for his hard work, honesty, and determination, Tingqing is focused on delivering exceptional service and achieving the best possible results for his clients. Specializing in both Off-Plan and Secondary properties, Tingqing has a solid understanding of market trends, community profiles, and pricing strategies. His expertise allows him to provide valuable insights and clear guidance, ensuring clients make informed and confident decisions throughout their real estate journey. Tingqing takes pride in his efficient and results-driven approach, always striving to exceed expectations and maintain the highest level of client satisfaction. His combination of strong market knowledge and a personal touch makes him a trusted and respected advisor. Whether supporting clients with new developments or established properties, Tingqing Liu's dedication ensures a smooth experience and successful outcomes in every transaction.</p>
           </div>
@@ -1002,8 +1060,16 @@
           </div>
           <div class="team-member-text">
             <div class="team-member-info">
-              <h3>Irfan Pervaiz</h3>
-              <p>Real Estate Professional</p>
+              <div>
+                <h3>Irfan Pervaiz</h3>
+                <p>Real Estate Professional</p>
+              </div>
+              <div class="team-member-contact">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>+971 52 366 6819</span>
+              </div>
             </div>
             <p class="team-member-description">Irfan Pervaiz, originally from Pakistan, is a highly skilled and experienced real estate professional with several years of expertise across Dubai’s dynamic property market, specializing in residential, commercial, and investment properties. His in-depth knowledge of market trends, property management, and client relations allows him to provide tailored solutions that meet the unique goals of each client. Fluent in English, Urdu, and Hindi, Irfan offers a personalized and seamless experience, ensuring clear communication and complete understanding throughout every stage of the transaction. Known for his professionalism, integrity, and client-focused approach, he consistently delivers exceptional service that empowers clients to make informed decisions. With strong connections to top developers such as Emaar, DAMAC, and Nakheel, Irfan’s expertise spans Off-Plan and Secondary markets alike, helping buyers, sellers, and investors navigate Dubai’s ever-evolving real estate landscape. Whether guiding clients to their dream home or securing high-yield investments, Irfan Pervaiz ensures a smooth, confident, and successful real estate journey.</p>
           </div>
@@ -1012,8 +1078,16 @@
         <div class="team-member">
           <div class="team-member-text">
             <div class="team-member-info">
-              <h3>Zhong Yanfeng</h3>
-              <p>Real Estate Agent</p>
+              <div>
+                <h3>Zhong Yanfeng</h3>
+                <p>Real Estate Agent</p>
+              </div>
+              <div class="team-member-contact">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>+971 55 678 9012</span>
+              </div>
             </div>
             <p class="team-member-description">Zhong Yanfeng, originally from China, brings a deep-seated passion for real estate to her role as a dedicated Real Estate Agent. Her personable nature and ability to build strong relationships with clients instantly put them at ease, fostering an environment of trust and open communication. Known for her hard work, trustworthiness, and determination, Zhong is committed to delivering exceptional service and results. Specializing in both Off-Plan and Secondary properties, she has a comprehensive understanding of various property types and market prices. Her expertise allows her to provide valuable insights and guidance, ensuring that clients make well-informed decisions in their real estate ventures. Zhong takes pride in her ability to achieve results quickly and efficiently, reflecting her dedication to client satisfaction. Her combination of professional knowledge and personal touch makes her a trusted advisor in the real estate market. Whether navigating new developments or the secondary market, Zhong Yanfeng’s commitment to excellence ensures that clients receive outstanding service and achieve their property goals.</p>
           </div>
@@ -1028,8 +1102,16 @@
           </div>
           <div class="team-member-text">
             <div class="team-member-info">
-              <h3>Saba Aamir</h3>
-              <p>Real Estate Professional</p>
+              <div>
+                <h3>Saba Aamir</h3>
+                <p>Real Estate Professional</p>
+              </div>
+              <div class="team-member-contact">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>+971 50 480 3907</span>
+              </div>
             </div>
             <p class="team-member-description">Saba Aamir, originally from Pakistan, brings several years of experience in Dubai’s real estate market, specializing in residential, commercial, and luxury properties. Her strong market knowledge, analytical approach, and refined negotiation skills enable her to guide clients toward the best opportunities, whether they are searching for a dream home or a high-potential investment. Fluent in both English and Urdu, Saba offers a personalized and seamless experience to clients from diverse backgrounds, ensuring clear communication and complete understanding throughout every step of the transaction. Known for her professionalism, dedication, and client-focused mindset, she consistently delivers exceptional service tailored to each client’s unique goals. Saba’s expertise across multiple property segments, combined with her commitment to building long-term relationships, makes her a trusted advisor in Dubai’s dynamic real estate market. Whether assisting buyers, sellers, or investors, she ensures a smooth, informed, and confident real estate journey.</p>
           </div>
@@ -1038,8 +1120,16 @@
         <div class="team-member">
           <div class="team-member-text">
             <div class="team-member-info">
-              <h3>Duleeshan Panandura Aryasinghage Don</h3>
-              <p>Senior Real Estate Specialist</p>
+              <div>
+                <h3>Duleeshan Panandura Aryasinghage Don</h3>
+                <p>Senior Real Estate Specialist</p>
+              </div>
+              <div class="team-member-contact">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>+971 56 894 6747</span>
+              </div>
             </div>
             <p class="team-member-description">Duleeshan Panandura Aryasinghage Don, originally from Sri Lanka, is a Senior Real Estate Specialist in Dubai with over 11 years of experience living and working in the city’s dynamic property market. His long-standing journey in real estate has fueled his passion for the industry and provided him with essential knowledge, deep insight, and a strong understanding of Dubai’s ever-evolving market trends. Duleeshan finds immense fulfillment in helping people secure the home of their dreams, considering it the most rewarding part of his career. He is equally committed to guiding investors who are seeking strong rental yields or long-term capital growth, ensuring they receive the right advice to maximize their returns. Known for his professionalism, dedication, and honest guidance, Duleeshan also supports clients by managing and taking care of their property portfolios, offering continuous market education and timely updates. His expertise, combined with a client-first mindset, makes him a trusted advisor for homeowners and investors looking for clarity, confidence, and exceptional service in Dubai’s real estate market.</p>
           </div>
@@ -1054,8 +1144,16 @@
           </div>
           <div class="team-member-text">
             <div class="team-member-info">
-              <h3>Muhammad Rehan</h3>
-              <p>Real Estate Professional</p>
+              <div>
+                <h3>Muhammad Rehan</h3>
+                <p>Real Estate Professional</p>
+              </div>
+              <div class="team-member-contact">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>+971 55 917 4210</span>
+              </div>
             </div>
             <p class="team-member-description">Muhammad Rehan, originally from India, brings several years of experience in Dubai’s dynamic real estate market, specializing in residential, commercial, and investment properties. His deep market knowledge, analytical approach, and strong understanding of property regulations enable him to guide clients toward the best opportunities, whether they are looking for their dream home or a strategic investment. Fluent in English, Hindi, and Urdu, Rehan offers a personalized and seamless experience to clients, ensuring clear communication and complete understanding throughout every step of the transaction. Known for his professionalism, dedication, and client-focused mindset, he consistently delivers exceptional service tailored to each client’s unique goals. Rehan’s expertise across multiple property segments, combined with his commitment to building long-term relationships, makes him a trusted advisor in Dubai’s competitive real estate market. Whether assisting buyers, sellers, or investors, he ensures a smooth, informed, and confident real estate journey.</p>
           </div>
@@ -1064,8 +1162,16 @@
         <div class="team-member">
           <div class="team-member-text">
             <div class="team-member-info">
-              <h3>Aiperi Nurlanbekova</h3>
-              <p>Real Estate Professional</p>
+              <div>
+                <h3>Aiperi Nurlanbekova</h3>
+                <p>Real Estate Professional</p>
+              </div>
+              <div class="team-member-contact">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>+971 55 282 1976</span>
+              </div>
             </div>
             <p class="team-member-description">Aiperi Nurlanbekova is an experienced real estate professional specializing in both Off-Plan and Secondary markets, known for her integrity, market insight, and strong relationship-building skills. With a deep understanding of market trends, project developments, and negotiation strategies, she provides tailored guidance to first-time buyers, seasoned investors, and families seeking their ideal home. Aiperi focuses on understanding each client’s unique goals, ensuring they receive transparent, committed, and results-driven support throughout their real estate journey. Her clients value her personalized approach, genuine communication, and ability to deliver long-term value through informed decisions. With a reputation built on trust and consistency, Aiperi Nurlanbekova offers a seamless, professional, and client-focused real estate experience in Dubai’s dynamic property market.</p>
           </div>
@@ -1080,8 +1186,16 @@
           </div>
           <div class="team-member-text">
             <div class="team-member-info">
-              <h3>Sherry Liu</h3>
-              <p>Senior Real Estate Advisor</p>
+              <div>
+                <h3>Sherry Liu</h3>
+                <p>Senior Real Estate Advisor</p>
+              </div>
+              <div class="team-member-contact">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>+971 58 596 1598</span>
+              </div>
             </div>
             <p class="team-member-description">Sherry Liu brings fifteen years of extensive experience in Dubai’s real estate market, with deep involvement across both residential and commercial sectors, giving her a comprehensive understanding of the UAE’s property dynamics and policy direction. Leveraging her on-the-ground expertise and strong insight into community development, she provides clients with reliable evaluations on investment value, appreciation potential, and lifestyle quality. Backed by a leading real estate platform and a highly experienced professional team, Sherry uses systematic data analysis, rigorous project selection standards, and broad market resources to identify the strongest opportunities for her clients. Whether assisting with personal residence planning or global portfolio allocation, she maintains a forward-looking approach and delivers high-end, customized service. Her strategic mindset, market knowledge, and commitment to excellence make Sherry Liu a trusted advisor who helps clients position themselves confidently within Dubai’s rapidly evolving market.</p>
           </div>
