@@ -132,6 +132,38 @@ style.textContent = `
       opacity: 0;
     }
   }
+  
+  /* 客户评价卡片滚动条样式 */
+  .testimonial-text::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .testimonial-text::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .testimonial-text::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
+  
+  /* 默认隐藏滚动条，hover时显示 */
+  .testimonial-text {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+  
+  .testimonial-text::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+  
+  .testimonial-card:hover .testimonial-text {
+    scrollbar-color: #ccc transparent;
+  }
+  
+  .testimonial-card:hover .testimonial-text::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+  }
 `;
 document.head.appendChild(style);
 
@@ -1232,6 +1264,243 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
+  // 创建并初始化WhatsApp弹窗
+  function createWhatsAppModal() {
+    if (document.getElementById('whatsapp-modal')) {
+      return;
+    }
+    
+    const whatsappModal = document.createElement('div');
+    whatsappModal.id = 'whatsapp-modal';
+    whatsappModal.className = 'whatsapp-modal';
+    whatsappModal.style.cssText = `
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(37, 211, 102, 0.15);
+      backdrop-filter: blur(15px);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    `;
+    
+    whatsappModal.innerHTML = `
+      <div class="whatsapp-modal-content">
+        <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(37, 211, 102, 0.05)); border-radius: 50%; z-index: 0;"></div>
+        <div style="position: absolute; bottom: -80px; left: -80px; width: 200px; height: 200px; background: linear-gradient(135deg, rgba(37, 211, 102, 0.15), rgba(37, 211, 102, 0.08)); border-radius: 50%; z-index: 0;"></div>
+        
+        <div style="margin-bottom: 2rem; position: relative; z-index: 1;">
+          <div style="display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: linear-gradient(135deg, #25D366, #128C7E); border-radius: 50%; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3); margin: 0 auto 1.5rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </div>
+          <h3 style="font-size: 2rem; font-weight: 800; color: #1a1a2e; margin: 0 0 0.75rem 0; letter-spacing: -0.02em; font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.2;">WhatsApp</h3>
+          <p style="font-size: 1rem; color: #666; margin: 0; line-height: 1.6; max-width: 300px; margin: 0 auto;">Chat with us on WhatsApp for quick response</p>
+        </div>
+        <div style="position: relative; z-index: 1; margin-bottom: 2.5rem;">
+          <p id="whatsapp-number" class="animated-phone" style="font-size: 2.5rem; font-weight: 900; color: #25D366; margin: 0; letter-spacing: 0.05em; font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.2; text-shadow: 0 4px 8px rgba(37, 211, 102, 0.2); background: linear-gradient(135deg, #25D366, #128C7E); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">+971 50 123 4567</p>
+        </div>
+        <div style="display: flex; gap: 1.25rem; justify-content: center; margin-bottom: 0.5rem; flex-wrap: wrap; position: relative; z-index: 1;">
+          <button id="copy-whatsapp" class="copy-whatsapp-btn" style="padding: 1rem 2.25rem; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border: none; border-radius: 16px; cursor: pointer; font-size: 1.05rem; font-weight: 700; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35); text-transform: uppercase; letter-spacing: 0.05em; position: relative; overflow: hidden;">
+            <span style="position: relative; z-index: 1;">Copy</span>
+            <span style="position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: rgba(255, 255, 255, 0.2); transform: translate(-50%, -50%); transition: width 0.6s, height 0.6s;"></span>
+          </button>
+          <a id="open-whatsapp" href="https://wa.me/971501234567" target="_blank" style="padding: 1rem 2.25rem; background: white; color: #25D366; border: 2px solid #25D366; border-radius: 16px; cursor: pointer; font-size: 1.05rem; font-weight: 700; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-transform: uppercase; letter-spacing: 0.05em; position: relative; overflow: hidden; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            <span style="position: relative; z-index: 1;">Open</span>
+          </a>
+          <button id="close-whatsapp-modal" class="close-whatsapp-modal" style="padding: 1rem 2.25rem; background: white; color: #333; border: 2px solid #e0e0e0; border-radius: 16px; cursor: pointer; font-size: 1.05rem; font-weight: 700; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-transform: uppercase; letter-spacing: 0.05em; position: relative; overflow: hidden;">
+            <span style="position: relative; z-index: 1;">Close</span>
+            <span style="position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: rgba(0, 0, 0, 0.05); transform: translate(-50%, -50%); transition: width 0.6s, height 0.6s;"></span>
+          </button>
+        </div>
+        <div style="position: relative; z-index: 1;">
+          <div id="copy-whatsapp-feedback" class="copy-feedback" style="font-size: 1rem; color: #22c55e; margin: 0.75rem 0 0; opacity: 0; transform: translateY(10px); transition: all 0.4s ease; font-weight: 700; font-style: italic; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#22c55e" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+            Copied to clipboard!
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(whatsappModal);
+    
+    const whatsappModalStyle = document.createElement('style');
+    whatsappModalStyle.textContent = `
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      
+      @keyframes numberSlide {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      
+      .whatsapp-modal-content {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 30px;
+        text-align: center;
+        box-shadow: 0 25px 70px rgba(37, 211, 102, 0.25);
+        border: none;
+        min-width: 320px;
+        max-width: 420px;
+        animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .copy-whatsapp-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+      }
+      
+      .copy-whatsapp-btn:active {
+        transform: translateY(0);
+      }
+      
+      .copy-whatsapp-btn:hover span:last-child {
+        width: 300px;
+        height: 300px;
+      }
+      
+      .close-whatsapp-modal:hover {
+        border-color: #25D366;
+        color: #25D366;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+      }
+      
+      .close-whatsapp-modal:active {
+        transform: translateY(0);
+      }
+      
+      .close-whatsapp-modal:hover span:last-child {
+        width: 300px;
+        height: 300px;
+      }
+      
+      #open-whatsapp:hover {
+        background: #25D366;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      }
+      
+      @media (max-width: 480px) {
+        .whatsapp-modal-content {
+          padding: 2rem 1.5rem;
+          min-width: 280px;
+          margin: 1rem;
+        }
+        
+        #whatsapp-number {
+          font-size: 2rem;
+        }
+        
+        .copy-whatsapp-btn, .close-whatsapp-modal, #open-whatsapp {
+          padding: 0.875rem 1.5rem;
+          font-size: 0.95rem;
+        }
+        
+        .whatsapp-modal-content > div:nth-child(4) {
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+      }
+    `;
+    document.head.appendChild(whatsappModalStyle);
+    
+    const copyWhatsappBtn = document.getElementById('copy-whatsapp');
+    const whatsappNumber = document.getElementById('whatsapp-number');
+    const copyFeedback = document.getElementById('copy-whatsapp-feedback');
+    
+    if (copyWhatsappBtn && whatsappNumber && copyFeedback) {
+      copyWhatsappBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(whatsappNumber.textContent.replace(/\s/g, '')).then(() => {
+          copyFeedback.style.opacity = '1';
+          copyFeedback.style.transform = 'translateY(0)';
+          
+          setTimeout(() => {
+            copyFeedback.style.opacity = '0';
+            copyFeedback.style.transform = 'translateY(10px)';
+          }, 3000);
+        }).catch(err => {
+          console.error('Failed to copy WhatsApp number:', err);
+        });
+      });
+    }
+    
+    const closeModalBtn = document.getElementById('close-whatsapp-modal');
+    if (closeModalBtn) {
+      closeModalBtn.addEventListener('click', () => {
+        whatsappModal.style.display = 'none';
+      });
+    }
+    
+    whatsappModal.addEventListener('click', (e) => {
+      if (e.target === whatsappModal) {
+        whatsappModal.style.display = 'none';
+      }
+    });
+  }
+  
+  // 为所有WhatsApp按钮添加点击事件
+  function initWhatsAppButtons() {
+    const existingModal = document.getElementById('whatsapp-modal');
+    
+    const allButtons = document.querySelectorAll('a');
+    const filteredWhatsAppButtons = Array.from(allButtons).filter(button => {
+      const text = button.textContent.toLowerCase();
+      return text.includes('whatsapp');
+    });
+    
+    filteredWhatsAppButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const href = button.getAttribute('href');
+        if (href && href.startsWith('https://wa.me')) {
+          e.preventDefault();
+          
+          if (existingModal) {
+            existingModal.style.display = 'flex';
+          } else {
+            createWhatsAppModal();
+            document.getElementById('whatsapp-modal').style.display = 'flex';
+          }
+        }
+      });
+    });
+  }
+  
+  // 在页面加载完成后初始化WhatsApp按钮
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWhatsAppButtons);
+  } else {
+    initWhatsAppButtons();
+  }
+  
   // 为所有Call Us按钮添加点击事件
   function initCallUsButtons() {
     // 检查页面中是否已经存在phone-modal元素（来自featured-properties.html）
@@ -2107,7 +2376,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <hr style="border: none; border-top: 1px dashed #ddd; margin-bottom: 0.5rem;" />
                     <div style="display: flex; gap: 0.3rem; margin: 0 0.5rem;">
                         <button class="call-us-btn" style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">Call Us</button>
-                        <a href="https://wa.me/971501234567" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.3rem; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; text-decoration: none; transition: all 0.3s ease;">
+                        <a href="https://wa.me/971501234567" target="_blank" class="whatsapp-btn" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.3rem; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; text-decoration: none; transition: all 0.3s ease;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#25D366">
                                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                             </svg>
@@ -2283,7 +2552,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <hr style="border: none; border-top: 1px dashed #ddd; margin-bottom: 0.5rem;" />
                     <div style="display: flex; gap: 0.3rem; margin: 0 0.5rem;">
                         <button style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">Call Us</button>
-                        <button style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">View Details</button>
+                        <a href="https://wa.me/971501234567" target="_blank" class="whatsapp-btn" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.3rem; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; text-decoration: none; transition: all 0.3s ease;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#25D366">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
                     </div>
                 </div>
             </div>
@@ -3614,8 +3888,9 @@ document.addEventListener('DOMContentLoaded', () => {
     app.appendChild(companyIntroSection);
     app.appendChild(propertiesSection);
     
-    // 房产卡片添加完成后，重新初始化Call Us按钮
+    // 房产卡片添加完成后，重新初始化Call Us按钮和WhatsApp按钮
     initCallUsButtons();
+    initWhatsAppButtons();
     
     app.appendChild(aboutSection);
     app.appendChild(statsSection);
@@ -3637,36 +3912,54 @@ document.addEventListener('DOMContentLoaded', () => {
           <p style="font-size: 16px; color: #555; max-width: 800px; margin: 0 auto; line-height: 1.6;">Discover how Signature Homes Properties has helped clients achieve their real estate goals. From finding the perfect home to making smart investments, our client's stories reflect our commitment to excellence and personalised service.</p>
         </div>
         
-        <div class="testimonials-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; justify-items: center;">
+        <div class="testimonials-grid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; justify-items: center;">
           <!-- 客户评价卡片 1 -->
-          <div class="testimonial-card" style="background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; padding: 30px; width: 100%; max-width: 280px; height: 280px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box;">
-            <p style="font-style: italic; color: #333; line-height: 1.6; margin-bottom: 20px;">"Genuinely the best Real Estate company in Dubai! I was impressed from the level of professionalism and the amount of diversity of products."</p>
-            <div style="text-align: center;">
-              <p style="font-weight: bold; color: #0a2463;">Mohamed Ouerghi</p>
+          <div class="testimonial-card" style="background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; padding: 30px; width: 100%; max-width: 280px; height: 280px; display: flex; flex-direction: column; box-sizing: border-box;">
+            <div class="testimonial-text" style="flex: 1; overflow-y: auto; margin-bottom: 15px;">
+              <p style="font-style: italic; color: #333; line-height: 1.6;">"I've been looking for property for a while and signature homes manage to get me the exact property I was looking for thank you guys you've been very helpful 👍🏾"</p>
+            </div>
+            <div style="text-align: center; flex-shrink: 0;">
+              <p style="font-weight: bold; color: #0a2463;">Malakha Hassan</p>
             </div>
           </div>
           
           <!-- 客户评价卡片 2 -->
-          <div class="testimonial-card" style="background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; padding: 30px; width: 100%; max-width: 280px; height: 280px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box;">
-            <p style="font-style: italic; color: #333; line-height: 1.6; margin-bottom: 20px;">"If you are looking for one complete full house of activities towards your investments that you can trust then D&B is the place to go."</p>
-            <div style="text-align: center;">
-              <p style="font-weight: bold; color: #0a2463;">Miss Lizzy Njoga</p>
+          <div class="testimonial-card" style="background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; padding: 30px; width: 100%; max-width: 280px; height: 280px; display: flex; flex-direction: column; box-sizing: border-box;">
+            <div class="testimonial-text" style="flex: 1; overflow-y: auto; margin-bottom: 15px;">
+              <p style="font-style: italic; color: #333; line-height: 1.6;">"I have had the pleasure of collaborating with Maria on several clients / listings and it's been an absolute pleasure! Trustworthy, honest and always quick to respond - I hope to do business with Maria for many years in the future"</p>
+            </div>
+            <div style="text-align: center; flex-shrink: 0;">
+              <p style="font-weight: bold; color: #0a2463;">Henrik Lundkvist</p>
             </div>
           </div>
           
           <!-- 客户评价卡片 3 -->
-          <div class="testimonial-card" style="background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; padding: 30px; width: 100%; max-width: 280px; height: 280px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box;">
-            <p style="font-style: italic; color: #333; line-height: 1.6; margin-bottom: 20px;">"I've been a D & B client for a long time, and I can state that this organization is fantastic at dealing with customers. I recommend your firm to my friends."</p>
-            <div style="text-align: center;">
-              <p style="font-weight: bold; color: #0a2463;">Adriane Ewican</p>
+          <div class="testimonial-card" style="background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; padding: 30px; width: 100%; max-width: 280px; height: 280px; display: flex; flex-direction: column; box-sizing: border-box;">
+            <div class="testimonial-text" style="flex: 1; overflow-y: auto; margin-bottom: 15px;">
+              <p style="font-style: italic; color: #333; line-height: 1.6;">"I had an amazing experience with Signature Homes Real Estate, People are very professional and available all the time for you and they are friendly on top of that. The whole process was very smooth and we did not have to worry about any procedure: they looked after every single detail. If you need to purchase or rent a property in Dubai, Signature Homes is definitely the real estate broker you go for!"</p>
+            </div>
+            <div style="text-align: center; flex-shrink: 0;">
+              <p style="font-weight: bold; color: #0a2463;">Jenny Z</p>
             </div>
           </div>
           
           <!-- 客户评价卡片 4 -->
-          <div class="testimonial-card" style="background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; padding: 30px; width: 100%; max-width: 280px; height: 280px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box;">
-            <p style="font-style: italic; color: #333; line-height: 1.6; margin-bottom: 20px;">"D&B Properties was certainly helpful while I was looking for a new place. I can confirm that they deliver excellent service to their consumers."</p>
-            <div style="text-align: center;">
-              <p style="font-weight: bold; color: #0a2463;">Wynona Mae Yao</p>
+          <div class="testimonial-card" style="background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; padding: 30px; width: 100%; max-width: 280px; height: 280px; display: flex; flex-direction: column; box-sizing: border-box;">
+            <div class="testimonial-text" style="flex: 1; overflow-y: auto; margin-bottom: 15px;">
+              <p style="font-style: italic; color: #333; line-height: 1.6;">"5 stars service. Feel like home. Help me to choose the right invest property. Will choose signature homes again. Thanx"</p>
+            </div>
+            <div style="text-align: center; flex-shrink: 0;">
+              <p style="font-weight: bold; color: #0a2463;">ZHIJUAN LAO</p>
+            </div>
+          </div>
+          
+          <!-- 客户评价卡片 5 -->
+          <div class="testimonial-card" style="background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; padding: 30px; width: 100%; max-width: 280px; height: 280px; display: flex; flex-direction: column; box-sizing: border-box;">
+            <div class="testimonial-text" style="flex: 1; overflow-y: auto; margin-bottom: 15px;">
+              <p style="font-style: italic; color: #333; line-height: 1.6;">"They helped me find a nice apartment in Downtown Dubai. Special thanks to Saba who helped me with all the questions and guided me through the process smoothly. If you need an apartment in Dubai I am sure they can help you, too!"</p>
+            </div>
+            <div style="text-align: center; flex-shrink: 0;">
+              <p style="font-weight: bold; color: #0a2463;">Norman Dubois</p>
             </div>
           </div>
         </div>
