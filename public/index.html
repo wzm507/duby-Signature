@@ -44,20 +44,6 @@
             z-index: 2;
         }
         
-        /* 视频加载错误时显示的备用图片 */
-        .video-fallback-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('/img/banner/1.png');
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-            display: none;
-        }
-        
         /* 视频样式 */
         .hero-video {
             position: absolute;
@@ -196,8 +182,6 @@
         <video autoplay muted loop playsinline preload="auto" class="hero-video" id="heroVideo" poster="/img/banner/1.png">
             <source src="/sp/hero-video.mp4" type="video/mp4">
         </video>
-        <!-- 视频加载错误时显示的备用图片 -->
-        <div class="video-fallback-image" id="videoFallback" style="display: none;"></div>
         <div class="hero-overlay"></div>
         <div id="hero-content" class="hero-content">
             <h1>Your Real Estate <br>Expert is Here.<br>Now you can find more than 200+ property choices with our professional agents! Contact us today to find your dream property.</h1>
@@ -205,27 +189,14 @@
     </section>
     
     <script>
-        const heroVideo = document.getElementById('heroVideo');
-        const videoFallback = document.getElementById('videoFallback');
-        
-        function tryPlayVideo() {
-            const playPromise = heroVideo.play();
-            
-            if (playPromise !== undefined) {
-                playPromise.then(function() {
-                    videoFallback.style.display = 'none';
-                }).catch(function(error) {
-                    videoFallback.style.display = 'block';
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroVideo = document.getElementById('heroVideo');
+            if (heroVideo) {
+                heroVideo.play().catch(function(e) {
+                    console.log('视频播放被阻止:', e);
                 });
             }
-        }
-        
-        heroVideo.addEventListener('canplaythrough', tryPlayVideo);
-        heroVideo.addEventListener('error', function() {
-            videoFallback.style.display = 'block';
         });
-        
-        window.addEventListener('load', tryPlayVideo);
     </script>
     <script type="module" src="/src/main.js"></script>
 </body>

@@ -1090,7 +1090,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 创建弹窗内容
     phoneModal.innerHTML = `
       <div class="phone-modal-content">
-        <!-- 装饰元素 -->
         <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(108, 99, 255, 0.1), rgba(108, 99, 255, 0.05)); border-radius: 50%; z-index: 0;"></div>
         <div style="position: absolute; bottom: -80px; left: -80px; width: 200px; height: 200px; background: linear-gradient(135deg, rgba(108, 99, 255, 0.15), rgba(108, 99, 255, 0.08)); border-radius: 50%; z-index: 0;"></div>
         
@@ -2051,17 +2050,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroSection = document.createElement('section');
   heroSection.className = 'hero';
   
-  // 使用图片替换视频作为背景
-  const bannerImage = '/banner/be4761502e5ac0091dba5fcdf2862dc1.png';
+  // 使用视频作为背景
+  const bannerVideo = '/sp/hero-video.mp4';
   
-  // 创建背景图片HTML结构
-  const backgroundImageHTML = `
-    <img id="hero-background" class="hero-background" src="${bannerImage}" alt="Luxury Real Estate" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; display: block;">
+  // 创建背景视频HTML结构
+  const backgroundVideoHTML = `
+    <video id="hero-background" class="hero-background" autoplay muted loop playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+      <source src="${bannerVideo}" type="video/mp4">
+    </video>
   `;
   
   heroSection.innerHTML = `
-    ${backgroundImageHTML}
-    <div id="hero-content" class="hero-content" style="opacity: 0; transition: opacity 1s ease-in-out;">
+    ${backgroundVideoHTML}
+    <div class="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 0;"></div>
+    <div id="hero-content" class="hero-content" style="opacity: 0; transition: opacity 1s ease-in-out; position: relative; z-index: 1;">
       <div class="hero-intro">
         <span class="hero-badge">YOUR REAL ESTATE EXPERT</span>
       </div>
@@ -2296,7 +2298,6 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
     <div class="properties-carousel-container">
       <div class="properties-grid">
-            <!-- 第一个房产卡片 -->
             <div class="property-card homepage-property-card" data-beds="2" data-baths="2">
                 <div class="property-carousel">
                     <div class="carousel-slides">
@@ -2386,7 +2387,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
 
-            <!-- 第二个房产卡片 -->
             <div class="property-card homepage-property-card" data-beds="1" data-baths="1">
                 <div class="property-carousel">
                     <div class="carousel-slides">
@@ -2476,24 +2476,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
 
-            <!-- 第三个房产卡片 -->
-            <div class="property-card">
+            <div class="property-card homepage-property-card" data-beds="1" data-baths="1">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
-                            <img src="/aboutus/ryuan/11.jpg" alt="Rosehill" />
+                            <img src="/images_new/buy-new/3/1.png" alt="Property Image 1" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/Communities/1.png" alt="Rosehill" />
+                            <img src="/images_new/buy-new/3/image.png" alt="Property Image 2" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/Communities/2.png" alt="Rosehill" />
+                            <img src="/images_new/buy-new/3/image copy.png" alt="Property Image 3" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/Communities/3.png" alt="Rosehill" />
+                            <img src="/images_new/buy-new/3/image copy 2.png" alt="Property Image 4" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/Communities/4.png" alt="Rosehill" />
+                            <img src="/images_new/buy-new/3/image copy 3.png" alt="Property Image 5" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/3/image copy 4.png" alt="Property Image 6" />
                         </div>
                     </div>
                     <div class="carousel-indicators">
@@ -2502,18 +2504,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button class="carousel-indicator"></button>
                         <button class="carousel-indicator"></button>
                         <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
                     </div>
                 </div>
                 <div class="property-details">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                        <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">3,850,000</div>
+                        <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">AED 2,250,000</div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                         </svg>
                     </div>
                     
                     <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
-                        Modern·Spacious·Luxury·Apartment
+                        APARTMENT FOR SALE IN BURJ ROYALE
                     </div>
                     
                     <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem;">
@@ -2523,20 +2526,20 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <line x1="3" y1="9" x2="21" y2="9"></line>
                                 <line x1="9" y1="21" x2="9" y2="9"></line>
                             </svg>
-                            <span style="color: #000;">3 Bed</span>
+                            <span style="color: #000;">1 Bed</span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
                             </svg>
-                            <span style="color: #000;">3 Bath</span>
+                            <span style="color: #000;">1 Bath</span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
                             </svg>
-                            <span style="color: #000;">2100 sq-ft</span>
+                            <span style="color: #000;">639 sq-ft</span>
                         </div>
                     </div>
                     
@@ -2546,13 +2549,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             <line x1="2" y1="12" x2="22" y2="12"></line>
                             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                         </svg>
-                        <span style="color: #000;">Dubai Hills Estate, Dubai</span>
+                        <span style="color: #000;">Downtown Dubai</span>
                     </div>
                     
                     <hr style="border: none; border-top: 1px dashed #ddd; margin-bottom: 0.5rem;" />
                     <div style="display: flex; gap: 0.3rem; margin: 0 0.5rem;">
-                        <button style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">Call Us</button>
-                        <a href="https://wa.me/971501234567" target="_blank" class="whatsapp-btn" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.3rem; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; text-decoration: none; transition: all 0.3s ease;">
+                        <button class="call-us-btn" style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">Call Us</button>
+                        <a href="https://wa.me/971501234567" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.3rem; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; text-decoration: none; transition: all 0.3s ease;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#25D366">
                                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                             </svg>
@@ -2562,7 +2565,95 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
 
-            <!-- 第四个房产卡片 -->
+            <div class="property-card homepage-property-card" data-beds="4" data-baths="5">
+                <div class="property-carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/4/1.png" alt="Property Image 1" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/4/image.png" alt="Property Image 2" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/4/image copy.png" alt="Property Image 3" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/4/image copy 2.png" alt="Property Image 4" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/4/image copy 3.png" alt="Property Image 5" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/4/image copy 4.png" alt="Property Image 6" />
+                        </div>
+                    </div>
+                    <div class="carousel-indicators">
+                        <button class="carousel-indicator active"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                    </div>
+                </div>
+                <div class="property-details">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">AED 16,500,000</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    
+                    <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
+                        APARTMENT FOR SALE IN OPERA GRAND
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            <span style="color: #000;">4 Bed</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
+                            </svg>
+                            <span style="color: #000;">5 Bath</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            <span style="color: #000;">3,056 sq-ft</span>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; color: #000;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span style="color: #000;">Burj Khalifa Area, Dubai</span>
+                    </div>
+                    
+                    <hr style="border: none; border-top: 1px dashed #ddd; margin-bottom: 0.5rem;" />
+                    <div style="display: flex; gap: 0.3rem; margin: 0 0.5rem;">
+                        <button class="call-us-btn" style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">Call Us</button>
+                        <a href="https://wa.me/971501234567" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.3rem; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; text-decoration: none; transition: all 0.3s ease;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#25D366">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <div class="property-card">
                 <div class="property-carousel">
                     <div class="carousel-slides">
@@ -2643,7 +2734,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
 
-            <!-- 第五个房产卡片 -->
             <div class="property-card">
                 <div class="property-carousel">
                     <div class="carousel-slides">
@@ -2736,7 +2826,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const cards = document.querySelectorAll('.property-card');
       let currentPosition = 0;
       const cardWidth = cards[0].offsetWidth + 24; // 卡片宽度 + 间距
-      let visibleCards = window.innerWidth >= 1200 ? 2 : 1;
+      let visibleCards = window.innerWidth >= 1200 ? 4 : 1;
       const maxPosition = cards.length - visibleCards;
       
       // 添加长条指示器DOM结构
@@ -2985,11 +3075,9 @@ document.addEventListener('DOMContentLoaded', () => {
   statsSection.id = 'stats';
   statsSection.className = 'stats';
   statsSection.innerHTML = `
-    <!-- 主题文本 -->
     <div class="stats-header">
       <div class="stats-text">
         <h2 data-translate="missionTitle">Featured Communities</h2>
-        <!-- 移除了占位文本 -->
       </div>
       <div class="arrow-buttons">
         <button class="arrow-button arrow-left">
@@ -3007,10 +3095,8 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     </div>
     
-    <!-- 轮播容器 -->
     <div class="carousel-container" style="position: relative; overflow: hidden; height: auto;">
       <div class="carousel-track" style="display: flex; transition: transform 0.5s ease; will-change: transform; height: 100%;">
-        <!-- Featured Communities 卡片 -->
         <div class="company-stat" style="background-image: url('../img/Lydia by Palace/1.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; aspect-ratio: 9/16; flex-shrink: 0;">
           <h3 style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 20px; margin-left: 0; margin-right: 0; z-index: 999; position: relative; text-align: left;">Terra Gardens</h3>
         </div>
@@ -3026,7 +3112,6 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     </div>
     
-    <!-- 查看更多按钮 -->
     <div style="text-align: center; margin-top: 1rem;">
       <button onclick="window.location.href='http://localhost:5173/public/communities.html'" style="padding: 1rem 2rem; background-color: #0a1f44; color: white; border: none; border-radius: 50px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
         View All Communities
@@ -3365,7 +3450,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
       
-      <!-- 添加三个新卡片 -->
       <div class="news-card" style="aspect-ratio: 1/1; overflow: hidden; max-width: 200px; max-height: 200px; margin: 0 10px; display: inline-block; flex-shrink: 0;">
         <div class="news-image-container" style="width: 100%; height: 100%; position: relative;">
           <img src="/img/news/news4.png" alt="Service Charges Before Handover" style="width: 100%; height: 100%; object-fit: cover;" />
@@ -3413,31 +3497,24 @@ document.addEventListener('DOMContentLoaded', () => {
   footer.className = 'footer';
   footer.innerHTML = `
     <div class="footer-container">
-      <!-- 链接和联系信息区域 -->
       <div class="footer-links-container">
-        <!-- Newsletter部分 -->
         <div class="footer-newsletter-section">
-          <!-- 输入框和按钮容器 -->
           <div class="form-input-group">
-            <!-- 标题和副标题 -->
             <div class="form-header">
               <h3 class="form-title">Newsletter</h3>
               <p class="form-subtitle">Subscribe for our weekly newsletter and marketing updates</p>
             </div>
             
-            <!-- 输入框行 -->
             <div class="form-row">
               <input type="email" placeholder="Your Email" data-translate-placeholder="formEmailPlaceholder" required />
             </div>
             
-            <!-- 提交按钮 -->
             <div class="form-submit">
               <button type="button" onclick="this.closest('form').dispatchEvent(new Event('submit'))" data-translate="formSubmitButton">Send Message</button>
             </div>
           </div>
         </div>
         
-        <!-- Quick Links部分 -->
         <div class="footer-links-section">
           <h3 class="quick-links-title">Quick Links</h3>
           <div class="quick-links-list">
@@ -3449,8 +3526,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
         
-        <!-- Contact Us部分 -->
-        <div class="footer-contact-section">
+        <div class="footer-contact">
           <h3 class="contact-us-title">Contact Us</h3>
           <div class="contact-info">
             <p class="contact-phone">+971 52 145 0498</p>
@@ -3460,10 +3536,8 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
         
-        <!-- Social Media部分 -->
         <div class="footer-social-section">
           <h3 class="social-label">Social Media</h3>
-          <!-- 社交媒体图标 -->
           <div class="social-links">
             <a href="https://www.linkedin.com/company/signature-home-real-estate/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
             <a href="https://www.instagram.com/signaturehomes.uae/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -3474,7 +3548,6 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     </div>
     
-    <!-- 底部条款区域 -->
     <div class="footer-bottom">
       <div class="footer-terms">
         <a href="#" data-translate="footerPrivacyPolicy">Privacy Policy</a>
@@ -3831,10 +3904,8 @@ document.addEventListener('DOMContentLoaded', () => {
   companyIntroSection.className = 'company-intro';
   companyIntroSection.innerHTML = `
     <div class="company-intro-content">
-      <!-- 文本内容 -->
       <div class="company-intro-text">
         <h2 data-translate="companyIntroTitle">Stay up to date on the latest off-plan launches.</h2>
-        <!-- 描述文本已移除 -->
         <div class="company-stats" style="display: flex; flex-wrap: nowrap; gap: 16px; padding: 16px 0; margin: 0 20px;">
           <div class="company-stat" onclick="window.location.href='property-detail.html?property=lydia-by-palace'" style="background-image: url('../img/Stay up to date on the latest off-plan launches/1.jpg'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
             <button onclick="event.stopPropagation(); window.location.href='property-detail.html?property=lydia-by-palace'" style="position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background-color: transparent; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
@@ -3913,7 +3984,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         
         <div class="testimonials-grid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; justify-items: center;">
-          <!-- 客户评价卡片 1 -->
           <div class="testimonial-card" style="background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; padding: 30px; width: 100%; max-width: 280px; height: 280px; display: flex; flex-direction: column; box-sizing: border-box;">
             <div class="testimonial-text" style="flex: 1; overflow-y: auto; margin-bottom: 15px;">
               <p style="font-style: italic; color: #333; line-height: 1.6;">"I've been looking for property for a while and signature homes manage to get me the exact property I was looking for thank you guys you've been very helpful 👍🏾"</p>
@@ -3923,7 +3993,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
           
-          <!-- 客户评价卡片 2 -->
           <div class="testimonial-card" style="background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; padding: 30px; width: 100%; max-width: 280px; height: 280px; display: flex; flex-direction: column; box-sizing: border-box;">
             <div class="testimonial-text" style="flex: 1; overflow-y: auto; margin-bottom: 15px;">
               <p style="font-style: italic; color: #333; line-height: 1.6;">"I have had the pleasure of collaborating with Maria on several clients / listings and it's been an absolute pleasure! Trustworthy, honest and always quick to respond - I hope to do business with Maria for many years in the future"</p>
@@ -3933,7 +4002,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
           
-          <!-- 客户评价卡片 3 -->
           <div class="testimonial-card" style="background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; padding: 30px; width: 100%; max-width: 280px; height: 280px; display: flex; flex-direction: column; box-sizing: border-box;">
             <div class="testimonial-text" style="flex: 1; overflow-y: auto; margin-bottom: 15px;">
               <p style="font-style: italic; color: #333; line-height: 1.6;">"I had an amazing experience with Signature Homes Real Estate, People are very professional and available all the time for you and they are friendly on top of that. The whole process was very smooth and we did not have to worry about any procedure: they looked after every single detail. If you need to purchase or rent a property in Dubai, Signature Homes is definitely the real estate broker you go for!"</p>
@@ -3943,7 +4011,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
           
-          <!-- 客户评价卡片 4 -->
           <div class="testimonial-card" style="background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; padding: 30px; width: 100%; max-width: 280px; height: 280px; display: flex; flex-direction: column; box-sizing: border-box;">
             <div class="testimonial-text" style="flex: 1; overflow-y: auto; margin-bottom: 15px;">
               <p style="font-style: italic; color: #333; line-height: 1.6;">"5 stars service. Feel like home. Help me to choose the right invest property. Will choose signature homes again. Thanx"</p>
@@ -3953,7 +4020,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
           
-          <!-- 客户评价卡片 5 -->
           <div class="testimonial-card" style="background-color: white; border-radius: 12px; border: 1px solid #e0e0e0; padding: 30px; width: 100%; max-width: 280px; height: 280px; display: flex; flex-direction: column; box-sizing: border-box;">
             <div class="testimonial-text" style="flex: 1; overflow-y: auto; margin-bottom: 15px;">
               <p style="font-style: italic; color: #333; line-height: 1.6;">"They helped me find a nice apartment in Downtown Dubai. Special thanks to Saba who helped me with all the questions and guided me through the process smoothly. If you need an apartment in Dubai I am sure they can help you, too!"</p>

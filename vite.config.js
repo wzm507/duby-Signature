@@ -16,8 +16,7 @@ export default defineConfig({
     }
   },
   build: {
-    // 确保静态资源被正确处理
-    assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.webp', '**/*.svg']
+    assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.webp', '**/*.svg', '**/*.mp4', '**/*.webm', '**/*.ogg']
   },
   plugins: [
     viteStaticCopy({
@@ -29,6 +28,10 @@ export default defineConfig({
         {
           src: './images_new/**/*',
           dest: './images_new'
+        },
+        {
+          src: './sp/**/*',
+          dest: './sp'
         }
       ]
     })
