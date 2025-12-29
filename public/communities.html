@@ -502,7 +502,6 @@
     .company-stat {
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
       transform-style: preserve-3d !important;
-      background-blend-mode: overlay !important;
     }
     
     .company-stat:hover {
@@ -574,7 +573,7 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; justify-content: center; width: 100%;">
           <!-- 卡片1 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/1.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+            <div class="company-stat" data-modal-id="modal-1" style="background-image: url('/Communities/1.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -596,7 +595,7 @@
           
           <!-- 卡片2 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/2.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+            <div class="company-stat" data-modal-id="modal-2" style="background-image: url('/Communities/2.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -618,7 +617,7 @@
           
           <!-- 卡片3 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/3.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+            <div class="company-stat" data-modal-id="modal-3" style="background-image: url('/Communities/3.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -640,7 +639,7 @@
           
           <!-- 卡片4 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/4.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+            <div class="company-stat" data-modal-id="modal-4" style="background-image: url('/Communities/4.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -662,7 +661,7 @@
           
           <!-- 卡片5 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/5.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+            <div class="company-stat" data-modal-id="modal-5" style="background-image: url('/Communities/5.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -684,7 +683,7 @@
           
           <!-- 卡片6 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/6.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+            <div class="company-stat" data-modal-id="modal-6" style="background-image: url('/Communities/6.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -706,7 +705,7 @@
           
           <!-- 卡片7 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/7.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+            <div class="company-stat" data-modal-id="modal-7" style="background-image: url('/Communities/7.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -728,7 +727,7 @@
           
           <!-- 卡片8 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/8.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+            <div class="company-stat" data-modal-id="modal-8" style="background-image: url('/Communities/8.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -750,7 +749,7 @@
           
           <!-- 卡片9 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/9.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+            <div class="company-stat" data-modal-id="modal-9" style="background-image: url('/Communities/9.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -772,7 +771,7 @@
           
           <!-- 卡片10 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/10.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+            <div class="company-stat" data-modal-id="modal-10" style="background-image: url('/Communities/10.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -794,7 +793,7 @@
           
           <!-- 卡片11 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/11.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+            <div class="company-stat" data-modal-id="modal-11" style="background-image: url('/Communities/11.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -816,7 +815,7 @@
           
           <!-- 卡片12 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/12.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+            <div class="company-stat" data-modal-id="modal-12" style="background-image: url('/Communities/12.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -838,7 +837,7 @@
           
           <!-- 卡片13 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/13.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+            <div class="company-stat" data-modal-id="modal-13" style="background-image: url('/Communities/13.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -860,7 +859,7 @@
           
           <!-- 卡片14 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/14.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+            <div class="company-stat" style="background-image: url('/Communities/14.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -882,7 +881,7 @@
           
           <!-- 卡片15 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/15.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d; background-blend-mode: overlay;">
+            <div class="company-stat" data-modal-id="modal-15" style="background-image: url('/Communities/15.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -1256,22 +1255,26 @@
         const modals = document.querySelectorAll('.modal');
 
         // 显示弹窗函数
-        function showModal(modalId) {
+        function showModal(modalId, triggerElement) {
           const modal = document.getElementById(modalId);
           if (modal) {
-            // 获取触发按钮
-            const button = document.querySelector(`[data-modal-id="${modalId}"]`);
-            if (button) {
-              // 找到对应的卡片元素
-              const card = button.closest('.company-stat');
-              if (card) {
-                // 获取卡片的背景图片
-                const backgroundImage = card.style.backgroundImage;
-                // 设置到弹窗的overlay上
-                const overlay = modal.querySelector('.modal-overlay');
-                if (overlay) {
-                  overlay.style.backgroundImage = backgroundImage;
-                }
+            let card = null;
+            
+            // 如果触发元素是卡片容器，直接使用
+            if (triggerElement.classList.contains('company-stat')) {
+              card = triggerElement;
+            } else {
+              // 否则查找最近的卡片容器
+              card = triggerElement.closest('.company-stat');
+            }
+            
+            if (card) {
+              // 获取卡片的背景图片
+              const backgroundImage = card.style.backgroundImage;
+              // 设置到弹窗的overlay上
+              const overlay = modal.querySelector('.modal-overlay');
+              if (overlay) {
+                overlay.style.backgroundImage = backgroundImage;
               }
             }
             
@@ -1302,15 +1305,16 @@
 
         // 为每个弹窗按钮添加点击事件
         modalButtons.forEach(button => {
-          button.addEventListener('click', function() {
+          button.addEventListener('click', function(e) {
             const modalId = this.getAttribute('data-modal-id');
-            showModal(modalId);
+            showModal(modalId, this);
           });
         });
 
         // 为每个关闭按钮添加点击事件
         closeButtons.forEach(button => {
-          button.addEventListener('click', function() {
+          button.addEventListener('click', function(e) {
+            e.stopPropagation();
             const modalId = this.getAttribute('data-modal-close');
             hideModal(modalId);
           });
