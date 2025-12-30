@@ -28,10 +28,6 @@ export default defineConfig({
         {
           src: './images_new/**/*',
           dest: './images_new'
-        },
-        {
-          src: './sp/**/*',
-          dest: './sp'
         }
       ]
     })
