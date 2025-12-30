@@ -470,6 +470,18 @@
         box-shadow: 0 4px 12px rgba(108, 99, 255, 0.2);
       }
       
+      .whatsapp-btn {
+        background-color: #25D366;
+        color: white;
+        border: 1px solid #25D366;
+      }
+      
+      .whatsapp-btn:hover {
+        background-color: #1ebe57;
+        border-color: #1ebe57;
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+      }
+      
       /* 底部导航栏 */
       .footer {
         background-color: var(--dark-color);
@@ -597,6 +609,37 @@
             width: 95%;
         }
     }
+
+    /* 房产卡片点击样式 */
+    .property-card {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    
+    .property-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+    }
+    
+    .property-card .view-details-btn,
+    .property-card .contact-agent-btn,
+    .property-card .favorite-btn,
+    .property-card .carousel-arrow {
+        pointer-events: auto;
+        z-index: 10;
+        position: relative;
+    }
+    
+    /* 确保轮播箭头按钮不被整个卡片的点击事件影响 */
+    .carousel-arrow {
+        pointer-events: auto !important;
+    }
+    
+    /* 收藏按钮保持独立点击 */
+    .favorite-btn {
+        pointer-events: auto !important;
+    }
     </style>
 </head>
 <body>
@@ -626,7 +669,7 @@
         
         <div class="properties-grid">
             <!-- Off-Plan Property 1 -->
-            <div class="property-card">
+            <div class="property-card" data-details-url="off-plan-details-1.html">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -712,14 +755,14 @@
                         <div class="property-price">2,807,294</div>
                         <div class="property-cta">
                             <a href="#" class="view-details-btn">Call Us</a>
-                            <a href="off-plan-details-1.html" class="contact-agent-btn">View Details</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Off-Plan Property 2 -->
-            <div class="property-card">
+            <div class="property-card" data-details-url="off-plan-details-2.html">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -810,14 +853,14 @@
                         <div class="property-price">3,294,826</div>
                         <div class="property-cta">
                             <a href="#" class="view-details-btn">Call Us</a>
-                            <a href="off-plan-details-2.html" class="contact-agent-btn">View Details</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Off-Plan Property 3 -->
-            <div class="property-card">
+            <div class="property-card" data-details-url="off-plan-details-3.html">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -908,14 +951,14 @@
                         <div class="property-price">4,441,919</div>
                         <div class="property-cta">
                             <a href="#" class="view-details-btn">Call Us</a>
-                            <a href="off-plan-details-3.html" class="contact-agent-btn">View Details</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Off-Plan Property 4 -->
-            <div class="property-card">
+            <div class="property-card" data-details-url="off-plan-details-4.html">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -991,14 +1034,14 @@
                         <div class="property-price">7,745,084</div>
                         <div class="property-cta">
                             <a href="#" class="view-details-btn">Call Us</a>
-                            <a href="off-plan-details-4.html" class="contact-agent-btn">View Details</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Off-Plan Property 5 -->
-            <div class="property-card">
+            <div class="property-card" data-details-url="off-plan-details-5.html">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1075,14 +1118,14 @@
                         <div class="property-price">6,500,000</div>
                         <div class="property-cta">
                             <a href="#" class="view-details-btn">Call Us</a>
-                            <a href="off-plan-details-5.html" class="contact-agent-btn">View Details</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Off-Plan Property 6 -->
-            <div class="property-card">
+            <div class="property-card" data-details-url="off-plan-details-6.html">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1180,14 +1223,14 @@
                         <div class="property-price">1,902,839</div>
                         <div class="property-cta">
                             <a href="#" class="view-details-btn">Call Us</a>
-                            <a href="off-plan-details-6.html" class="contact-agent-btn">View Details</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Off-Plan Property 7 -->
-            <div class="property-card">
+            <div class="property-card" data-details-url="off-plan-details-7.html">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1285,14 +1328,14 @@
                         <div class="property-price">2,972,265</div>
                         <div class="property-cta">
                             <a href="#" class="view-details-btn">Call Us</a>
-                            <a href="off-plan-details-7.html" class="contact-agent-btn">View Details</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Off-Plan Property 8 -->
-            <div class="property-card">
+            <div class="property-card" data-details-url="off-plan-details-8.html">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1390,14 +1433,14 @@
                         <div class="property-price">3,704,279</div>
                         <div class="property-cta">
                             <a href="#" class="view-details-btn">Call Us</a>
-                            <a href="off-plan-details-8.html" class="contact-agent-btn">View Details</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Off-Plan Property 9 -->
-            <div class="property-card">
+            <div class="property-card" data-details-url="off-plan-details-9.html">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1495,14 +1538,14 @@
                         <div class="property-price">4,014,239</div>
                         <div class="property-cta">
                             <a href="#" class="view-details-btn">Call Us</a>
-                            <a href="off-plan-details-9.html" class="contact-agent-btn">View Details</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Off-Plan Property 10 -->
-            <div class="property-card">
+            <div class="property-card" data-details-url="off-plan-details-10.html">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1592,14 +1635,14 @@
                         <div class="property-price">9,625,000</div>
                         <div class="property-cta">
                             <a href="#" class="view-details-btn">Call Us</a>
-                            <a href="off-plan-details-10.html" class="contact-agent-btn">View Details</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Off-Plan Property 11 -->
-            <div class="property-card">
+            <div class="property-card" data-details-url="off-plan-details-11.html">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1689,14 +1732,14 @@
                         <div class="property-price">4,284,000</div>
                         <div class="property-cta">
                             <a href="#" class="view-details-btn">Call Us</a>
-                            <a href="off-plan-details-11.html" class="contact-agent-btn">View Details</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Off-Plan Property 12 -->
-            <div class="property-card">
+            <div class="property-card" data-details-url="off-plan-details-12.html">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1786,14 +1829,14 @@
                         <div class="property-price">8,000,000</div>
                         <div class="property-cta">
                             <a href="#" class="view-details-btn">Call Us</a>
-                            <a href="off-plan-details-12.html" class="contact-agent-btn">View Details</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Off-Plan Property 13 -->
-            <div class="property-card">
+            <div class="property-card" data-details-url="off-plan-details-13.html">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1883,14 +1926,14 @@
                         <div class="property-price">3,225,535</div>
                         <div class="property-cta">
                             <a href="#" class="view-details-btn">Call Us</a>
-                            <a href="off-plan-details-13.html" class="contact-agent-btn">View Details</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Off-Plan Property 14 -->
-            <div class="property-card">
+            <div class="property-card" data-details-url="off-plan-details-14.html">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1968,7 +2011,7 @@
                         <div class="property-price">23,500,000</div>
                         <div class="property-cta">
                             <a href="#" class="view-details-btn">Call Us</a>
-                            <a href="off-plan-details-14.html" class="contact-agent-btn">View Details</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
                         </div>
                     </div>
                 </div>
@@ -2005,8 +2048,12 @@
                 const prevBtn = carousel.querySelector('.carousel-prev');
                 const nextBtn = carousel.querySelector('.carousel-next');
                 const favoriteBtn = carousel.querySelector('.favorite-btn');
+                const viewDetailsLink = card.querySelector('.contact-agent-btn');
                 
                 let currentSlide = 0;
+                
+                // 从数据属性获取详情页面链接
+                const detailsUrl = card.getAttribute('data-details-url') || '#';
                 
                 // 更新轮播图
                 function updateCarousel() {
@@ -2014,21 +2061,39 @@
                 }
                 
                 // 下一张
-                nextBtn.addEventListener('click', () => {
+                nextBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     currentSlide = (currentSlide + 1) % slideItems.length;
                     updateCarousel();
                 });
                 
                 // 上一张
-                prevBtn.addEventListener('click', () => {
+                prevBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     currentSlide = (currentSlide - 1 + slideItems.length) % slideItems.length;
                     updateCarousel();
                 });
                 
                 // 收藏按钮
-                favoriteBtn.addEventListener('click', () => {
-                    favoriteBtn.querySelector('i').classList.toggle('fas');
-                    favoriteBtn.querySelector('i').classList.toggle('far');
+                favoriteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    favoriteBtn.classList.toggle('favorited');
+                });
+                
+                // 整个卡片点击事件
+                card.addEventListener('click', (e) => {
+                    // 如果点击的是特殊按钮，不触发整个卡片的点击
+                    if (e.target.closest('.carousel-arrow') || 
+                        e.target.closest('.favorite-btn') || 
+                        e.target.closest('.view-details-btn') ||
+                        e.target.closest('.whatsapp-btn')) {
+                        return;
+                    }
+                    
+                    // 跳转到详情页面
+                    if (detailsUrl && detailsUrl !== '#') {
+                        window.location.href = detailsUrl;
+                    }
                 });
                 
                 // 自动轮播
@@ -2051,7 +2116,7 @@
             });
 
             // 电话弹窗功能
-            const callUsButtons = document.querySelectorAll('.view-details-btn');
+            const callUsButtons = document.querySelectorAll('.view-details-btn, .whatsapp-btn');
             const modal = document.getElementById('callUsModal');
             const closeBtn = document.querySelector('.modal-close');
             const phoneNumber = document.querySelector('.modal-body p:nth-child(2)');

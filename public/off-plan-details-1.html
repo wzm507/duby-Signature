@@ -757,7 +757,10 @@
     <section class="hero-section">
         <img src="/off/1/image.png" alt="St Regis The Residences" class="hero-background">
         <div class="hero-overlay"></div>
-        <div class="hero-content"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">OFF-PLAN PROPERTY FOR SALE</h1>
+            <p class="hero-subtitle">PREMIUM DEVELOPMENT, DUBAI</p>
+        </div>
     </section>
 
     <!-- 主要内容区域 -->
@@ -942,6 +945,42 @@
                                 <path d="M12 2.5v19M2.5 12h19"/>
                             </svg>
                             <span>Children's Pool</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Photo Gallery -->
+            <section class="gallery-section">
+                <div class="gallery-container">
+                    <h2 class="section-title">Photo Gallery</h2>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="/off/1/image.png" alt="Property Image 1">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/off/1/image copy.png" alt="Property Image 2">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/off/1/image copy 2.png" alt="Property Image 3">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/off/1/image copy 3.png" alt="Property Image 4">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/off/1/image copy 4.png" alt="Property Image 5">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/off/1/image copy 5.png" alt="Property Image 6">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/off/1/image copy 6.png" alt="Property Image 7">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/off/1/image copy 7.png" alt="Property Image 8">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/off/1/image copy 8.png" alt="Property Image 9">
                         </div>
                     </div>
                 </div>
@@ -1230,8 +1269,6 @@
             
             // 更新Hero区域
             document.querySelector('.hero-background').src = '/off/1/image.png';
-            document.querySelector('.hero-title').textContent = 'OFF-PLAN PROPERTY FOR SALE';
-            document.querySelector('.hero-subtitle').textContent = 'PREMIUM DEVELOPMENT, DUBAI';
             
             // 更新描述区域
             document.querySelector('.description-section h2').textContent = 'Discover This Off-Plan Property';
@@ -1239,12 +1276,23 @@
             
             // 更新关键信息卡片
             const keyInfoCards = document.querySelectorAll('.key-info-card');
-            keyInfoCards[0].querySelector('.key-info-value').textContent = '2 Bed';
-            keyInfoCards[0].querySelector('.key-info-label').textContent = '2 Bath';
-            keyInfoCards[1].querySelector('.key-info-value').textContent = '1,200 sq-ft';
-            keyInfoCards[1].querySelector('.key-info-label').textContent = 'Premium Development, Dubai';
-            keyInfoCards[2].querySelector('.key-info-value').textContent = 'AED 1.5M';
-            keyInfoCards[2].querySelector('.key-info-label').textContent = 'Handover 2029 Q1';
+            if (keyInfoCards.length >= 4) {
+                // 第一个卡片 - 价格
+                keyInfoCards[0].querySelector('.key-info-value').textContent = 'AED 2,807,294';
+                keyInfoCards[0].querySelector('.key-info-label').textContent = 'Starting from';
+                
+                // 第二个卡片 - 付款计划
+                keyInfoCards[1].querySelector('.key-info-value').textContent = 'Multiple Options';
+                keyInfoCards[1].querySelector('.key-info-label').textContent = 'Flexible payment plans available';
+                
+                // 第三个卡片 - 尺寸
+                keyInfoCards[2].querySelector('.key-info-value').textContent = '901 sqft / 84 sqm';
+                keyInfoCards[2].querySelector('.key-info-label').textContent = 'Generous living space';
+                
+                // 第四个卡片 - 类型
+                keyInfoCards[3].querySelector('.key-info-value').textContent = 'Apartment';
+                keyInfoCards[3].querySelector('.key-info-label').textContent = 'Premium residence';
+            }
             
             // 更新关于区域
             document.querySelector('.about-section h2').textContent = 'About This Development';

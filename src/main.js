@@ -121,6 +121,59 @@ function initEnhancedInteractions() {
       }, 600);
     });
   });
+  
+  // 初始化搜索功能
+  initSearchFunctionality();
+}
+
+// 搜索功能初始化
+function initSearchFunctionality() {
+  const searchInput = document.querySelector('.search-input');
+  const searchButton = document.querySelector('.search-button');
+  
+  if (searchInput && searchButton) {
+    // 搜索按钮点击事件
+    searchButton.addEventListener('click', performSearch);
+    
+    // 输入框回车事件
+    searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        performSearch();
+      }
+    });
+    
+    // 搜索建议功能（可选）
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.trim();
+      if (query.length > 2) {
+        // 这里可以添加搜索建议功能
+        console.log('Search suggestion for:', query);
+      }
+    });
+  }
+}
+
+// 执行搜索
+function performSearch() {
+  const searchInput = document.querySelector('.search-input');
+  const query = searchInput.value.trim();
+  
+  if (query) {
+    // 根据搜索查询跳转到房产列表页面
+    const searchUrl = `/featured-properties.html?search=${encodeURIComponent(query)}`;
+    
+    // 添加搜索动画效果
+    const searchContainer = document.querySelector('.search-container');
+    searchContainer.style.transform = 'scale(0.95)';
+    searchContainer.style.opacity = '0.8';
+    
+    setTimeout(() => {
+      window.location.href = searchUrl;
+    }, 150);
+  } else {
+    // 如果没有输入，直接跳转到房产列表页面
+    window.location.href = '/featured-properties.html';
+  }
 }
 
 // 添加波纹动画样式
@@ -2079,9 +2132,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </p>
       </div>
       <div class="hero-cta">
-        <a href="/featured-properties.html" class="cta-button">
-          Explore Properties
-        </a>
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Search properties by location, type, or price...">
+          <button class="search-button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
       </div>
     </div>
   `;
@@ -2180,6 +2236,55 @@ document.addEventListener('DOMContentLoaded', () => {
       transform: translateY(-1px);
       background-color: rgba(255, 255, 255, 0.2);
     }
+    
+    .search-container {
+      display: flex;
+      align-items: center;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 50px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .search-container:focus-within {
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    .search-input {
+      flex: 1;
+      padding: 1.25rem 1.5rem;
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      color: #333;
+      outline: none;
+      font-weight: 400;
+    }
+    
+    .search-input::placeholder {
+      color: #666;
+      font-weight: 400;
+    }
+    
+    .search-button {
+      padding: 1.25rem 1.5rem;
+      background-color: #fff;
+      border: none;
+      color: #333;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-left: 1px solid #eee;
+    }
+    
+    .search-button:hover {
+      background-color: #f5f5f5;
+      color: #000;
+    }
     /* 响应式设计 */
     @media (max-width: 1200px) {
       .hero-main-title {
@@ -2257,6 +2362,57 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       .hero-subtitle-highlight {
         font-size: 1.1rem;
+      }
+      
+      .search-container {
+        max-width: 90%;
+        margin: 0 auto;
+      }
+      
+      .search-input {
+        padding: 1rem 1.25rem;
+        font-size: 0.95rem;
+      }
+      
+      .search-button {
+        padding: 1rem 1.25rem;
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero-content {
+        padding: 1.5rem 0.75rem;
+        border-radius: 12px;
+      }
+      .hero-badge {
+        font-size: 0.75rem;
+        padding: 0.5rem 1rem;
+        letter-spacing: 1px;
+      }
+      .hero-main-title {
+        font-size: 2.2rem;
+      }
+      .hero-subtitle-text {
+        font-size: 1rem;
+      }
+      .hero-subtitle-highlight {
+        font-size: 1.1rem;
+      }
+      
+      .search-container {
+        max-width: 95%;
+        border-radius: 25px;
+      }
+      
+      .search-input {
+        padding: 0.875rem 1rem;
+        font-size: 0.9rem;
+      }
+      
+      .search-button {
+        padding: 0.875rem 1rem;
+        font-size: 0.9rem;
       }
     }
   `;
