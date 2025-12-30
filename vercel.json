@@ -33,9 +33,9 @@
     }
   ],
   "env": {
-    "SMTP_HOST": "@smtp_host",
-    "SMTP_PORT": "@smtp_port",
-    "SMTP_USER": "@smtp_user",
-    "SMTP_PASS": "@smtp_pass"
+    "SMTP_HOST": "smtp.163.com",
+    "SMTP_PORT": "465",
+    "SMTP_USER": "wzm2383983461@163.com",
+    "SMTP_PASS": "QBU3CyYuriRcctd9"
   }
 }
