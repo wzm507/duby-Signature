@@ -123,6 +123,7 @@ function initEnhancedInteractions() {
   });
   
   // 初始化搜索功能
+  console.log('开始初始化搜索功能...');
   initSearchFunctionality();
 }
 
@@ -132,12 +133,20 @@ function initSearchFunctionality() {
   const searchButton = document.querySelector('.search-button');
   
   if (searchInput && searchButton) {
+    console.log('搜索功能初始化成功');
+    
     // 搜索按钮点击事件
-    searchButton.addEventListener('click', performSearch);
+    searchButton.addEventListener('click', function(e) {
+      console.log('搜索按钮被点击');
+      e.preventDefault();
+      performSearch();
+    });
     
     // 输入框回车事件
     searchInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
+        console.log('回车键被按下');
+        e.preventDefault();
         performSearch();
       }
     });
@@ -150,6 +159,8 @@ function initSearchFunctionality() {
         console.log('Search suggestion for:', query);
       }
     });
+  } else {
+    console.log('搜索元素未找到', { searchInput, searchButton });
   }
 }
 
@@ -159,13 +170,15 @@ function performSearch() {
   const query = searchInput.value.trim();
   
   if (query) {
-    // 根据搜索查询跳转到房产列表页面
-    const searchUrl = `/featured-properties.html?search=${encodeURIComponent(query)}`;
+    // 智能判断跳转到哪个页面
+    const searchUrl = determineSearchTarget(query);
     
     // 添加搜索动画效果
     const searchContainer = document.querySelector('.search-container');
-    searchContainer.style.transform = 'scale(0.95)';
-    searchContainer.style.opacity = '0.8';
+    if (searchContainer) {
+      searchContainer.style.transform = 'scale(0.95)';
+      searchContainer.style.opacity = '0.8';
+    }
     
     setTimeout(() => {
       window.location.href = searchUrl;
@@ -173,6 +186,30 @@ function performSearch() {
   } else {
     // 如果没有输入，直接跳转到房产列表页面
     window.location.href = '/featured-properties.html';
+  }
+}
+
+// 根据搜索内容智能判断目标页面
+function determineSearchTarget(query) {
+  const lowerQuery = query.toLowerCase();
+  
+  // Off-plan 相关关键词
+  const offPlanKeywords = [
+    'off plan', 'off-plan', 'offplan', 'new launch', 'new launch',
+    'upcoming', 'under construction', 'construction', 'building',
+    'launch', 'new project', 'new development', 'development',
+    'invest', 'investment', 'pre-launch', 'future', 'plan'
+  ];
+  
+  // 检查是否包含 off-plan 相关关键词
+  const isOffPlan = offPlanKeywords.some(keyword => 
+    lowerQuery.includes(keyword)
+  );
+  
+  if (isOffPlan) {
+    return `/off-plan.html?search=${encodeURIComponent(query)}`;
+  } else {
+    return `/featured-properties.html?search=${encodeURIComponent(query)}`;
   }
 }
 

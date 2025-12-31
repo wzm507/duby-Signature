@@ -96,11 +96,54 @@
         font-size: 2.5rem;
         margin-bottom: 1rem;
         color: var(--primary-color);
+        display: inline-block;
+        margin-right: 2rem;
       }
       
       .section-header p {
         font-size: 1.1rem;
         color: var(--light-text);
+      }
+      
+      .filter-buttons {
+        display: inline-flex;
+        gap: 1rem;
+        align-items: center;
+        vertical-align: middle;
+        margin-bottom: 1rem;
+      }
+      
+      .filter-btn {
+        background-color: white;
+        border: 2px solid #6c63ff;
+        color: #6c63ff;
+        padding: 0.8rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        min-width: 120px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(108, 99, 255, 0.1);
+      }
+      
+      .filter-btn:hover {
+        background-color: rgba(108, 99, 255, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(108, 99, 255, 0.2);
+      }
+      
+      .filter-btn.active {
+        background-color: #6c63ff;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
+      }
+      
+      .filter-btn.active:hover {
+        background-color: #5a52e6;
+        box-shadow: 0 6px 16px rgba(108, 99, 255, 0.4);
       }
       
       /* 两列布局 */
@@ -637,9 +680,43 @@
     }
     
     /* 收藏按钮保持独立点击 */
-    .favorite-btn {
+      .favorite-btn {
         pointer-events: auto !important;
-    }
+      }
+      
+      /* 筛选按钮响应式设计 */
+      @media (max-width: 768px) {
+        .section-header h2 {
+          display: block;
+          margin-right: 0;
+          margin-bottom: 1rem;
+        }
+        
+        .filter-buttons {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 1.5rem;
+        }
+        
+        .filter-btn {
+          min-width: 100px;
+          padding: 0.7rem 1.2rem;
+          font-size: 0.9rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .filter-buttons {
+          flex-direction: column;
+          gap: 0.8rem;
+          align-items: stretch;
+        }
+        
+        .filter-btn {
+          min-width: auto;
+          width: 100%;
+        }
+      }
     </style>
 </head>
 <body>
@@ -662,14 +739,50 @@
 
     <!-- 主要内容 -->
     <section class="properties">
-        <div class="section-header">
-            <h2 style="font-weight: 300;">Off-Plan Properties</h2>
-            <p>Discover our exclusive selection of off-plan properties with flexible payment plans and high return on investment.</p>
+        <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: nowrap; white-space: nowrap;">
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <h2 style="font-weight: 300; margin: 0; font-size: 2.2rem; white-space: nowrap;">Off-Plan Properties</h2>
+                <p style="margin: 0;"></p>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 0.3rem;">
+                <div class="filter-dropdown" style="position: relative;">
+                    <button class="filter-btn" style="padding: 0.75rem 1.25rem; background-color: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-size: 1rem; color: #000; outline: none; transition: all 0.3s ease;">
+                        Beds
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="filter-content" style="display: none; position: absolute; top: 100%; right: 0; margin-top: 0.5rem; background-color: #fff; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; min-width: 200px; padding: 1rem;">
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">Any</div>
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">Studio</div>
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">1+</div>
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">2+</div>
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">3+</div>
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">4+</div>
+                    </div>
+                </div>
+                
+                <div class="filter-dropdown" style="position: relative;">
+                    <button class="filter-btn" style="padding: 0.75rem 1.25rem; background-color: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-size: 1rem; color: #000; outline: none; transition: all 0.3s ease;">
+                        Bath
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="filter-content" style="display: none; position: absolute; top: 100%; right: 0; margin-top: 0.5rem; background-color: #fff; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; min-width: 200px; padding: 1rem;">
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">Any</div>
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">1+</div>
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">2+</div>
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">3+</div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="properties-grid">
             <!-- Off-Plan Property 1 -->
-            <div class="property-card" data-details-url="off-plan-details-1.html">
+            <div class="property-card" data-details-url="off-plan-details-1.html" data-beds="3" data-baths="4">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -762,7 +875,7 @@
             </div>
             
             <!-- Off-Plan Property 2 -->
-            <div class="property-card" data-details-url="off-plan-details-2.html">
+            <div class="property-card" data-details-url="off-plan-details-2.html" data-beds="2" data-baths="2">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -860,7 +973,7 @@
             </div>
             
             <!-- Off-Plan Property 3 -->
-            <div class="property-card" data-details-url="off-plan-details-3.html">
+            <div class="property-card" data-details-url="off-plan-details-3.html" data-beds="3" data-baths="3">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -958,7 +1071,7 @@
             </div>
             
             <!-- Off-Plan Property 4 -->
-            <div class="property-card" data-details-url="off-plan-details-4.html">
+            <div class="property-card" data-details-url="off-plan-details-4.html" data-beds="3" data-baths="4">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1041,7 +1154,7 @@
             </div>
             
             <!-- Off-Plan Property 5 -->
-            <div class="property-card" data-details-url="off-plan-details-5.html">
+            <div class="property-card" data-details-url="off-plan-details-5.html" data-beds="2" data-baths="4">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1125,7 +1238,7 @@
             </div>
             
             <!-- Off-Plan Property 6 -->
-            <div class="property-card" data-details-url="off-plan-details-6.html">
+            <div class="property-card" data-details-url="off-plan-details-6.html" data-beds="1" data-baths="1">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1230,7 +1343,7 @@
             </div>
             
             <!-- Off-Plan Property 7 -->
-            <div class="property-card" data-details-url="off-plan-details-7.html">
+            <div class="property-card" data-details-url="off-plan-details-7.html" data-beds="2" data-baths="2">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1335,7 +1448,7 @@
             </div>
             
             <!-- Off-Plan Property 8 -->
-            <div class="property-card" data-details-url="off-plan-details-8.html">
+            <div class="property-card" data-details-url="off-plan-details-8.html" data-beds="3" data-baths="3">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1440,7 +1553,7 @@
             </div>
             
             <!-- Off-Plan Property 9 -->
-            <div class="property-card" data-details-url="off-plan-details-9.html">
+            <div class="property-card" data-details-url="off-plan-details-9.html" data-beds="1" data-baths="2">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1545,7 +1658,7 @@
             </div>
             
             <!-- Off-Plan Property 10 -->
-            <div class="property-card" data-details-url="off-plan-details-10.html">
+            <div class="property-card" data-details-url="off-plan-details-10.html" data-beds="4" data-baths="5">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -1933,7 +2046,7 @@
             </div>
             
             <!-- Off-Plan Property 14 -->
-            <div class="property-card" data-details-url="off-plan-details-14.html">
+            <div class="property-card" data-details-url="off-plan-details-14.html" data-beds="7" data-baths="7">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -2155,6 +2268,143 @@
                     }, 2000);
                 });
             });
+        });
+
+        // JavaScript for Dropdown Interaction
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                // Toggle dropdown on click
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const content = this.nextElementSibling;
+                    
+                    // Close all other dropdowns
+                    document.querySelectorAll('.filter-content').forEach(item => {
+                        if (item !== content) {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                });
+                
+                // Show dropdown on hover
+                button.addEventListener('mouseenter', function() {
+                    // Only open if not already open
+                    if (this.nextElementSibling.style.display !== 'block') {
+                        this.nextElementSibling.style.display = 'block';
+                    }
+                });
+                
+                const dropdown = button.closest('.filter-dropdown');
+                // Hide dropdown when mouse leaves
+                dropdown.addEventListener('mouseleave', function() {
+                    setTimeout(() => {
+                        const content = this.querySelector('.filter-content');
+                        if (!dropdown.matches(':hover')) {
+                            content.style.display = 'none';
+                        }
+                    }, 200);
+                });
+                
+                // Add hover effect to options
+                const options = button.nextElementSibling.querySelectorAll('.filter-option');
+                options.forEach(option => {
+                    option.addEventListener('mouseenter', function() {
+                        this.style.backgroundColor = '#f5f5f5';
+                    });
+                    
+                    option.addEventListener('mouseleave', function() {
+                        this.style.backgroundColor = 'transparent';
+                    });
+                    
+                    option.addEventListener('click', function() {
+                        const parentButton = this.closest('.filter-dropdown').querySelector('.filter-btn');
+                        const optionText = this.textContent.trim();
+                        // Update button text with the selected option
+                        parentButton.firstChild.textContent = optionText;
+                        // Close the dropdown
+                        this.closest('.filter-content').style.display = 'none';
+                        
+                        // Apply filters after selection
+                        applyFilters();
+                    });
+                });
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function() {
+                document.querySelectorAll('.filter-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+            });
+            
+            // Apply filters to properties
+            function applyFilters() {
+                // Get all property cards
+                const propertyCards = document.querySelectorAll('.property-card');
+                
+                // Get selected beds filter
+                const bedsFilter = document.querySelector('.filter-dropdown:nth-child(1) .filter-btn').textContent.trim();
+                
+                // Get selected baths filter
+                const bathsFilter = document.querySelector('.filter-dropdown:nth-child(2) .filter-btn').textContent.trim();
+                
+                // Filter each property card
+                propertyCards.forEach(card => {
+                    const cardBeds = parseInt(card.dataset.beds);
+                    const cardBaths = parseInt(card.dataset.baths);
+                    
+                    let showCard = true;
+                    
+                    // Apply beds filter
+                    if (bedsFilter !== 'Beds' && bedsFilter !== 'Any') {
+                        if (bedsFilter === 'Studio') {
+                            // Studio typically means 0 beds
+                            showCard = cardBeds === 0;
+                        } else if (bedsFilter.includes('+')) {
+                            const minBeds = parseInt(bedsFilter);
+                            showCard = cardBeds >= minBeds;
+                        } else {
+                            const exactBeds = parseInt(bedsFilter);
+                            showCard = cardBeds === exactBeds;
+                        }
+                    }
+                    
+                    // Apply baths filter
+                    if (showCard && bathsFilter !== 'Bath' && bathsFilter !== 'Any') {
+                        if (bathsFilter.includes('+')) {
+                            const minBaths = parseInt(bathsFilter);
+                            showCard = cardBaths >= minBaths;
+                        } else {
+                            const exactBaths = parseInt(bathsFilter);
+                            showCard = cardBaths === exactBaths;
+                        }
+                    }
+                    
+                    // Show or hide card
+                    if (showCard) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Add focus effect to search input
+            const searchInput = document.querySelector('.search-box input');
+            if (searchInput) {
+                searchInput.addEventListener('focus', function() {
+                    this.style.borderColor = '#1a237e';
+                });
+                
+                searchInput.addEventListener('blur', function() {
+                    this.style.borderColor = '#e0e0e0';
+                });
+            }
         });
     </script>
 </body>
