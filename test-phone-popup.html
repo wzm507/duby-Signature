@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电话弹窗功能测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .test-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6c63ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+        .test-link:hover {
+            background-color: #5a52e6;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>电话弹窗功能测试</h1>
+        
+        <div class="status info">
+            <strong>测试说明：</strong> 点击下面的链接进入各个房源详情页面，然后点击右下角的绿色电话图标，验证是否弹出包含电话号码"+971 52 145 0498"的弹窗。
+        </div>
+
+        <h2>房源详情页面测试链接：</h2>
+        <div>
+            <a href="http://localhost:5176/public/off-plan-details-1.html" class="test-link" target="_blank">页面 1</a>
+            <a href="http://localhost:5176/public/off-plan-details-2.html" class="test-link" target="_blank">页面 2</a>
+            <a href="http://localhost:5176/public/off-plan-details-3.html" class="test-link" target="_blank">页面 3</a>
+            <a href="http://localhost:5176/public/off-plan-details-4.html" class="test-link" target="_blank">页面 4</a>
+            <a href="http://localhost:5176/public/off-plan-details-5.html" class="test-link" target="_blank">页面 5</a>
+            <a href="http://localhost:5176/public/off-plan-details-6.html" class="test-link" target="_blank">页面 6</a>
+            <a href="http://localhost:5176/public/off-plan-details-7.html" class="test-link" target="_blank">页面 7</a>
+            <a href="http://localhost:5176/public/off-plan-details-8.html" class="test-link" target="_blank">页面 8</a>
+            <a href="http://localhost:5176/public/off-plan-details-9.html" class="test-link" target="_blank">页面 9</a>
+            <a href="http://localhost:5176/public/off-plan-details-10.html" class="test-link" target="_blank">页面 10</a>
+            <a href="http://localhost:5176/public/off-plan-details-11.html" class="test-link" target="_blank">页面 11</a>
+            <a href="http://localhost:5176/public/off-plan-details-12.html" class="test-link" target="_blank">页面 12</a>
+            <a href="http://localhost:5176/public/off-plan-details-13.html" class="test-link" target="_blank">页面 13</a>
+            <a href="http://localhost:5176/public/off-plan-details-14.html" class="test-link" target="_blank">页面 14</a>
+        </div>
+
+        <h2>修复状态：</h2>
+        <div class="status success">
+            ✅ 页面 1: JavaScript错误已修复，添加了条件检查<br>
+            ✅ 页面 2: JavaScript错误已修复，添加了条件检查<br>
+            ✅ 页面 3: JavaScript错误已修复，添加了条件检查<br>
+            ✅ 页面 4: JavaScript错误已修复，添加了条件检查<br>
+            ✅ 页面 5: 已经有正确的条件检查<br>
+            ✅ 页面 6: 已经有正确的条件检查<br>
+            ✅ 页面 7: 已经有正确的条件检查<br>
+            ✅ 页面 8: JavaScript错误已修复，添加了条件检查<br>
+            ✅ 页面 9: JavaScript错误已修复，添加了条件检查<br>
+            ✅ 页面 10: 已经有正确的条件检查<br>
+            ✅ 页面 11: 已经有正确的条件检查<br>
+            ✅ 页面 12: JavaScript错误已修复，添加了条件检查<br>
+            ✅ 页面 13: 已经有正确的条件检查<br>
+            ✅ 页面 14: 已经有正确的条件检查<br>
+        </div>
+
+        <h2>测试步骤：</h2>
+        <ol>
+            <li>点击任意一个页面链接</li>
+            <li>等待页面完全加载</li>
+            <li>在页面右下角找到绿色背景的电话图标</li>
+            <li>点击电话图标</li>
+            <li>验证是否弹出显示"+971 52 145 0498"电话号码的弹窗</li>
+            <li>测试弹窗的关闭功能</li>
+        </ol>
+
+        <div class="status success">
+            <strong>修复总结：</strong><br>
+            通过在所有14个页面的JavaScript代码中添加条件检查（if (element)），成功修复了空引用错误：
+            <pre>
+// 更新物业详情（仅在元素存在时执行）
+const propertyDetailsContainer = document.getElementById('property-details-container');
+if (propertyDetailsContainer) {
+    propertyDetailsContainer.innerHTML = `...`;
+}
+
+// 更新设施列表（仅在元素存在时执行）
+const amenitiesContainer = document.getElementById('amenities-container');
+if (amenitiesContainer) {
+    amenitiesContainer.innerHTML = `...`;
+}
+            </pre>
+        </div>
+
+        <p><strong>开发服务器地址：</strong> <a href="http://localhost:5176" target="_blank">http://localhost:5176</a></p>
+    </div>
+</body>
+</html>

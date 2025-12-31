@@ -442,11 +442,36 @@
         }
         
         .section-header h2 {
-          font-size: 2rem;
+          font-size: 1.4rem;
+          white-space: nowrap;
+        }
+        
+        .section-header {
+          gap: 0.3rem;
+          flex-wrap: nowrap;
+          white-space: nowrap;
+        }
+        
+        .section-header .filter-btn {
+          padding: 0.6rem 1rem;
+          font-size: 0.9rem;
         }
         
         .property-card {
           margin-bottom: 2rem;
+        }
+      }
+      
+      @media (max-width: 991px) and (min-width: 768px) {
+        .section-header {
+          gap: 0.5rem;
+          flex-wrap: nowrap;
+          white-space: nowrap;
+        }
+        
+        .section-header h2 {
+          font-size: 1.8rem;
+          white-space: nowrap;
         }
       }
       
@@ -829,13 +854,13 @@
                 }
             });
         </script>
-        <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
-            <div>
-                <h2 style="font-weight: 300;">Buy Properties in Dubai</h2>
-                <p></p>
+        <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: nowrap; white-space: nowrap;">
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <h2 style="font-weight: 300; margin: 0; font-size: 2.2rem; white-space: nowrap;">Buy Properties in Dubai</h2>
+                <p style="margin: 0;"></p>
             </div>
             
-            <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="display: flex; align-items: center; gap: 0.3rem;">
                 <div class="filter-dropdown" style="position: relative;">
                     <button class="filter-btn" style="padding: 0.75rem 1.25rem; background-color: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-size: 1rem; outline: none; transition: all 0.3s ease;">
                         Beds

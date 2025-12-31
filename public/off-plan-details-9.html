@@ -1216,62 +1216,66 @@
                 galleryImages[i].src = currentImages[displayImages[i]];
             }
             
-            // 更新物业详情
+            // 更新物业详情（仅在元素存在时执行）
             const propertyDetailsContainer = document.getElementById('property-details-container');
-            propertyDetailsContainer.innerHTML = `
-                <div class="property-detail-item">
-                    <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
-                    <p style="color: #666;">Apartment</p>
-                </div>
-                <div class="property-detail-item">
-                    <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
-                    <p style="color: #666;">745 sqft / 69 sqm</p>
-                </div>
-                <div class="property-detail-item">
-                    <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
-                    <p style="color: #666;">1</p>
-                </div>
-                <div class="property-detail-item">
-                    <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
-                    <p style="color: #666;">2</p>
-                </div>
-                <div class="property-detail-item">
-                    <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Developer</h3>
-                    <p style="color: #666;">EMAAR</p>
-                </div>
-                <div class="property-detail-item">
-                    <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Community</h3>
-                    <p style="color: #666;">EMAAR Beachfront</p>
-                </div>
-            `;
+            if (propertyDetailsContainer) {
+                propertyDetailsContainer.innerHTML = `
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Type</h3>
+                        <p style="color: #666;">Apartment</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Property Size</h3>
+                        <p style="color: #666;">745 sqft / 69 sqm</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bedrooms</h3>
+                        <p style="color: #666;">1</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Bathrooms</h3>
+                        <p style="color: #666;">2</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Developer</h3>
+                        <p style="color: #666;">EMAAR</p>
+                    </div>
+                    <div class="property-detail-item">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Community</h3>
+                        <p style="color: #666;">EMAAR Beachfront</p>
+                    </div>
+                `;
+            }
             
-            // 更新设施列表
+            // 更新设施列表（仅在元素存在时执行）
             const amenitiesContainer = document.getElementById('amenities-container');
-            const amenities = [
-                { icon: '🏙️', name: 'Balcony' },
-                { icon: '🏊', name: 'Shared Pool' },
-                { icon: '💆', name: 'Shared Spa' },
-                { icon: '🔒', name: 'Security' },
-                { icon: '🛎️', name: 'Concierge' },
-                { icon: '🚗', name: 'Covered Parking' },
-                { icon: '🛋️', name: 'Built in Wardrobes' },
-                { icon: '👗', name: 'Walk-in Closet' },
-                { icon: '🍳', name: 'Kitchen Appliances' },
-                { icon: '🌊', name: 'View of Water' },
-                { icon: '🏙️', name: 'View of Landmark' },
-                { icon: '🐕', name: 'Pets Allowed' },
-                { icon: '💪', name: 'Shared Gym' },
-                { icon: '🏢', name: 'Lobby in Building' },
-                { icon: '👶', name: "Children's Pool" },
-                { icon: '🧘', name: 'Vastu-compliant' }
-            ];
-            
-            amenitiesContainer.innerHTML = amenities.map(amenity => `
-                <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
-                    <span style="font-size: 1.5rem;">${amenity.icon}</span>
-                    <span style="font-weight: 500; color: #333;">${amenity.name}</span>
-                </div>
-            `).join('');
+            if (amenitiesContainer) {
+                const amenities = [
+                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏊', name: 'Shared Pool' },
+                    { icon: '💆', name: 'Shared Spa' },
+                    { icon: '🔒', name: 'Security' },
+                    { icon: '🛎️', name: 'Concierge' },
+                    { icon: '🚗', name: 'Covered Parking' },
+                    { icon: '🛋️', name: 'Built in Wardrobes' },
+                    { icon: '👗', name: 'Walk-in Closet' },
+                    { icon: '🍳', name: 'Kitchen Appliances' },
+                    { icon: '🌊', name: 'View of Water' },
+                    { icon: '🏙️', name: 'View of Landmark' },
+                    { icon: '🐕', name: 'Pets Allowed' },
+                    { icon: '💪', name: 'Shared Gym' },
+                    { icon: '🏢', name: 'Lobby in Building' },
+                    { icon: '👶', name: "Children's Pool" },
+                    { icon: '🧘', name: 'Vastu-compliant' }
+                ];
+                
+                amenitiesContainer.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-item" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem; background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <span style="font-size: 1.5rem;">${amenity.icon}</span>
+                        <span style="font-weight: 500; color: #333;">${amenity.name}</span>
+                    </div>
+                `).join('');
+            }
             
             // 设置画廊弹窗的总图片数
             const totalSpan = document.getElementById('gallery-total');
@@ -1326,6 +1330,25 @@
                 currentImageIndex = (currentImageIndex + 1) % currentImages.length;
                 modalImg.src = currentImages[currentImageIndex];
                 currentIndexSpan.textContent = currentImageIndex + 1;
+            });
+            
+            // 电话按钮和弹窗功能
+            const phoneBtn = document.querySelector('.phone-btn');
+            const phonePopup = document.getElementById('phone-popup');
+            const phoneCloseBtn = document.querySelector('.phone-popup-close');
+            
+            phoneBtn.addEventListener('click', () => {
+                phonePopup.style.display = 'block';
+            });
+            
+            phoneCloseBtn.addEventListener('click', () => {
+                phonePopup.style.display = 'none';
+            });
+            
+            window.addEventListener('click', (event) => {
+                if (event.target === phonePopup) {
+                    phonePopup.style.display = 'none';
+                }
             });
         });
     </script>

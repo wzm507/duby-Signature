@@ -2139,8 +2139,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </button>
         </div>
       </div>
-    </div>
-  `;
+    `;
   
   // 添加hero区域样式
   const heroStyle = document.createElement('style');
@@ -2444,14 +2443,25 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="header-text">
           <h2 data-translate="propertiesTitle">Ready Properties</h2>
         </div>
-          <a href="/featured-properties.html" class="view-all-btn" data-translate="viewFeaturedProperties">
-  View all Properties
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="linear-button-icon">
-    <polyline points="9 18 15 12 9 6"></polyline>
-  </svg>
-</a>
+        <a href="/featured-properties.html" class="view-all-btn" data-translate="viewFeaturedProperties">
+          View all Properties
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="linear-button-icon">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
       </div>
-    </div>
+      <div class="header-nav-controls">
+        <button class="carousel-nav prev" aria-label="Previous">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button class="carousel-nav next" aria-label="Next">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
     <div class="properties-carousel-container">
       <div class="properties-grid">
             <div class="property-card homepage-property-card" data-beds="2" data-baths="2">
@@ -2534,6 +2544,103 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="display: flex; gap: 0.3rem; margin: 0 0.5rem;">
                         <button class="call-us-btn" style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">Call Us</button>
                         <a href="https://wa.me/971501234567" target="_blank" class="whatsapp-btn" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.3rem; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; text-decoration: none; transition: all 0.3s ease;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#25D366">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card homepage-property-card" data-beds="1" data-baths="1">
+                <div class="property-carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/7/1.png" alt="Property Image 1" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/7/image.png" alt="Property Image 2" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/7/image copy.png" alt="Property Image 3" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/7/image copy 2.png" alt="Property Image 4" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/7/image copy 3.png" alt="Property Image 5" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/7/image copy 4.png" alt="Property Image 6" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/7/image copy 5.png" alt="Property Image 7" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/7/image copy 6.png" alt="Property Image 8" />
+                        </div>
+                    </div>
+                    <div class="carousel-indicators">
+                        <button class="carousel-indicator active"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                    </div>
+                </div>
+                <div class="property-details">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">AED 2,250,000</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    
+                    <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
+                        APARTMENT FOR SALE IN BURJ ROYALE
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            <span style="color: #000;">1 Bed</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
+                            </svg>
+                            <span style="color: #000;">1 Bath</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            <span style="color: #000;">578 sq-ft</span>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; color: #000;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span style="color: #000;">Downtown Dubai</span>
+                    </div>
+                    
+                    <hr style="border: none; border-top: 1px dashed #ddd; margin-bottom: 0.5rem;" />
+                    <div style="display: flex; gap: 0.3rem; margin: 0 0.5rem;">
+                        <button class="call-us-btn" style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">Call Us</button>
+                        <a href="https://wa.me/971501234567" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.3rem; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; text-decoration: none; transition: all 0.3s ease;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#25D366">
                                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                             </svg>
@@ -2721,6 +2828,184 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
 
+            <div class="property-card homepage-property-card" data-beds="3" data-baths="3">
+                <div class="property-carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/5/1.png" alt="Property Image 1" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/5/image.png" alt="Property Image 2" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/5/image copy.png" alt="Property Image 3" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/5/image copy 2.png" alt="Property Image 4" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/5/image copy 3.png" alt="Property Image 5" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/5/image copy 4.png" alt="Property Image 6" />
+                        </div>
+                    </div>
+                    <div class="carousel-indicators">
+                        <button class="carousel-indicator active"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                    </div>
+                </div>
+                <div class="property-details">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">AED 3,200,000</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    
+                    <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
+                        APARTMENT FOR SALE IN SOBHA HARTLAND
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            <span style="color: #000;">3 Bed</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
+                            </svg>
+                            <span style="color: #000;">3 Bath</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            <span style="color: #000;">1,567 sq-ft</span>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; color: #000;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span style="color: #000;">Mohammed Bin Rashid City</span>
+                    </div>
+                    
+                    <hr style="border: none; border-top: 1px dashed #ddd; margin-bottom: 0.5rem;" />
+                    <div style="display: flex; gap: 0.3rem; margin: 0 0.5rem;">
+                        <button class="call-us-btn" style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">Call Us</button>
+                        <a href="https://wa.me/971501234567" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.3rem; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; text-decoration: none; transition: all 0.3s ease;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#25D366">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card homepage-property-card" data-beds="2" data-baths="2">
+                <div class="property-carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/6/1.png" alt="Property Image 1" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/6/image.png" alt="Property Image 2" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/6/image copy.png" alt="Property Image 3" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/6/image copy 2.png" alt="Property Image 4" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/6/image copy 3.png" alt="Property Image 5" />
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/images_new/buy-new/6/image copy 4.png" alt="Property Image 6" />
+                        </div>
+                    </div>
+                    <div class="carousel-indicators">
+                        <button class="carousel-indicator active"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
+                    </div>
+                </div>
+                <div class="property-details">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">AED 2,750,000</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    
+                    <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
+                        APARTMENT FOR SALE IN ADDRESS RESIDENCE
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            <span style="color: #000;">2 Bed</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
+                            </svg>
+                            <span style="color: #000;">2 Bath</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            <span style="color: #000;">1,234 sq-ft</span>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; color: #000;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span style="color: #000;">Dubai Marina</span>
+                    </div>
+                    
+                    <hr style="border: none; border-top: 1px dashed #ddd; margin-bottom: 0.5rem;" />
+                    <div style="display: flex; gap: 0.3rem; margin: 0 0.5rem;">
+                        <button class="call-us-btn" style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">Call Us</button>
+                        <a href="https://wa.me/971501234567" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.3rem; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; text-decoration: none; transition: all 0.3s ease;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#25D366">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <div class="property-card homepage-property-card" data-beds="4" data-baths="5">
                 <div class="property-carousel">
                     <div class="carousel-slides">
@@ -2814,19 +3099,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
-                            <img src="/images_new/image/4/img291.jpg" alt="Golf Hillside" />
+                            <img src="/images_new/buy-new/4/image.png" alt="Golf Hillside" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/4/img371.jpg" alt="Golf Hillside" />
+                            <img src="/images_new/buy-new/4/image copy.png" alt="Golf Hillside" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/4/img3811.jpg" alt="Golf Hillside" />
+                            <img src="/images_new/buy-new/4/image copy 2.png" alt="Golf Hillside" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/4/img611.jpg" alt="Golf Hillside" />
+                            <img src="/images_new/buy-new/4/image copy 3.png" alt="Golf Hillside" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/4/img961.jpg" alt="Golf Hillside" />
+                            <img src="/images_new/buy-new/4/image copy 4.png" alt="Golf Hillside" />
                         </div>
                     </div>
                     <div class="carousel-indicators">
@@ -2970,248 +3255,199 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
       </div>
+      
     </div>
+    
+
+  </div>
   `;
   
-  // 添加自动滚动功能
-  const readyPropertiesSection = document.createElement('script');
-  readyPropertiesSection.textContent = `
-    document.addEventListener('DOMContentLoaded', function() {
-      const container = document.querySelector('.properties-carousel-container');
-      const grid = document.querySelector('.properties-grid');
-      const cards = document.querySelectorAll('.property-card');
-      let currentPosition = 0;
-      const cardWidth = cards[0].offsetWidth + 24; // 卡片宽度 + 间距
-      let visibleCards = window.innerWidth >= 1200 ? 4 : 1;
-      const maxPosition = cards.length - visibleCards;
-      
-      // 添加长条指示器DOM结构
-      const indicatorContainer = document.createElement('div');
-      indicatorContainer.className = 'scroll-indicator';
-      const indicatorTrack = document.createElement('div');
-      indicatorTrack.className = 'scroll-indicator-track';
-      const indicatorThumb = document.createElement('div');
-      indicatorThumb.className = 'scroll-indicator-thumb';
-      indicatorTrack.appendChild(indicatorThumb);
-      indicatorContainer.appendChild(indicatorTrack);
-      container.appendChild(indicatorContainer);
-      
-      // 初始化指示器
-      function initIndicator() {
-        const trackWidth = indicatorTrack.offsetWidth;
-        const totalScrollWidth = grid.scrollWidth - grid.clientWidth;
-        // 计算滑块宽度 - 基于可见卡片数量
-        const thumbWidth = (visibleCards / cards.length) * trackWidth;
-        indicatorThumb.style.width = Math.max(thumbWidth, 40) + 'px'; // 最小宽度40px
-        updateIndicatorPosition();
-      }
-      
-      // 更新指示器位置
-      function updateIndicatorPosition() {
-        const trackWidth = indicatorTrack.offsetWidth;
-        const thumbWidth = indicatorThumb.offsetWidth;
-        const totalScrollWidth = grid.scrollWidth - grid.clientWidth;
-        const scrollRatio = grid.scrollLeft / totalScrollWidth;
-        const newLeft = scrollRatio * (trackWidth - thumbWidth);
-        indicatorThumb.style.left = newLeft + 'px';
-      }
-      
-      // 拖动控制功能 - 使用已有的isDragging和startX变量
-      let startLeft = 0;
-      
-      indicatorThumb.addEventListener('mousedown', (e) => {
-        e.preventDefault();
-        isDragging = true;
-        startX = e.clientX;
-        startLeft = parseFloat(indicatorThumb.style.left || 0);
-        document.addEventListener('mousemove', handleDrag);
-        document.addEventListener('mouseup', stopDrag);
-        // 暂停自动滚动
-        clearInterval(scrollInterval);
-      });
-      
-      indicatorTrack.addEventListener('click', (e) => {
-        if (!isDragging) {
-          const rect = indicatorTrack.getBoundingClientRect();
-          const clickX = e.clientX - rect.left;
-          const trackWidth = rect.width;
-          const thumbWidth = indicatorThumb.offsetWidth;
-          
-          // 计算新的滑块位置（限制在轨道内）
-          let newLeft = clickX - thumbWidth / 2;
-          newLeft = Math.max(0, Math.min(newLeft, trackWidth - thumbWidth));
-          
-          // 根据滑块位置计算网格滚动位置
-          const scrollRatio = newLeft / (trackWidth - thumbWidth);
-          const totalScrollWidth = grid.scrollWidth - grid.clientWidth;
-          grid.scrollTo({ left: scrollRatio * totalScrollWidth, behavior: 'smooth' });
-          
-          // 暂停自动滚动
-          clearInterval(scrollInterval);
-          startAutoScroll(); // 重新开始自动滚动
-        }
-      });
-      
-      function handleDrag(e) {
-        if (!isDragging) return;
+  // 添加轮播功能
+  const readyPropertiesScript = document.createElement('script');
+  readyPropertiesScript.textContent = `
+    (function() {
+      // 等待DOM加载完成
+      function initCarousel() {
+        console.log('初始化轮播功能');
         
-        const rect = indicatorTrack.getBoundingClientRect();
-        const trackWidth = rect.width;
-        const thumbWidth = indicatorThumb.offsetWidth;
-        const deltaX = e.clientX - startX;
-        let newLeft = startLeft + deltaX;
+        // 获取轮播相关元素
+        const container = document.querySelector('.properties-carousel-container');
+        const grid = document.querySelector('.properties-grid');
+        const cards = document.querySelectorAll('.properties-grid .property-card.homepage-property-card');
         
-        // 限制在轨道内
-        newLeft = Math.max(0, Math.min(newLeft, trackWidth - thumbWidth));
-        indicatorThumb.style.left = newLeft + 'px';
-        
-        // 根据滑块位置更新网格滚动位置
-        const scrollRatio = newLeft / (trackWidth - thumbWidth);
-        const totalScrollWidth = grid.scrollWidth - grid.clientWidth;
-        grid.scrollLeft = scrollRatio * totalScrollWidth;
-      }
-      
-      function stopDrag() {
-        isDragging = false;
-        document.removeEventListener('mousemove', handleDrag);
-        document.removeEventListener('mouseup', stopDrag);
-        // 重新开始自动滚动
-        startAutoScroll();
-      }
-      
-      // 监听网格滚动事件更新指示器位置
-      grid.addEventListener('scroll', updateIndicatorPosition);
-      
-      // 监听窗口大小改变事件重新初始化指示器
-      window.addEventListener('resize', () => {
-        const newVisibleCards = window.innerWidth >= 1200 ? 2 : 1;
-        if (newVisibleCards !== visibleCards) {
-          visibleCards = newVisibleCards;
-          initIndicator();
-        }
-      });
-      
-      // 初始化指示器
-      initIndicator();
-      
-      // 实现缓慢自动滚动效果
-      function startAutoScroll() {
-        // 清除可能存在的旧定时器
-        clearInterval(scrollInterval);
-        // 设置新的定时器，每8秒滚动一次
-        scrollInterval = setInterval(autoScroll, 8000);
-      }
-      
-      // 自动滚动函数 - 实现缓慢滚动
-      function autoScroll() {
-        // 计算下一个滚动位置
-        let nextPosition = currentPosition + 1;
-        if (nextPosition > maxPosition) {
-          // 如果到达最后一张，回到第一张
-          nextPosition = 0;
+        if (!container || !grid || cards.length === 0) {
+          console.log('轮播元素未找到或没有卡片');
+          return;
         }
         
-        // 使用自定义的缓慢滚动动画
-        slowScroll(nextPosition);
-        currentPosition = nextPosition;
-      }
-      
-      // 缓慢滚动函数
-      function slowScroll(targetPosition) {
-        const targetScroll = targetPosition * cardWidth;
-        const startScroll = grid.scrollLeft;
-        const distance = targetScroll - startScroll;
-        const duration = 2000; // 滚动持续时间2秒
-        let startTime = null;
+        console.log('找到卡片数量:', cards.length);
         
-        function animation(currentTime) {
-          if (startTime === null) startTime = currentTime;
-          const timeElapsed = currentTime - startTime;
-          const progress = Math.min(timeElapsed / duration, 1);
+        // 状态管理
+        let currentIndex = 0;
+        let cardWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--card-width')) || 680; // 默认值，根据CSS动态计算
+        let autoScrollInterval;
+        const totalCards = cards.length;
+        
+        // 设置卡片宽度
+        function setCardWidths() {
+          cards.forEach(card => {
+            card.style.width = 'calc(50% - 1rem)';
+            card.style.minWidth = 'calc(50% - 1rem)';
+            card.style.maxWidth = '700px';
+            card.style.height = '300px';
+            card.style.flexShrink = '0';
+          });
+        }
+        
+
+        
+        // 更新导航按钮状态
+        function updateNavButtons() {
+          const prevBtn = document.querySelector('.carousel-nav.prev');
+          const nextBtn = document.querySelector('.carousel-nav.next');
           
-          // 使用缓动函数使滚动更自然
-          const easeProgress = easeInOutQuad(progress);
-          grid.scrollLeft = startScroll + (distance * easeProgress);
-          
-          if (timeElapsed < duration) {
-            requestAnimationFrame(animation);
+          if (prevBtn) {
+            prevBtn.disabled = currentIndex === 0;
+          }
+          if (nextBtn) {
+            nextBtn.disabled = currentIndex === totalCards - 1;
           }
         }
         
-        // 缓动函数
-        function easeInOutQuad(t) {
-          return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+        // 跳转到指定卡片
+        function goToSlide(index) {
+          console.log('跳转到卡片:', index);
+          
+          // 确保索引在有效范围内
+          if (index < 0) index = 0;
+          if (index >= totalCards) index = totalCards - 1;
+          
+          currentIndex = index;
+          const scrollPosition = index * cardWidth;
+          
+          // 滚动到对应位置
+          grid.scrollTo({
+            left: scrollPosition,
+            behavior: 'smooth'
+          });
+          
+          // 更新状态
+          updateNavButtons();
+          
+          // 重启自动滚动
+          resetAutoScroll();
         }
         
-        requestAnimationFrame(animation);
-      }
-      
-      // 每8秒自动滚动
-      let scrollInterval = setInterval(autoScroll, 8000);
-      
-      // 触摸滑动功能
-      let touchStartX = 0;
-      let touchEndX = 0;
-      
-      container.addEventListener('touchstart', function(e) {
-        touchStartX = e.changedTouches[0].screenX;
-        clearInterval(scrollInterval); // 暂停自动滚动
-      });
-      
-      container.addEventListener('touchend', function(e) {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-        startAutoScroll(); // 恢复自动滚动
-      });
-      
-      function handleSwipe() {
-        const swipeThreshold = 50;
-        if (touchEndX < touchStartX - swipeThreshold && currentPosition < maxPosition) {
-          // 向左滑动
-          currentPosition++;
-          grid.scrollTo({ left: currentPosition * cardWidth, behavior: 'smooth' });
-        } else if (touchEndX > touchStartX + swipeThreshold && currentPosition > 0) {
-          // 向右滑动
-          currentPosition--;
-          grid.scrollTo({ left: currentPosition * cardWidth, behavior: 'smooth' });
+        // 下一张卡片
+        function nextSlide() {
+          let nextIndex = currentIndex + 1;
+          if (nextIndex >= totalCards) {
+            nextIndex = 0; // 循环到第一张
+          }
+          goToSlide(nextIndex);
         }
+        
+        // 上一张卡片
+        function prevSlide() {
+          let prevIndex = currentIndex - 1;
+          if (prevIndex < 0) {
+            prevIndex = totalCards - 1; // 循环到最后一张
+          }
+          goToSlide(prevIndex);
+        }
+        
+        // 自动滚动控制
+        function startAutoScroll() {
+          clearInterval(autoScrollInterval);
+          autoScrollInterval = setInterval(nextSlide, 5000); // 每5秒切换
+          console.log('启动自动轮播');
+        }
+        
+        function resetAutoScroll() {
+          clearInterval(autoScrollInterval);
+          startAutoScroll();
+        }
+        
+        function pauseAutoScroll() {
+          clearInterval(autoScrollInterval);
+          console.log('暂停自动轮播');
+        }
+        
+        // 绑定事件监听器
+        function bindEvents() {
+          // 导航按钮事件
+          const prevBtn = document.querySelector('.carousel-nav.prev');
+          const nextBtn = document.querySelector('.carousel-nav.next');
+          
+          if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+              console.log('点击了上一张按钮');
+              pauseAutoScroll();
+              prevSlide();
+            });
+          }
+          
+          if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+              console.log('点击了下一张按钮');
+              pauseAutoScroll();
+              nextSlide();
+            });
+          }
+          
+
+          
+          // 鼠标悬停事件
+          container.addEventListener('mouseenter', pauseAutoScroll);
+          container.addEventListener('mouseleave', startAutoScroll);
+          
+          // 滚动事件监听当前状态
+          let scrollTimeout;
+          grid.addEventListener('scroll', () => {
+            // 使用节流避免频繁触发
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+              const scrollPosition = grid.scrollLeft;
+              const newIndex = Math.round(scrollPosition / cardWidth);
+              console.log('滚动事件', 'scrollPosition:', scrollPosition, 'newIndex:', newIndex, 'currentIndex:', currentIndex);
+              if (newIndex !== currentIndex && newIndex >= 0 && newIndex < totalCards) {
+                currentIndex = newIndex;
+                updateNavButtons();
+              }
+            }, 100);
+          });
+          
+          // 窗口大小改变事件
+          window.addEventListener('resize', () => {
+            console.log('窗口大小改变');
+            setCardWidths();
+            goToSlide(currentIndex); // 重新定位到当前卡片
+          });
+        }
+        
+        // 初始化
+        setTimeout(() => {
+          setCardWidths();
+          bindEvents();
+          goToSlide(0); // 跳转到第一张卡片
+          startAutoScroll(); // 启动自动轮播
+          
+          console.log('轮播初始化完成');
+        }, 200); // 延迟200ms确保DOM完全渲染
       }
       
-      // 鼠标拖拽功能
-      let isDragging = false;
-      let startX;
-      let scrollLeft;
+      // 页面加载完成后初始化
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCarousel);
+      } else {
+        initCarousel();
+      }
       
-      container.addEventListener('mousedown', function(e) {
-        isDragging = true;
-        startX = e.pageX - container.offsetLeft;
-        scrollLeft = grid.scrollLeft;
-        clearInterval(scrollInterval); // 暂停自动滚动
-      });
-      
-      document.addEventListener('mouseup', function() {
-        isDragging = false;
-        startAutoScroll(); // 恢复自动滚动
-      });
-      
-      container.addEventListener('mousemove', function(e) {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - container.offsetLeft;
-        const walk = (x - startX) * 2;
-        let newScrollLeft = scrollLeft - walk;
-        
-        // 限制在有效范围内
-        newScrollLeft = Math.max(0, Math.min(newScrollLeft, maxPosition * cardWidth));
-        
-        grid.scrollLeft = newScrollLeft;
-        
-        // 更新当前位置
-        currentPosition = Math.round(newScrollLeft / cardWidth);
-      });
-    });
+      // 确保轮播在窗口加载后也会初始化
+      window.addEventListener('load', initCarousel);
+    })();
   `;
-  document.body.appendChild(readyPropertiesSection);
+  document.body.appendChild(readyPropertiesScript);
   
   // 创建公司使命区域（已清空内容）
   const aboutSection = document.createElement('section');
@@ -4063,41 +4299,17 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="company-intro-text">
         <h2 data-translate="companyIntroTitle">Stay up to date on the latest off-plan launches.</h2>
         <div class="company-stats" style="display: flex; flex-wrap: nowrap; gap: 16px; padding: 16px 0; margin: 0 20px;">
-          <div class="company-stat" onclick="window.location.href='property-detail.html?property=lydia-by-palace'" style="background-image: url('../img/Stay up to date on the latest off-plan launches/1.jpg'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
-            <button onclick="event.stopPropagation(); window.location.href='property-detail.html?property=lydia-by-palace'" style="position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background-color: transparent; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0a2463" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </button>
+          <div class="company-stat" onclick="window.location.href='http://localhost:5174/public/off-plan.html'" style="background-image: url('../img/Stay up to date on the latest off-plan launches/1.jpg'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
             <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">Terra Gardens</div>
-
           </div>
-          <div class="company-stat" onclick="window.location.href='property-detail.html?property=azure-residences'" style="background-image: url('../img/Stay up to date on the latest off-plan launches/2.jpg'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
-            <button onclick="event.stopPropagation(); window.location.href='property-detail.html?property=azure-residences'" style="position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background-color: transparent; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0a2463" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </button>
+          <div class="company-stat" onclick="window.location.href='http://localhost:5174/public/off-plan.html'" style="background-image: url('../img/Stay up to date on the latest off-plan launches/2.jpg'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
             <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">Greenridge</div>
           </div>
-          <div class="company-stat" onclick="window.location.href='property-detail.html?property=marina-vista'" style="background-image: url('../img/Stay up to date on the latest off-plan launches/3.jpg'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
-            <button onclick="event.stopPropagation(); window.location.href='property-detail.html?property=marina-vista'" style="position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background-color: transparent; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; box-shadow: 0 2px 8px rgba(0,0.2,0,0);">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0a2463" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </button>
+          <div class="company-stat" onclick="window.location.href='http://localhost:5174/public/off-plan.html'" style="background-image: url('../img/Stay up to date on the latest off-plan launches/3.jpg'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
             <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">DAMAC Islands</div>
           </div>
-          <div class="company-stat" onclick="window.location.href='property-detail.html?property=sky-heights'" style="background-image: url('../img/Stay up to date on the latest off-plan launches/L2.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
-            <button onclick="event.stopPropagation(); window.location.href='property-detail.html?property=sky-heights'" style="position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background-color: transparent; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0a2463" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </button>
+          <div class="company-stat" onclick="window.location.href='http://localhost:5174/public/off-plan.html'" style="background-image: url('../img/Stay up to date on the latest off-plan launches/L2.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
+
             <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">Lyvia by Palace</div>
           </div>
         </div>
@@ -5070,7 +5282,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const cardWidth = card.offsetWidth;
         const computedStyle = window.getComputedStyle(propertiesGrid);
-        const gap = parseInt(computedStyle.getPropertyValue('gap')) || 0;
+        const gap = parseInt(computedStyle.getPropertyValue('gap')) || 16; // 默认为1rem (16px)
         
         return cardWidth + gap;
       };

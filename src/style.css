@@ -608,14 +608,24 @@ a:hover {
   max-width: 1400px;
   margin: 0 auto 4rem;
   padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .header-content-wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1rem;
+}
+
+.header-nav-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding: 0 2rem;
 }
 
 .header-text {
@@ -782,20 +792,80 @@ a:hover {
   color: #0a1f44;
 }
 
-/* Properties Grid - Modified for Horizontal Scroll */
+/* Properties Grid - Carousel Container */
 .properties-grid {
   display: flex;
   gap: 2rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  overflow-x: auto; /* Allow horizontal scrolling */
+  scroll-behavior: smooth; /* Smooth scrolling */
   padding: 2rem 1rem;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  position: relative;
+  max-width: 100%;
+  scrollbar-width: thin; /* Firefox */
 }
 
+/* 自定义滚动条样式 */
 .properties-grid::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
+  height: 8px;
 }
+
+.properties-grid::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.properties-grid::-webkit-scrollbar-thumb {
+  background: #0a1f44;
+  border-radius: 4px;
+}
+
+.properties-grid::-webkit-scrollbar-thumb:hover {
+  background: #0a1f44;
+}
+
+/* 主页面卡片等比缩小 */
+.homepage-property-card {
+  min-width: calc(50% - 1rem);
+  max-width: 700px;
+  height: 300px;
+  flex-shrink: 0; /* 防止收缩 */
+}
+
+/* 轮播导航按钮 */
+.carousel-nav {
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 50px;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: #0C1559;
+}
+
+.carousel-nav:hover {
+  background: #0C1559;
+  color: white;
+  box-shadow: 0 4px 12px rgba(12, 21, 89, 0.3);
+  transform: translateY(-2px);
+}
+
+.carousel-nav:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.carousel-nav:disabled:hover {
+  transform: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 轮播指示器 */
+
 
 /* 滚动指示器样式 */
 .scroll-indicator {
@@ -854,48 +924,51 @@ a:hover {
 
 /* 优化的响应式设计 - 适配16:9卡片比例 */
 
-/* 大屏设备 (≥1200px) - 显示2个卡片 */
+/* 大屏设备 (≥1200px) - 显示多卡片横向滚动 */
 @media (min-width: 1200px) {
   .property-card {
-    min-width: calc(50% - 1rem);
-    max-width: 500px;
+    min-width: 300px;
+    max-width: 350px;
   }
   
   /* 主页面卡片等比缩小 */
   .homepage-property-card {
-    max-width: 400px; /* 从450px缩小到400px */
+    min-width: calc(50% - 1rem);
+    max-width: 700px;
+    height: 300px;
   }
 }
 
-/* 中屏设备 (992px - 1199px) - 显示2个卡片 */
+/* 中屏设备 (992px - 1199px) - 显示多卡片横向滚动 */
 @media (min-width: 992px) and (max-width: 1199px) {
   .property-card {
-    min-width: calc(50% - 1rem);
-    max-width: 500px;
+    min-width: 300px;
+    max-width: 350px;
   }
   
   /* 主页面卡片等比缩小 */
   .homepage-property-card {
-    max-width: 450px; /* 从500px缩小到450px */
+    min-width: 680px;
+    max-width: 680px;
   }
 }
 
-/* 平板设备 (768px - 991px) - 显示左右布局 */
+/* 平板设备 (768px - 991px) - 横向滚动 */
 @media (min-width: 768px) and (max-width: 991px) {
   .property-card {
-    min-width: calc(100% - 2rem);
-    max-width: 100%;
+    min-width: 300px;
+    max-width: 350px;
     height: auto;
     border-radius: var(--card-radius-lg);
   }
   
   .property-carousel {
-    width: 45%;
-    height: 320px;
+    width: 100%;
+    height: 200px;
   }
   
   .property-details {
-    width: 55%;
+    width: 100%;
     padding: var(--card-spacing-lg);
   }
   
@@ -1226,6 +1299,22 @@ a:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 32px rgba(10, 31, 68, 0.15);
   border-color: var(--card-border);
+}
+
+/* 主页房产卡片边框增强 */
+.homepage-property-card {
+  border: 2px solid #0a1f44 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 20px rgba(10, 31, 68, 0.15) !important;
+  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1) !important;
+  background-color: #f8f9fa !important;
+  overflow: hidden;
+}
+
+.homepage-property-card:hover {
+  border-color: #1e40af !important;
+  transform: translateY(-10px) scale(1.02) !important;
+  box-shadow: 0 15px 40px rgba(10, 31, 68, 0.25) !important;
 }
 
 /* 确保所有动画使用统一的过渡效果 */
