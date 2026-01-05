@@ -147,16 +147,111 @@
             .hero-content h1 {
                 font-size: 2.5rem;
             }
-            
-            .hero-content p {
-                font-size: 1rem;
+        }
+        
+        /* 弹窗样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
             }
-            
-            .nav-links {
-                gap: 1rem;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-    </style>
+        
+        .modal-close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: #6c63ff;
+        }
+        
+        .modal-body {
+            text-align: center;
+        }
+        
+        /* 响应式弹窗 */
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 30% auto;
+                padding: 1.5rem;
+                width: 95%;
+            }
+        }
+        
+        /* Call Us按钮样式 */
+        .call-us-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #6c63ff, #5a54d8);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(108, 99, 255, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .call-us-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(108, 99, 255, 0.6);
+        }
+        
+        .call-us-btn i {
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+             .call-us-btn {
+                  bottom: 15px;
+                  right: 15px;
+                  padding: 0.8rem 1.2rem;
+                  font-size: 0.9rem;
+              }
+          }
+      </style>
 </head>
 <body>
     <!-- 导航栏 -->
@@ -195,8 +290,27 @@
             </div>
         </div>
     </section>
+
+    <!-- Call Us弹窗 -->
+    <div id="callUsModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-body">
+                <h3 style="margin-bottom: 1.5rem; color: #6c63ff;">Contact Us</h3>
+                <p style="font-size: 1.5rem; font-weight: 700; color: #6c63ff; text-align: center;">+971 52 145 0498</p>
+                <p style="margin-top: 1rem; color: #666; text-align: center; cursor: pointer;" onclick="copyPhoneNumber()">Click to copy phone number</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call Us悬浮按钮 -->
+    <button class="call-us-btn" onclick="openCallUsModal()">
+        <i class="fas fa-phone"></i>
+        Call Us
+    </button>
     
     <script>
+        // 视频播放功能
         document.addEventListener('DOMContentLoaded', function() {
             const heroVideo = document.getElementById('heroVideo');
             if (heroVideo) {
@@ -204,6 +318,54 @@
                     console.log('视频播放被阻止:', e);
                 });
             }
+        });
+
+        // Call Us弹窗功能
+        function openCallUsModal() {
+            const modal = document.getElementById('callUsModal');
+            modal.style.display = 'block';
+        }
+
+        function closeCallUsModal() {
+            const modal = document.getElementById('callUsModal');
+            modal.style.display = 'none';
+        }
+
+        function copyPhoneNumber() {
+            const phoneNumber = '+971 52 145 0498';
+            navigator.clipboard.writeText(phoneNumber).then(() => {
+                const message = event.target;
+                const originalText = message.textContent;
+                message.textContent = 'Phone number copied!';
+                message.style.color = '#6c63ff';
+                setTimeout(() => {
+                    message.textContent = originalText;
+                    message.style.color = '#666';
+                }, 2000);
+            });
+        }
+
+        // 弹窗事件监听
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('callUsModal');
+            const closeBtn = document.querySelector('.modal-close');
+
+            // 关闭按钮事件
+            closeBtn.addEventListener('click', closeCallUsModal);
+
+            // 点击弹窗外部关闭
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeCallUsModal();
+                }
+            });
+
+            // ESC键关闭弹窗
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && modal.style.display === 'block') {
+                    closeCallUsModal();
+                }
+            });
         });
     </script>
     <script type="module" src="/src/main.js"></script>

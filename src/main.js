@@ -3898,8 +3898,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <img src="/img/news/news6.png" alt="Dubai's Population Growth" style="width: 100%; height: 100%; object-fit: cover;" />
           <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: white; border-radius: 30px; padding: 8px 20px; font-size: 14px; color: #2c2c54; text-align: center; white-space: nowrap;">Ready-to-Move-6</div>
         </div>
-      </div>
     </div>
+</div>
   `;
   
   // 创建联系区域
@@ -4336,18 +4336,61 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="company-intro-text">
         <h2 data-translate="companyIntroTitle">Stay up to date on the latest off-plan launches.</h2>
         <div class="company-stats" style="display: flex; flex-wrap: nowrap; gap: 16px; padding: 16px 0; margin: 0 20px;">
-          <div class="company-stat" onclick="window.location.href='http://localhost:5174/public/off-plan.html'" style="background-image: url('../img/Stay up to date on the latest off-plan launches/1.jpg'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
-            <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">Terra Gardens</div>
+          <div class="company-stat" onclick="window.location.href='/off-plan-details-1.html'" style="background-image: url('/off/1/image copy 4.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
+            <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">St Regis The Residences</div>
+            <div style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border: 2px solid white; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 999;">
+              <i class="fas fa-arrow-right" style="color: white; font-size: 14px;"></i>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin: 8px 16px; margin-top: 4px; margin-bottom: 40px; z-index: 999;">
+              <div style="background-color: white; padding: 6px 60px; border-radius: 12px; color: #333; font-size: 12px; white-space: nowrap;">
+                Price from AED 2,807,294
+              </div>
+              <div style="background-color: white; padding: 6px 60px; border-radius: 12px; color: #333; font-size: 12px; white-space: nowrap;">
+                Completion Q4 2026
+              </div>
+            </div>
           </div>
-          <div class="company-stat" onclick="window.location.href='http://localhost:5174/public/off-plan.html'" style="background-image: url('../img/Stay up to date on the latest off-plan launches/2.jpg'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
-            <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">Greenridge</div>
+          <div class="company-stat" onclick="window.location.href='/off-plan-details-2.html'" style="background-image: url('/off/2/image copy 4.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
+            <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">AEON</div>
+            <div style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border: 2px solid white; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 999;">
+              <i class="fas fa-arrow-right" style="color: white; font-size: 14px;"></i>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin: 8px 16px; margin-top: 4px; margin-bottom: 40px; z-index: 999;">
+              <div style="background-color: white; padding: 6px 60px; border-radius: 12px; color: #333; font-size: 12px; white-space: nowrap;">
+                Price from AED 1,500,000
+              </div>
+              <div style="background-color: white; padding: 6px 60px; border-radius: 12px; color: #333; font-size: 12px; white-space: nowrap;">
+                Completion Q4 2027
+              </div>
+            </div>
           </div>
-          <div class="company-stat" onclick="window.location.href='http://localhost:5174/public/off-plan.html'" style="background-image: url('../img/Stay up to date on the latest off-plan launches/3.jpg'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
-            <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">DAMAC Islands</div>
+          <div class="company-stat" onclick="window.location.href='/off-plan-details-3.html'" style="background-image: url('/off/3/image copy 4.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
+            <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">Club Drive Tower A</div>
+            <div style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border: 2px solid white; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 999;">
+              <i class="fas fa-arrow-right" style="color: white; font-size: 14px;"></i>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin: 8px 16px; margin-top: 4px; margin-bottom: 40px; z-index: 999;">
+              <div style="background-color: white; padding: 6px 60px; border-radius: 12px; color: #333; font-size: 12px; white-space: nowrap;">
+                Price from AED 2,800,000
+              </div>
+              <div style="background-color: white; padding: 6px 60px; border-radius: 12px; color: #333; font-size: 12px; white-space: nowrap;">
+                Completion Q2 2028
+              </div>
+            </div>
           </div>
-          <div class="company-stat" onclick="window.location.href='http://localhost:5174/public/off-plan.html'" style="background-image: url('../img/Stay up to date on the latest off-plan launches/L2.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
-
-            <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">Lyvia by Palace</div>
+          <div class="company-stat" onclick="window.location.href='/off-plan-details-4.html'" style="background-image: url('/off/4/image copy 5.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
+            <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">Bay Residences</div>
+            <div style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border: 2px solid white; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 999;">
+              <i class="fas fa-arrow-right" style="color: white; font-size: 14px;"></i>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin: 8px 16px; margin-top: 4px; margin-bottom: 40px; z-index: 999;">
+              <div style="background-color: white; padding: 6px 60px; border-radius: 12px; color: #333; font-size: 12px; white-space: nowrap;">
+                Price from AED 7,745,084
+              </div>
+              <div style="background-color: white; padding: 6px 60px; border-radius: 12px; color: #333; font-size: 12px; white-space: nowrap;">
+                Completion Q4 2026
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -4367,6 +4410,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // 房产卡片添加完成后，重新初始化Call Us按钮和WhatsApp按钮
     initCallUsButtons();
     initWhatsAppButtons();
+    
+    // 为房产卡片添加点击事件
+    const propertyCards = document.querySelectorAll('.homepage-property-card');
+    propertyCards.forEach((card, index) => {
+        card.addEventListener('click', function() {
+            window.location.href = `property-detail.html?property=property-${index + 1}`;
+        });
+    });
     
     app.appendChild(aboutSection);
     app.appendChild(statsSection);
