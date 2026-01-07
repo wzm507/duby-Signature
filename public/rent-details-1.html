@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Property Details - Dubai Properties</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #6c63ff;
+        }
+
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 0.7;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+            opacity: 0.7;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Phone Popup Styles */
+        .phone-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .phone-popup.active {
+            display: flex;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 2rem 3rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .popup-close:hover {
+            color: #333;
+        }
+
+        .phone-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #25d366;
+            margin: 0;
+            padding: 1rem 0;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background-color: #6c63ff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #5a52e6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .main-content {
+            background-color: white;
+            position: relative;
+            z-index: 4;
+            margin-top: -100px;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .key-info-section {
+            padding: 4rem 2rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .key-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .key-info-card {
+            background: white;
+            color: #333;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+
+        .key-info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #6c63ff 0%, #5a52e6 100%);
+        }
+
+        .key-info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .key-info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .key-info-icon {
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .key-info-tag {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #6c63ff;
+            background-color: rgba(108, 99, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+        }
+
+        .key-info-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .key-info-label {
+            font-size: 1rem;
+            opacity: 0.6;
+            font-weight: 300;
+        }
+
+        .description-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .description-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .description-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .description-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .description-image:hover {
+            transform: scale(1.05);
+        }
+
+        .description-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-section {
+            padding: 2rem;
+            background-color: #f8f9fa;
+        }
+
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .about-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-30px, 30px) rotate(240deg); }
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 40px;
+        }
+
+        .footer-simple-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-simple-links span {
+            color: #000000;
+        }
+
+        .footer-simple-links a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-simple-links a:hover {
+            color: #6c63ff;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .footer-terms {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-terms a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-terms a:hover {
+            color: #6c63ff;
+        }
+
+        @media (max-width: 1024px) {
+            .description-content,
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .main-content {
+                margin-top: -50px;
+                border-radius: 10px 10px 0 0;
+            }
+
+            .key-info-section {
+                padding: 2rem 1rem 1rem;
+            }
+
+            .key-info-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .key-info-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .key-info-value {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .description-section,
+            .gallery-section,
+            .about-section {
+                padding: 2rem 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .gallery-item {
+                aspect-ratio: 16/9;
+            }
+
+            .about-content {
+                gap: 2rem;
+            }
+
+            .footer-simple-links {
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .footer-terms {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .key-info-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .key-info-value {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Image Viewer Styles */
+        .image-viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-viewer.active {
+            display: flex;
+        }
+
+        .viewer-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .viewer-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .viewer-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .viewer-close:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .viewer-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .viewer-nav:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .viewer-prev {
+            left: -50px;
+        }
+
+        .viewer-next {
+            right: -50px;
+        }
+
+        .viewer-counter {
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .viewer-prev {
+                left: 10px;
+            }
+
+            .viewer-next {
+                right: 10px;
+            }
+
+            .viewer-close {
+                top: 10px;
+                right: 10px;
+            }
+
+            .viewer-counter {
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo" style="display: flex; align-items: center;">
+            <a href="/" style="display: flex; align-items: center;">
+                <img src="/img/logo.png" alt="Logo" class="logo-image" style="width: 100px; height: auto;">
+            </a>
+        </div>
+        <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
+            <a href="/featured-properties.html">Buy</a>
+            <a href="/off-plan.html">Off-Plan</a>
+            <a href="/communities.html">communities</a>
+            <a href="/developers.html">Developers</a>
+            <a href="/services.html">Services</a>
+            <a href="/about.html">About Us</a>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <img src="/img/1/image.png" alt="Rental Property" class="hero-background">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Prestigious 3 Bed plus Maid | Burj Khalifa View</h1>
+            <p class="hero-subtitle">Vida Residence Downtown, Downtown Dubai | 1,980 sqft / 184 sqm</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="key-info-section">
+            <div class="key-info-grid">
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">💰</div>
+                        <div class="key-info-tag">Price</div>
+                    </div>
+                    <div class="key-info-value">AED 440,000</div>
+                    <div class="key-info-label">per year</div>
+                </div>
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">🛏️</div>
+                        <div class="key-info-tag">Bedrooms</div>
+                    </div>
+                    <div class="key-info-value">3 + Maid</div>
+                    <div class="key-info-label">Spacious bedrooms with walk-in closets</div>
+                </div>
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">🛁</div>
+                        <div class="key-info-tag">Bathrooms</div>
+                    </div>
+                    <div class="key-info-value">4</div>
+                    <div class="key-info-label">Modern bathrooms with premium fixtures</div>
+                </div>
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">📐</div>
+                        <div class="key-info-tag">Size</div>
+                    </div>
+                    <div class="key-info-value">1,980 sqft</div>
+                    <div class="key-info-label">184 sqm built-up area</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="description-section">
+            <h2 class="section-title">Description</h2>
+            <div class="description-content">
+                <div class="description-text">
+                    <p>Apartment for rent in Vida Residence Downtown, Downtown Dubai</p>
+                    <br>
+                    <p>Signature Reality Homes presents Luxurious designer furnished 3 BEDROOM +MAID serviced apartment in the branded luxury Vida Residences Downtown developed by Emaar Properties in the heart of Downtown Dubai. The Tower is a 58 -story skyscraper comprised of 335 serviced apartments. The apartment is overlooking the iconic Burj Khalifa and lively Mohammed Bin Rashid Boulevard. The building is within walking distance to Dubai mall, Downtown Boulevard, Dubai OPERA</p>
+                    <br>
+                    <p><strong>Apartment features:</strong></p>
+                    <p>- High Rise Luxury Development</p>
+                    <p>- Fully furnished with designer furniture and contemporary decor</p>
+                    <p>- 3 Bedroom + Maid</p>
+                    <p>- 1980 sqft.</p>
+                    <p>- View of Burj Khalifa</p>
+                    <p>- 4 bathroom</p>
+                    <p>- Open style American Kitchen with modern appliances</p>
+                    <p>- Comes with 2 Car parking</p>
+                    <br>
+                    <p><strong>Amenities included :</strong></p>
+                    <p>- fully-equipped gymnasium</p>
+                    <p>- children's play areas</p>
+                    <p>- swimming pool and kid's pool</p>
+                    <p>- steam room</p>
+                    <p>- landscaped area</p>
+                    <p>- BBQ facilities</p>
+                    <br>
+                    <p>Signature Homes was founded to provide a boutique approach to the Dubai Real Estate market, which caters way beyond beautiful properties, as our exceptional agents source a lifestyle to compliment you.</p>
+                    <br>
+                    <p><strong>Property details</strong></p>
+                    <p>Property Type: Apartment</p>
+                    <p>Property Size: 1,980 sqft / 184 sqm</p>
+                    <p>Bedrooms: 3 + Maid</p>
+                    <p>Bathrooms: 4</p>
+                    <p>Available from: 5 Jan 2026</p>
+                    <br>
+                    <p><strong>Amenities</strong></p>
+                    <p>Maids Room, Balcony, Shared Pool, Security, Concierge, Covered Parking, Built in Wardrobes, Walk-in Closet, Kitchen Appliances, View of Water, View of Landmark, Shared Gym, Lobby in Building, Children's Pool, Vastu-compliant</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="gallery-container">
+                <h2 class="section-title">Photo Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="/img/1/image.png" alt="Property Image 1" data-img-index="0">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/1/image copy.png" alt="Property Image 2" data-img-index="1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/1/image copy 2.png" alt="Property Image 3" data-img-index="2">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/1/image copy 3.png" alt="Property Image 4" data-img-index="3">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/1/image copy 4.png" alt="Property Image 5" data-img-index="4">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/1/image copy 5.png" alt="Property Image 6" data-img-index="5">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="/img/logo.png" alt="Logo">
+                    <span>Signature Homes</span>
+                </div>
+            </div>
+            <div class="footer-simple-links">
+                <a href="/featured-properties.html">Buy</a>
+                <a href="/rent.html">Rent</a>
+                <a href="/off-plan.html">Off-Plan</a>
+                <a href="/communities.html">communities</a>
+                <a href="/developers.html">Developers</a>
+                <a href="/services.html">Services</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-terms">
+                <a href="/terms.html">Terms of Service</a>
+                <a href="/privacy.html">Privacy Policy</a>
+                <a href="/contact.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="whatsapp-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+    </div>
+
+    <!-- Phone Number Popup -->
+    <div class="phone-popup" id="phonePopup">
+        <div class="popup-content">
+            <span class="popup-close" id="popupClose">&times;</span>
+            <p class="phone-number">+971 52 145 0498</p>
+        </div>
+    </div>
+
+    <!-- Image Viewer -->
+    <div class="image-viewer" id="imageViewer">
+        <div class="viewer-content">
+            <span class="viewer-close" id="viewerClose">&times;</span>
+            <span class="viewer-nav viewer-prev" id="viewerPrev">&larr;</span>
+            <span class="viewer-nav viewer-next" id="viewerNext">&rarr;</span>
+            <img src="" alt="Full Size Image" class="viewer-image" id="viewerImage">
+            <div class="viewer-counter" id="viewerCounter"></div>
+        </div>
+    </div>
+
+    <script>
+        // Image Viewer Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageViewer = document.getElementById('imageViewer');
+            const viewerImage = document.getElementById('viewerImage');
+            const viewerClose = document.getElementById('viewerClose');
+            const viewerPrev = document.getElementById('viewerPrev');
+            const viewerNext = document.getElementById('viewerNext');
+            const viewerCounter = document.getElementById('viewerCounter');
+            const galleryImages = document.querySelectorAll('.gallery-item img');
+            
+            let currentImageIndex = 0;
+            let images = [
+                { src: '/img/1/image.png', alt: 'Property Image 1' },
+                { src: '/img/1/image copy.png', alt: 'Property Image 2' },
+                { src: '/img/1/image copy 2.png', alt: 'Property Image 3' },
+                { src: '/img/1/image copy 3.png', alt: 'Property Image 4' },
+                { src: '/img/1/image copy 4.png', alt: 'Property Image 5' },
+                { src: '/img/1/image copy 5.png', alt: 'Property Image 6' },
+                { src: '/img/1/image copy 6.png', alt: 'Property Image 7' },
+                { src: '/img/1/image copy 7.png', alt: 'Property Image 8' },
+                { src: '/img/1/image copy 8.png', alt: 'Property Image 9' },
+                { src: '/img/1/image copy 9.png', alt: 'Property Image 10' },
+                { src: '/img/1/image copy 10.png', alt: 'Property Image 11' },
+                { src: '/img/1/image copy 11.png', alt: 'Property Image 12' },
+                { src: '/img/1/image copy 12.png', alt: 'Property Image 13' },
+                { src: '/img/1/image copy 13.png', alt: 'Property Image 14' },
+                { src: '/img/1/image copy 14.png', alt: 'Property Image 15' }
+            ];
+            
+            // Add click event to each gallery image
+            galleryImages.forEach((img, index) => {
+                img.parentElement.addEventListener('click', () => {
+                    openImageViewer(index);
+                });
+            });
+            
+            // Open image viewer
+            function openImageViewer(index) {
+                currentImageIndex = index;
+                updateViewer();
+                imageViewer.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Close image viewer
+            function closeImageViewer() {
+                imageViewer.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            // Update viewer content
+            function updateViewer() {
+                const image = images[currentImageIndex];
+                viewerImage.src = image.src;
+                viewerImage.alt = image.alt;
+                viewerCounter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+            }
+            
+            // Navigate to previous image
+            function showPrevImage() {
+                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                updateViewer();
+            }
+            
+            // Navigate to next image
+            function showNextImage() {
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                updateViewer();
+            }
+            
+            // Event listeners
+            viewerClose.addEventListener('click', closeImageViewer);
+            viewerPrev.addEventListener('click', showPrevImage);
+            viewerNext.addEventListener('click', showNextImage);
+            
+            // Close on outside click
+            imageViewer.addEventListener('click', (e) => {
+                if (e.target === imageViewer) {
+                    closeImageViewer();
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (imageViewer.classList.contains('active')) {
+                    if (e.key === 'Escape') {
+                        closeImageViewer();
+                    } else if (e.key === 'ArrowLeft') {
+                        showPrevImage();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextImage();
+                    }
+                }
+            });
+        });
+
+        // Phone Popup Functionality
+        const whatsappBtn = document.querySelector('.whatsapp-btn');
+        const phonePopup = document.getElementById('phonePopup');
+        const popupClose = document.getElementById('popupClose');
+
+        // Open popup when button is clicked
+        whatsappBtn.addEventListener('click', () => {
+            phonePopup.classList.add('active');
+        });
+
+        // Close popup when close button is clicked
+        popupClose.addEventListener('click', () => {
+            phonePopup.classList.remove('active');
+        });
+
+        // Close popup when clicking outside
+        phonePopup.addEventListener('click', (e) => {
+            if (e.target === phonePopup) {
+                phonePopup.classList.remove('active');
+            }
+        });
+
+        // Close popup when ESC key is pressed
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && phonePopup.classList.contains('active')) {
+                phonePopup.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

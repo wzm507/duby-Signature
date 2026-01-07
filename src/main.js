@@ -122,9 +122,8 @@ function initEnhancedInteractions() {
     });
   });
   
-  // 初始化搜索功能
-  console.log('开始初始化搜索功能...');
-  initSearchFunctionality();
+  
+
 }
 
 // 搜索功能初始化
@@ -159,6 +158,40 @@ function initSearchFunctionality() {
         console.log('Search suggestion for:', query);
       }
     });
+    
+    // 筛选按钮点击事件
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    if (filterButtons.length > 0) {
+      console.log('筛选按钮初始化成功');
+      
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // 移除所有按钮的active状态
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          // 为当前点击的按钮添加active状态
+          this.classList.add('active');
+          
+          // 更新按钮样式
+          filterButtons.forEach(btn => {
+            if (btn.classList.contains('active')) {
+              btn.style.backgroundColor = '#6c63ff';
+              btn.style.color = 'white';
+              btn.style.boxShadow = '0 6px 20px rgba(108,99,255,0.4)';
+              btn.style.transform = 'translateY(-3px) scale(1.05)';
+            } else {
+              btn.style.backgroundColor = 'white';
+              btn.style.color = '#6c63ff';
+              btn.style.boxShadow = '0 2px 8px rgba(108,99,255,0.1)';
+              btn.style.transform = 'translateY(0) scale(1)';
+            }
+          });
+          
+          // 这里可以添加筛选逻辑
+          const filterType = this.dataset.filter;
+          console.log('筛选类型:', filterType);
+        });
+      });
+    }
   } else {
     console.log('搜索元素未找到', { searchInput, searchButton });
   }
@@ -2080,6 +2113,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
         <a href="/featured-properties.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Buy</a>
+        <a href="/public/rent.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Rent</a>
         <a href="/public/communities.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">communities</a>
         <a href="developers.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Developers</a>
         <a href="/public/off-plan.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Off-Plan</a>
@@ -2169,6 +2203,17 @@ document.addEventListener('DOMContentLoaded', () => {
         </p>
       </div>
       <div class="hero-cta">
+        <!-- 筛选按钮区域 -->
+        <div class="filter-container" style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem;">
+          <button class="filter-btn active" data-filter="buy" 
+                  style="background-color: #6c63ff; border: 2px solid #6c63ff; color: white; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); min-width: 120px; text-align: center; box-shadow: 0 6px 20px rgba(108,99,255,0.4); transform: translateY(-3px) scale(1.05);">
+              Buy
+          </button>
+          <button class="filter-btn" data-filter="rent" 
+                  style="background-color: white; border: 2px solid #6c63ff; color: #6c63ff; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); min-width: 120px; text-align: center; box-shadow: 0 2px 8px rgba(108,99,255,0.1); transform: translateY(0) scale(1);">
+              Rent
+          </button>
+        </div>
         <div class="search-container">
           <input type="text" class="search-input" placeholder="Search properties by location, type, or price...">
           <button class="search-button">
@@ -2176,7 +2221,8 @@ document.addEventListener('DOMContentLoaded', () => {
           </button>
         </div>
       </div>
-    `;
+    </div>
+  `;
   
   // 添加hero区域样式
   const heroStyle = document.createElement('style');
@@ -2320,6 +2366,39 @@ document.addEventListener('DOMContentLoaded', () => {
     .search-button:hover {
       background-color: #f5f5f5;
       color: #000;
+    }
+    
+    /* 筛选按钮样式 */
+    .filter-btn {
+      padding: 0.8rem 2rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #333;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      outline: none;
+    }
+    
+    .filter-btn:hover {
+      background-color: rgba(255, 255, 255, 1);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .filter-btn.active {
+      background-color: #6c63ff;
+      color: white;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
+    }
+    
+    .filter-btn.active:hover {
+      background-color: #5c52e6;
+      box-shadow: 0 6px 16px rgba(108, 99, 255, 0.4);
     }
     /* 响应式设计 */
     @media (max-width: 1200px) {
@@ -4406,6 +4485,9 @@ document.addEventListener('DOMContentLoaded', () => {
     app.appendChild(heroSection);
     app.appendChild(companyIntroSection);
     app.appendChild(propertiesSection);
+    
+    // 在heroSection添加到DOM后初始化搜索功能（包含筛选按钮事件）
+    initSearchFunctionality();
     
     // 房产卡片添加完成后，重新初始化Call Us按钮和WhatsApp按钮
     initCallUsButtons();

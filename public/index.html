@@ -280,6 +280,18 @@
         <div class="hero-overlay"></div>
         <div id="hero-content" class="hero-content">
             <h1>Your Real Estate <br>Expert is Here.<br>Now you can find more than 200+ property choices with our professional agents! Contact us today to find your dream property.</h1>
+            <!-- 筛选按钮区域 -->
+            <div class="filter-container" style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem;">
+                <button class="filter-btn active" data-filter="buy" 
+                        style="background-color: #6c63ff; border: 2px solid #6c63ff; color: white; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; min-width: 120px; text-align: center; box-shadow: 0 4px 12px rgba(108,99,255,0.3); transform: translateY(-2px);">
+                    Buy
+                </button>
+                <button class="filter-btn" data-filter="rent" 
+                        style="background-color: white; border: 2px solid #6c63ff; color: #6c63ff; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; min-width: 120px; text-align: center; box-shadow: 0 2px 8px rgba(108,99,255,0.1);">
+                    Rent
+                </button>
+            </div>
+            
             <div class="search-container" style="margin-top: 2rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
                 <input type="text" class="search-input" placeholder="Search properties by location, type, or price..." 
                        style="padding: 1rem 1.5rem; border: none; border-radius: 50px; font-size: 1rem; width: 400px; max-width: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.1); outline: none;">
@@ -288,6 +300,69 @@
                     <i class="fas fa-search"></i>
                 </button>
             </div>
+            
+            <script>
+                // 筛选按钮切换功能
+                document.addEventListener('DOMContentLoaded', function() {
+                    const filterBtns = document.querySelectorAll('.filter-btn');
+                    const searchInput = document.querySelector('.search-input');
+                    const searchButton = document.querySelector('.search-button');
+                    
+                    // 筛选按钮切换逻辑
+                    filterBtns.forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            // 移除所有按钮的active类
+                            filterBtns.forEach(b => {
+                                b.classList.remove('active');
+                                b.style.backgroundColor = 'white';
+                                b.style.color = '#6c63ff';
+                                b.style.boxShadow = '0 2px 8px rgba(108,99,255,0.1)';
+                                b.style.transform = 'none';
+                            });
+                            
+                            // 添加当前按钮的active类
+                            this.classList.add('active');
+                            this.style.backgroundColor = '#6c63ff';
+                            this.style.color = 'white';
+                            this.style.boxShadow = '0 4px 12px rgba(108,99,255,0.3)';
+                            this.style.transform = 'translateY(-2px)';
+                        });
+                    });
+                    
+                    // 搜索功能
+                    function handleSearch() {
+                        // 获取当前选中的筛选条件
+                        const selectedFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+                        // 获取搜索关键词
+                        const searchTerm = searchInput.value.trim();
+                        
+                        // 根据筛选条件跳转到对应的页面
+                        if (selectedFilter === 'buy') {
+                            if (searchTerm) {
+                                window.location.href = `featured-properties.html?search=${encodeURIComponent(searchTerm)}`;
+                            } else {
+                                window.location.href = 'featured-properties.html';
+                            }
+                        } else if (selectedFilter === 'rent') {
+                            if (searchTerm) {
+                                window.location.href = `rent.html?search=${encodeURIComponent(searchTerm)}`;
+                            } else {
+                                window.location.href = 'rent.html';
+                            }
+                        }
+                    }
+                    
+                    // 搜索按钮点击事件
+                    searchButton.addEventListener('click', handleSearch);
+                    
+                    // 回车键搜索
+                    searchInput.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') {
+                            handleSearch();
+                        }
+                    });
+                });
+            </script>
         </div>
     </section>
 

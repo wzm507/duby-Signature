@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Property Details - Dubai Properties</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #6c63ff;
+        }
+
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 0.7;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+            opacity: 0.7;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 12px rgba(37, 211, 102, 0.1);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 1px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background-color: #6c63ff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #5a52e6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .main-content {
+            background-color: white;
+            position: relative;
+            z-index: 1;
+            margin-top: -100px;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .key-info-section {
+            padding: 1rem 2rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .key-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .key-info-card {
+            background: white;
+            color: #333;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+
+        .key-info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #6c63ff 0%, #5a52e6 100%);
+        }
+
+        .key-info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .key-info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .key-info-icon {
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .key-info-tag {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #6c63ff;
+            background-color: rgba(108, 99, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+        }
+
+        .key-info-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .key-info-label {
+            font-size: 1rem;
+            opacity: 0.6;
+            font-weight: 300;
+        }
+
+        .description-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 1rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .description-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .description-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .description-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .description-image:hover {
+            transform: scale(1.05);
+        }
+
+        .description-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-section {
+            padding: 2rem;
+            background-color: #f8f9fa;
+        }
+
+        .gallery-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* 图片查看器样式 */
+        .image-viewer {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .image-viewer-content {
+            position: relative;
+            background-color: transparent;
+            margin: auto;
+            padding: 0;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            z-index: 10001;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .image-viewer img {
+            margin: auto;
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        /* 导航按钮 */
+        .prev-button,
+        .next-button {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .next-button {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev-button:hover,
+        .next-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* 图片信息 */
+        .image-caption {
+            text-align: center;
+            color: #ccc;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        /* 淡入效果 */
+        .image-viewer-content {
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0)}
+            to {transform:scale(1)}
+        }
+
+        /* 响应式设计 */
+        @media only screen and (max-width: 700px) {
+            .image-viewer-content {
+                width: 100%;
+            }
+            .image-viewer img {
+                max-height: 70vh;
+            }
+            .close-button {
+                top: 10px;
+                right: 25px;
+                font-size: 30px;
+            }
+        }
+
+        .about-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-30px, 30px) rotate(210deg); }
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 3rem 2rem;
+            margin-top: 1rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 10px;
+        }
+
+        .footer-simple-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-simple-links span {
+            color: #000000;
+        }
+
+        .footer-simple-links a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-simple-links a:hover {
+            color: #6c63ff;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .footer-terms {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-terms a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-terms a:hover {
+            color: #6c63ff;
+        }
+
+        @media (max-width: 1021px) {
+            .description-content,
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .main-content {
+                margin-top: -50px;
+                border-radius: 10px 10px 0 0;
+            }
+
+            .key-info-section {
+                padding: 2rem 1rem 1rem;
+            }
+
+            .key-info-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .key-info-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .key-info-value {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .description-section,
+            .gallery-section,
+            .about-section {
+                padding: 2rem 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .gallery-item {
+                aspect-ratio: 16/9;
+            }
+
+            .about-content {
+                gap: 2rem;
+            }
+
+            .footer-simple-links {
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .footer-terms {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 180px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .key-info-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .key-info-value {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Phone Popup Styles */
+        .phone-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .phone-popup.active {
+            display: flex;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            max-width: 400px;
+            width: 90%;
+            animation: slideUp 0.3s ease;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .popup-close:hover {
+            color: #333;
+        }
+
+        .phone-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #25d366;
+            margin: 0;
+            padding: 1rem 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo" style="display: flex; align-items: center;">
+            <a href="/" style="display: flex; align-items: center;">
+                <img src="/img/logo.png" alt="Logo" class="logo-image" style="width: 100px; height: auto;">
+            </a>
+        </div>
+        <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
+            <a href="/featured-properties.html">Buy</a>
+            <a href="/off-plan.html">Off-Plan</a>
+            <a href="/communities.html">communities</a>
+            <a href="/developers.html">Developers</a>
+            <a href="/services.html">Services</a>
+            <a href="/about.html">About Us</a>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <img src="/img/10/image.png" alt="Rental Property" class="hero-background">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Full Sea and Palm View | Furnished | Vacant</h1>
+            <p class="hero-subtitle">Avani Palm View Hotel & Suites, Dubai Media City | 1,095 sqft / 102 sqm</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="key-info-section">
+            <div class="key-info-grid">
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">💰</div>
+                        <div class="key-info-tag">Price</div>
+                    </div>
+                    <div class="key-info-value">AED 165,000</div>
+                    <div class="key-info-label">per year</div>
+                </div>
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">🛏�?/div>
+                        <div class="key-info-tag">Bedrooms</div>
+                    </div>
+                    <div class="key-info-value">1</div>
+                    <div class="key-info-label">Spacious bedrooms with walk-in closets</div>
+                </div>
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">🛁</div>
+                        <div class="key-info-tag">Bathrooms</div>
+                    </div>
+                    <div class="key-info-value">1</div>
+                    <div class="key-info-label">En-suite bathrooms with premium fixtures</div>
+                </div>
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">📐</div>
+                        <div class="key-info-tag">Size</div>
+                    </div>
+                    <div class="key-info-value">1,095 sqft</div>
+                    <div class="key-info-label">102 sqm built-up area</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="description-section">
+            <h2 class="section-title">Description</h2>
+            <div class="description-content">
+                <div class="description-text">
+                    <p>Experience luxurious living with breathtaking views in this stunning 1-bedroom apartment in Avani Palm View Hotel & Suites, Dubai Media City.</p>
+                    <br>
+                    <p><strong>Key Highlights:</strong></p>
+                    <p>- Bedrooms: 1</p>
+                    <p>- Bathrooms: 1</p>
+                    <p>- Size: 1,095 sqft (102 sqm)</p>
+                    <p>- Full sea and palm view</p>
+                    <p>- Fully furnished</p>
+                    <p>- Modern design with high-quality finishes</p>
+                    <p>- Spacious living and dining areas</p>
+                    <p>- Fully fitted kitchen with built-in appliances</p>
+                    <p>- Bathroom with premium fixtures</p>
+                    <p>- Covered parking space</p>
+                    <br>
+                    <p><strong>Amenities:</strong></p>
+                    <p>- Swimming pool</p>
+                    <p>- Fitness center</p>
+                    <p>- 24/7 security</p>
+                    <p>- Concierge service</p>
+                    <p>- Children's play area</p>
+                    <p>- BBQ area</p>
+                    <p>- Easy access to main roads</p>
+                    <p>- Metro station nearby</p>
+                    <br>
+                    <p><strong>Location:</strong></p>
+                    <p>Avani Palm View Hotel & Suites is ideally located in Dubai Media City, offering easy access to world-class shopping, dining, and entertainment options. The area is close to major media companies, Dubai Marina, Jumeirah Beach Residence, and Palm Jumeirah.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="gallery-container">
+                <h2 class="section-title">Photo Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="/img/10/image.png" alt="Property Image 1" data-img-index="0">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/10/image copy.png" alt="Property Image 2" data-img-index="1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/10/image copy 2.png" alt="Property Image 3" data-img-index="2">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/10/image copy 3.png" alt="Property Image 4" data-img-index="3">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/10/image copy 4.png" alt="Property Image 5" data-img-index="4">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/img/10/image copy 5.png" alt="Property Image 6" data-img-index="5">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 图片查看器 -->
+        <div id="imageViewer" class="image-viewer">
+            <span class="close-button">&times;</span>
+            <div class="image-viewer-content">
+                <div class="prev-button">&#10094;</div>
+                <img id="viewerImage" src="" alt="Enlarged view">
+                <div class="next-button">&#10095;</div>
+                <div class="image-caption">
+                    <span id="imageCounter"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="/img/logo.png" alt="Logo">
+                    <span>Signature Homes</span>
+                </div>
+            </div>
+            <div class="footer-simple-links">
+                <a href="/featured-properties.html">Buy</a>
+                <a href="/rent.html">Rent</a>
+                <a href="/off-plan.html">Off-Plan</a>
+                <a href="/communities.html">communities</a>
+                <a href="/developers.html">Developers</a>
+                <a href="/services.html">Services</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-terms">
+                <a href="/terms.html">Terms of Service</a>
+                <a href="/privacy.html">Privacy Policy</a>
+                <a href="/contact.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="whatsapp-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+    </div>
+
+    <!-- Phone Number Popup -->
+    <div class="phone-popup" id="phonePopup">
+        <div class="popup-content">
+            <span class="popup-close" id="popupClose">&times;</span>
+            <p class="phone-number">+971 52 145 0498</p>
+        </div>
+    </div>
+
+    <script>
+        // 图片路径数组
+        const imagePaths = [
+            '/img/10/image.png',
+            '/img/10/image copy.png',
+            '/img/10/image copy 2.png',
+            '/img/10/image copy 3.png',
+            '/img/10/image copy 4.png',
+            '/img/10/image copy 5.png',
+            '/img/10/image copy 6.png',
+            '/img/10/image copy 7.png',
+            '/img/10/image copy 8.png',
+            '/img/10/image copy 9.png',
+            '/img/10/image copy 10.png',
+            '/img/10/image copy 11.png',
+            '/img/10/image copy 12.png',
+            '/img/10/image copy 13.png',
+            '/img/10/image copy 14.png'
+        ];
+
+        // 获取DOM元素
+        const imageViewer = document.getElementById('imageViewer');
+        const viewerImage = document.getElementById('viewerImage');
+        const closeButton = document.querySelector('.close-button');
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        const imageCounter = document.getElementById('imageCounter');
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+
+        let currentImageIndex = 0;
+
+        // 打开图片查看器
+        function openImageViewer(index) {
+            currentImageIndex = index;
+            updateImageViewer();
+            imageViewer.style.display = 'block';
+        }
+
+        // 关闭图片查看器
+        function closeImageViewer() {
+            imageViewer.style.display = 'none';
+        }
+
+        // 更新图片查看器内容
+        function updateImageViewer() {
+            viewerImage.src = imagePaths[currentImageIndex];
+            imageCounter.textContent = `${currentImageIndex + 1} / ${imagePaths.length}`;
+        }
+
+        // 查看下一张图片
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % imagePaths.length;
+            updateImageViewer();
+        }
+
+        // 查看上一张图片
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + imagePaths.length) % imagePaths.length;
+            updateImageViewer();
+        }
+
+        // 绑定事件监听器
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const index = parseInt(item.getAttribute('data-img-index'));
+                openImageViewer(index);
+            });
+        });
+
+        closeButton.addEventListener('click', closeImageViewer);
+        prevButton.addEventListener('click', prevImage);
+        nextButton.addEventListener('click', nextImage);
+
+        // 点击外部关闭图片查看器
+        window.addEventListener('click', (event) => {
+            if (event.target === imageViewer) {
+                closeImageViewer();
+            }
+        });
+
+        // 键盘控制
+        window.addEventListener('keydown', (event) => {
+            if (imageViewer.style.display === 'block') {
+                switch(event.key) {
+                    case 'Escape':
+                        closeImageViewer();
+                        break;
+                    case 'ArrowRight':
+                        nextImage();
+                        break;
+                    case 'ArrowLeft':
+                        prevImage();
+                        break;
+                }
+            }
+        });
+
+        // Phone Number Popup Functionality
+        const whatsappBtn = document.querySelector('.whatsapp-btn');
+        const phonePopup = document.getElementById('phonePopup');
+        const popupClose = document.getElementById('popupClose');
+
+        // Open popup when button is clicked
+        whatsappBtn.addEventListener('click', () => {
+            phonePopup.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when popup is open
+        });
+
+        // Close popup when close button is clicked
+        popupClose.addEventListener('click', () => {
+            phonePopup.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Enable scrolling again
+        });
+
+        // Close popup when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === phonePopup) {
+                phonePopup.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Enable scrolling again
+            }
+        });
+
+        // Close popup when Escape key is pressed
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && phonePopup.classList.contains('active')) {
+                phonePopup.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Enable scrolling again
+            }
+        });
+    </script>
+</body>
+</html>

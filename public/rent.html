@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Properties - Signature Homes</title>
+    <link rel="icon" href="/img/logo2.jpg" type="image/jpeg" />
+    <style>
+      /* 简化设计的CSS变量 - 统一黑色文本，强调层次结构 */
+      :root {
+        --primary-color: #000;
+        --text-color: #000;
+        --light-text: #000;
+        --light-color: #f8f9fa;
+        --border-radius: 8px;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.15);
+        --transition: all 0.3s ease;
+      }
+      
+      /* 原有样式保持不变 */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+        color: var(--primary-color);
+        background-color: var(--light-color);
+      }
+      
+      /* 确保卡片容器样式与主页完全一致 */
+      /* 导航栏样式 */
+      .navbar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1.5rem 2rem;
+          background-color: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          z-index: 1000;
+      }
+
+      .logo {
+          font-size: 1.8rem;
+          font-weight: bold;
+          color: #333;
+          text-decoration: none;
+      }
+
+      .nav-links {
+          display: flex;
+          gap: 2rem;
+          align-items: center;
+      }
+
+      .nav-links a {
+          text-decoration: none;
+          color: #333;
+          font-weight: 500;
+          transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+          color: #6c63ff;
+      }
+
+      /* 响应式设计 - 导航栏 */
+      @media (max-width: 768px) {
+          .nav-links {
+              gap: 1rem;
+          }
+      }
+
+      .properties {
+        padding: 6rem 2rem;
+        background-color: white;
+      }
+      
+      .section-header {
+        text-align: left;
+        max-width: 1400px;
+        margin: 0 auto 4rem;
+        padding: 0 1rem;
+      }
+      
+      .section-header h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+        display: inline-block;
+        margin-right: 2rem;
+      }
+      
+      .section-header p {
+        font-size: 1.1rem;
+        color: var(--light-text);
+      }
+      
+      .filter-buttons {
+        display: inline-flex;
+        gap: 1rem;
+        align-items: center;
+        vertical-align: middle;
+        margin-bottom: 1rem;
+      }
+      
+      .filter-btn {
+        background-color: white;
+        border: 2px solid #6c63ff;
+        color: #6c63ff;
+        padding: 0.8rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        min-width: 120px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(108, 99, 255, 0.1);
+      }
+      
+      .filter-btn:hover {
+        background-color: rgba(108, 99, 255, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(108, 99, 255, 0.2);
+      }
+      
+      .filter-btn.active {
+        background-color: #6c63ff;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
+      }
+      
+      .filter-btn.active:hover {
+        background-color: #5a52e6;
+        box-shadow: 0 6px 16px rgba(108, 99, 255, 0.4);
+      }
+      
+      /* 两列布局 */
+      .properties-grid {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        overflow-x: visible;
+        gap: 2.5rem;
+        padding: 0 1rem 2rem;
+        flex-wrap: wrap;
+        align-items: stretch;
+      }
+      
+      /* 优化滚动条样式，使其更明显 */
+      .properties-grid::-webkit-scrollbar {
+        height: 8px;
+      }
+      
+      .properties-grid::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+      
+      .properties-grid::-webkit-scrollbar-thumb {
+        background-color: var(--secondary-color);
+        border-radius: 4px;
+      }
+      
+      .properties-grid::-webkit-scrollbar-thumb:hover {
+        background-color: #5a52e6;
+      }
+      
+      /* 拖拽状态样式 */
+      .properties-grid {
+        cursor: grab;
+      }
+      
+      .properties-grid.grabbing {
+        cursor: grabbing;
+      }
+      
+      /* 确保默认状态下只显示两个卡片 */
+      .property-card {
+        min-width: calc(50% - 1.25rem); /* 减去一半的间距 */
+        flex: 0 0 calc(50% - 1.25rem);
+        max-width: calc(50% - 1.25rem);
+      }
+      
+      /* 针对大屏幕的优化 */
+      @media (min-width: 1200px) {
+        .property-card {
+          min-width: calc(50% - 1.25rem);
+          flex: 0 0 calc(50% - 1.25rem);
+          max-width: calc(50% - 1.25rem);
+        }
+      }
+      
+      /* 针对中等屏幕的优化 */
+      @media (min-width: 768px) and (max-width: 1199px) {
+        .property-card {
+          min-width: calc(50% - 1.25rem);
+          flex: 0 0 calc(50% - 1.25rem);
+          max-width: calc(50% - 1.25rem);
+        }
+        
+        .property-title {
+          font-size: 1.2rem;
+        }
+        
+        .property-price {
+          font-size: 1.6rem;
+        }
+        
+        .monthly-payment {
+          font-size: 1.1rem;
+        }
+      }
+      
+      /* 针对小屏幕的优化 */
+      @media (max-width: 767px) {
+        .property-card {
+          min-width: calc(100vw - 2rem);
+          flex: 0 0 calc(100vw - 2rem);
+          max-width: calc(100vw - 2rem);
+        }
+      }
+      
+      /* 房产卡片样式 - 简化设计，强调层次感 */
+      .property-card {
+        background-color: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      
+      .property-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* 房产轮播图样式 - 增强视觉冲击力 */
+      .property-carousel {
+        position: relative;
+        height: 280px;
+        overflow: hidden;
+        background-color: #f8f9fa;
+      }
+      
+      .carousel-slides {
+        height: 100%;
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+      
+      .carousel-slide {
+        min-width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      
+      .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.6s ease;
+      }
+      
+      /* 添加图片悬停放大效果，增强视觉吸引力 */
+      .property-card:hover .carousel-slide img {
+        transform: scale(1.05);
+      }
+      
+      /* 确保图片容器正确裁剪 */
+      .carousel-slide {
+        overflow: hidden;
+      }
+      
+      /* 收藏按钮样式 - 增强交互体验 */
+      .favorite-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      
+      .favorite-btn:hover {
+        background-color: white;
+        transform: scale(1.1);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      }
+      
+      .favorite-btn i {
+        color: #6c63ff;
+        font-size: 18px;
+        transition: color 0.3s ease;
+      }
+      
+      .favorite-btn i.fas {
+        color: #e74c3c;
+      }
+      
+      /* 轮播箭头样式 - 增强视觉设计 */
+      .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        font-size: 22px;
+        color: #333;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+      }
+      
+      /* 卡片悬停时显示箭头 */
+      .property-card:hover .carousel-arrow {
+        opacity: 1;
+      }
+      
+      /* 左箭头 */
+      .carousel-prev {
+        left: 20px;
+      }
+      
+      /* 右箭头 */
+      .carousel-next {
+        right: 20px;
+      }
+      
+      /* 箭头悬停效果 */
+      .carousel-arrow:hover {
+        background-color: white;
+        transform: translateY(-50%) scale(1.15);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        color: #6c63ff;
+      }
+      
+      /* 箭头点击效果 */
+      .carousel-arrow:active {
+        transform: translateY(-50%) scale(1);
+      }
+      
+      /* 房产信息区域 - 简化设计，强调层次结构 */
+      .property-info {
+        padding: 1.75rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      
+      .property-title {
+        font-size: 1.25rem;
+        margin-bottom: 0.6rem;
+        color: #000;
+        font-weight: 700;
+        line-height: 1.35;
+        letter-spacing: -0.3px;
+      }
+      
+      .property-location {
+        font-size: 0.9rem;
+        color: #000;
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+      }
+      
+      .property-location::before {
+        content: "📍";
+        font-size: 1rem;
+        color: #000;
+      }
+      
+      .monthly-payment {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #000;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .monthly-payment i {
+        font-size: 1rem;
+        color: #000;
+      }
+      
+      .property-features {
+        display: flex;
+        gap: 1.75rem;
+        margin-bottom: 1.75rem;
+        padding: 0.75rem 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      
+      .property-feature {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.85rem;
+        color: #000;
+        font-weight: 500;
+      }
+      
+      .property-feature i {
+        font-size: 1rem;
+        color: #000;
+        width: 14px;
+        text-align: center;
+      }
+      
+      .property-footer {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      
+      .property-price {
+        font-size: 1.9rem;
+        font-weight: 900;
+        color: #000;
+        line-height: 1;
+        letter-spacing: -0.3px;
+      }
+      
+      .property-price::before {
+        content: "AED ";
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+      
+      .property-cta {
+        display: flex;
+        gap: 0.85rem;
+      }
+      
+      .view-details-btn, .contact-agent-btn {
+        padding: 0.7rem 1.2rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+        font-family: 'Arial', sans-serif;
+      }
+      
+      .view-details-btn {
+        background-color: transparent;
+        color: #6c63ff;
+        border: 1px solid #6c63ff;
+        box-shadow: none;
+      }
+      
+      .view-details-btn:hover {
+        background-color: rgba(108, 99, 255, 0.1);
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(108, 99, 255, 0.1);
+      }
+      
+      .contact-agent-btn {
+        background-color: white;
+        color: #6c63ff;
+        border: 1px solid #6c63ff;
+        transition: all 0.3s ease;
+      }
+      
+      .contact-agent-btn:hover {
+        background-color: #6c63ff;
+        color: white;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(108, 99, 255, 0.2);
+      }
+      
+      .whatsapp-btn {
+        background-color: #25D366;
+        color: white;
+        border: 1px solid #25D366;
+      }
+      
+      .whatsapp-btn:hover {
+        background-color: #1ebe57;
+        border-color: #1ebe57;
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+      }
+      
+      /* 底部导航栏 */
+      .footer {
+        background-color: var(--dark-color);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+      }
+      
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      
+      /* 响应式设计 - 保持简化设计的一致性 */
+      @media (max-width: 768px) {
+        .properties {
+          padding: 3.5rem 1rem;
+        }
+        
+        .section-header h2 {
+          font-size: 1.8rem;
+        }
+        
+        .property-info {
+          padding: 1.5rem;
+        }
+        
+        .property-title {
+          font-size: 1.15rem;
+        }
+        
+        .property-price {
+          font-size: 1.6rem;
+        }
+        
+        .monthly-payment {
+          font-size: 1rem;
+        }
+        
+        .property-features {
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+        
+        .property-feature {
+          font-size: 0.85rem;
+        }
+        
+        .property-footer {
+          flex-direction: column;
+          gap: 1rem;
+          align-items: stretch;
+        }
+        
+        .property-cta {
+          justify-content: space-between;
+        }
+        
+        .view-details-btn, .contact-agent-btn {
+            font-size: 0.85rem;
+            padding: 0.65rem 1rem;
+        }
+    }
+    
+    /* 弹窗样式 */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+    }
+    
+    .modal-content {
+        background-color: white;
+        margin: 15% auto;
+        padding: 2rem;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        position: relative;
+        animation: modalSlideIn 0.3s ease;
+    }
+    
+    @keyframes modalSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-50px) scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    
+    .modal-close {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #666;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+    
+    .modal-close:hover {
+        color: var(--primary-color);
+    }
+    
+    .modal-body {
+        text-align: center;
+    }
+    
+    /* 响应式弹窗 */
+    @media (max-width: 768px) {
+        .modal-content {
+            margin: 30% auto;
+            padding: 1.5rem;
+            width: 95%;
+        }
+    }
+
+    /* 房产卡片点击样式 */
+    .property-card {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    
+    .property-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+    }
+    
+    .property-card .view-details-btn,
+    .property-card .contact-agent-btn,
+    .property-card .favorite-btn,
+    .property-card .carousel-arrow {
+        pointer-events: auto;
+        z-index: 10;
+        position: relative;
+    }
+    
+    /* 确保轮播箭头按钮不被整个卡片的点击事件影响 */
+    .carousel-arrow {
+        pointer-events: auto !important;
+    }
+    
+    /* 收藏按钮保持独立点击 */
+      .favorite-btn {
+        pointer-events: auto !important;
+      }
+      
+      /* 筛选按钮响应式设计 */
+      @media (max-width: 768px) {
+        .section-header h2 {
+          display: block;
+          margin-right: 0;
+          margin-bottom: 1rem;
+        }
+        
+        .filter-buttons {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 1.5rem;
+        }
+        
+        .filter-btn {
+          min-width: 100px;
+          padding: 0.7rem 1.2rem;
+          font-size: 0.9rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .filter-buttons {
+          flex-direction: column;
+          gap: 0.8rem;
+          align-items: stretch;
+        }
+        
+        .filter-btn {
+          min-width: auto;
+          width: 100%;
+        }
+      }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/" style="display: flex; align-items: center;">
+                <img src="/img/logo.png" alt="Logo" class="logo-image" style="width: 100px; height: auto;">
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="/featured-properties.html">Buy</a>
+            <a href="/rent.html" style="color: #6c63ff;">Rent</a>
+            <a href="/communities.html">communities</a>
+            <a href="developers.html">Developers</a>
+            <a href="/off-plan.html">Off-Plan</a>
+            <a href="/services.html">Services</a>
+            <a href="/about.html">About Us</a>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <section class="properties">
+        <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: nowrap; white-space: nowrap;">
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <h2 style="font-weight: 300; margin: 0; font-size: 2.2rem; white-space: nowrap;">Rent Properties</h2>
+                <p style="margin: 0;"></p>
+            </div>
+        </div>
+
+        <div class="properties-grid">
+            <!-- Rent Property 1 -->
+            <div class="property-card" data-details-url="rent-details-1.html" data-beds="3" data-baths="4">
+                <div class="property-carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <img src="/img/1/image.png" alt="Rental Property Image 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/1/image copy.png" alt="Rental Property Image 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/1/image copy 2.png" alt="Rental Property Image 3">
+                        </div>
+                    </div>
+                    <button class="favorite-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                    <button class="carousel-arrow carousel-prev"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                    <button class="carousel-arrow carousel-next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Prestigious 3 Bed plus Maid | Burj Khalifa View</h3>
+                    <div class="property-location">Vida Residence Downtown, Downtown Dubai</div>
+                    <div class="monthly-payment">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Rent from just 36,667 AED/month
+                    </div>
+                    <div class="property-features">
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            3 Bedrooms + Maid
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
+                            </svg>
+                            4 Bathrooms
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            1,980 sqft / 184 sqm
+                        </div>
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">36,667</div>
+                        <div class="property-cta">
+                            <a href="#" class="view-details-btn">Call Us</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rent Property 2 -->
+            <div class="property-card" data-details-url="rent-details-2.html" data-beds="1" data-baths="2">
+                <div class="property-carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <img src="/img/2/image.png" alt="Rental Property Image 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/2/image copy.png" alt="Rental Property Image 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/2/image copy 2.png" alt="Rental Property Image 3">
+                        </div>
+                    </div>
+                    <button class="favorite-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                    <button class="carousel-arrow carousel-prev"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                    <button class="carousel-arrow carousel-next"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Fully Upgraded | 1 Bed with Study | Boulevard View</h3>
+                    <div class="property-location">Axis silver 1, Dubai Silicon Oasis</div>
+                    <div class="monthly-payment">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Rent from just 5,667 AED/month
+                    </div>
+                    <div class="property-features">
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            1 Bedroom + Study
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
+                            </svg>
+                            2 Bathrooms
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            811 sqft / 75 sqm
+                        </div>
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">5,667</div>
+                        <div class="property-cta">
+                            <a href="#" class="view-details-btn">Call Us</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rent Property 3 -->
+            <div class="property-card" data-details-url="rent-details-3.html" data-beds="1" data-baths="1">
+                <div class="property-carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <img src="/img/3/image.png" alt="Rental Property Image 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/3/image copy.png" alt="Rental Property Image 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/3/image copy 2.png" alt="Rental Property Image 3">
+                        </div>
+                    </div>
+                    <button class="favorite-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                    <button class="carousel-arrow carousel-prev"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                    <button class="carousel-arrow carousel-next"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Spacious 1 BR | Vacant | Prime Location</h3>
+                    <div class="property-location">Executive Residences 2, Executive Residences</div>
+                    <div class="monthly-payment">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Rent from just 10,000 AED/month
+                    </div>
+                    <div class="property-features">
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            1 Bedroom
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
+                            </svg>
+                            1 Bathroom
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            675 sqft / 63 sqm
+                        </div>
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">10,000</div>
+                        <div class="property-cta">
+                            <a href="#" class="view-details-btn">Call Us</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rent Property 4 -->
+            <div class="property-card" data-details-url="rent-details-4.html" data-beds="2" data-baths="3">
+                <div class="property-carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <img src="/img/4/image.png" alt="Rental Property Image 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/4/image copy.png" alt="Rental Property Image 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/4/image copy 2.png" alt="Rental Property Image 3">
+                        </div>
+                    </div>
+                    <button class="favorite-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                    <button class="carousel-arrow carousel-prev"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                    <button class="carousel-arrow carousel-next"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Bright and Spacious | 2 Bed | Ain Dubai Views</h3>
+                    <div class="property-location">Apartment Building 1, Bluewaters Residences</div>
+                    <div class="monthly-payment">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Rent from just 37,500 AED/month
+                    </div>
+                    <div class="property-features">
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            2 Bedrooms
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 9h10"></path>
+                                <path d="M7 13h10"></path>
+                                <path d="M7 17h10"></path>
+                                <path d="M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                            </svg>
+                            3 Bathrooms
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            1,710 sqft / 159 sqm
+                        </div>
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">37,500</div>
+                        <div class="property-cta">
+                            <a href="#" class="view-details-btn">Call Us</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rent Property 5 -->
+            <div class="property-card" data-details-url="rent-details-5.html" data-beds="2" data-baths="3">
+                <div class="property-carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <img src="/img/5/image.png" alt="Rental Property Image 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/5/image copy.png" alt="Rental Property Image 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/5/image copy 2.png" alt="Rental Property Image 3">
+                        </div>
+                    </div>
+                    <button class="favorite-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                    <button class="carousel-arrow carousel-prev"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                    <button class="carousel-arrow carousel-next"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Spacious 2 Bed | With Study | Luxury Living</h3>
+                    <div class="property-location">Apartment for rent in Vida Residence Downtown, Downtown Dubai</div>
+                    <div class="monthly-payment">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Rent from just 27,500 AED/month
+                    </div>
+                    <div class="property-features">
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            2 Bedrooms
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 9h10"></path>
+                                <path d="M7 13h10"></path>
+                                <path d="M7 17h10"></path>
+                                <path d="M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                            </svg>
+                            3 Bathrooms
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            1,640 sqft / 152 sqm
+                        </div>
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">27,500</div>
+                        <div class="property-cta">
+                            <a href="#" class="view-details-btn">Call Us</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rent Property 6 -->
+            <div class="property-card" data-details-url="rent-details-6.html" data-beds="3" data-baths="5">
+                <div class="property-carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <img src="/img/6/image.png" alt="Rental Property Image 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/6/image copy.png" alt="Rental Property Image 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/6/image copy 2.png" alt="Rental Property Image 3">
+                        </div>
+                    </div>
+                    <button class="favorite-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                    <button class="carousel-arrow carousel-prev"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                    <button class="carousel-arrow carousel-next"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Central Unit | Burj View | Fully Furnished</h3>
+                    <div class="property-location">Apartment for rent in Vida Residence Downtown, Downtown Dubai</div>
+                    <div class="monthly-payment">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Rent from just 35,000 AED/month
+                    </div>
+                    <div class="property-features">
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            3 Bedrooms + Maid
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 9h10"></path>
+                                <path d="M7 13h10"></path>
+                                <path d="M7 17h10"></path>
+                                <path d="M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                            </svg>
+                            5 Bathrooms
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            2,012 sqft / 187 sqm
+                        </div>
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">35,000</div>
+                        <div class="property-cta">
+                            <a href="#" class="view-details-btn">Call Us</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rent Property 7 -->
+            <div class="property-card" data-details-url="rent-details-7.html" data-beds="1" data-baths="2">
+                <div class="property-carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <img src="/img/7/image.png" alt="Rental Property Image 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/7/image copy.png" alt="Rental Property Image 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/7/image copy 2.png" alt="Rental Property Image 3">
+                        </div>
+                    </div>
+                    <button class="favorite-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                    <button class="carousel-arrow carousel-prev"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                    <button class="carousel-arrow carousel-next"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">1 Bed | Ready To Move In | Fully Furnished</h3>
+                    <div class="property-location">Apartment for rent in The Residences, Downtown Dubai</div>
+                    <div class="monthly-payment">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Rent from just 160,000 AED/year
+                    </div>
+                    <div class="property-features">
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            1 Bedroom
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 9h10"></path>
+                                <path d="M7 13h10"></path>
+                                <path d="M7 17h10"></path>
+                                <path d="M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                            </svg>
+                            2 Bathrooms
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            767 sqft / 71 sqm
+                        </div>
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">160,000</div>
+                        <div class="property-cta">
+                            <a href="#" class="view-details-btn">Call Us</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rent Property 8 -->
+            <div class="property-card" data-details-url="rent-details-8.html" data-beds="1" data-baths="2">
+                <div class="property-carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <img src="/img/8/image.png" alt="Rental Property Image 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/8/image copy.png" alt="Rental Property Image 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/8/image copy 2.png" alt="Rental Property Image 3">
+                        </div>
+                    </div>
+                    <button class="favorite-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                    <button class="carousel-arrow carousel-prev"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                    <button class="carousel-arrow carousel-next"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Stylish 1bed | Ready to Move in | Furnished</h3>
+                    <div class="property-location">Apartment for rent in The Residences, Downtown Dubai</div>
+                    <div class="monthly-payment">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Rent from just 155,000 AED/year
+                    </div>
+                    <div class="property-features">
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            1 Bedroom
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 9h10"></path>
+                                <path d="M7 13h10"></path>
+                                <path d="M7 17h10"></path>
+                                <path d="M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                            </svg>
+                            2 Bathrooms
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            774 sqft / 72 sqm
+                        </div>
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">155,000</div>
+                        <div class="property-cta">
+                            <a href="#" class="view-details-btn">Call Us</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rent Property 9 -->
+            <div class="property-card" data-details-url="rent-details-9.html" data-beds="1" data-baths="2">
+                <div class="property-carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <img src="/img/9/image.png" alt="Rental Property Image 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/9/image copy.png" alt="Rental Property Image 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/9/image copy 2.png" alt="Rental Property Image 3">
+                        </div>
+                    </div>
+                    <button class="favorite-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                    <button class="carousel-arrow carousel-prev"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                    <button class="carousel-arrow carousel-next"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Budget Friendly | Modern Apartment | Business Bay</h3>
+                    <div class="property-location">ATRIA RA, Atria Residences, Business Bay</div>
+                    <div class="monthly-payment">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Rent from just 100,000 AED/year
+                    </div>
+                    <div class="property-features">
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            1 Bedroom
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 9h10"></path>
+                                <path d="M7 13h10"></path>
+                                <path d="M7 17h10"></path>
+                                <path d="M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                            </svg>
+                            2 Bathrooms
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            867 sqft / 81 sqm
+                        </div>
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">100,000</div>
+                        <div class="property-cta">
+                            <a href="#" class="view-details-btn">Call Us</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rent Property 10 -->
+            <div class="property-card" data-details-url="rent-details-10.html" data-beds="1" data-baths="1">
+                <div class="property-carousel">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <img src="/img/10/image.png" alt="Rental Property Image 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/10/image copy.png" alt="Rental Property Image 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="/img/10/image copy 2.png" alt="Rental Property Image 3">
+                        </div>
+                    </div>
+                    <button class="favorite-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                    <button class="carousel-arrow carousel-prev"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                    <button class="carousel-arrow carousel-next"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                </div>
+                <div class="property-info">
+                    <h3 class="property-title">Full Sea and Palm View | Furnished | Vacant</h3>
+                    <div class="property-location">Avani Palm View Hotel & Suites, Dubai Media City</div>
+                    <div class="monthly-payment">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Rent from just 165,000 AED/year
+                    </div>
+                    <div class="property-features">
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            1 Bedroom
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 9h10"></path>
+                                <path d="M7 13h10"></path>
+                                <path d="M7 17h10"></path>
+                                <path d="M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                            </svg>
+                            1 Bathroom
+                        </div>
+                        <div class="property-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            1,095 sqft / 102 sqm
+                        </div>
+                    </div>
+                    <div class="property-footer">
+                        <div class="property-price">165,000</div>
+                        <div class="property-cta">
+                            <a href="#" class="view-details-btn">Call Us</a>
+                            <a href="#" class="contact-agent-btn whatsapp-btn">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 轮播图功能
+        function initCarousels() {
+            const carousels = document.querySelectorAll('.property-carousel');
+            
+            carousels.forEach(carousel => {
+                const slides = carousel.querySelector('.carousel-slides');
+                const slideItems = carousel.querySelectorAll('.carousel-slide');
+                const prevBtn = carousel.querySelector('.carousel-prev');
+                const nextBtn = carousel.querySelector('.carousel-next');
+                let currentSlide = 0;
+                
+                function showSlide(index) {
+                    if (index < 0) {
+                        currentSlide = slideItems.length - 1;
+                    } else if (index >= slideItems.length) {
+                        currentSlide = 0;
+                    } else {
+                        currentSlide = index;
+                    }
+                    
+                    slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+                }
+                
+                prevBtn.addEventListener('click', () => {
+                    showSlide(currentSlide - 1);
+                });
+                
+                nextBtn.addEventListener('click', () => {
+                    showSlide(currentSlide + 1);
+                });
+                
+                // 自动轮播
+                let autoSlide = setInterval(() => {
+                    showSlide(currentSlide + 1);
+                }, 5000);
+                
+                // 鼠标悬停时暂停自动轮播
+                carousel.addEventListener('mouseenter', () => {
+                    clearInterval(autoSlide);
+                });
+                
+                carousel.addEventListener('mouseleave', () => {
+                    autoSlide = setInterval(() => {
+                        showSlide(currentSlide + 1);
+                    }, 5000);
+                });
+            });
+        }
+        
+        // 收藏按钮功能
+        function initFavoriteButtons() {
+            const favoriteBtns = document.querySelectorAll('.favorite-btn');
+            
+            favoriteBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const icon = btn.querySelector('svg path');
+                    // 这里可以添加收藏逻辑
+                    btn.classList.toggle('favorited');
+                });
+            });
+        }
+        
+        // 卡片点击功能
+        function initCardClicks() {
+            const propertyCards = document.querySelectorAll('.property-card');
+            
+            propertyCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    // 如果点击的是按钮或箭头，不执行卡片点击事件
+                    if (e.target.closest('.view-details-btn') || 
+                        e.target.closest('.contact-agent-btn') || 
+                        e.target.closest('.favorite-btn') || 
+                        e.target.closest('.carousel-arrow')) {
+                        return;
+                    }
+                    
+                    const detailsUrl = card.dataset.detailsUrl;
+                    if (detailsUrl) {
+                        window.location.href = detailsUrl;
+                    }
+                });
+            });
+        }
+        
+        // 筛选按钮功能
+        function initFilterButtons() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const propertyCards = document.querySelectorAll('.property-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // 移除所有按钮的活跃状态
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // 添加当前按钮的活跃状态
+                    btn.classList.add('active');
+                    
+                    const filterType = btn.dataset.filter;
+                    
+                    // 筛选房产卡片
+                    propertyCards.forEach(card => {
+                        if (filterType === 'all') {
+                            card.style.display = 'block';
+                        } else {
+                            const beds = card.dataset.beds;
+                            if (parseInt(beds) >= parseInt(filterType)) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        }
+        
+        // 初始化所有功能
+        document.addEventListener('DOMContentLoaded', () => {
+            initCarousels();
+            initFavoriteButtons();
+            initCardClicks();
+            initFilterButtons();
+        });
+        
+        // 拖拽滚动功能
+        function initDragScroll() {
+            const propertiesGrid = document.querySelector('.properties-grid');
+            let isDragging = false;
+            let startX;
+            let scrollLeft;
+            
+            propertiesGrid.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.pageX - propertiesGrid.offsetLeft;
+                scrollLeft = propertiesGrid.scrollLeft;
+                propertiesGrid.classList.add('grabbing');
+            });
+            
+            propertiesGrid.addEventListener('mouseleave', () => {
+                isDragging = false;
+                propertiesGrid.classList.remove('grabbing');
+            });
+            
+            propertiesGrid.addEventListener('mouseup', () => {
+                isDragging = false;
+                propertiesGrid.classList.remove('grabbing');
+            });
+            
+            propertiesGrid.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.pageX - propertiesGrid.offsetLeft;
+                const walk = (x - startX) * 2; // 滚动速度
+                propertiesGrid.scrollLeft = scrollLeft - walk;
+            });
+        }
+        
+        // 初始化拖拽滚动
+        document.addEventListener('DOMContentLoaded', initDragScroll);
+        
+        // 搜索功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 从URL获取搜索参数
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchTerm = urlParams.get('search');
+            
+            if (searchTerm) {
+                // 转换为小写，进行不区分大小写的搜索
+                const searchLower = searchTerm.toLowerCase();
+                
+                // 获取所有房产卡片
+                const propertyCards = document.querySelectorAll('.property-card');
+                
+                // 过滤房产卡片
+                propertyCards.forEach(card => {
+                    // 获取卡片中的所有可搜索文本
+                    const cardText = card.textContent.toLowerCase();
+                    
+                    // 检查是否包含搜索关键词
+                    if (cardText.includes(searchLower)) {
+                        // 显示匹配的卡片
+                        card.style.display = 'block';
+                        card.style.visibility = 'visible';
+                        card.style.opacity = '1';
+                    } else {
+                        // 隐藏不匹配的卡片
+                        card.style.display = 'none';
+                        card.style.visibility = 'hidden';
+                        card.style.opacity = '0';
+                    }
+                });
+                
+                // 如果没有匹配的结果，显示提示信息
+                const visibleCards = document.querySelectorAll('.property-card[style*="display: block"]');
+                if (visibleCards.length === 0) {
+                    // 创建并显示没有结果的提示
+                    const propertiesGrid = document.querySelector('.properties-grid');
+                    const noResults = document.createElement('div');
+                    noResults.style.textAlign = 'center';
+                    noResults.style.padding = '4rem 2rem';
+                    noResults.style.width = '100%';
+                    noResults.innerHTML = `
+                        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">No Results Found</h3>
+                        <p style="font-size: 1.1rem; color: var(--light-text);">
+                            We couldn't find any properties matching "${searchTerm}".
+                            <br>
+                            <a href="/rent.html" style="color: var(--secondary-color); text-decoration: underline;">View all properties</a>
+                        </p>
+                    `;
+                    propertiesGrid.appendChild(noResults);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
