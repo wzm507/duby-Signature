@@ -42,6 +42,6 @@
     "SMTP_HOST": "smtp.163.com",
     "SMTP_PORT": "465",
     "SMTP_USER": "wzm2383983461@163.com",
-    "SMTP_PASS": "QBU3CyYuriRcctd9"
+    "SMTP_PASS": "${SMTP_PASS}"
   }
 }
