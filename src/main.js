@@ -2164,6 +2164,14 @@ document.addEventListener('DOMContentLoaded', () => {
           mobileMenuBtn.classList.remove('active');
         });
       });
+
+      // 点击页面其他区域关闭菜单
+      document.addEventListener('click', (e) => {
+        if (!mobileMenuBtn.contains(e.target) && !navLinks.contains(e.target)) {
+          navLinks.classList.remove('active');
+          mobileMenuBtn.classList.remove('active');
+        }
+      });
     }
   }
 
@@ -3539,6 +3547,43 @@ document.addEventListener('DOMContentLoaded', () => {
             setCardWidths();
             goToSlide(currentIndex); // 重新定位到当前卡片
           });
+          
+          // 添加触摸滑动功能
+          let touchStartX = 0;
+          let touchEndX = 0;
+          
+          container.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            pauseAutoScroll(); // 触摸时暂停自动滚动
+          }, false);
+          
+          container.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+          }, false);
+          
+          function handleSwipe() {
+            const swipeThreshold = 50; // 滑动阈值
+            const swipeDistance = touchEndX - touchStartX;
+            
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+              if (swipeDistance > 0) {
+                // 向右滑动 - 上一张
+                prevSlide();
+              } else {
+                // 向左滑动 - 下一张
+                nextSlide();
+              }
+            } else {
+              // 滑动距离不足，不切换
+              startAutoScroll(); // 恢复自动滚动
+            }
+          }
+          
+          // 触摸移动时阻止默认行为，避免页面滚动
+          container.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+          }, { passive: false });
         }
         
         // 初始化
