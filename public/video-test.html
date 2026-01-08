@@ -23,7 +23,7 @@
 </head>
 <body>
     <h1>Video Loading Test</h1>
-    <p>测试不同路径的视频加载情况:</p>
+    <p>测试不同路径的视频加载情�?</p>
     
     <h2>Test 1: /videos/2.mp4</h2>
     <video controls width="400">
@@ -32,12 +32,12 @@
     </video>
     <p><a href="/videos/2.mp4" target="_blank">直接访问: /videos/2.mp4</a></p>
     
-    <h2>Test 2: /public/videos/2.mp4</h2>
+    <h2>Test 2: /videos/2.mp4</h2>
     <video controls width="400">
-        <source src="/public/videos/2.mp4" type="video/mp4">
+        <source src="/videos/2.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    <p><a href="/public/videos/2.mp4" target="_blank">直接访问: /public/videos/2.mp4</a></p>
+    <p><a href="/videos/2.mp4" target="_blank">直接访问: /videos/2.mp4</a></p>
     
     <h2>Test 3: /2.mp4</h2>
     <video controls width="400">
@@ -70,10 +70,10 @@
     <script>
         console.log("正在测试视频路径...");
         
-        // 尝试预先加载视频以测试路径
+        // 尝试预先加载视频以测试路�?
         const testPaths = [
             '/videos/2.mp4',
-            '/public/videos/2.mp4',
+            '/videos/2.mp4',
             '/2.mp4',
             '/dist/videos/2.mp4',
             '/EMAAR_SOUTH_CONSTRUCTION_UPDATE_JAN_2025.mp4',
@@ -85,13 +85,13 @@
             xhr.open('HEAD', path);
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                    console.log(`✓ 路径有效: ${path}`);
+                    console.log(`�?路径有效: ${path}`);
                 } else {
-                    console.log(`✗ 路径无效 (状态码 ${xhr.status}): ${path}`);
+                    console.log(`�?路径无效 (状态码 ${xhr.status}): ${path}`);
                 }
             };
             xhr.onerror = function() {
-                console.log(`✗ 无法连接到: ${path}`);
+                console.log(`�?无法连接�? ${path}`);
             };
             xhr.send();
         });
