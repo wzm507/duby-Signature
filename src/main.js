@@ -2113,11 +2113,11 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
         <a href="/featured-properties.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Buy</a>
-        <a href="/public/rent.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Rent</a>
-        <a href="/public/communities.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">communities</a>
+        <a href="/rent.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Rent</a>
+        <a href="/communities.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">communities</a>
         <a href="developers.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Developers</a>
-        <a href="/public/off-plan.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Off-Plan</a>
-        <a href="/public/services.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Services</a>
+        <a href="/off-plan.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Off-Plan</a>
+        <a href="/services.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Services</a>
         <a href="/about.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">About Us</a>
       </div>
       <button class="mobile-menu-btn" style="display: none; flex-direction: column; justify-content: space-between; width: 30px; height: 21px; cursor: pointer;">
