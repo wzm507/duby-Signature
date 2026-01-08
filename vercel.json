@@ -13,6 +13,16 @@
       "use": "@vercel/node"
     }
   ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/$1"
+    },
+    {
+      "source": "/public/(.*)",
+      "destination": "/$1"
+    }
+  ],
   "routes": [
     {
       "src": "/api/(.*)",
@@ -26,10 +36,6 @@
       "src": "/api/send-email",
       "methods": ["POST", "OPTIONS"],
       "dest": "/api/send-email.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
     }
   ],
   "env": {
