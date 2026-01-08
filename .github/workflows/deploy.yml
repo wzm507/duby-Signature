@@ -27,10 +27,7 @@ jobs:
       run: npm run build
       
     - name: Debug Secrets
-      run: |
-        echo "VERCEL_TOKEN exists: ${{ secrets.VERCEL_TOKEN != '' }}"
-        echo "ORG_ID exists: ${{ secrets.ORG_ID != '' }}"
-        echo "PROJECT_ID exists: ${{ secrets.PROJECT_ID != '' }}"
+      run: echo "VERCEL_TOKEN exists: ${{ secrets.VERCEL_TOKEN != '' }}" && echo "ORG_ID exists: ${{ secrets.ORG_ID != '' }}" && echo "PROJECT_ID exists: ${{ secrets.PROJECT_ID != '' }}"
       shell: bash
 
     - name: Deploy to Vercel
