@@ -761,9 +761,10 @@
                     const dropdown = button.closest('.filter-dropdown');
                     // Hide dropdown when mouse leaves
                     dropdown.addEventListener('mouseleave', function() {
+                        const currentDropdown = this;
                         setTimeout(() => {
-                            const content = this.querySelector('.filter-content');
-                            if (!dropdown.matches(':hover')) {
+                            const content = currentDropdown.querySelector('.filter-content');
+                            if (!currentDropdown.matches(':hover')) {
                                 content.style.display = 'none';
                             }
                         }, 200);
@@ -861,10 +862,8 @@
                     });
                 }
 
-                // Initialize card click functionality
-                initCardClicks();
-            // 卡片点击功能
-            function initCardClicks() {
+                // 卡片点击功能
+                function initCardClicks() {
                 const propertyCards = document.querySelectorAll('.property-card');
                 
                 propertyCards.forEach(card => {
@@ -968,10 +967,9 @@
             }
             
             // 初始化所有功能
-            document.addEventListener('DOMContentLoaded', function() {
-                initCardClicks();
-                initSearch();
-            });
+            initCardClicks();
+            // initSearch(); // 搜索功能已移除
+        });
         </script>
         <div class="section-header" style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: nowrap; white-space: nowrap;">
             <h1 style="margin: 0; font-size: 2.5rem; font-weight: 300; color: #333;">Buy Properties in Dubai</h1>
