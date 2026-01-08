@@ -69,20 +69,26 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 1000;
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 1.5rem 2rem !important;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 4rem;
-      background-color: rgba(31, 33, 34, 0.95);
+      background-color: transparent;
       backdrop-filter: blur(10px);
+      box-shadow: none;
+      z-index: 1000;
+      box-sizing: border-box !important;
       transition: all 0.3s ease;
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: bold;
-      color: white;
+      color: #333;
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -95,16 +101,12 @@
 
     .nav-links {
       display: flex;
-      gap: 2rem;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
+      gap: 3rem;
+      align-items: center;
     }
 
     .nav-links a {
-      color: white;
+      color: #333;
       text-decoration: none;
       font-size: 1rem;
       transition: color 0.3s ease;
@@ -550,6 +552,7 @@
             </div>
             <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
                 <a href="/featured-properties.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Buy</a>
+                <a href="/rent.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Rent</a>
                 <a href="/communities.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">communities</a>
                 <a href="/developers.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Developers</a>
                 <a href="/services.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Services</a>

@@ -77,15 +77,19 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 1000;
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 1.5rem 2rem !important;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 4rem;
-      background-color: #ffffff;
-      backdrop-filter: blur(20px);
-      transition: var(--transition);
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+      background-color: transparent;
+      backdrop-filter: blur(10px);
+      box-shadow: none;
+      z-index: 1000;
+      box-sizing: border-box !important;
     }
 
     .logo {
@@ -109,7 +113,7 @@
 
     .nav-links {
       display: flex;
-      gap: 1.5rem;
+      gap: 3rem;
     }
 
     .nav-links a {
@@ -868,6 +872,7 @@
             </div>
             <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
                 <a href="/featured-properties.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Buy</a>
+                <a href="/rent.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Rent</a>
                 <a href="/off-plan.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Off-Plan</a>
                 <a href="/communities.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">communities</a>
                 <a href="/developers.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Developers</a>

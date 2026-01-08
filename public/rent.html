@@ -38,15 +38,20 @@
           position: fixed;
           top: 0;
           left: 0;
-          width: 100%;
+          right: 0;
+          width: 100% !important;
+          min-width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+          padding: 1.5rem 2rem !important;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 1.5rem 2rem;
-          background-color: rgba(255, 255, 255, 0.95);
+          background-color: transparent;
           backdrop-filter: blur(10px);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          box-shadow: none;
           z-index: 1000;
+          box-sizing: border-box !important;
       }
 
       .logo {
@@ -58,7 +63,7 @@
 
       .nav-links {
           display: flex;
-          gap: 2rem;
+          gap: 3rem;
           align-items: center;
       }
 
@@ -1515,6 +1520,53 @@
         // 初始化拖拽滚动
         document.addEventListener('DOMContentLoaded', initDragScroll);
         
+        // 电话号码弹窗功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.querySelector('.modal');
+            const modalClose = document.querySelector('.modal-close');
+            const modalBody = document.querySelector('.modal-body');
+            const callButtons = document.querySelectorAll('.view-details-btn');
+            const whatsappButtons = document.querySelectorAll('.whatsapp-btn');
+            const phoneNumber = '+971 52 145 0498';
+            
+            // 显示模态框
+            function showModal() {
+                modalBody.innerHTML = `<p style="text-align: center; font-size: 24px; font-weight: bold; padding: 32px 0;">${phoneNumber}</p>`;
+                modal.style.display = 'block';
+            }
+            
+            // 关闭模态框
+            function closeModal() {
+                modal.style.display = 'none';
+            }
+            
+            // 点击Call Us按钮显示模态框
+            callButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showModal();
+                });
+            });
+            
+            // 点击WhatsApp按钮显示模态框
+            whatsappButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showModal();
+                });
+            });
+            
+            // 点击关闭按钮关闭模态框
+            modalClose.addEventListener('click', closeModal);
+            
+            // 点击模态框外部关闭模态框
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+        
         // 搜索功能
         document.addEventListener('DOMContentLoaded', function() {
             // 从URL获取搜索参数
@@ -1569,5 +1621,13 @@
             }
         });
     </script>
+    
+    <!-- 电话号码弹窗 -->
+    <div class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-body"></div>
+        </div>
+    </div>
 </body>
 </html>

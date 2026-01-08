@@ -77,21 +77,26 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 1000;
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 1.5rem 2rem !important;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 4rem;
-      background-color: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
+      background-color: transparent;
+      backdrop-filter: blur(10px);
+      box-shadow: none;
+      z-index: 1000;
+      box-sizing: border-box !important;
       transition: var(--transition);
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: bold;
-      color: white;
+      color: #333;
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -104,11 +109,12 @@
 
     .nav-links {
       display: flex;
-      gap: 1.5rem;
+      gap: 3rem;
+      align-items: center;
     }
 
     .nav-links a {
-      color: var(--medium-text);
+      color: #333;
       text-decoration: none;
       font-size: 1rem;
       font-weight: 500;
@@ -433,6 +439,7 @@
     </div>
     <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
       <a href="/featured-properties.html">Buy</a>
+      <a href="/rent.html">Rent</a>
       <a href="/communities.html">communities</a>
       <a href="/developers.html">Developers</a>
       <a href="/services.html">Services</a>

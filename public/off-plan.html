@@ -38,15 +38,20 @@
           position: fixed;
           top: 0;
           left: 0;
-          width: 100%;
+          right: 0;
+          width: 100% !important;
+          min-width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+          padding: 1.5rem 2rem !important;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 1.5rem 2rem;
-          background-color: rgba(255, 255, 255, 0.95);
+          background-color: transparent;
           backdrop-filter: blur(10px);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          box-shadow: none;
           z-index: 1000;
+          box-sizing: border-box !important;
       }
 
       .logo {
@@ -54,11 +59,13 @@
           font-weight: bold;
           color: #333;
           text-decoration: none;
+          display: flex;
+          align-items: center;
       }
 
       .nav-links {
           display: flex;
-          gap: 2rem;
+          gap: 3rem;
           align-items: center;
       }
 
@@ -729,6 +736,7 @@
         </div>
         <div class="nav-links">
             <a href="/featured-properties.html">Buy</a>
+            <a href="/rent.html">Rent</a>
             <a href="/off-plan.html" style="color: #6c63ff;">Off-Plan</a>
             <a href="/communities.html">Communities</a>
             <a href="/developers.html">Developers</a>

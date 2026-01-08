@@ -93,6 +93,31 @@
             .hero-content h1 {
                 font-size: 2.5rem;
             }
+            
+            /* 响应式筛选按钮 */
+            .filter-container {
+                margin-top: 0.5rem !important;
+            }
+            
+            .filter-btn {
+                padding: 0.8rem 1.5rem !important;
+                font-size: 1rem !important;
+                min-width: 110px !important;
+            }
+        }
+        
+        /* 小屏设备 */
+        @media (max-width: 480px) {
+            .filter-container {
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 0.8rem !important;
+            }
+            
+            .filter-btn {
+                width: 80% !important;
+                min-width: auto !important;
+            }
         }
         
         /* 导航栏样式 */
@@ -263,6 +288,7 @@
         </div>
         <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
             <a href="/featured-properties.html">Buy</a>
+            <a href="/rent.html">Rent</a>
             <a href="/off-plan.html">Off-Plan</a>
             <a href="/communities.html">communities</a>
             <a href="/developers.html">Developers</a>
@@ -283,11 +309,11 @@
             <!-- 筛选按钮区域 -->
             <div class="filter-container" style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem;">
                 <button class="filter-btn active" data-filter="buy" 
-                        style="background-color: #6c63ff; border: 2px solid #6c63ff; color: white; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; min-width: 120px; text-align: center; box-shadow: 0 4px 12px rgba(108,99,255,0.3); transform: translateY(-2px);">
+                        style="background-color: #6c63ff; border: 2px solid #6c63ff; color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.4s ease; min-width: 130px; text-align: center; box-shadow: 0 8px 20px rgba(108,99,255,0.35); transform: translateY(-3px);">
                     Buy
                 </button>
                 <button class="filter-btn" data-filter="rent" 
-                        style="background-color: white; border: 2px solid #6c63ff; color: #6c63ff; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; min-width: 120px; text-align: center; box-shadow: 0 2px 8px rgba(108,99,255,0.1);">
+                        style="background-color: rgba(255,255,255,0.1); border: 2px solid white; color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.4s ease; min-width: 130px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); backdrop-filter: blur(15px);">
                     Rent
                 </button>
             </div>
@@ -310,22 +336,53 @@
                     
                     // 筛选按钮切换逻辑
                     filterBtns.forEach(btn => {
+                        // 点击事件处理
                         btn.addEventListener('click', function() {
                             // 移除所有按钮的active类
                             filterBtns.forEach(b => {
                                 b.classList.remove('active');
-                                b.style.backgroundColor = 'white';
-                                b.style.color = '#6c63ff';
-                                b.style.boxShadow = '0 2px 8px rgba(108,99,255,0.1)';
+                                b.style.backgroundColor = 'rgba(255,255,255,0.1)';
+                                b.style.borderColor = 'white';
+                                b.style.color = 'white';
+                                b.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+                                b.style.backdropFilter = 'blur(15px)';
                                 b.style.transform = 'none';
                             });
                             
                             // 添加当前按钮的active类
                             this.classList.add('active');
                             this.style.backgroundColor = '#6c63ff';
+                            this.style.borderColor = '#6c63ff';
                             this.style.color = 'white';
-                            this.style.boxShadow = '0 4px 12px rgba(108,99,255,0.3)';
-                            this.style.transform = 'translateY(-2px)';
+                            this.style.boxShadow = '0 8px 20px rgba(108,99,255,0.35)';
+                            this.style.backdropFilter = 'none';
+                            this.style.transform = 'translateY(-3px)';
+                        });
+                        
+                        // 悬停效果
+                        btn.addEventListener('mouseenter', function() {
+                            if (this.classList.contains('active')) {
+                                // active状态的悬停效果
+                                this.style.boxShadow = '0 12px 30px rgba(108,99,255,0.5)';
+                                this.style.transform = 'translateY(-5px) scale(1.05)';
+                            } else {
+                                // 非active状态的悬停效果
+                                this.style.backgroundColor = 'rgba(255,255,255,0.2)';
+                                this.style.boxShadow = '0 6px 20px rgba(0,0,0,0.2)';
+                            }
+                        });
+                        
+                        // 离开悬停效果
+                        btn.addEventListener('mouseleave', function() {
+                            if (this.classList.contains('active')) {
+                                // active状态恢复
+                                this.style.boxShadow = '0 8px 20px rgba(108,99,255,0.35)';
+                                this.style.transform = 'translateY(-3px) scale(1)';
+                            } else {
+                                // 非active状态恢复
+                                this.style.backgroundColor = 'rgba(255,255,255,0.1)';
+                                this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+                            }
                         });
                     });
                     
