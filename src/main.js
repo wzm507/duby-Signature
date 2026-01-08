@@ -3666,7 +3666,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
     
     <div style="text-align: center; margin-top: 1rem;">
-      <button onclick="window.location.href='http://localhost:5173/public/communities.html'" style="padding: 1rem 2rem; background-color: #0a1f44; color: white; border: none; border-radius: 50px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      <button onclick="window.location.href='/communities.html'" style="padding: 1rem 2rem; background-color: #0a1f44; color: white; border: none; border-radius: 50px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
         View All Communities
       </button>
     </div>
