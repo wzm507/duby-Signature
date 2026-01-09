@@ -13,8 +13,18 @@ jobs:
       contents: read
       deployments: write
     steps:
-      - name: Checkout repository
+      - name: Checkout repository with sparse checkout
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            src/
+            api/
+            public/
+            package.json
+            vercel.json
+            vite.config.js
+            index.html
+            .github/
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -23,7 +33,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --no-optional --no-fund
 
       - name: Build project
         run: npm run build
@@ -33,6 +43,7 @@ jobs:
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          vercel-args: '--prod'
+          vercel-args: '--prod --ignore=node_modules/**,dist/**,images_new/**,img/**'
           vercel-org-id: ${{ secrets.ORG_ID }}
           vercel-project-id: ${{ secrets.PROJECT_ID }}
+          working-directory: ./

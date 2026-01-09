@@ -13,6 +13,18 @@
       "use": "@vercel/node"
     }
   ],
+  "ignore": [
+    "**/node_modules/**",
+    "**/.git/**",
+    "**/.idea/**",
+    "**/dist/**",
+    "**/images_new/**",
+    "**/img/**",
+    "**/public/img/**",
+    "**/public/images_new/**",
+    "**/*.log",
+    "**/.env*"
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
