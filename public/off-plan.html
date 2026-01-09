@@ -119,6 +119,22 @@
         vertical-align: middle;
         margin-bottom: 1rem;
       }
+
+      /* 筛选按钮容器样式 */
+      .filter-buttons-container {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 768px) {
+        .filter-buttons-container {
+          flex-wrap: wrap;
+        }
+      }
       
       .filter-btn {
         background-color: white;
@@ -735,9 +751,22 @@
             </a>
         </div>
         <div class="nav-links">
-            <a href="/featured-properties.html">Buy</a>
+            <!-- Buy下拉菜单 -->
+            <div class="dropdown" style="position: relative; display: inline-block;">
+                <button class="dropdown-toggle" style="background: none; border: none; color: #333; font-weight: 500; text-decoration: none; cursor: pointer; padding: 0.5rem 0; font-size: 1rem; display: flex; align-items: center; gap: 0.3rem;">
+                    Buy
+                    <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
+                </button>
+                <div class="dropdown-content" style="display: none; position: absolute; top: 100%; left: 0; background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.15); border-radius: 8px; padding: 0.5rem 0; min-width: 180px; z-index: 1000; margin-top: 0.5rem;">
+                    <a href="/featured-properties.html" style="display: block; padding: 0.75rem 1.25rem; color: #333; text-decoration: none; transition: background-color 0.3s ease;">
+                        Buy Properties
+                    </a>
+                    <a href="/off-plan.html" style="display: block; padding: 0.75rem 1.25rem; color: #6c63ff; text-decoration: none; transition: background-color 0.3s ease;">
+                        Off-Plan Properties
+                    </a>
+                </div>
+            </div>
             <a href="/rent.html">Rent</a>
-            <a href="/off-plan.html" style="color: #6c63ff;">Off-Plan</a>
             <a href="/communities.html">Communities</a>
             <a href="/developers.html">Developers</a>
             <a href="/services.html">Services</a>
@@ -753,7 +782,7 @@
                 <p style="margin: 0;"></p>
             </div>
             
-            <div style="display: flex; align-items: center; gap: 0.3rem;">
+            <div class="filter-buttons-container">
                 <div class="filter-dropdown" style="position: relative;">
                     <button class="filter-btn" style="padding: 0.75rem 1.25rem; background-color: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-size: 1rem; color: #000; outline: none; transition: all 0.3s ease;">
                         Beds
@@ -783,6 +812,38 @@
                         <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">1+</div>
                         <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">2+</div>
                         <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">3+</div>
+                    </div>
+                </div>
+                
+                <!-- Property Type筛选按钮 -->
+                <div class="filter-dropdown" style="position: relative;">
+                    <button class="filter-btn" style="padding: 0.75rem 1.25rem; background-color: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-size: 1rem; color: #000; outline: none; transition: all 0.3s ease;">
+                        Property Type
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="filter-content" style="display: none; position: absolute; top: 100%; right: 0; margin-top: 0.5rem; background-color: #fff; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; min-width: 200px; padding: 1rem;">
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">Any</div>
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">Apartment</div>
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">Villa</div>
+                    </div>
+                </div>
+                
+                <!-- Sort by筛选按钮 -->
+                <div class="filter-dropdown" style="position: relative;">
+                    <button class="filter-btn" style="padding: 0.75rem 1.25rem; background-color: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-size: 1rem; color: #000; outline: none; transition: all 0.3s ease;">
+                        Sort by
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="filter-content" style="display: none; position: absolute; top: 100%; right: 0; margin-top: 0.5rem; background-color: #fff; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; min-width: 200px; padding: 1rem;">
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">Newest</div>
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">Price: Low to High</div>
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">Price: High to Low</div>
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">Bedrooms: High to Low</div>
+                        <div class="filter-option" style="padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease;">Bedrooms: Low to High</div>
                     </div>
                 </div>
             </div>
@@ -2355,16 +2416,53 @@
                 // Get all property cards
                 const propertyCards = document.querySelectorAll('.property-card');
                 
-                // Get selected beds filter
+                // Get selected filters
                 const bedsFilter = document.querySelector('.filter-dropdown:nth-child(1) .filter-btn').textContent.trim();
-                
-                // Get selected baths filter
                 const bathsFilter = document.querySelector('.filter-dropdown:nth-child(2) .filter-btn').textContent.trim();
+                const propertyTypeFilter = document.querySelector('.filter-dropdown:nth-child(3) .filter-btn').textContent.trim();
+                const sortByFilter = document.querySelector('.filter-dropdown:nth-child(4) .filter-btn').textContent.trim();
+                
+                // Create an array of cards for sorting
+                const cardsArray = Array.from(propertyCards);
+                
+                // Sort cards based on selected sort option
+                cardsArray.sort((a, b) => {
+                    switch (sortByFilter) {
+                        case 'Price: Low to High':
+                            // Extract and parse prices
+                            const priceA = parseInt(a.querySelector('.property-price').textContent.replace(/,/g, ''));
+                            const priceB = parseInt(b.querySelector('.property-price').textContent.replace(/,/g, ''));
+                            return priceA - priceB;
+                        case 'Price: High to Low':
+                            const priceC = parseInt(a.querySelector('.property-price').textContent.replace(/,/g, ''));
+                            const priceD = parseInt(b.querySelector('.property-price').textContent.replace(/,/g, ''));
+                            return priceD - priceC;
+                        case 'Bedrooms: High to Low':
+                            const bedsA = parseInt(a.dataset.beds);
+                            const bedsB = parseInt(b.dataset.beds);
+                            return bedsB - bedsA;
+                        case 'Bedrooms: Low to High':
+                            const bedsC = parseInt(a.dataset.beds);
+                            const bedsD = parseInt(b.dataset.beds);
+                            return bedsC - bedsD;
+                        default:
+                            // Newest (default) - no sorting
+                            return 0;
+                    }
+                });
+                
+                // Reorder cards in the DOM
+                const propertiesGrid = document.querySelector('.properties-grid');
+                cardsArray.forEach(card => {
+                    propertiesGrid.appendChild(card);
+                });
                 
                 // Filter each property card
+                let visibleCount = 0;
                 propertyCards.forEach(card => {
                     const cardBeds = parseInt(card.dataset.beds);
                     const cardBaths = parseInt(card.dataset.baths);
+                    const cardText = card.textContent.toLowerCase();
                     
                     let showCard = true;
                     
@@ -2393,13 +2491,44 @@
                         }
                     }
                     
+                    // Apply property type filter
+                    if (showCard && propertyTypeFilter !== 'Property Type' && propertyTypeFilter !== 'Any') {
+                        showCard = cardText.includes(propertyTypeFilter.toLowerCase());
+                    }
+                    
                     // Show or hide card
                     if (showCard) {
                         card.style.display = 'block';
+                        visibleCount++;
                     } else {
                         card.style.display = 'none';
                     }
                 });
+                
+                // Handle no results
+                let noResultsMessage = document.querySelector('.no-results-message');
+                if (!noResultsMessage) {
+                    noResultsMessage = document.createElement('div');
+                    noResultsMessage.className = 'no-results-message';
+                    noResultsMessage.style.cssText = `
+                        grid-column: 1 / -1;
+                        text-align: center;
+                        padding: 4rem 2rem;
+                        background-color: #f8f9fa;
+                        border-radius: 12px;
+                        font-size: 1.2rem;
+                        color: #666;
+                        margin: 2rem 0;
+                    `;
+                    propertiesGrid.appendChild(noResultsMessage);
+                }
+                
+                if (visibleCount === 0) {
+                    noResultsMessage.textContent = 'No properties match your current filters. Please try adjusting your search criteria.';
+                    noResultsMessage.style.display = 'block';
+                } else {
+                    noResultsMessage.style.display = 'none';
+                }
             }
             
             // Add focus effect to search input
@@ -2415,5 +2544,6 @@
             }
         });
     </script>
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>

@@ -117,6 +117,22 @@
         vertical-align: middle;
         margin-bottom: 1rem;
       }
+
+      /* 筛选按钮容器样式 */
+      .filter-buttons-container {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 768px) {
+        .filter-buttons-container {
+          flex-wrap: wrap;
+        }
+      }
       
       .filter-btn {
         background-color: white;
@@ -733,11 +749,24 @@
             </a>
         </div>
         <div class="nav-links">
-            <a href="/featured-properties.html">Buy</a>
+            <!-- Buy下拉菜单 -->
+            <div class="dropdown" style="position: relative;">
+                <button class="dropdown-toggle" style="background: none; border: none; color: #333; font-weight: 500; text-decoration: none; cursor: pointer; padding: 0.5rem 0; font-size: 1rem; display: flex; align-items: center; gap: 0.3rem;">
+                    Buy
+                    <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
+                </button>
+                <div class="dropdown-content" style="display: none; position: absolute; top: 100%; left: 0; background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.15); border-radius: 8px; padding: 0.5rem 0; min-width: 180px; z-index: 1000; margin-top: 0.5rem;">
+                    <a href="/featured-properties.html" style="display: block; padding: 0.75rem 1.25rem; color: #333; text-decoration: none; transition: background-color 0.3s ease;">
+                        Buy Properties
+                    </a>
+                    <a href="/off-plan.html" style="display: block; padding: 0.75rem 1.25rem; color: #333; text-decoration: none; transition: background-color 0.3s ease;">
+                        Off-Plan Properties
+                    </a>
+                </div>
+            </div>
             <a href="/rent.html" style="color: #6c63ff;">Rent</a>
-            <a href="/communities.html">communities</a>
+            <a href="/communities.html">Communities</a>
             <a href="developers.html">Developers</a>
-            <a href="/off-plan.html">Off-Plan</a>
             <a href="/services.html">Services</a>
             <a href="/about.html">About Us</a>
         </div>
@@ -749,6 +778,73 @@
             <div style="display: flex; flex-direction: column; justify-content: center;">
                 <h2 style="font-weight: 300; margin: 0; font-size: 2.2rem; white-space: nowrap;">Rent Properties</h2>
                 <p style="margin: 0;"></p>
+            </div>
+            
+            <div class="filter-buttons-container">
+                <!-- Beds筛选按钮 -->
+                <div class="filter-dropdown" style="position: relative;">
+                    <button class="filter-btn" style="background-color: white; border: 1px solid #e0e0e0; padding: 0.75rem 1.5rem; border-radius: 8px; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem; color: #333; white-space: nowrap;">
+                        Beds
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="filter-content" style="display: none; position: absolute; top: 100%; left: 0; background-color: white; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); z-index: 1000; min-width: 150px; margin-top: 0.5rem;">
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">Any</div>
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">1</div>
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">2</div>
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">3</div>
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">4+</div>
+                    </div>
+                </div>
+                
+                <!-- Bath筛选按钮 -->
+                <div class="filter-dropdown" style="position: relative;">
+                    <button class="filter-btn" style="background-color: white; border: 1px solid #e0e0e0; padding: 0.75rem 1.5rem; border-radius: 8px; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem; color: #333; white-space: nowrap;">
+                        Bath
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="filter-content" style="display: none; position: absolute; top: 100%; left: 0; background-color: white; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); z-index: 1000; min-width: 150px; margin-top: 0.5rem;">
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">Any</div>
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">1</div>
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">2</div>
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">3</div>
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">4+</div>
+                    </div>
+                </div>
+                
+                <!-- Property Type筛选按钮 -->
+                <div class="filter-dropdown" style="position: relative;">
+                    <button class="filter-btn" style="background-color: white; border: 1px solid #e0e0e0; padding: 0.75rem 1.5rem; border-radius: 8px; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem; color: #333; white-space: nowrap;">
+                        Property Type
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="filter-content" style="display: none; position: absolute; top: 100%; left: 0; background-color: white; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); z-index: 1000; min-width: 150px; margin-top: 0.5rem;">
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">Any</div>
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">Apartment</div>
+                    </div>
+                </div>
+                
+                <!-- Sort by筛选按钮 -->
+                <div class="filter-dropdown" style="position: relative;">
+                    <button class="filter-btn" style="background-color: white; border: 1px solid #e0e0e0; padding: 0.75rem 1.5rem; border-radius: 8px; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem; color: #333; white-space: nowrap;">
+                        Sort by
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="filter-content" style="display: none; position: absolute; top: 100%; left: 0; background-color: white; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); z-index: 1000; min-width: 150px; margin-top: 0.5rem;">
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">Newest</div>
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">Price: Low to High</div>
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">Price: High to Low</div>
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">Bedrooms: High to Low</div>
+                        <div class="filter-option" style="padding: 0.75rem 1.5rem; cursor: pointer; transition: background-color 0.3s ease; color: #333;">Bedrooms: Low to High</div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -1620,7 +1716,207 @@
                 }
             }
         });
+
+        // 筛选按钮功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                // Toggle dropdown on click
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const content = this.nextElementSibling;
+                    
+                    // Close all other dropdowns
+                    document.querySelectorAll('.filter-content').forEach(item => {
+                        if (item !== content) {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                });
+                
+                // Show dropdown on hover
+                button.addEventListener('mouseenter', function() {
+                    // Only open if not already open
+                    if (this.nextElementSibling.style.display !== 'block') {
+                        this.nextElementSibling.style.display = 'block';
+                    }
+                });
+                
+                // Hide dropdown when mouse leaves button area
+                button.addEventListener('mouseleave', function() {
+                    const content = this.nextElementSibling;
+                    // Add delay before closing to allow hover on dropdown
+                    const hideTimeout = setTimeout(() => {
+                        if (!content.matches(':hover')) {
+                            content.style.display = 'none';
+                        }
+                    }, 200);
+                    
+                    // Store timeout ID on the element for cleanup
+                    content.dataset.hideTimeout = hideTimeout;
+                });
+                
+                // Keep dropdown open when hovering over content
+                const content = button.nextElementSibling;
+                content.addEventListener('mouseenter', function() {
+                    // Clear any pending hide timeout
+                    clearTimeout(this.dataset.hideTimeout);
+                });
+                
+                // Hide dropdown when mouse leaves content area
+                content.addEventListener('mouseleave', function() {
+                    this.style.display = 'none';
+                });
+                
+                // Handle filter option selection
+                const options = content.querySelectorAll('.filter-option');
+                options.forEach(option => {
+                    option.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        // Update button text
+                        button.textContent = this.textContent;
+                        // Add the SVG arrow back
+                        button.innerHTML += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"></polyline></svg>';
+                        // Close dropdown
+                        content.style.display = 'none';
+                        // Apply filters
+                        applyFilters();
+                    });
+                });
+            });
+            
+            // Close all dropdowns when clicking outside
+            document.addEventListener('click', function() {
+                document.querySelectorAll('.filter-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+            });
+            
+            // Apply filters to properties
+            function applyFilters() {
+                // Get all property cards
+                const propertyCards = document.querySelectorAll('.property-card');
+                
+                // Get selected beds filter
+                const bedsFilter = document.querySelector('.filter-dropdown:nth-child(1) .filter-btn').textContent.trim();
+                
+                // Get selected baths filter
+                const bathsFilter = document.querySelector('.filter-dropdown:nth-child(2) .filter-btn').textContent.trim();
+                
+                // Get selected property type filter
+                const propertyTypeFilter = document.querySelector('.filter-dropdown:nth-child(3) .filter-btn').textContent.trim();
+                
+                // Get selected sort by filter
+                const sortByFilter = document.querySelector('.filter-dropdown:nth-child(4) .filter-btn').textContent.trim();
+                
+                // Create array of cards for sorting
+                const cardsArray = Array.from(propertyCards);
+                
+                // Sort cards based on selected sort option
+                cardsArray.sort((a, b) => {
+                    switch (sortByFilter) {
+                        case 'Price: Low to High':
+                            // Extract and parse prices
+                            const priceA = parseInt(a.querySelector('.property-price').textContent.replace(/,/g, ''));
+                            const priceB = parseInt(b.querySelector('.property-price').textContent.replace(/,/g, ''));
+                            return priceA - priceB;
+                        case 'Price: High to Low':
+                            const priceC = parseInt(a.querySelector('.property-price').textContent.replace(/,/g, ''));
+                            const priceD = parseInt(b.querySelector('.property-price').textContent.replace(/,/g, ''));
+                            return priceD - priceC;
+                        case 'Bedrooms: High to Low':
+                            const bedsA = parseInt(a.dataset.beds);
+                            const bedsB = parseInt(b.dataset.beds);
+                            return bedsB - bedsA;
+                        case 'Bedrooms: Low to High':
+                            const bedsC = parseInt(a.dataset.beds);
+                            const bedsD = parseInt(b.dataset.beds);
+                            return bedsC - bedsD;
+                        default:
+                            // Newest (default) - no sorting
+                            return 0;
+                    }
+                });
+                
+                // Reorder DOM elements
+                const propertiesGrid = document.querySelector('.properties-grid');
+                cardsArray.forEach(card => {
+                    propertiesGrid.appendChild(card);
+                });
+                
+                // Filter cards
+                propertyCards.forEach(card => {
+                    // Get card data
+                    const cardBeds = card.dataset.beds;
+                    const cardBaths = card.dataset.baths;
+                    const cardText = card.textContent.toLowerCase();
+                    
+                    // Check beds filter
+                    const bedsMatch = bedsFilter === 'Any' || 
+                                     (bedsFilter === '4+' && parseInt(cardBeds) >= 4) ||
+                                     parseInt(cardBeds) === parseInt(bedsFilter);
+                    
+                    // Check baths filter
+                    const bathsMatch = bathsFilter === 'Any' || 
+                                      (bathsFilter === '4+' && parseInt(cardBaths) >= 4) ||
+                                      parseInt(cardBaths) === parseInt(bathsFilter);
+                    
+                    // Check property type filter
+                    const typeMatch = propertyTypeFilter === 'Any' || 
+                                      cardText.includes(propertyTypeFilter.toLowerCase());
+                    
+                    // Show or hide card based on all filters
+                    if (bedsMatch && bathsMatch && typeMatch) {
+                        card.style.display = 'block';
+                        card.style.visibility = 'visible';
+                        card.style.opacity = '1';
+                    } else {
+                        card.style.display = 'none';
+                        card.style.visibility = 'hidden';
+                        card.style.opacity = '0';
+                    }
+                });
+                
+                // Check for no results
+                const visibleCards = document.querySelectorAll('.property-card[style*="display: block"]');
+                if (visibleCards.length === 0) {
+                    // Remove existing no results message if present
+                    const existingNoResults = document.querySelector('.no-results');
+                    if (existingNoResults) {
+                        existingNoResults.remove();
+                    }
+                    
+                    // Create and show no results message
+                    const propertiesGrid = document.querySelector('.properties-grid');
+                    const noResults = document.createElement('div');
+                    noResults.className = 'no-results';
+                    noResults.style.textAlign = 'center';
+                    noResults.style.padding = '4rem 2rem';
+                    noResults.style.width = '100%';
+                    noResults.innerHTML = `
+                        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">No Properties Found</h3>
+                        <p style="font-size: 1.1rem; color: var(--light-text);">
+                            We couldn't find any properties matching your selected filters.
+                            <br>
+                            Try adjusting your filter criteria or <a href="/rent.html" style="color: var(--secondary-color); text-decoration: underline;">view all properties</a>
+                        </p>
+                    `;
+                    propertiesGrid.appendChild(noResults);
+                } else {
+                    // Remove no results message if present
+                    const existingNoResults = document.querySelector('.no-results');
+                    if (existingNoResults) {
+                        existingNoResults.remove();
+                    }
+                }
+            }
+        });
     </script>
+    <script type="module" src="/src/main.js"></script>
     
     <!-- 电话号码弹窗 -->
     <div class="modal">

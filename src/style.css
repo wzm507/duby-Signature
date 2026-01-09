@@ -3166,7 +3166,12 @@ a:hover {
 /* Company Introduction Section */
 .company-intro {
   padding: 6rem 2rem;
-  background: linear-gradient(135deg, #1147AB, #162A8F, #10216D, #0C1559);
+  background-color: #000000;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
 }
 
 .company-intro-content {

@@ -1,4 +1,4 @@
-import './style.css'
+﻿import './style.css'
 
 // 页面加载动画
 function initLoadingAnimation() {
@@ -86,8 +86,8 @@ function initEnhancedInteractions() {
   // 添加页面过渡效果
   document.body.classList.add('page-transition');
   
-  // 为所有可点击元素添加微交互
-  const interactiveElements = document.querySelectorAll('a, button, .property-card, .hover-effect');
+  // 为所有可点击元素添加微交互（排除下拉菜单的toggle按钮）
+  const interactiveElements = document.querySelectorAll('a:not(.dropdown-toggle), button:not(.dropdown-toggle), .property-card, .hover-effect');
   
   interactiveElements.forEach(el => {
     // 添加点击波纹效果
@@ -289,6 +289,90 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
+// 下拉菜单功能实现
+function initDropdownMenus() {
+  console.log('Initializing dropdown menus...');
+  const dropdowns = document.querySelectorAll('.dropdown');
+  
+  dropdowns.forEach(dropdown => {
+    const toggle = dropdown.querySelector('.dropdown-toggle');
+    const content = dropdown.querySelector('.dropdown-content');
+    
+    if (toggle && content) {
+      console.log('Dropdown found:', toggle.textContent.trim());
+      
+      // 点击事件处理 - 确保阻止默认行为并切换显示
+      toggle.addEventListener('click', (e) => {
+        console.log('Dropdown toggle clicked');
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // 关闭所有其他下拉菜单
+        dropdowns.forEach(otherDropdown => {
+          if (otherDropdown !== dropdown) {
+            const otherContent = otherDropdown.querySelector('.dropdown-content');
+            if (otherContent) {
+              otherContent.style.display = 'none';
+            }
+          }
+        });
+        
+        // 切换当前下拉菜单
+        const isVisible = content.style.display === 'block';
+        console.log('Current visibility:', isVisible);
+        content.style.display = isVisible ? 'none' : 'block';
+      });
+      
+      // 悬停事件处理 - 优化版本，确保鼠标从按钮移动到下拉菜单时菜单不会消失
+      
+      // 鼠标进入按钮时显示菜单
+      toggle.addEventListener('mouseenter', () => {
+        content.style.display = 'block';
+      });
+      
+      // 鼠标进入下拉菜单时保持菜单显示
+      content.addEventListener('mouseenter', () => {
+        content.style.display = 'block';
+      });
+      
+      // 鼠标离开下拉菜单时检查是否需要关闭
+      content.addEventListener('mouseleave', (e) => {
+        // 检查鼠标是否移动到了按钮上
+        if (!toggle.contains(e.relatedTarget)) {
+          // 短暂延迟以允许鼠标从下拉菜单移动回按钮
+          setTimeout(() => {
+            if (!content.matches(':hover') && !toggle.matches(':hover')) {
+              content.style.display = 'none';
+            }
+          }, 100);
+        }
+      });
+      
+      // 鼠标离开整个下拉组件时隐藏菜单
+      dropdown.addEventListener('mouseleave', () => {
+        // 检查鼠标是否真的离开了整个下拉区域
+        setTimeout(() => {
+          if (!dropdown.matches(':hover')) {
+            content.style.display = 'none';
+          }
+        }, 100);
+      });
+    }
+  });
+  
+  // 点击页面其他地方关闭下拉菜单
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.dropdown')) {
+      dropdowns.forEach(dropdown => {
+        const content = dropdown.querySelector('.dropdown-content');
+        if (content) {
+          content.style.display = 'none';
+        }
+      });
+    }
+  });
+}
 
 // 页面加载完成后初始化所有交互功能
 document.addEventListener('DOMContentLoaded', () => {
@@ -875,7 +959,7 @@ document.addEventListener('DOMContentLoaded', () => {
       transition: box-shadow 0.3s ease; /* 仅过渡阴影，而非全部属性 */
       z-index: 1000 !important;
       will-change: transform, box-shadow; /* 硬件加速 */
-      overflow: hidden !important;
+      overflow: visible !important;
     }
     
     .navbar:hover {
@@ -2104,19 +2188,35 @@ document.addEventListener('DOMContentLoaded', () => {
   // 创建导航栏
   const header = document.createElement('header');
   header.className = 'header';
+  header.style.position = 'relative';
+  header.style.zIndex = '9999';
+  header.style.overflow = 'visible';
   header.innerHTML = `
-    <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+    <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 9999; overflow: visible;">
       <div class="logo" style="display: flex; align-items: center;">
         <a href="/" style="display: flex; align-items: center;">
           <img src="/img/logo.png" alt="Logo" class="logo-image" style="width: 100px; height: auto;">
         </a>
       </div>
       <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
-        <a href="/featured-properties.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Buy</a>
+        <!-- Buy下拉菜单 -->
+        <div class="dropdown" style="position: relative;">
+          <button class="dropdown-toggle" style="background: none; border: none; color: #333; font-weight: 500; text-decoration: none; cursor: pointer; padding: 0.5rem 0; font-size: 1rem; display: flex; align-items: center; gap: 0.3rem;">
+            Buy
+            <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
+          </button>
+          <div class="dropdown-content" style="display: none; position: absolute; top: 100%; left: 0; background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.15); border-radius: 8px; padding: 0.5rem 0; min-width: 180px; z-index: 1001; margin-top: 0.5rem;">
+            <a href="/featured-properties.html" style="display: block; padding: 0.75rem 1.25rem; color: #333; text-decoration: none; transition: background-color 0.3s ease;">
+              Buy Properties
+            </a>
+            <a href="/off-plan.html" style="display: block; padding: 0.75rem 1.25rem; color: #333; text-decoration: none; transition: background-color 0.3s ease;">
+              Off-Plan Properties
+            </a>
+          </div>
+        </div>
         <a href="/rent.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Rent</a>
-        <a href="/communities.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">communities</a>
+        <a href="/communities.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Communities</a>
         <a href="developers.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Developers</a>
-        <a href="/off-plan.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Off-Plan</a>
         <a href="/services.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Services</a>
         <a href="/about.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">About Us</a>
       </div>
@@ -2622,9 +2722,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="property-details">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                         <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">AED 2,800,000</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                        </svg>
                     </div>
                     
                     <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
@@ -2719,9 +2816,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="property-details">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                         <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">AED 2,250,000</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                        </svg>
                     </div>
                     
                     <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
@@ -2808,9 +2902,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="property-details">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                         <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">AED 2,040,000</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                        </svg>
                     </div>
                     
                     <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
@@ -2897,9 +2988,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="property-details">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                         <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">AED 2,250,000</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                        </svg>
                     </div>
                     
                     <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
@@ -2986,9 +3074,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="property-details">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                         <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">AED 3,200,000</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                        </svg>
                     </div>
                     
                     <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
@@ -3075,9 +3160,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="property-details">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                         <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">AED 2,750,000</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                        </svg>
                     </div>
                     
                     <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
@@ -3164,9 +3246,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="property-details">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                         <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">AED 16,500,000</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                        </svg>
                     </div>
                     
                     <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
@@ -3249,9 +3328,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="property-details">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                         <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">5,200,000</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                        </svg>
                     </div>
                     
                     <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
@@ -3329,9 +3405,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="property-details">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                         <div class="property-price" style="font-size: 1.75rem; font-weight: 300; margin: 0; color: #000;">2,950,000</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                        </svg>
                     </div>
                     
                     <div style="margin-bottom: 1rem; font-size: 1rem; font-weight: 300; color: #000; line-height: 1.4;">
@@ -4530,6 +4603,9 @@ document.addEventListener('DOMContentLoaded', () => {
     app.appendChild(heroSection);
     app.appendChild(companyIntroSection);
     app.appendChild(propertiesSection);
+    
+    // 在header添加到DOM后初始化下拉菜单功能
+    initDropdownMenus();
     
     // 在heroSection添加到DOM后初始化搜索功能（包含筛选按钮事件）
     initSearchFunctionality();
