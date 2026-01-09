@@ -23,5 +23,40 @@ dist-ssr
 *.sln
 *.sw?
 
-# Image files
-public/img/
+# Build directories
+dist/
+dist-ssr/
+
+# Image files (temporarily unignored for Git LFS setup)
+# public/img/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary files
+*.tmp
+*.temp
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Debug files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node.js dependencies
+node_modules/
