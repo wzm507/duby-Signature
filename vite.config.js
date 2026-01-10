@@ -10,27 +10,21 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      // 添加别名，指向项目根目录的img目录
       '@img': resolve(__dirname, './img'),
       '@images_new': resolve(__dirname, './images_new')
     }
   },
   build: {
     assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.webp', '**/*.svg', '**/*.mp4', '**/*.webm', '**/*.ogg'],
-    // 优化构建配置
     rollupOptions: {
       output: {
         manualChunks: {
-          // 将第三方库分离到单独的chunk
           vendor: []
         }
       }
     },
-    // 限制资源大小
     chunkSizeWarningLimit: 1000,
-    // 优化CSS
     cssCodeSplit: true,
-    // 压缩资源（使用esbuild提高构建速度）
     minify: 'esbuild'
   },
   plugins: [
