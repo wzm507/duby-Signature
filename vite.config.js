@@ -33,7 +33,6 @@ export default defineConfig({
     // 压缩资源（使用esbuild提高构建速度）
     minify: 'esbuild'
   },
-  // 使用viteStaticCopy插件复制images_new目录
   plugins: [
     viteStaticCopy({
       targets: [
