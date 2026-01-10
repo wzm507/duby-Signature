@@ -20,6 +20,7 @@ jobs:
             src/
             api/
             public/
+            images_new/
             package.json
             vercel.json
             vite.config.js
