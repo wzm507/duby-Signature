@@ -15,14 +15,7 @@ export default defineConfig({
     }
   },
   build: {
-    assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.webp', '**/*.svg', '**/*.mp4', '**/*.webm', '**/*.ogg'],
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: []
-        }
-      }
-    },
+    assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.webp', '**/*.svg'],
     chunkSizeWarningLimit: 1000,
     cssCodeSplit: true,
     minify: 'esbuild'
