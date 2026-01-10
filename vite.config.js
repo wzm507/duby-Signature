@@ -22,9 +22,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           // 将第三方库分离到单独的chunk
-          vendor: ['vue', 'axios'],
-          // 将大型资源分离
-          images: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.webp']
+          vendor: []
         }
       }
     },
@@ -32,14 +30,8 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000,
     // 优化CSS
     cssCodeSplit: true,
-    // 压缩资源
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    }
+    // 压缩资源（使用esbuild提高构建速度）
+    minify: 'esbuild'
   },
   plugins: [
     viteStaticCopy({
