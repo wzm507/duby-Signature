@@ -1,151 +1,81 @@
 #!/usr/bin/env pwsh
 
-<#
-.SYNOPSIS
-手动部署迪拜旗舰房产网站到Vercel的脚本
+# 迪拜旗舰房产项目 - Vercel 手动部署脚本
+# 适用于Windows PowerShell环境
 
-.DESCRIPTION
-此脚本执行以下操作：
-1. 检查Node.js是否已安装
-2. 安装项目依赖
-3. 构建项目
-4. 检查是否安装了Vercel CLI
-5. 登录Vercel
-6. 部署到Vercel生产环境
-
-.PARAMETER VercelToken
-可选参数，用于非交互式登录Vercel的API Token
-
-.EXAMPLE
-# 交互式运行脚本
-.manual-deploy.ps1
-
-.EXAMPLE
-# 使用Vercel Token非交互式运行脚本
-.manual-deploy.ps1 -VercelToken "your-vercel-token-here"
-
-.NOTES
-作者: Signature Dubai
-版本: 1.0
-日期: 2026-01-08
-#>
-
-param(
-    [Parameter(Mandatory=$false)]
-    [string]$VercelToken = ""
-)
-
-# 设置颜色输出
-$ErrorColor = "Red"
-$SuccessColor = "Green"
-$InfoColor = "Cyan"
-$WarningColor = "Yellow"
-
-Write-Host "========================================" -ForegroundColor $InfoColor
-Write-Host "迪拜旗舰房产网站 - 手动部署脚本" -ForegroundColor $InfoColor
-Write-Host "========================================" -ForegroundColor $InfoColor
-Write-Host ""
-
-# 检查Node.js是否已安装
-Write-Host "检查Node.js安装情况..." -ForegroundColor $InfoColor
+# 检查Node.js和npm是否安装
 if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
-    Write-Host "错误: 未找到Node.js。请先安装Node.js 18或更高版本。" -ForegroundColor $ErrorColor
+    Write-Host "❌ 错误：未安装Node.js，请先安装Node.js 18或更高版本"
+    Write-Host "   下载地址：https://nodejs.org/"
     exit 1
 }
 
-$nodeVersion = & node --version
-Write-Host "已安装Node.js版本: $nodeVersion" -ForegroundColor $SuccessColor
-
-# 检查npm是否已安装
 if (-not (Get-Command npm -ErrorAction SilentlyContinue)) {
-    Write-Host "错误: 未找到npm。请确保Node.js安装包含npm。" -ForegroundColor $ErrorColor
+    Write-Host "❌ 错误：未安装npm，请先安装Node.js"
     exit 1
 }
 
-$npmVersion = & npm --version
-Write-Host "已安装npm版本: $npmVersion" -ForegroundColor $SuccessColor
-Write-Host ""
-
-# 安装项目依赖
-Write-Host "安装项目依赖..." -ForegroundColor $InfoColor
-try {
-    & npm install --silent
-    Write-Host "依赖安装完成" -ForegroundColor $SuccessColor
-} catch {
-    Write-Host "错误: 依赖安装失败: $($_.Exception.Message)" -ForegroundColor $ErrorColor
-    exit 1
-}
-
-Write-Host ""
-
-# 构建项目
-Write-Host "构建项目..." -ForegroundColor $InfoColor
-try {
-    & npm run build
-    Write-Host "项目构建完成" -ForegroundColor $SuccessColor
-} catch {
-    Write-Host "错误: 项目构建失败: $($_.Exception.Message)" -ForegroundColor $ErrorColor
-    exit 1
-}
-
-Write-Host ""
-
-# 检查是否安装了Vercel CLI
-Write-Host "检查Vercel CLI安装情况..." -ForegroundColor $InfoColor
+# 检查Vercel CLI是否安装
 if (-not (Get-Command vercel -ErrorAction SilentlyContinue)) {
-    Write-Host "未找到Vercel CLI，正在全局安装..." -ForegroundColor $WarningColor
-    try {
-        & npm install -g vercel --silent
-        Write-Host "Vercel CLI安装完成" -ForegroundColor $SuccessColor
-    } catch {
-        Write-Host "错误: Vercel CLI安装失败: $($_.Exception.Message)" -ForegroundColor $ErrorColor
+    Write-Host "📦 正在安装Vercel CLI..."
+    npm install -g vercel
+    if (-not $?) {
+        Write-Host "❌ 错误：安装Vercel CLI失败"
         exit 1
     }
-} else {
-    $vercelVersion = & vercel --version
-    Write-Host "已安装Vercel CLI版本: $vercelVersion" -ForegroundColor $SuccessColor
+    Write-Host "✅ Vercel CLI安装成功"
 }
 
-Write-Host ""
-
-# 登录Vercel
-if (-not [string]::IsNullOrEmpty($VercelToken)) {
-    Write-Host "使用提供的Vercel Token登录..." -ForegroundColor $InfoColor
-    try {
-        & vercel login --token $VercelToken --silent
-        Write-Host "Vercel登录成功" -ForegroundColor $SuccessColor
-    } catch {
-        Write-Host "错误: Vercel登录失败: $($_.Exception.Message)" -ForegroundColor $ErrorColor
-        exit 1
-    }
-} else {
-    Write-Host "请在接下来的浏览器窗口中登录Vercel..." -ForegroundColor $InfoColor
-    try {
-        & vercel login
-        Write-Host "Vercel登录成功" -ForegroundColor $SuccessColor
-    } catch {
-        Write-Host "错误: Vercel登录失败: $($_.Exception.Message)" -ForegroundColor $ErrorColor
-        exit 1
-    }
+# 检查项目目录
+if (-not (Test-Path "./package.json")) {
+    Write-Host "❌ 错误：当前目录不是项目根目录（缺少package.json）"
+    exit 1
 }
 
+Write-Host "📋 开始部署流程..."
 Write-Host ""
 
-# 部署到Vercel生产环境
-Write-Host "部署到Vercel生产环境..." -ForegroundColor $InfoColor
-Write-Host "注意: 部署过程可能需要几分钟时间，请耐心等待。" -ForegroundColor $WarningColor
+# 1. 安装依赖
+Write-Host "1. 正在安装项目依赖..."
+npm install
+if (-not $?) {
+    Write-Host "❌ 错误：安装依赖失败"
+    exit 1
+}
+Write-Host "✅ 依赖安装成功"
+Write-Host ""
 
-try {
-    & vercel deploy --prod --confirm
-    Write-Host ""
-    Write-Host "部署成功! 您的网站已成功部署到Vercel生产环境。" -ForegroundColor $SuccessColor
-    Write-Host "您可以通过Vercel控制台查看部署状态和访问URL。" -ForegroundColor $InfoColor
-} catch {
-    Write-Host "错误: 部署失败: $($_.Exception.Message)" -ForegroundColor $ErrorColor
+# 2. 构建项目
+Write-Host "2. 正在构建项目..."
+npm run build
+if (-not $?) {
+    Write-Host "❌ 错误：项目构建失败"
+    exit 1
+}
+Write-Host "✅ 项目构建成功"
+Write-Host ""
+
+# 3. 部署到Vercel
+Write-Host "3. 正在部署到Vercel..."
+Write-Host "   请确保已登录Vercel（执行vercel login登录）"
+Write-Host ""
+vercel --prod
+if (-not $?) {
+    Write-Host "❌ 错误：部署失败"
     exit 1
 }
 
 Write-Host ""
-Write-Host "========================================" -ForegroundColor $InfoColor
-Write-Host "部署脚本执行完成" -ForegroundColor $SuccessColor
-Write-Host "========================================" -ForegroundColor $InfoColor
+Write-Host "🎉 部署成功！"
+Write-Host ""
+Write-Host "📌 部署完成后，您可以通过以下方式验证："
+Write-Host "   1. 访问Vercel提供的URL检查网站是否正常运行"
+Write-Host "   2. 登录Vercel控制台查看部署状态：https://vercel.com/dashboard"
+Write-Host ""
+Write-Host "🔧 自动部署配置提示："
+Write-Host "   如需设置GitHub Actions自动部署，请在GitHub仓库中配置以下Secrets："
+Write-Host "   - VERCEL_TOKEN: Vercel API令牌（Full Access权限）"
+Write-Host "   - ORG_ID: Vercel组织ID"
+Write-Host "   - PROJECT_ID: Vercel项目ID"
+Write-Host ""
+Write-Host "   配置路径：GitHub仓库 → Settings → Secrets and variables → Actions"
