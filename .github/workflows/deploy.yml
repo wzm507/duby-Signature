@@ -47,5 +47,6 @@ jobs:
           vercel-args: '--prod --yes'
           vercel-org-id: ${{ secrets.ORG_ID }}
           vercel-project-id: ${{ secrets.PROJECT_ID }}
+          confirm: true 
           working-directory: ./
           vercel-version: latest
