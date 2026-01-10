@@ -1,4 +1,10 @@
-node_modules/
-dist/
-images_new/
-img/
+**/node_modules/**
+**/.git/**
+**/.idea/**
+**/dist/**
+**/images_new/**
+**/img/**
+**/public/img/**
+**/public/images_new/**
+**/*.log
+**/.env*
