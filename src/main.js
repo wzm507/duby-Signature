@@ -1,4 +1,4 @@
-﻿import './style.css'
+import './style.css'
 
 // 页面加载动画
 function initLoadingAnimation() {

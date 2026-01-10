@@ -274,6 +274,7 @@
     </style>
 </head>
 <body>
+    <div id="app"></div>
     <!-- 顶部联系方式栏 -->
     <div class="top-contact">
         <a href="#">Your Voice Matters</a>
@@ -283,25 +284,21 @@
         <a href="#">Free Property Valuation</a>
         <a href="#">Contact Us</a>
         <a href="#">Login</a>
-    </div>
+    </div>    <!-- 统一导航栏 -->
+    <div id="header-placeholder"></div>
     
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="logo">
-            <a href="/" style="display: flex; align-items: center;">
-                <img src="/img/logo.png" alt="D&B Properties Logo" class="logo-image">
-            </a>
-        </div>
-        <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
-            <a href="/featured-properties.html">Buy</a>
-            <a href="/rent.html">Rent</a>
-            <a href="/off-plan.html">Off-Plan</a>
-            <a href="/communities.html">Communities</a>
-            <a href="/developers.html">Developers</a>
-            <a href="/services.html">Services</a>
-            <a href="/about.html">About Us</a>
-        </div>
-    </nav>
+    <script>
+        // 加载统一页眉
+        fetch('/common/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-placeholder').innerHTML = html;
+                // 调用初始化下拉菜单的函数
+                if (typeof window.initDropdowns === 'function') {
+                    window.initDropdowns();
+                }
+            });
+    </script>
     
     <!-- Banner区域 -->
     <div class="banner">

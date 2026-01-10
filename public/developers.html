@@ -449,36 +449,21 @@
   </style>
 </head>
 <body>
-  <!-- 导航栏 -->
-  <nav class="navbar">
-    <div class="logo" style="display: flex; align-items: center;">
-      <a href="/" style="display: flex; align-items: center;">
-        <img src="/img/logo.png" alt="Logo" class="logo-image" style="width: 100px; height: auto;">
-      </a>
-    </div>
-    <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
-      <!-- Buy下拉菜单 -->
-      <div class="dropdown" style="position: relative;">
-        <button class="dropdown-toggle" style="background: none; border: none; color: #333; font-weight: 500; text-decoration: none; cursor: pointer; padding: 0.5rem 0; font-size: 1rem; display: flex; align-items: center; gap: 0.3rem;">
-          Buy
-          <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
-        </button>
-        <div class="dropdown-content" style="display: none; position: absolute; top: 100%; left: 0; background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.15); border-radius: 8px; padding: 0.5rem 0; min-width: 180px; z-index: 1000; margin-top: 0.5rem;">
-          <a href="/featured-properties.html" style="display: block; padding: 0.75rem 1.25rem; color: #333; text-decoration: none; transition: background-color 0.3s ease;">
-            Buy Properties
-          </a>
-          <a href="/off-plan.html" style="display: block; padding: 0.75rem 1.25rem; color: #333; text-decoration: none; transition: background-color 0.3s ease;">
-            Off-Plan Properties
-          </a>
-        </div>
-      </div>
-      <a href="/rent.html">Rent</a>
-      <a href="/communities.html">Communities</a>
-      <a href="/developers.html">Developers</a>
-      <a href="/services.html">Services</a>
-      <a href="/about.html">About Us</a>
-    </div>
-  </nav>
+    <div id="app"></div>    <!-- 统一导航栏 -->
+    <div id="header-placeholder"></div>
+    
+    <script>
+        // 加载统一页眉
+        fetch('/common/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-placeholder').innerHTML = html;
+                // 调用初始化下拉菜单的函数
+                if (typeof window.initDropdowns === 'function') {
+                    window.initDropdowns();
+                }
+            });
+    </script>
 
   <!-- 开发者页面头�?-->
   <section class="developers-header">
@@ -773,6 +758,6 @@
       }
     </style>
   </footer>
-  <script type="module" src="/src/main.js"></script>
+  <!-- 移除了对/src/main.js的引用，避免路由冲突 -->
 </body>
 </html>
