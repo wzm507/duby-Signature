@@ -15,6 +15,14 @@ export default defineConfig({
           dest: 'img'
         },
         {
+          src: 'public/off/**/*',
+          dest: 'off'
+        },
+        {
+          src: 'public/ewm/**/*',
+          dest: 'ewm'
+        },
+        {
           src: 'images_new/**/*',
           dest: 'images_new'
         }
