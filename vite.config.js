@@ -1,12 +1,26 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 // 确保静态HTML文件能够正常访问
 export default defineConfig({
   build: {
     assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.webp', '**/*.svg', '**/*.PNG', '**/*.JPG', '**/*.JPEG', '**/*.WEBP', '**/*.SVG']
   },
-  plugins: [],
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'public/img/**/*',
+          dest: 'img'
+        },
+        {
+          src: 'images_new/**/*',
+          dest: 'images_new'
+        }
+      ]
+    })
+  ],
   // 配置路由，确保静态HTML文件能被正确访问
   server: {
     // 禁用单页应用的重写规则，确保静态HTML文件可以直接访问
