@@ -374,12 +374,52 @@ function initDropdownMenus() {
   });
 }
 
+// 图片懒加载功能
+function initImageLazyLoading() {
+  // 检查浏览器是否支持原生懒加载
+  if ('loading' in HTMLImageElement.prototype) {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    lazyImages.forEach(img => {
+      img.src = img.dataset.src || img.src;
+      // 添加加载完成事件监听
+      img.addEventListener('load', () => {
+        img.classList.add('loaded');
+      });
+    });
+  } else {
+    // 不支持原生懒加载的浏览器，使用Intersection Observer实现
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const image = entry.target;
+            image.src = image.dataset.src;
+            
+            // 添加加载完成事件监听
+            image.addEventListener('load', () => {
+              image.classList.add('loaded');
+            });
+            
+            image.removeAttribute('data-src');
+            imageObserver.unobserve(image);
+          }
+        });
+      });
+      
+      lazyImages.forEach(img => imageObserver.observe(img));
+    }
+  }
+}
+
 // 页面加载完成后初始化所有交互功能
 document.addEventListener('DOMContentLoaded', () => {
   initLoadingAnimation();
   initScrollProgress();
   initScrollAnimations();
   initEnhancedInteractions();
+  initImageLazyLoading();
 });
 
 // 全局翻译数据
