@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Properties in Al Jaddaf - Signature Homes</title>
+  <link rel="icon" href="/img/logo2.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* 确保全局变量与主页完全一致 */
+    :root {
+      --primary-color: #333;
+      --secondary-color: #6c63ff;
+      --accent-color: #e74c3c;
+      --light-color: #f8f9fa;
+      --dark-color: #2c3e50;
+      --light-text: #7f8c8d;
+      --border-radius: 8px;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.15);
+      --transition: all 0.3s ease;
+    }
+    
+    /* 右侧固定语言切换按钮样式 */
+    .fixed-language-switcher {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+    }
+    
+    .language-button {
+      background-color: white;
+      color: var(--primary-color);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      transition: var(--transition);
+    }
+    
+    .language-button:hover {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    /* 全局样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      line-height: 1.6;
+      color: var(--primary-color);
+    }
+
+    /* 导航栏 */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 1.5rem 2rem !important;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: transparent;
+      backdrop-filter: blur(10px);
+      box-shadow: none;
+      z-index: 1000;
+      box-sizing: border-box !important;
+      transition: all 0.3s ease;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #333;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #333;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary-color);
+    }
+
+    /* 页面内容 */
+    .community-page {
+      padding-top: 100px;
+      min-height: 100vh;
+    }
+
+    /* Community头部 */
+    .community-header {
+      padding: 4rem 2rem 2rem;
+      text-align: center;
+    }
+
+    .community-header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #333;
+      font-weight: 300;
+    }
+
+    /* Community内容 */
+    .community-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: flex;
+      flex-direction: row;
+      gap: 4rem;
+    }
+
+    /* 文本内容区域 */
+    .community-text {
+      flex: 1;
+    }
+
+    /* 图片区域 */
+    .community-image {
+      flex: 1;
+    }
+
+    .community-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* 内容样式 */
+    .community-text h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      color: #000;
+      font-weight: 700;
+    }
+
+    .community-text h3 {
+      font-size: 1.5rem;
+      margin: 2rem 0 1rem;
+      color: #000;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .community-text h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: #000;
+    }
+
+    .community-text p {
+      margin: 1.2rem 0;
+      line-height: 1.8;
+      font-weight: 300;
+      color: #000;
+      font-size: 1.1rem;
+    }
+
+    /* 页脚 */
+    .footer {
+      background-color: #ffffff;
+      color: #000000;
+      padding: 3rem 2rem;
+    }
+
+    .footer-simple-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .footer-simple-links span {
+      color: #000000;
+    }
+    
+    .footer-simple-links a {
+      color: #000000;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-simple-links a:hover {
+      color: #6c63ff;
+    }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 2rem auto 0;
+      padding-top: 2rem;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+    }
+    
+    .footer-terms {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .footer-terms a {
+      color: #666;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-terms a:hover {
+      color: #6c63ff;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-brand {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo img {
+      height: 40px;
+    }
+
+    .footer-logo span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #000000;
+    }
+
+    .footer-tagline {
+      color: rgba(0, 0, 0, 0.7);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links-container {
+      flex: 2;
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-column h4 {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: rgba(0, 0, 0, 0.7);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--secondary-color);
+    }
+
+    .footer-social {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-link {
+      color: rgba(0, 0, 0, 0.7);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: var(--secondary-color);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem 2rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .community-header h1 {
+        font-size: 2.5rem;
+      }
+
+      .community-content {
+        flex-direction: column;
+        padding: 1rem;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-links-container {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 统一导航栏 -->
+  <div id="header-placeholder"></div>
+  
+  <script>
+    // 加载统一页眉
+    fetch('/common/header.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('header-placeholder').innerHTML = html;
+        // 调用初始化下拉菜单的函数
+        if (typeof window.initDropdowns === 'function') {
+          window.initDropdowns();
+        }
+      });
+  </script>
+  
+  <!-- Community头部 -->
+  <section class="community-header">
+    <h1>Properties in Al Jaddaf</h1>
+  </section>
+
+  <!-- Community内容 -->
+  <section class="community-content">
+    <!-- 文本内容 -->
+    <div class="community-text">
+      <h2>Al Jaddaf Community</h2>
+      <h3>Cultural District with Modern Residences</h3>
+      <p>Al Jaddaf is a dynamic cultural and hospitality precinct featuring luxury hotels, art galleries, and residential towers with views of Dubai Creek. This iconic neighborhood offers a lifestyle defined by luxury, connectivity, and a rich selection of entertainment, dining, and cultural experiences for residents and visitors alike.</p>
+    </div>
+    
+    <!-- 图片 -->
+    <div class="community-image">
+      <img src="/Communities/2.png" alt="Properties in Al Jaddaf">
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- 左侧Logo区域 -->
+      <div class="footer-brand">
+        <div class="footer-logo" style="display: flex; align-items: center; gap: 10px;">
+          <img src="/img/logo.png" alt="HOUSE Logo" style="height: 40px;">
+        </div>
+      </div>
+      
+      <!-- 中间简化链接区域 -->
+      <div class="footer-simple-links">
+        <span><a href="/featured-properties.html">Buy</a></span>
+        <span>•</span>
+        <span><a href="/communities.html">Communities</a></span>
+        <span>•</span>
+        <span><a href="/developers.html">Developers</a></span>
+        <span>•</span>
+        <span><a href="/services.html">Services</a></span>
+        <span>•</span>
+        <span><a href="/about.html">About Us</a></span>
+      </div>
+    </div>
+    
+    <!-- 底部条款区域 -->
+    <div class="footer-bottom">
+      <div class="footer-terms">
+        <a href="#" data-translate="footerPrivacyPolicy">Privacy Policy</a>
+        <a href="#" data-translate="footerTermsOfService">Terms of Service</a>
+        <a href="#" data-translate="footerCookiePolicy">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 导航栏滚动效果
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.padding = '1rem 4rem';
+      } else {
+        navbar.style.padding = '1.5rem 4rem';
+      }
+    });
+  </script>
+</body>
+</html>

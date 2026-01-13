@@ -555,6 +555,24 @@
                     window.initDropdowns();
                 }
             });
+
+      // 页面跳转功能实现
+      document.addEventListener('DOMContentLoaded', function() {
+        // 获取所有页面链接元素
+        const pageLinks = document.querySelectorAll('[data-page-link]');
+        
+        // 为每个页面链接元素添加点击事件
+        pageLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            // 阻止默认行为
+            e.preventDefault();
+            // 获取页面链接
+            const pageUrl = this.getAttribute('data-page-link');
+            // 跳转到指定页面
+            window.location.href = pageUrl;
+          });
+        });
+      });
     </script>
     
     <!-- Communities头部 -->
@@ -576,7 +594,7 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; justify-content: center; width: 100%;">
           <!-- 卡片1 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" data-modal-id="modal-1" style="background-image: url('/Communities/1.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
+            <div class="company-stat" data-page-link="/community-al-furjan.html" style="background-image: url('/Communities/1.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -587,7 +605,7 @@
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Al Furjan</div>
               </div>
               <!-- 右下角箭头按钮 -->
-              <button data-modal-id="modal-1" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+              <button data-page-link="/community-al-furjan.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -598,7 +616,7 @@
           
           <!-- 卡片2 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" data-modal-id="modal-2" style="background-image: url('/Communities/2.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
+            <div class="company-stat" data-page-link="/community-al-jaddaf.html" style="background-image: url('/Communities/2.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -609,7 +627,7 @@
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Al Jaddaf</div>
               </div>
               <!-- 右下角箭头按钮 -->
-              <button data-modal-id="modal-2" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+              <button data-page-link="/community-al-jaddaf.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -620,7 +638,7 @@
           
           <!-- 卡片3 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" data-modal-id="modal-3" style="background-image: url('/Communities/3.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
+            <div class="company-stat" data-page-link="/community-arjan.html" style="background-image: url('/Communities/3.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -631,7 +649,7 @@
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Arjan</div>
               </div>
               <!-- 右下角箭头按钮 -->
-              <button data-modal-id="modal-3" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+              <button data-page-link="/community-arjan.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -642,7 +660,7 @@
           
           <!-- 卡片4 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" data-modal-id="modal-4" style="background-image: url('/Communities/4.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
+            <div class="company-stat" data-page-link="/community-business-bay.html" style="background-image: url('/Communities/4.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -653,7 +671,7 @@
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Business Bay</div>
               </div>
               <!-- 右下角箭头按钮 -->
-              <button data-modal-id="modal-4" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+              <button data-page-link="/community-business-bay.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -664,7 +682,7 @@
           
           <!-- 卡片5 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" data-modal-id="modal-5" style="background-image: url('/Communities/5.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
+            <div class="company-stat" data-page-link="/community-city-walk.html" style="background-image: url('/Communities/5.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -675,7 +693,7 @@
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">City Walk</div>
               </div>
               <!-- 右下角箭头按钮 -->
-              <button data-modal-id="modal-5" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+              <button data-page-link="/community-city-walk.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -686,7 +704,7 @@
           
           <!-- 卡片6 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" data-modal-id="modal-6" style="background-image: url('/Communities/6.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
+            <div class="company-stat" data-page-link="/community-damac-hills.html" style="background-image: url('/Communities/6.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -697,7 +715,7 @@
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">DAMAC Hills</div>
               </div>
               <!-- 右下角箭头按钮 -->
-              <button data-modal-id="modal-6" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+              <button data-page-link="/community-damac-hills.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -708,7 +726,7 @@
           
           <!-- 卡片7 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" data-modal-id="modal-7" style="background-image: url('/Communities/7.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
+            <div class="company-stat" data-page-link="/community-damac-hills-2.html" style="background-image: url('/Communities/7.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -719,7 +737,7 @@
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Damac Hills 2</div>
               </div>
               <!-- 右下角箭头按钮 -->
-              <button data-modal-id="modal-7" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+              <button data-page-link="/community-damac-hills-2.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -730,7 +748,7 @@
           
           <!-- 卡片8 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" data-modal-id="modal-8" style="background-image: url('/Communities/8.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
+            <div class="company-stat" data-page-link="/community-damac-lagoons.html" style="background-image: url('/Communities/8.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -741,7 +759,7 @@
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Damac Lagoons</div>
               </div>
               <!-- 右下角箭头按钮 -->
-              <button data-modal-id="modal-8" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+              <button data-page-link="/community-damac-lagoons.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -752,7 +770,7 @@
           
           <!-- 卡片9 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" data-modal-id="modal-9" style="background-image: url('/Communities/9.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
+            <div class="company-stat" data-page-link="/community-dubai-creek-harbour-lagoon.html" style="background-image: url('/Communities/9.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -763,7 +781,7 @@
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Creek Harbour The Lagoon</div>
               </div>
               <!-- 右下角箭头按钮 -->
-              <button data-modal-id="modal-9" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+              <button data-page-link="/community-dubai-creek-harbour-lagoon.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -774,7 +792,7 @@
           
           <!-- 卡片10 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" data-modal-id="modal-10" style="background-image: url('/Communities/10.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
+            <div class="company-stat" data-page-link="/community-dubai-creek-harbour.html" style="background-image: url('/Communities/10.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -785,7 +803,7 @@
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Creek Harbour</div>
               </div>
               <!-- 右下角箭头按钮 -->
-              <button data-modal-id="modal-10" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+              <button data-page-link="/community-dubai-creek-harbour.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -796,7 +814,7 @@
           
           <!-- 卡片11 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" data-modal-id="modal-11" style="background-image: url('/Communities/11.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
+            <div class="company-stat" data-page-link="/community-dubai-design-district.html" style="background-image: url('/Communities/11.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -807,7 +825,7 @@
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Design District</div>
               </div>
               <!-- 右下角箭头按钮 -->
-              <button data-modal-id="modal-11" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+              <button data-page-link="/community-dubai-design-district.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -818,7 +836,7 @@
           
           <!-- 卡片12 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" data-modal-id="modal-12" style="background-image: url('/Communities/12.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
+            <div class="company-stat" data-page-link="/community-dubai-downtown.html" style="background-image: url('/Communities/12.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -829,7 +847,7 @@
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Downtown</div>
               </div>
               <!-- 右下角箭头按钮 -->
-              <button data-modal-id="modal-12" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+              <button data-page-link="/community-dubai-downtown.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -840,7 +858,7 @@
           
           <!-- 卡片13 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" data-modal-id="modal-13" style="background-image: url('/Communities/13.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
+            <div class="company-stat" data-page-link="/community-dubai-hills-estate.html" style="background-image: url('/Communities/13.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -851,7 +869,7 @@
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Hills Estate</div>
               </div>
               <!-- 右下角箭头按钮 -->
-              <button data-modal-id="modal-13" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+              <button data-page-link="/community-dubai-hills-estate.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -862,7 +880,7 @@
           
           <!-- 卡片14 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" style="background-image: url('/Communities/14.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
+            <div class="company-stat" data-page-link="/community-dubai-marina.html" style="background-image: url('/Communities/14.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -873,7 +891,7 @@
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Marina</div>
               </div>
               <!-- 右下角箭头按钮 -->
-              <button data-modal-id="modal-14" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+              <button data-page-link="/community-dubai-marina.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -884,7 +902,7 @@
           
           <!-- 卡片15 -->
           <div style="perspective: 1000px;">
-            <div class="company-stat" data-modal-id="modal-15" style="background-image: url('/Communities/15.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
+            <div class="company-stat" data-page-link="/community-dubai-science-park.html" style="background-image: url('/Communities/15.png'); background-size: cover; background-position: center; position: relative; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 0; padding-bottom: 150%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; transform-style: preserve-3d;">
               <!-- 渐变蒙版，增强文字可读性并提升视觉效果 -->
               <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1;"></div>
               <!-- 卡片内容容器 -->
@@ -895,7 +913,7 @@
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Science Park</div>
               </div>
               <!-- 右下角箭头按钮 -->
-              <button data-modal-id="modal-15" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+              <button data-page-link="/community-dubai-science-park.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -1148,7 +1166,11 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>The Best Agents in Dubai Design District</p>
+          <h3>Creative Hub with Luxury Apartments</h3>
+          <p>Dubai Design District (d3) is a dynamic creative community that combines luxury living with artistic innovation. This iconic neighborhood offers a lifestyle defined by luxury, connectivity, and a rich selection of entertainment, dining, and cultural experiences for residents and visitors alike.</p>
+          
+          <h3>About Dubai Design District</h3>
+          <p>d3 is a dedicated hub for art, design, and fashion, featuring contemporary residential towers, creative studios, and trendy retail spaces. Residents benefit from easy access to major highways, premium facilities, and a community atmosphere that supports both an active lifestyle and serene moments at home. The district is known for its vibrant events, design exhibitions, and culinary experiences, making it a perfect destination for creatives and professionals seeking inspiration.</p>
         </div>
       </div>
     </div>

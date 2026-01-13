@@ -258,53 +258,90 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
-        /* 关键信息卡片 */
-        .key-info-section {
+        /* 主要内容区域 */
+        .main-content {
             background-color: white;
-            padding: 3rem 2rem;
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
-            margin-top: -80px;
             position: relative;
-            z-index: 20;
+            z-index: 4;
+            margin-top: -100px;
             border-radius: 20px 20px 0 0;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .key-info-container {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            max-width: 1200px;
+        /* 关键信息卡片 - 悬浮设计 */
+        .key-info-section {
+            padding: 4rem 2rem 2rem;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
+        .key-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
         .key-info-card {
-            flex: 1;
-            min-width: 250px;
-            text-align: center;
+            background: white;
+            color: #333;
             padding: 2rem;
-            background-color: #f8f9fa;
-            border-radius: 15px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+
+        .key-info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #6c63ff 0%, #5a52e6 100%);
         }
 
         .key-info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .key-info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .key-info-icon {
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .key-info-tag {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #6c63ff;
+            background-color: rgba(108, 99, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
         }
 
         .key-info-value {
             font-size: 2rem;
             font-weight: 700;
-            color: #6c63ff;
             margin-bottom: 0.5rem;
+            color: #333;
         }
 
         .key-info-label {
             font-size: 1rem;
-            color: #666;
-            font-weight: 500;
+            opacity: 0.6;
+            font-weight: 300;
         }
 
         /* 描述区域 */
@@ -738,33 +775,55 @@
     <section class="hero-section">
         <img src="/off/3/image.png" alt="Property Hero Image" class="hero-background">
         <div class="hero-overlay"></div>
-    </section>
-
-    <!-- 关键信息卡片 -->
-    <section class="key-info-section">
-        <div class="key-info-container">
-            <div class="key-info-card">
-                <div class="key-info-value">2 Bed</div>
-                <div class="key-info-label">2 Bath</div>
-            </div>
-            <div class="key-info-card">
-                <div class="key-info-value">1,149 sq-ft</div>
-                <div class="key-info-label">Premium Location</div>
-            </div>
-            <div class="key-info-card">
-                <div class="key-info-value">AED 2.8M</div>
-                <div class="key-info-label">Off-Plan</div>
-            </div>
-            <div class="key-info-card">
-                <div class="key-info-value" style="display: flex; justify-content: center; margin-bottom: 0.5rem;">
-                    <div style="background: white; padding: 0.8rem; border-radius: 10px; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);">
-                        <img src="/ewm/image.png" alt="QR Code" style="width: 100px; height: 100px; object-fit: contain;">
-                    </div>
-                </div>
-                <div class="key-info-label">Scan for details</div>
-            </div>
+        <div class="hero-content">
+            <h1 class="hero-title"></h1>
+            <p class="hero-subtitle"></p>
         </div>
     </section>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <!-- 关键信息卡片 -->
+        <section class="key-info-section">
+            <div class="key-info-grid">
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">💰</div>
+                        <div class="key-info-tag">Price</div>
+                    </div>
+                    <div class="key-info-value">AED 4,441,919</div>
+                    <div class="key-info-label">Starting from</div>
+                </div>
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">🛏️</div>
+                        <div class="key-info-tag">Bedroom</div>
+                    </div>
+                    <div class="key-info-value">3 Bed / 3 Bath</div>
+                    <div class="key-info-label">1,591 sqft / 148 sqm</div>
+                </div>
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">📍</div>
+                        <div class="key-info-tag">Location</div>
+                    </div>
+                    <div class="key-info-value">Dubai Hills Estate</div>
+                    <div class="key-info-label">Club Drive</div>
+                </div>
+                <div class="key-info-card">
+                    <div class="key-info-header">
+                        <div class="key-info-icon">📱</div>
+                        <div class="key-info-tag">QR Code</div>
+                    </div>
+                    <div class="key-info-value" style="display: flex; justify-content: center; margin-bottom: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+                            <img src="/ewm/image.png" alt="QR Code" style="width: 120px; height: 120px; object-fit: contain;">
+                        </div>
+                    </div>
+                    <div class="key-info-label">Scan for details</div>
+                </div>
+            </div>
+        </section>
 
     <!-- 描述区域 -->
     <section class="description-section">
@@ -833,6 +892,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <!-- 悬浮电话按钮 -->
     <div class="phone-btn">

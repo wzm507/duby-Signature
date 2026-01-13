@@ -1058,10 +1058,16 @@
             
             // 更新关键信息卡片
             const keyInfoCards = document.querySelectorAll('.key-info-card');
+            // 更新第一张卡片：价格
+            keyInfoCards[0].querySelector('.key-info-tag').textContent = 'Starting Price';
             keyInfoCards[0].querySelector('.key-info-value').textContent = 'AED 7,745,084';
             keyInfoCards[0].querySelector('.key-info-label').textContent = 'Starting from';
+            // 更新第二张卡片：户型
+            keyInfoCards[1].querySelector('.key-info-tag').textContent = 'Bedrooms';
             keyInfoCards[1].querySelector('.key-info-value').textContent = '3 Bed + Maid';
             keyInfoCards[1].querySelector('.key-info-label').textContent = '2,316 sqft / 215 sqm';
+            // 更新第三张卡片：月供
+            keyInfoCards[2].querySelector('.key-info-tag').textContent = 'Monthly Payment';
             keyInfoCards[2].querySelector('.key-info-value').textContent = '27,874 AED/month';
             keyInfoCards[2].querySelector('.key-info-label').textContent = 'Sea View | Prime Location';
             

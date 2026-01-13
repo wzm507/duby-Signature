@@ -1178,10 +1178,16 @@
             
             // 更新关键信息卡片
             const keyInfoCards = document.querySelectorAll('.key-info-card');
+            // 更新第一张卡片：价格
+            keyInfoCards[0].querySelector('.key-info-tag').textContent = 'Starting Price';
             keyInfoCards[0].querySelector('.key-info-value').textContent = 'AED 4,014,239';
             keyInfoCards[0].querySelector('.key-info-label').textContent = '1 Bedroom | 2 Bathrooms';
+            // 更新第二张卡片：面积
+            keyInfoCards[1].querySelector('.key-info-tag').textContent = 'Property Size';
             keyInfoCards[1].querySelector('.key-info-value').textContent = '745 sqft';
             keyInfoCards[1].querySelector('.key-info-label').textContent = '69 sqm';
+            // 更新第三张卡片：月供
+            keyInfoCards[2].querySelector('.key-info-tag').textContent = 'Monthly Payment';
             keyInfoCards[2].querySelector('.key-info-value').textContent = '16,511 AED/mo';
             keyInfoCards[2].querySelector('.key-info-label').textContent = 'EMAAR Beachfront | Dubai Harbour';
             
