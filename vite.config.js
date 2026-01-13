@@ -36,7 +36,14 @@ export default defineConfig({
   // 配置路由，确保静态HTML文件能被正确访问
   server: {
     // 禁用单页应用的重写规则，确保静态HTML文件可以直接访问
-    strictPort: true
+    strictPort: true,
+    // 配置代理，解决跨域问题
+    proxy: {
+      '/send-email': {
+        target: 'http://localhost:3000',
+        changeOrigin: true
+      }
+    }
   },
   // 配置构建选项
   resolve: {

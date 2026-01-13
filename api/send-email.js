@@ -25,7 +25,7 @@ export default async function handler(req, res) {
 
     const mailOptions = {
       from: { name: '迪拜旗舰房产网站', address: 'wzm2383983461@163.com' },
-      to: 'wzm2383983461@163.com',
+      to: 'inquiry@signaturehomesuae.com',
       subject: '迪拜旗舰房产网站 - 新客户咨询通知',
       text: `迪拜旗舰房产网站
 客户咨询通知

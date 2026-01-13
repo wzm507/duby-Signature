@@ -61,7 +61,7 @@ app.post('/send-email', async (req, res) => {
     // 设置邮件内容
     const mailOptions = {
       from: { name: '迪拜旗舰房产网站', address: 'wzm2383983461@163.com' }, // 发件人信息
-      to: 'wzm2383983461@163.com', // 收件人邮箱
+    to: 'inquiry@signaturehomesuae.com', // 收件人邮箱
       subject: '迪拜旗舰房产网站 - 新客户咨询通知', // 邮件主题
       text: `迪拜旗舰房产网站
 客户咨询通知
