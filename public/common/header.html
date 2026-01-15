@@ -4,6 +4,7 @@
     .dropdown {
       position: relative !important;
       z-index: 999999 !important;
+      display: inline-block !important;
     }
     
     .dropdown-content {
@@ -17,11 +18,52 @@
       padding: 0.5rem 0 !important;
       min-width: 180px !important;
       z-index: 999999 !important;
-      margin-top: 0.5rem !important;
+      margin-top: 0 !important; /* 移除顶部外边距，确保鼠标移动路径连续 */
+      opacity: 0 !important;
+      transform: translateY(-10px) !important;
+      transition: opacity 0.3s ease, transform 0.3s ease, display 0s !important;
+      transition-delay: 0s, 0s, 0.3s !important;
     }
     
     .dropdown-content.show {
       display: block !important;
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      transition-delay: 0s !important;
+    }
+    
+    /* 添加直接的CSS hover实现，确保下拉菜单在鼠标悬浮时显示 */
+    .dropdown:hover .dropdown-content {
+      display: block !important;
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      transition-delay: 0s !important;
+    }
+    
+    /* 按钮悬停效果 */
+    .dropdown-toggle {
+      transition: all 0.3s ease !important;
+      cursor: pointer !important;
+      display: inline-block !important;
+      position: relative !important;
+    }
+    
+    .dropdown-toggle:hover {
+      color: #6c63ff !important;
+    }
+    
+    /* 下拉菜单项样式 */
+    .dropdown-content a {
+      display: block !important;
+      padding: 0.75rem 1.25rem !important;
+      color: #333 !important;
+      text-decoration: none !important;
+      transition: background-color 0.3s ease !important;
+    }
+    
+    .dropdown-content a:hover {
+      background-color: #f8fafc !important;
+      color: #6c63ff !important;
     }
   </style>
   <div style="display: flex; align-items: center;">
@@ -36,7 +78,7 @@
         Buy
         <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
       </button>
-      <div class="dropdown-content" style="display: none; position: absolute; top: 100%; left: 0; background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.15); border-radius: 8px; padding: 0.5rem 0; min-width: 180px; z-index: 999999; margin-top: 0.5rem;" id="buy-dropdown">
+      <div class="dropdown-content" id="buy-dropdown">
         <a href="/featured-properties.html" style="display: block; padding: 0.75rem 1.25rem; color: #333; text-decoration: none; transition: background-color 0.3s ease;">Buy Properties</a>
         <a href="/off-plan.html" style="display: block; padding: 0.75rem 1.25rem; color: #333; text-decoration: none; transition: background-color 0.3s ease;">Off-Plan Properties</a>
       </div>
@@ -50,9 +92,9 @@
 </nav>
 
 <script>
-// 将初始化函数直接暴露到全局作用域
+// 简化的下拉菜单实现，主要依赖CSS hover效果
 window.initDropdowns = function() {
-  // 确保只在元素存在于DOM中时才执行
+  console.log('Dropdowns initialization started');
   const dropdowns = document.querySelectorAll('.dropdown');
   
   dropdowns.forEach(dropdown => {
@@ -60,18 +102,14 @@ window.initDropdowns = function() {
     const content = dropdown.querySelector('.dropdown-content');
     
     if (toggle && content) {
-      // 移除已有的事件监听器，避免重复添加
-      const newToggle = toggle.cloneNode(true);
-      const newContent = content.cloneNode(true);
-      toggle.parentNode.replaceChild(newToggle, toggle);
-      dropdown.replaceChild(newContent, content);
+      console.log('Dropdown found:', toggle.textContent.trim());
       
-      // 更新引用
-      toggle = newToggle;
-      content = newContent;
+      // 确保下拉菜单初始状态为隐藏
+      content.classList.remove('show');
       
-      // 点击事件处理
-      toggle.addEventListener('click', function(e) {
+      // 点击事件处理 - 主要用于移动端
+      toggle.addEventListener('click', (e) => {
+        console.log('Dropdown toggle clicked');
         e.preventDefault();
         e.stopPropagation();
         
@@ -89,40 +127,25 @@ window.initDropdowns = function() {
         content.classList.toggle('show');
       });
       
-      // 悬停事件处理
-      toggle.addEventListener('mouseenter', function() {
-        // 关闭所有其他下拉菜单
-        dropdowns.forEach(otherDropdown => {
-          if (otherDropdown !== dropdown) {
-            const otherContent = otherDropdown.querySelector('.dropdown-content');
-            if (otherContent) {
-              otherContent.classList.remove('show');
-            }
-          }
-        });
+      // 简化的悬停事件处理 - 仅在需要时使用JavaScript控制
+      // 主要依赖CSS的:hover规则来处理鼠标悬停
+      toggle.addEventListener('mouseenter', () => {
         content.classList.add('show');
       });
       
-      content.addEventListener('mouseenter', function() {
+      content.addEventListener('mouseenter', () => {
         content.classList.add('show');
       });
       
-      toggle.addEventListener('mouseleave', function() {
-        setTimeout(function() {
-          if (!dropdown.matches(':hover')) {
-            content.classList.remove('show');
-          }
-        }, 100);
-      });
-      
-      content.addEventListener('mouseleave', function() {
+      // 鼠标离开整个下拉组件时才关闭菜单
+      dropdown.addEventListener('mouseleave', () => {
         content.classList.remove('show');
       });
     }
   });
   
-  // 点击页面其他地方关闭所有下拉菜单
-  document.addEventListener('click', function(e) {
+  // 点击页面其他地方关闭下拉菜单
+  document.addEventListener('click', (e) => {
     if (!e.target.closest('.dropdown')) {
       dropdowns.forEach(dropdown => {
         const content = dropdown.querySelector('.dropdown-content');
@@ -132,5 +155,12 @@ window.initDropdowns = function() {
       });
     }
   });
+  
+  console.log('Dropdowns initialization completed');
 };
+
+// 页面加载完成后自动初始化下拉菜单
+document.addEventListener('DOMContentLoaded', function() {
+  window.initDropdowns();
+});
 </script>

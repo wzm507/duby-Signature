@@ -539,7 +539,66 @@
     .card-content {
       transition: all 0.4s ease;
     }
-  </style>
+        /* 下拉菜单样式 */
+      .dropdown {
+        position: relative !important;
+        z-index: 999999 !important;
+      }
+      
+      .dropdown-toggle {
+        background: none !important;
+        border: none !important;
+        color: #333 !important;
+        font-weight: 500 !important;
+        cursor: pointer !important;
+        padding: 0.5rem 0 !important;
+        font-size: 1rem !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.3rem !important;
+      }
+      
+      .dropdown-content {
+        display: none !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        background: white !important;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
+        border-radius: 8px !important;
+        padding: 0.5rem 0 !important;
+        min-width: 180px !important;
+        z-index: 999999 !important;
+        margin-top: 0.5rem !important;
+      }
+      
+      .dropdown-content.show {
+        display: block !important;
+      }
+      
+      .dropdown-content a {
+        display: block !important;
+        padding: 0.75rem 1.25rem !important;
+        color: #333 !important;
+        text-decoration: none !important;
+        transition: background-color 0.3s ease !important;
+      }
+      
+      .dropdown-content a:hover {
+        background-color: #f8f9fa !important;
+      }
+      
+      /* 向下箭头 */
+      .dropdown-toggle span {
+        display: inline-block !important;
+        width: 0 !important;
+        height: 0 !important;
+        border-left: 4px solid transparent !important;
+        border-right: 4px solid transparent !important;
+        border-top: 4px solid #333 !important;
+        margin-top: 3px !important;
+      }
+</style>
 </head>
   <body>    <!-- 统一导航栏 -->
     <div id="header-placeholder"></div>
@@ -556,23 +615,23 @@
                 }
             });
 
-      // 页面跳转功能实现
-      document.addEventListener('DOMContentLoaded', function() {
-        // 获取所有页面链接元素
-        const pageLinks = document.querySelectorAll('[data-page-link]');
-        
-        // 为每个页面链接元素添加点击事件
-        pageLinks.forEach(link => {
-          link.addEventListener('click', function(e) {
-            // 阻止默认行为
-            e.preventDefault();
-            // 获取页面链接
-            const pageUrl = this.getAttribute('data-page-link');
-            // 跳转到指定页面
-            window.location.href = pageUrl;
-          });
+        // 页面跳转功能实现
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有页面链接元素
+            const pageLinks = document.querySelectorAll('[data-page-link]');
+            
+            // 为每个页面链接元素添加点击事件
+            pageLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // 阻止默认行为
+                    e.preventDefault();
+                    // 获取页面链接
+                    const pageUrl = this.getAttribute('data-page-link');
+                    // 跳转到指定页面
+                    window.location.href = pageUrl;
+                });
+            });
         });
-      });
     </script>
     
     <!-- Communities头部 -->

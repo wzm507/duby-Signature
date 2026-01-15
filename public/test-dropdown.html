@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 导航栏样式 */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 2rem;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* 确保下拉菜单样式正确 */
+        .dropdown {
+            position: relative !important;
+            z-index: 999999 !important;
+        }
+        
+        .dropdown-content {
+            display: none !important;
+            position: absolute !important;
+            top: 100% !important;
+            left: 0 !important;
+            background: white !important;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
+            border-radius: 8px !important;
+            padding: 0.5rem 0 !important;
+            min-width: 180px !important;
+            z-index: 999999 !important;
+            margin-top: 0.5rem !important;
+        }
+        
+        .dropdown-content.show {
+            display: block !important;
+        }
+
+        .dropdown-toggle {
+            background: none !important;
+            border: none !important;
+            color: #333 !important;
+            font-weight: 500 !important;
+            cursor: pointer !important;
+            padding: 0.5rem 0 !important;
+            font-size: 1rem !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.3rem !important;
+        }
+
+        .dropdown-content a {
+            display: block !important;
+            padding: 0.75rem 1.25rem !important;
+            color: #333 !important;
+            text-decoration: none !important;
+            transition: background-color 0.3s ease !important;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f5f5f5 !important;
+        }
+
+        .nav-links {
+            display: flex !important;
+            gap: 3rem !important;
+            align-items: center !important;
+        }
+
+        .nav-links a {
+            color: #333 !important;
+            text-decoration: none !important;
+            font-weight: 500 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div>
+            <a href="/" style="display: flex; align-items: center;">
+                <img src="/img/logo.png" alt="Logo" style="width: 100px; height: auto;">
+            </a>
+        </div>
+        <div class="nav-links">
+            <!-- Buy下拉菜单 -->
+            <div class="dropdown">
+                <button class="dropdown-toggle">
+                    Buy
+                    <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/featured-properties.html">Buy Properties</a>
+                    <a href="/off-plan.html">Off-Plan Properties</a>
+                </div>
+            </div>
+            <a href="/rent.html">Rent</a>
+            <a href="/communities.html">Communities</a>
+            <a href="/developers.html">Developers</a>
+            <a href="/services.html">Services</a>
+            <a href="/about.html">About Us</a>
+        </div>
+    </nav>
+
+    <div style="padding: 100px; text-align: center;">
+        <h1>Dropdown Test Page</h1>
+        <p>Test the Buy button dropdown functionality here.</p>
+    </div>
+
+    <script>
+        // 完整的下拉菜单实现
+        function initDropdowns() {
+            console.log('Dropdowns initialization started');
+            const dropdowns = document.querySelectorAll('.dropdown');
+            
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                const content = dropdown.querySelector('.dropdown-content');
+                
+                if (toggle && content) {
+                    console.log('Dropdown found:', toggle.textContent.trim());
+                    
+                    // 确保下拉菜单初始状态为隐藏
+                    content.style.display = 'none';
+                    
+                    // 点击事件处理
+                    toggle.addEventListener('click', (e) => {
+                        console.log('Dropdown toggle clicked');
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // 关闭所有其他下拉菜单
+                        dropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown) {
+                                const otherContent = otherDropdown.querySelector('.dropdown-content');
+                                if (otherContent) {
+                                    otherContent.style.display = 'none';
+                                }
+                            }
+                        });
+                        
+                        // 切换当前下拉菜单
+                        const isVisible = content.style.display === 'block';
+                        console.log('Current visibility:', isVisible);
+                        content.style.display = isVisible ? 'none' : 'block';
+                    });
+                    
+                    // 悬停事件处理
+                    toggle.addEventListener('mouseenter', () => {
+                        content.style.display = 'block';
+                    });
+                    
+                    content.addEventListener('mouseenter', () => {
+                        content.style.display = 'block';
+                    });
+                    
+                    content.addEventListener('mouseleave', (e) => {
+                        if (!toggle.contains(e.relatedTarget)) {
+                            setTimeout(() => {
+                                if (!content.matches(':hover') && !toggle.matches(':hover')) {
+                                    content.style.display = 'none';
+                                }
+                            }, 100);
+                        }
+                    });
+                    
+                    dropdown.addEventListener('mouseleave', () => {
+                        setTimeout(() => {
+                            if (!dropdown.matches(':hover')) {
+                                content.style.display = 'none';
+                            }
+                        }, 100);
+                    });
+                }
+            });
+            
+            // 点击页面其他地方关闭下拉菜单
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.dropdown')) {
+                    dropdowns.forEach(dropdown => {
+                        const content = dropdown.querySelector('.dropdown-content');
+                        if (content) {
+                            content.style.display = 'none';
+                        }
+                    });
+                }
+            });
+            
+            console.log('Dropdowns initialization completed');
+        }
+
+        // 页面加载完成后初始化下拉菜单
+        document.addEventListener('DOMContentLoaded', function() {
+            initDropdowns();
+        });
+    </script>
+</body>
+</html>

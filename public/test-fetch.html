@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Fetch</title>
+</head>
+<body>
+    <h1>Test Fetch Request</h1>
+    <div id="result"></div>
+    <div id="header-placeholder"></div>
+
+    <script>
+        console.log('Page loaded');
+        
+        // 测试fetch请求
+        fetch('/common/header.html')
+            .then(response => {
+                console.log('Response status:', response.status);
+                return response.text();
+            })
+            .then(html => {
+                console.log('Header HTML loaded successfully');
+                document.getElementById('header-placeholder').innerHTML = html;
+                document.getElementById('result').innerHTML = '<p style="color: green;">Fetch successful!</p>';
+                
+                // 检查是否可以访问window.initDropdowns
+                console.log('window.initDropdowns exists:', typeof window.initDropdowns === 'function');
+                
+                // 尝试初始化下拉菜单
+                setTimeout(() => {
+                    if (typeof window.initDropdowns === 'function') {
+                        console.log('Calling window.initDropdowns()');
+                        window.initDropdowns();
+                    } else {
+                        console.error('window.initDropdowns is not defined');
+                    }
+                }, 100);
+            })
+            .catch(error => {
+                console.error('Fetch failed:', error);
+                document.getElementById('result').innerHTML = '<p style="color: red;">Fetch failed: ' + error.message + '</p>';
+            });
+    </script>
+</body>
+</html>

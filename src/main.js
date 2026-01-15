@@ -290,6 +290,77 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// 下拉菜单CSS样式
+const dropdownStyle = document.createElement('style');
+dropdownStyle.innerHTML = `
+  /* 确保下拉菜单样式正确 */
+  .dropdown {
+    position: relative !important;
+    z-index: 999999 !important;
+    display: inline-block !important;
+  }
+  
+  .dropdown-content {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    background: white !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
+    border-radius: 8px !important;
+    padding: 0.5rem 0 !important;
+    min-width: 180px !important;
+    z-index: 999999 !important;
+    margin-top: 0.5rem !important;
+    opacity: 0 !important;
+    transform: translateY(-10px) !important;
+    transition: opacity 0.3s ease, transform 0.3s ease, display 0s !important;
+    transition-delay: 0s, 0s, 0.3s !important;
+  }
+  
+  .dropdown-content.show {
+    display: block !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition-delay: 0s !important;
+  }
+  
+  /* 添加直接的CSS hover实现，确保下拉菜单在鼠标悬浮时显示 */
+  .dropdown:hover .dropdown-content {
+    display: block !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition-delay: 0s !important;
+  }
+  
+  /* 按钮悬停效果 */
+  .dropdown-toggle {
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    position: relative !important;
+  }
+  
+  .dropdown-toggle:hover {
+    color: #6c63ff !important;
+  }
+  
+  /* 下拉菜单项样式 */
+  .dropdown-content a {
+    display: block !important;
+    padding: 0.75rem 1.25rem !important;
+    color: #333 !important;
+    text-decoration: none !important;
+    transition: background-color 0.3s ease !important;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f8fafc !important;
+    color: #6c63ff !important;
+  }
+`;
+document.head.appendChild(dropdownStyle);
+
 // 下拉菜单功能实现
 function initDropdownMenus() {
   console.log('Initializing dropdown menus...');
@@ -302,6 +373,9 @@ function initDropdownMenus() {
     if (toggle && content) {
       console.log('Dropdown found:', toggle.textContent.trim());
       
+      // 确保下拉菜单初始状态为隐藏
+      content.classList.remove('show');
+      
       // 点击事件处理 - 确保阻止默认行为并切换显示
       toggle.addEventListener('click', (e) => {
         console.log('Dropdown toggle clicked');
@@ -313,27 +387,26 @@ function initDropdownMenus() {
           if (otherDropdown !== dropdown) {
             const otherContent = otherDropdown.querySelector('.dropdown-content');
             if (otherContent) {
-              otherContent.style.display = 'none';
+              otherContent.classList.remove('show');
             }
           }
         });
         
         // 切换当前下拉菜单
-        const isVisible = content.style.display === 'block';
-        console.log('Current visibility:', isVisible);
-        content.style.display = isVisible ? 'none' : 'block';
+        content.classList.toggle('show');
+        console.log('Dropdown toggle show class:', content.classList.contains('show'));
       });
       
       // 悬停事件处理 - 优化版本，确保鼠标从按钮移动到下拉菜单时菜单不会消失
       
       // 鼠标进入按钮时显示菜单
       toggle.addEventListener('mouseenter', () => {
-        content.style.display = 'block';
+        content.classList.add('show');
       });
       
       // 鼠标进入下拉菜单时保持菜单显示
       content.addEventListener('mouseenter', () => {
-        content.style.display = 'block';
+        content.classList.add('show');
       });
       
       // 鼠标离开下拉菜单时检查是否需要关闭
@@ -343,7 +416,7 @@ function initDropdownMenus() {
           // 短暂延迟以允许鼠标从下拉菜单移动回按钮
           setTimeout(() => {
             if (!content.matches(':hover') && !toggle.matches(':hover')) {
-              content.style.display = 'none';
+              content.classList.remove('show');
             }
           }, 100);
         }
@@ -354,7 +427,7 @@ function initDropdownMenus() {
         // 检查鼠标是否真的离开了整个下拉区域
         setTimeout(() => {
           if (!dropdown.matches(':hover')) {
-            content.style.display = 'none';
+            content.classList.remove('show');
           }
         }, 100);
       });
@@ -367,7 +440,7 @@ function initDropdownMenus() {
       dropdowns.forEach(dropdown => {
         const content = dropdown.querySelector('.dropdown-content');
         if (content) {
-          content.style.display = 'none';
+          content.classList.remove('show');
         }
       });
     }
@@ -420,6 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initEnhancedInteractions();
   initImageLazyLoading();
+  // 移除initDropdownMenus()调用，避免与window.initDropdowns()冲突
 });
 
 // 全局翻译数据
@@ -901,12 +975,32 @@ document.addEventListener('DOMContentLoaded', () => {
   currentLang = localStorage.getItem('preferredLanguage') || 'en';
   
   // 检测是否为独立页面（如featured-properties.html, communities.html等）
-  const isStandalonePage = window.location.pathname.includes('featured-properties.html') || 
+  let isStandalonePage = window.location.pathname.includes('featured-properties.html') || 
                           window.location.pathname.includes('about.html') || 
                           window.location.pathname.includes('all-news.html') ||
                           window.location.pathname.includes('communities.html') ||
                           window.location.pathname.includes('services.html') ||
-                          window.location.pathname.includes('property-detail.html');
+                          window.location.pathname.includes('property-detail.html') ||
+                          window.location.pathname.includes('off-plan.html') ||
+                          window.location.pathname.includes('rent.html');
+  
+  // 特别处理根路径和index.html路径，确保它们被正确识别为非独立页面
+  const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '';
+  isStandalonePage = isStandalonePage && !isHomePage;
+  
+  // 确保根路径访问时，下拉菜单功能能正常工作
+  if (isHomePage) {
+    // 确保下拉菜单样式已添加到文档头部
+    if (!document.querySelector('style[data-dropdown-styles]')) {
+      dropdownStyle.setAttribute('data-dropdown-styles', 'true');
+      document.head.appendChild(dropdownStyle);
+    }
+    
+    // 确保下拉菜单功能已初始化
+    setTimeout(() => {
+      initDropdownMenus();
+    }, 100);
+  }
 
   
   // 对于独立页面，只执行必要的功能（如弹窗）
@@ -4645,7 +4739,7 @@ document.addEventListener('DOMContentLoaded', () => {
     app.appendChild(propertiesSection);
     
     // 在header添加到DOM后初始化下拉菜单功能
-    initDropdownMenus();
+    initDropdownMenus(); // 根路径访问时需要调用此函数来初始化下拉菜单
     
     // 在heroSection添加到DOM后初始化搜索功能（包含筛选按钮事件）
     initSearchFunctionality();

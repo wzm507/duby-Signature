@@ -768,7 +768,16 @@
             </a>
         </div>
         <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
-            <a href="/featured-properties.html">Buy</a>
+            <div class="dropdown" style="position: relative; z-index: 999999;">
+                <button class="dropdown-toggle" style="background: none; border: none; color: #333; font-weight: 500; cursor: pointer; padding: 0.5rem 0; font-size: 1rem; display: flex; align-items: center; gap: 0.3rem;">
+                    Buy
+                    <span style="display: inline-block; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid #333; margin-top: 3px;"></span>
+                </button>
+                <div class="dropdown-content" style="display: none; position: absolute; top: 100%; left: 0; background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.15); border-radius: 8px; padding: 0.5rem 0; min-width: 180px; z-index: 999999; margin-top: 0.5rem;">
+                    <a href="/featured-properties.html" style="display: block; padding: 0.75rem 1.25rem; color: #333; text-decoration: none; transition: background-color 0.3s ease;">Buy Properties</a>
+                    <a href="/off-plan.html" style="display: block; padding: 0.75rem 1.25rem; color: #333; text-decoration: none; transition: background-color 0.3s ease;">Off-Plan Properties</a>
+                </div>
+            </div>
             <a href="/rent.html">Rent</a>
             <a href="/off-plan.html">Off-Plan</a>
             <a href="/communities.html">Communities</a>
@@ -1095,6 +1104,101 @@
                 }
             });
         });
+    </script>
+    <script>
+        // 初始化下拉菜单功能
+        function initDropdowns() {
+            // 确保只在元素存在于DOM中时才执行
+            const dropdowns = document.querySelectorAll('.dropdown');
+            
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                const content = dropdown.querySelector('.dropdown-content');
+                
+                if (toggle && content) {
+                    // 移除已有的事件监听器，避免重复添加
+                    const newToggle = toggle.cloneNode(true);
+                    const newContent = content.cloneNode(true);
+                    toggle.parentNode.replaceChild(newToggle, toggle);
+                    dropdown.replaceChild(newContent, content);
+                    
+                    // 更新引用
+                    toggle = newToggle;
+                    content = newContent;
+                    
+                    // 点击事件处理
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // 关闭所有其他下拉菜单
+                        dropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown) {
+                                const otherContent = otherDropdown.querySelector('.dropdown-content');
+                                if (otherContent) {
+                                    otherContent.classList.remove('show');
+                                }
+                            }
+                        });
+                        
+                        // 切换当前下拉菜单
+                        content.classList.toggle('show');
+                    });
+                    
+                    // 悬停事件处理
+                    toggle.addEventListener('mouseenter', function() {
+                        // 关闭所有其他下拉菜单
+                        dropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown) {
+                                const otherContent = otherDropdown.querySelector('.dropdown-content');
+                                if (otherContent) {
+                                    otherContent.classList.remove('show');
+                                }
+                            }
+                        });
+                        content.classList.add('show');
+                    });
+                    
+                    content.addEventListener('mouseenter', function() {
+                        content.classList.add('show');
+                    });
+                    
+                    toggle.addEventListener('mouseleave', function() {
+                        setTimeout(function() {
+                            if (!dropdown.matches(':hover')) {
+                                content.classList.remove('show');
+                            }
+                        }, 100);
+                    });
+                    
+                    content.addEventListener('mouseleave', function() {
+                        content.classList.remove('show');
+                    });
+                }
+            });
+            
+            // 点击页面其他地方关闭所有下拉菜单
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown')) {
+                    const dropdowns = document.querySelectorAll('.dropdown');
+                    dropdowns.forEach(dropdown => {
+                        const content = dropdown.querySelector('.dropdown-content');
+                        if (content) {
+                            content.classList.remove('show');
+                        }
+                    });
+                }
+            });
+        }
+
+        // 页面加载完成后自动初始化下拉菜单
+        if (document.readyState === 'loading') {
+            // 页面仍在加载，等待DOMContentLoaded事件
+            document.addEventListener('DOMContentLoaded', initDropdowns);
+        } else {
+            // 页面已经加载完成，直接初始化
+            initDropdowns();
+        }
     </script>
 </body>
 </html>
