@@ -1,0 +1,79 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "properties"
+    label: "房产项目"
+    folder: "public/properties"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "简介", name: "description", widget: "text" }
+      - { label: "价格", name: "price", widget: "number" }
+      - { label: "面积", name: "area", widget: "number" }
+      - { label: "卧室数量", name: "bedrooms", widget: "number" }
+      - { label: "浴室数量", name: "bathrooms", widget: "number" }
+      - { label: "类型", name: "type", widget: "select", options: ["公寓", "别墅", "联排别墅", "土地"] }
+      - { label: "状态", name: "status", widget: "select", options: ["在售", "已售", "即将推出"] }
+      - { label: "社区", name: "community", widget: "string" }
+      - { label: "开发商", name: "developer", widget: "string" }
+      - { label: "主要图片", name: "mainImage", widget: "image" }
+      - { label: "图片画廊", name: "gallery", widget: "list", fields: [{ label: "图片", name: "image", widget: "image" }] }
+      - { label: "详细描述", name: "content", widget: "markdown" }
+      - { label: "设施", name: "amenities", widget: "list", fields: [{ label: "设施", name: "amenity", widget: "string" }] }
+      - { label: "创建日期", name: "createdAt", widget: "datetime" }
+
+  - name: "communities"
+    label: "社区"
+    folder: "public/communities"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "名称", name: "title", widget: "string" }
+      - { label: "简介", name: "description", widget: "text" }
+      - { label: "图片", name: "image", widget: "image" }
+      - { label: "详细描述", name: "content", widget: "markdown" }
+      - { label: "位置", name: "location", widget: "string" }
+      - { label: "创建日期", name: "createdAt", widget: "datetime" }
+
+  - name: "developers"
+    label: "开发商"
+    folder: "public/developers"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "名称", name: "title", widget: "string" }
+      - { label: "简介", name: "description", widget: "text" }
+      - { label: "logo", name: "logo", widget: "image" }
+      - { label: "详细描述", name: "content", widget: "markdown" }
+      - { label: "创建日期", name: "createdAt", widget: "datetime" }
+
+  - name: "news"
+    label: "新闻文章"
+    folder: "public/news"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "简介", name: "excerpt", widget: "text" }
+      - { label: "封面图片", name: "coverImage", widget: "image" }
+      - { label: "内容", name: "content", widget: "markdown" }
+      - { label: "作者", name: "author", widget: "string" }
+      - { label: "发布日期", name: "publishedAt", widget: "datetime" }
+
+  - name: "about"
+    label: "关于我们"
+    folder: "public/about"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "简介", name: "description", widget: "text" }
+      - { label: "图片", name: "image", widget: "image" }
+      - { label: "内容", name: "content", widget: "markdown" }
+      - { label: "创建日期", name: "createdAt", widget: "datetime" }
