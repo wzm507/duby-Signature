@@ -3432,7 +3432,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
 
-            <div class="property-card">
+            <div class="property-card homepage-property-card">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -3503,13 +3503,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     <hr style="border: none; border-top: 1px dashed #ddd; margin-bottom: 0.5rem;" />
                     <div style="display: flex; gap: 0.3rem; margin: 0 0.5rem;">
-                        <button style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">Call Us</button>
-                        <button style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">View Details</button>
+                        <button class="call-us-btn" style="flex: 1; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease;">Call Us</button>
+                        <a href="https://wa.me/971501234567" target="_blank" class="whatsapp-btn" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.3rem; padding: 0.4rem 0.5rem; background-color: transparent; color: #000; border: 1px solid #000; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 0.8rem; text-decoration: none; transition: all 0.3s ease;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#25D366">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <div class="property-card">
+            <div class="property-card homepage-property-card">
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
@@ -4242,11 +4247,34 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="contact-content" style="display: flex; align-items: center; justify-content: space-between; padding: 2rem; max-width: 1200px; margin: 0 auto; height: 100%; box-sizing: border-box;">
       <div style="z-index: 1;">
         <h2 style="font-size: 2rem; font-weight: 700; color: #ffffff; margin-bottom: 0.5rem;">Our Expert Will Help You</h2>
-        <p style="font-size: 1rem; font-weight: 300; color: #ffffff; margin-bottom: 1.5rem;">Feel free to contact us at any time, we are online 24/7</p>
+        <p style="font-size: 1rem; font-weight: 300; color: #ffffff; margin-bottom: 1.5rem;">Feel free to contact us at any time,<br>we are online 24/7</p>
         <button style="background-color: #ffffff; color: #1e2a78; font-size: 1rem; font-weight: 600; padding: 0.75rem 2rem; border: none; border-radius: 50px; cursor: pointer; transition: all 0.3s ease;">Get In Touch</button>
       </div>
       <img src="/png/627e0f1b-5ef6-40c3-90d8-7a1d97e46093.png" alt="Contact us" style="height: 305px; width: auto; object-fit: contain; position: absolute; right: 0; bottom: -60px;" />
     </div>
+    <style>
+      /* 响应式设计，仅针对移动设备 */
+      @media (max-width: 768px) {
+        .contact-content {
+          padding: 1.5rem !important;
+        }
+        .contact-content h2 {
+          font-size: 1.25rem !important;
+        }
+        .contact-content p {
+          font-size: 0.8rem !important;
+          margin-bottom: 1rem !important;
+        }
+        .contact-content button {
+          font-size: 0.875rem !important;
+          padding: 0.5rem 1.5rem !important;
+        }
+        .contact-content img {
+          right: -50px !important;
+          height: 250px !important;
+        }
+      }
+    </style>
   `;
   
   // 然后将联系区域添加到body
@@ -4604,8 +4632,37 @@ document.addEventListener('DOMContentLoaded', () => {
       .footer-terms a {
         color: rgba(255, 255, 255, 0.8);
         text-decoration: none;
-        font-size: 0.9rem;
-        transition: color 0.3s ease;
+      }
+      
+      /* 响应式设计，仅针对移动设备 */
+      @media (max-width: 768px) {
+        /* 页脚网格改为单列 */
+        .footer-links-container {
+          grid-template-columns: 1fr !important;
+          gap: 2rem !important;
+        }
+        
+        /* 调整Newsletter卡片样式 */
+        .form-input-group {
+          min-width: auto !important;
+          width: 100% !important;
+          padding: 1.5rem !important;
+          box-sizing: border-box !important;
+        }
+        
+        /* 调整页脚容器内边距 */
+        .footer {
+          padding: 2rem 1rem !important;
+        }
+        
+        /* 调整标题和副标题大小 */
+        .form-title {
+          font-size: 1.25rem !important;
+        }
+        
+        .form-subtitle {
+          font-size: 0.85rem !important;
+        }
       }
       
       .footer-terms a:hover {
