@@ -29,6 +29,62 @@ export default defineConfig({
         {
           src: 'images_new/**/*',
           dest: 'images_new'
+        },
+        {
+          src: 'public/aboutus/**/*',
+          dest: 'aboutus'
+        },
+        {
+          src: 'public/banner/**/*',
+          dest: 'banner'
+        },
+        {
+          src: 'public/BUY/**/*',
+          dest: 'BUY'
+        },
+        {
+          src: 'public/Communities/**/*',
+          dest: 'Communities'
+        },
+        {
+          src: 'public/DAMAC Islands/**/*',
+          dest: 'DAMAC Islands'
+        },
+        {
+          src: 'public/Developers/**/*',
+          dest: 'Developers'
+        },
+        {
+          src: 'public/Greenridge/**/*',
+          dest: 'Greenridge'
+        },
+        {
+          src: 'public/icons/**/*',
+          dest: 'icons'
+        },
+        {
+          src: 'public/Lyvia by Palace/**/*',
+          dest: 'Lyvia by Palace'
+        },
+        {
+          src: 'public/Services/**/*',
+          dest: 'Services'
+        },
+        {
+          src: 'public/Terra Gardens/**/*',
+          dest: 'Terra Gardens'
+        },
+        {
+          src: 'public/sp/**/*',
+          dest: 'sp'
+        },
+        {
+          src: 'public/png/**/*',
+          dest: 'png'
+        },
+        {
+          src: 'public/js/**/*',
+          dest: 'js'
         }
       ]
     })
