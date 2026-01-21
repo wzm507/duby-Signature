@@ -3862,16 +3862,16 @@ document.addEventListener('DOMContentLoaded', () => {
     
     <div class="carousel-container" style="position: relative; overflow: hidden; height: auto;">
       <div class="carousel-track" style="display: flex; transition: transform 0.5s ease; will-change: transform; height: 100%;">
-        <div class="company-stat" style="background-image: url('../img/Lydia by Palace/1.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; aspect-ratio: 9/16; flex-shrink: 0;">
+        <div class="company-stat" style="background-image: url('/Terra Gardens/1.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; aspect-ratio: 9/16; flex-shrink: 0;">
           <h3 style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 20px; margin-left: 0; margin-right: 0; z-index: 999; position: relative; text-align: left;">Terra Gardens</h3>
         </div>
-        <div class="company-stat" style="background-image: url('../img/Stay up to date on the latest off-plan launches/2.jpg'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; aspect-ratio: 9/16; flex-shrink: 0;">
+        <div class="company-stat" style="background-image: url('/Greenridge/1.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; aspect-ratio: 9/16; flex-shrink: 0;">
           <h3 style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 20px; margin-left: 0; margin-right: 0; z-index: 999; position: relative; text-align: left;">Greenridge</h3>
         </div>
-        <div class="company-stat" style="background-image: url('../img/Stay up to date on the latest off-plan launches/3.jpg'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; aspect-ratio: 9/16; flex-shrink: 0;">
+        <div class="company-stat" style="background-image: url('/DAMAC Islands/1.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; aspect-ratio: 9/16; flex-shrink: 0;">
           <h3 style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 20px; margin-left: 0; margin-right: 0; z-index: 999; position: relative; text-align: left;">DAMAC Islands</h3>
         </div>
-        <div class="company-stat" style="background-image: url('../img/Stay up to date on the latest off-plan launches/L2.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; aspect-ratio: 9/16; flex-shrink: 0;">
+        <div class="company-stat" style="background-image: url('/Lyvia by Palace/1.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; aspect-ratio: 9/16; flex-shrink: 0;">
           <h3 style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 20px; margin-left: 0; margin-right: 0; z-index: 999; position: relative; text-align: left;">Lyvia by Palace</h3>
         </div>
       </div>
