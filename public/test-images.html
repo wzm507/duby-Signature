@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片路径测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-section h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .image-item {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #fafafa;
+        }
+        .image-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .image-item .path {
+            padding: 8px;
+            font-size: 12px;
+            color: #666;
+            word-break: break-all;
+            background: #f0f0f0;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .status.loading {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>图片路径测试页面</h1>
+    <p>此页面用于测试所有图片路径是否可以正常加载</p>
+
+    <div class="test-section">
+        <h2>测试 1: /img 目录</h2>
+        <div class="image-grid" id="img-test"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>测试 2: /off 目录</h2>
+        <div class="image-grid" id="off-test"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>测试 3: /Developers 目录</h2>
+        <div class="image-grid" id="developers-test"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>测试 4: /Communities 目录</h2>
+        <div class="image-grid" id="communities-test"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>测试 5: /aboutus 目录</h2>
+        <div class="image-grid" id="aboutus-test"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>测试 6: /banner 目录</h2>
+        <div class="image-grid" id="banner-test"></div>
+    </div>
+
+    <script>
+        const testImages = {
+            img: [
+                '/img/logo.png',
+                '/img/logo2.jpg',
+                '/img/1/image.png',
+                '/img/2/image.png'
+            ],
+            off: [
+                '/off/1/image.png',
+                '/off/1/image copy.png',
+                '/off/1/image copy 2.png',
+                '/off/2/image.png',
+                '/off/2/image copy.png'
+            ],
+            developers: [
+                '/Developers/1.png',
+                '/Developers/2.png',
+                '/Developers/3.png',
+                '/Developers/4.png',
+                '/Developers/5.png'
+            ],
+            communities: [
+                '/Communities/1.png',
+                '/Communities/2.png',
+                '/Communities/3.png',
+                '/Communities/4.png',
+                '/Communities/5.png'
+            ],
+            aboutus: [
+                '/aboutus/1.png',
+                '/aboutus/2.png',
+                '/aboutus/3.png'
+            ],
+            banner: [
+                '/banner/1.png',
+                '/banner/be4761502e5ac0091dba5fcdf2862dc1.png'
+            ]
+        };
+
+        function testImage(src, container) {
+            const div = document.createElement('div');
+            div.className = 'image-item';
+
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = src;
+
+            const path = document.createElement('div');
+            path.className = 'path';
+            path.textContent = src;
+
+            const status = document.createElement('span');
+            status.className = 'status loading';
+            status.textContent = '加载中...';
+
+            img.onload = () => {
+                status.className = 'status success';
+                status.textContent = '✓ 成功';
+            };
+
+            img.onerror = () => {
+                status.className = 'status error';
+                status.textContent = '✗ 失败';
+                console.error('Failed to load:', src);
+            };
+
+            div.appendChild(img);
+            div.appendChild(path);
+            div.appendChild(status);
+            container.appendChild(div);
+        }
+
+        Object.keys(testImages).forEach(section => {
+            const container = document.getElementById(section + '-test');
+            if (container) {
+                testImages[section].forEach(src => {
+                    testImage(src, container);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
