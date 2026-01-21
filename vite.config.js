@@ -39,10 +39,6 @@ export default defineConfig({
           dest: 'banner'
         },
         {
-          src: 'public/BUY/**/*',
-          dest: 'BUY'
-        },
-        {
           src: 'public/Communities/**/*',
           dest: 'Communities'
         },
