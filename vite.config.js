@@ -1,11 +1,56 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
+import fs from 'fs';
+import path from 'path';
+
+// 插件：复制并更新静态 HTML 文件
+function copyAndUpdateStaticHTML() {
+  return {
+    name: 'copy-and-update-static-html',
+    writeBundle() {
+      const staticHTMLFiles = [
+        'featured-properties.html',
+        'rent.html',
+        'property-detail.html',
+        'off-plan.html',
+        'about.html',
+        'services.html',
+        'communities.html',
+        'developers.html'
+      ];
+
+      staticHTMLFiles.forEach(file => {
+        const sourcePath = path.resolve(__dirname, 'public', file);
+        const destPath = path.resolve(__dirname, 'dist', file);
+
+        if (fs.existsSync(sourcePath)) {
+          let content = fs.readFileSync(sourcePath, 'utf-8');
+          // 替换 /src/main.js 为 /assets/index.js
+          content = content.replace(
+            /<script type="module" src="\/src\/main\.js"><\/script>/g,
+            '<script type="module" src="/assets/index.js"></script>'
+          );
+          fs.writeFileSync(destPath, content);
+          console.log(`Copied and updated: ${file}`);
+        }
+      });
+    }
+  };
+}
 
 // 确保静态HTML文件能够正常访问
 export default defineConfig({
   build: {
-    assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.webp', '**/*.svg', '**/*.PNG', '**/*.JPG', '**/*.JPEG', '**/*.WEBP', '**/*.SVG']
+    assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.webp', '**/*.svg', '**/*.PNG', '**/*.JPG', '**/*.JPEG', '**/*.WEBP', '**/*.SVG'],
+    rollupOptions: {
+      output: {
+        // 固定 JS 文件名，避免哈希变化导致引用问题
+        entryFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name].[ext]'
+      }
+    }
   },
   plugins: [
     viteStaticCopy({
@@ -83,7 +128,8 @@ export default defineConfig({
           dest: 'js'
         }
       ]
-    })
+    }),
+    copyAndUpdateStaticHTML()
   ],
   // 配置路由，确保静态HTML文件能被正确访问
   server: {
