@@ -13,7 +13,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* 导航栏样�?*/
+        /* 导航栏样�?*/
         .navbar {
             position: fixed;
             top: 0;
@@ -602,7 +602,7 @@
             color: #6c63ff;
         }
 
-        /* 响应式设�?*/
+        /* 响应式设�?*/
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -755,7 +755,7 @@
     </style>
 </head>
 <body>
-    <div id="app"></div>    <!-- 统一导航�?-->
+    <div id="app"></div>    <!-- 统一导航�?-->
     <div id="header-placeholder"></div>
     
     <script>
@@ -796,7 +796,7 @@
                 </div>
                 <div class="key-info-card">
                     <div class="key-info-header">
-                        <div class="key-info-icon">🛏�?/div>
+                        <div class="key-info-icon">🛏�?/div>
                         <div class="key-info-tag">Bedroom</div>
                     </div>
                     <div class="key-info-value">3 Bed / 3 Bath</div>
@@ -919,16 +919,16 @@
                 </div>
             </div>
             
-            <!-- 中间简化链接区�?-->
+            <!-- 中间简化链接区�?-->
             <div class="footer-simple-links">
                 <span><a href="/featured-properties.html">Buy</a></span>
-                <span>�?/span>
+                <span>�?/span>
                 <span><a href="/communities.html">Communities</a></span>
-                <span>�?/span>
+                <span>�?/span>
                 <span><a href="/developers.html">Developers</a></span>
-                <span>�?/span>
+                <span>�?/span>
                 <span><a href="/services.html">Services</a></span>
-                <span>�?/span>
+                <span>�?/span>
                 <span><a href="/about.html">About Us</a></span>
             </div>
         </div>
@@ -954,7 +954,7 @@
     </div>
 
     <script>
-        // 页面加载时更新内�?
+        // 页面加载时更新内�?
         document.addEventListener('DOMContentLoaded', function() {
             // 更新页面标题
             document.title = 'Off-Plan Property Details - Dubai Properties';
@@ -984,16 +984,16 @@
             
             // 更新照片画廊
             const galleryImages = document.querySelectorAll('.gallery-item img');
-            // 生成图片数组 - 使用正确的图片命�?
+            // 生成图片数组 - 使用正确的图片命�?
             const currentImages = [];
-            // 添加第一张图�?
+            // 添加第一张图�?
             currentImages.push('/off/3/image.png');
-            // 添加从image-copy.png到image-copy 14.png的图�?
+            // 添加从image-copy.png到image-copy 14.png的图�?
             for (let i = 1; i <= 14; i++) {
-                currentImages.push(`/off/3/image copy${i === 1 ? '' : ` ${i}`}.png`);
+                currentImages.push(`/off/3/image-copy${i === 1 ? '' : `-${i}`}.png`);
             }
             
-            // 更新页面上显示的图片 - 从第3张图片开始（即image-copy 2.png�?
+            // 更新页面上显示的图片 - 从第3张图片开始（即image-copy 2.png�?
             for (let i = 0; i < galleryImages.length; i++) {
                 // i=0 -> index=2 (image-copy-2.png)
                 // i=1 -> index=3 (image-copy-3.png)
@@ -1005,7 +1005,7 @@
                 galleryImages[i].setAttribute('data-image-index', i);
             }
             
-            // 更新物业详情（仅在元素存在时执行�?
+            // 更新物业详情（仅在元素存在时执行�?
             const propertyDetailsContainer = document.getElementById('property-details-container');
             if (propertyDetailsContainer) {
                 propertyDetailsContainer.innerHTML = `
@@ -1032,17 +1032,17 @@
                 `;
             }
             
-            // 更新设施列表（仅在元素存在时执行�?
+            // 更新设施列表（仅在元素存在时执行�?
             const amenitiesContainer = document.getElementById('amenities-container');
             if (amenitiesContainer) {
                 const amenities = [
-                    { icon: '�?, name: 'Golf Course View' },
+                    { icon: '�?, name: 'Golf Course View' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '💪', name: 'Shared Gym' },
                     { icon: '🌳', name: 'Parks & Walking Trails' },
                     { icon: '🔒', name: 'Security' },
                     { icon: '🚗', name: 'Covered Parking' },
-                    { icon: '👨‍�?, name: 'Concierge' },
+                    { icon: '👨‍�?, name: 'Concierge' },
                     { icon: '🏢', name: 'Lobby in Building' },
                     { icon: '👶', name: 'Children\'s Pool' },
                     { icon: '🍳', name: 'Kitchen Appliances' },
@@ -1072,7 +1072,7 @@
             galleryItems.forEach((item, index) => {
                 item.addEventListener('click', () => {
                     currentImageIndex = index;
-                    modalImage.src = currentImages[index + 2]; // 从第3张图片开�?
+                    modalImage.src = currentImages[index + 2]; // 从第3张图片开�?
                     modal.style.display = 'block';
                 });
             });
@@ -1089,16 +1089,16 @@
                 }
             });
             
-            // 上一张图�?
+            // 上一张图�?
             prevBtn.addEventListener('click', () => {
                 currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
-                modalImage.src = currentImages[currentImageIndex + 2]; // 从第3张图片开�?
+                modalImage.src = currentImages[currentImageIndex + 2]; // 从第3张图片开�?
             });
             
-            // 下一张图�?
+            // 下一张图�?
             nextBtn.addEventListener('click', () => {
                 currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
-                modalImage.src = currentImages[currentImageIndex + 2]; // 从第3张图片开�?
+                modalImage.src = currentImages[currentImageIndex + 2]; // 从第3张图片开�?
             });
             
             // 悬浮电话按钮功能
@@ -1119,7 +1119,7 @@
                 }
             });
             
-            // 导航栏滚动效�?
+            // 导航栏滚动效�?
             window.addEventListener('scroll', () => {
                 const navbar = document.querySelector('.navbar');
                 if (window.scrollY > 50) {

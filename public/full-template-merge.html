@@ -13,7 +13,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* 导航栏样�?*/
+        /* 导航栏样�?*/
         .navbar {
             position: fixed;
             top: 0;
@@ -334,7 +334,7 @@
             display: block;
         }
 
-        /* 照片画廊 - 现代化网格设�?*/
+        /* 照片画廊 - 现代化网格设�?*/
         .gallery-section {
             padding: 2rem;
             background-color: #f8f9fa;
@@ -537,7 +537,7 @@
             color: #6c63ff;
         }
 
-        /* 响应式设�?*/
+        /* 响应式设�?*/
         @media (max-width: 1024px) {
             .description-content,
             .about-content {
@@ -648,7 +648,7 @@
     </style>
 </head>
 <body>
-    <div id="app"></div>    <!-- 统一导航�?-->
+    <div id="app"></div>    <!-- 统一导航�?-->
     <div id="header-placeholder"></div>
     
     <script>
@@ -886,16 +886,16 @@
                 </div>
             </div>
             
-            <!-- 中间简化链接区�?-->
+            <!-- 中间简化链接区�?-->
             <div class="footer-simple-links">
                 <span><a href="/featured-properties.html">Buy</a></span>
-                <span>�?/span>
+                <span>�?/span>
                 <span><a href="/communities.html">Communities</a></span>
-                <span>�?/span>
+                <span>�?/span>
                 <span><a href="/developers.html">Developers</a></span>
-                <span>�?/span>
+                <span>�?/span>
                 <span><a href="/services.html">Services</a></span>
-                <span>�?/span>
+                <span>�?/span>
                 <span><a href="/about.html">About Us</a></span>
             </div>
         </div>
@@ -1028,9 +1028,9 @@
     </style>
 
     <script>
-        // 页面加载时，初始化页面内�?
+        // 页面加载时，初始化页面内�?
         document.addEventListener('DOMContentLoaded', function() {
-            // 存储当前页面的图片数�?
+            // 存储当前页面的图片数�?
             let currentImages = [];
             let currentImageIndex = 0;
             
@@ -1064,16 +1064,16 @@
             
             // 更新照片画廊
             const galleryImages = document.querySelectorAll('.gallery-item img');
-            // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
+            // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
             currentImages = [];
-            // 添加第一张图�?
+            // 添加第一张图�?
             currentImages.push('/off/1/image.png');
-            // 添加从image-copy.png到image-copy 14.png的图�?
+            // 添加从image-copy.png到image-copy 14.png的图�?
             for (let i = 1; i <= 14; i++) {
-                currentImages.push(`/off/1/image copy${i === 1 ? '' : ` ${i}`}.png`);
+                currentImages.push(`/off/1/image-copy${i === 1 ? '' : `-${i}`}.png`);
             }
-            // 更新页面上显示的6个图�?
-            const displayImages = [1, 2, 3, 4, 5, 6]; // 使用�?到第7张图片（索引1�?�?
+            // 更新页面上显示的6个图�?
+            const displayImages = [1, 2, 3, 4, 5, 6]; // 使用�?到第7张图片（索引1�?�?
             for (let i = 0; i < galleryImages.length; i++) {
                 galleryImages[i].src = currentImages[displayImages[i]];
             }
@@ -1106,7 +1106,7 @@
             // 更新设施列表
             const amenitiesContainer = document.getElementById('amenities-container');
             const amenities = [
-                { icon: '🏙�?, name: 'Balcony' },
+                { icon: '🏙�?, name: 'Balcony' },
                 { icon: '🏊', name: 'Shared Pool' },
                 { icon: '💆', name: 'Shared Spa' },
                 { icon: '🔒', name: 'Security' },
@@ -1160,7 +1160,7 @@
                 }
             });
             
-            // 上一张图�?
+            // 上一张图�?
             const prevBtn = document.querySelector('.gallery-prev');
             prevBtn.addEventListener('click', () => {
                 const modalImg = document.getElementById('gallery-modal-img');
@@ -1171,7 +1171,7 @@
                 currentIndexSpan.textContent = currentImageIndex + 1;
             });
             
-            // 下一张图�?
+            // 下一张图�?
             const nextBtn = document.querySelector('.gallery-next');
             nextBtn.addEventListener('click', () => {
                 const modalImg = document.getElementById('gallery-modal-img');

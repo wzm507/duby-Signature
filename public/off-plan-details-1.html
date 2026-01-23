@@ -13,7 +13,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* 导航栏样�?*/
+        /* 导航栏样�?*/
         .navbar {
             position: fixed;
             top: 0;
@@ -374,7 +374,7 @@
             display: block;
         }
 
-        /* 照片画廊 - 现代化网格设�?*/
+        /* 照片画廊 - 现代化网格设�?*/
         .gallery-section {
             padding: 2rem;
             background-color: #f8f9fa;
@@ -740,7 +740,7 @@
     </style>
 </head>
 <body>
-    <div id="app"></div>    <!-- 统一导航�?-->
+    <div id="app"></div>    <!-- 统一导航�?-->
     <div id="header-placeholder"></div>
     
     <script>
@@ -1129,16 +1129,16 @@
                 </div>
             </div>
             
-            <!-- 中间简化链接区�?-->
+            <!-- 中间简化链接区�?-->
             <div class="footer-simple-links">
                 <span><a href="/featured-properties.html">Buy</a></span>
-                <span>�?/span>
+                <span>�?/span>
                 <span><a href="/communities.html">Communities</a></span>
-                <span>�?/span>
+                <span>�?/span>
                 <span><a href="/developers.html">Developers</a></span>
-                <span>�?/span>
+                <span>�?/span>
                 <span><a href="/services.html">Services</a></span>
-                <span>�?/span>
+                <span>�?/span>
                 <span><a href="/about.html">About Us</a></span>
             </div>
         </div>
@@ -1271,9 +1271,9 @@
     </style>
 
     <script>
-        // 页面加载时，初始化页面内�?
+        // 页面加载时，初始化页面内�?
         document.addEventListener('DOMContentLoaded', function() {
-            // 存储当前页面的图片数�?
+            // 存储当前页面的图片数�?
             let currentImages = [];
             let currentImageIndex = 0;
             
@@ -1292,19 +1292,19 @@
             // 更新关键信息卡片
             const keyInfoCards = document.querySelectorAll('.key-info-card');
             if (keyInfoCards.length >= 4) {
-                // 第一个卡�?- 价格
+                // 第一个卡�?- 价格
                 keyInfoCards[0].querySelector('.key-info-value').textContent = 'AED 2,807,294';
                 keyInfoCards[0].querySelector('.key-info-label').textContent = 'Starting from';
                 
-                // 第二个卡�?- 付款计划
+                // 第二个卡�?- 付款计划
                 keyInfoCards[1].querySelector('.key-info-value').textContent = 'Multiple Options';
                 keyInfoCards[1].querySelector('.key-info-label').textContent = 'Flexible payment plans available';
                 
-                // 第三个卡�?- 尺寸
+                // 第三个卡�?- 尺寸
                 keyInfoCards[2].querySelector('.key-info-value').textContent = '901 sqft / 84 sqm';
                 keyInfoCards[2].querySelector('.key-info-label').textContent = 'Generous living space';
                 
-                // 第四个卡�?- 类型
+                // 第四个卡�?- 类型
                 keyInfoCards[3].querySelector('.key-info-value').textContent = 'Apartment';
                 keyInfoCards[3].querySelector('.key-info-label').textContent = 'Premium residence';
             }
@@ -1316,21 +1316,21 @@
             
             // 更新照片画廊
             const galleryImages = document.querySelectorAll('.gallery-item img');
-            // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
+            // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
             currentImages = [];
-            // 添加第一张图�?
+            // 添加第一张图�?
             currentImages.push('/off/1/image.png');
-            // 添加从image-copy.png到image-copy 14.png的图�?
+            // 添加从image-copy.png到image-copy 14.png的图�?
             for (let i = 1; i <= 14; i++) {
-                currentImages.push(`/off/1/image copy${i === 1 ? '' : ` ${i}`}.png`);
+                currentImages.push(`/off/1/image-copy${i === 1 ? '' : `-${i}`}.png`);
             }
-            // 更新页面上显示的6个图�?
-            const displayImages = [1, 2, 3, 4, 5, 6]; // 使用�?到第7张图片（索引1�?�?
+            // 更新页面上显示的6个图�?
+            const displayImages = [1, 2, 3, 4, 5, 6]; // 使用�?到第7张图片（索引1�?�?
             for (let i = 0; i < galleryImages.length; i++) {
                 galleryImages[i].src = currentImages[displayImages[i]];
             }
             
-            // 更新物业详情（仅在元素存在时执行�?
+            // 更新物业详情（仅在元素存在时执行�?
             const propertyDetailsContainer = document.getElementById('property-details-container');
             if (propertyDetailsContainer) {
                 propertyDetailsContainer.innerHTML = `
@@ -1357,11 +1357,11 @@
                 `;
             }
             
-            // 更新设施列表（仅在元素存在时执行�?
+            // 更新设施列表（仅在元素存在时执行�?
             const amenitiesContainer = document.getElementById('amenities-container');
             if (amenitiesContainer) {
                 const amenities = [
-                    { icon: '🏙�?, name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '💆', name: 'Shared Spa' },
                     { icon: '🔒', name: 'Security' },
@@ -1416,7 +1416,7 @@
                 }
             });
             
-            // 上一张图�?
+            // 上一张图�?
             const prevBtn = document.querySelector('.gallery-prev');
             prevBtn.addEventListener('click', () => {
                 const modalImg = document.getElementById('gallery-modal-img');
@@ -1427,7 +1427,7 @@
                 currentIndexSpan.textContent = currentImageIndex + 1;
             });
             
-            // 下一张图�?
+            // 下一张图�?
             const nextBtn = document.querySelector('.gallery-next');
             nextBtn.addEventListener('click', () => {
                 const modalImg = document.getElementById('gallery-modal-img');
@@ -1438,7 +1438,7 @@
                 currentIndexSpan.textContent = currentImageIndex + 1;
             });
             
-            // 电话按钮和弹窗功�?
+            // 电话按钮和弹窗功�?
             const phoneBtn = document.querySelector('.phone-btn');
             const phonePopup = document.getElementById('phone-popup');
             const phoneCloseBtn = document.querySelector('.phone-popup-close');

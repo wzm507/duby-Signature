@@ -1222,7 +1222,7 @@
             currentImages = [];
             currentImages.push(`/off/${pageNumber}/image.png`);
             for (let i = 1; i <= 14; i++) {
-                currentImages.push(`/off/${pageNumber}/image copy${i === 1 ? '' : ` ${i}`}.png`);
+                currentImages.push(`/off/${pageNumber}/image-copy${i === 1 ? '' : `-${i}`}.png`);
             }
 
             const totalSpan = document.getElementById('gallery-total');
@@ -1308,9 +1308,9 @@
         });
     </script>
     <script>
-        // ³õÊ¼»¯ÏÂÀ­²Ëµ¥¹¦ÄÜ
+        // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½
         function initDropdowns() {
-            // È·±£Ö»ÔÚÔªËØ´æÔÚÓÚDOMÖÐÊ±²ÅÖ´ÐÐ
+            // È·ï¿½ï¿½Ö»ï¿½ï¿½Ôªï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½DOMï¿½ï¿½Ê±ï¿½ï¿½Ö´ï¿½ï¿½
             const dropdowns = document.querySelectorAll('.dropdown');
             
             dropdowns.forEach(dropdown => {
@@ -1318,22 +1318,22 @@
                 const content = dropdown.querySelector('.dropdown-content');
                 
                 if (toggle && content) {
-                    // ÒÆ³ýÒÑÓÐµÄÊÂ¼þ¼àÌýÆ÷£¬±ÜÃâÖØ¸´Ìí¼Ó
+                    // ï¿½Æ³ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½
                     const newToggle = toggle.cloneNode(true);
                     const newContent = content.cloneNode(true);
                     toggle.parentNode.replaceChild(newToggle, toggle);
                     dropdown.replaceChild(newContent, content);
                     
-                    // ¸üÐÂÒýÓÃ
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     toggle = newToggle;
                     content = newContent;
                     
-                    // µã»÷ÊÂ¼þ´¦Àí
+                    // ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½
                     toggle.addEventListener('click', function(e) {
                         e.preventDefault();
                         e.stopPropagation();
                         
-                        // ¹Ø±ÕËùÓÐÆäËûÏÂÀ­²Ëµ¥
+                        // ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½
                         dropdowns.forEach(otherDropdown => {
                             if (otherDropdown !== dropdown) {
                                 const otherContent = otherDropdown.querySelector('.dropdown-content');
@@ -1343,13 +1343,13 @@
                             }
                         });
                         
-                        // ÇÐ»»µ±Ç°ÏÂÀ­²Ëµ¥
+                        // ï¿½Ð»ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½
                         content.classList.toggle('show');
                     });
                     
-                    // ÐüÍ£ÊÂ¼þ´¦Àí
+                    // ï¿½ï¿½Í£ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½
                     toggle.addEventListener('mouseenter', function() {
-                        // ¹Ø±ÕËùÓÐÆäËûÏÂÀ­²Ëµ¥
+                        // ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½
                         dropdowns.forEach(otherDropdown => {
                             if (otherDropdown !== dropdown) {
                                 const otherContent = otherDropdown.querySelector('.dropdown-content');
@@ -1379,7 +1379,7 @@
                 }
             });
             
-            // µã»÷Ò³ÃæÆäËûµØ·½¹Ø±ÕËùÓÐÏÂÀ­²Ëµ¥
+            // ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø·ï¿½ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½
             document.addEventListener('click', function(e) {
                 if (!e.target.closest('.dropdown')) {
                     const dropdowns = document.querySelectorAll('.dropdown');
@@ -1393,12 +1393,12 @@
             });
         }
 
-        // Ò³Ãæ¼ÓÔØÍê³Éºó×Ô¶¯³õÊ¼»¯ÏÂÀ­²Ëµ¥
+        // Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éºï¿½ï¿½Ô¶ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½
         if (document.readyState === 'loading') {
-            // Ò³ÃæÈÔÔÚ¼ÓÔØ£¬µÈ´ýDOMContentLoadedÊÂ¼þ
+            // Ò³ï¿½ï¿½ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½Ø£ï¿½ï¿½È´ï¿½DOMContentLoadedï¿½Â¼ï¿½
             document.addEventListener('DOMContentLoaded', initDropdowns);
         } else {
-            // Ò³ÃæÒÑ¾­¼ÓÔØÍê³É£¬Ö±½Ó³õÊ¼»¯
+            // Ò³ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½Ö±ï¿½Ó³ï¿½Ê¼ï¿½ï¿½
             initDropdowns();
         }
     </script>
