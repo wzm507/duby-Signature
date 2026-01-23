@@ -13,7 +13,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* 导航栏样式 */
+        /* 导航栏样�?*/
         .navbar {
             position: fixed;
             top: 0;
@@ -338,7 +338,7 @@
             display: block;
         }
 
-        /* 照片画廊 - 现代化网格设计 */
+        /* 照片画廊 - 现代化网格设�?*/
         .gallery-section {
             padding: 2rem;
             background-color: #f8f9fa;
@@ -541,7 +541,7 @@
             color: #6c63ff;
         }
 
-        /* 响应式设计 */
+        /* 响应式设�?*/
         @media (max-width: 1024px) {
             .description-content,
             .about-content {
@@ -583,14 +583,14 @@
                 }
             });
             
-            // 上一张图片
+            // 上一张图�?
             prevBtn.addEventListener('click', () => {
                 currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
                 modalImg.src = currentImages[currentImageIndex];
                 currentIndexSpan.textContent = currentImageIndex + 1;
             });
             
-            // 下一张图片
+            // 下一张图�?
             nextBtn.addEventListener('click', () => {
                 currentImageIndex = (currentImageIndex + 1) % currentImages.length;
                 modalImg.src = currentImages[currentImageIndex];
@@ -713,7 +713,7 @@
     </style>
 </head>
 <body>
-    <div id="app"></div>    <!-- 统一导航栏 -->
+    <div id="app"></div>    <!-- 统一导航�?-->
     <div id="header-placeholder"></div>
     
     <script>
@@ -963,16 +963,16 @@
                 </div>
             </div>
             
-            <!-- 中间简化链接区域 -->
+            <!-- 中间简化链接区�?-->
             <div class="footer-simple-links">
                 <span><a href="/featured-properties.html">Buy</a></span>
-                <span>•</span>
+                <span>�?/span>
                 <span><a href="/communities.html">Communities</a></span>
-                <span>•</span>
+                <span>�?/span>
                 <span><a href="/developers.html">Developers</a></span>
-                <span>•</span>
+                <span>�?/span>
                 <span><a href="/services.html">Services</a></span>
-                <span>•</span>
+                <span>�?/span>
                 <span><a href="/about.html">About Us</a></span>
             </div>
         </div>
@@ -1110,7 +1110,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const propertyType = urlParams.get('property');
             
-            // 存储当前页面的图片数组
+            // 存储当前页面的图片数�?
             let currentImages = [];
             let currentImageIndex = 0;
             
@@ -1126,7 +1126,7 @@
                 
                 // 更新描述区域
                 document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
-                document.querySelector('.description-text').innerHTML = 'AED 2,800,000<br>Own this from just 11,517 AED/month<br>Full Park View | High Floor | Lowest | Furnished<br><br>Apartment for sale in Harbour Gate Tower 1, Harbour Gate<br><br>Introducing a stunning 2-bedroom apartment in Harbour Gate Tower 1, located in the highly sought-after Dubai Creek Harbour (The Lagoons). This exquisite residence spans 1,149 sq.ft and offers a perfect blend of luxury and comfort with breathtaking views of the serene waterfront.<br><br>Key Highlights:<br>- 2 spacious bedrooms and 2 modern bathrooms<br>- Generous built-up area of 1,149 sq.ft<br>- Fully furnished with built-in kitchen appliances and wardrobes<br>- Enjoy a private balcony with captivating views<br>- Exclusive access to a shared pool, gym, and spa<br>- Ample parking in a covered facility<br>- Pet-friendly environment with children\'s play areas<br>- Ideal for both end-users and investment opportunities<br><br>Nearby Facilities:<br>Nearest school: The International School of Choueifat – 5 km<br>Nearest restaurant: The Lighthouse – 1 km<br>Nearest airport: Dubai International Airport – 15 km<br><br>Step inside to discover an open-concept layout that maximizes natural light, complemented by lavish finishes and premium fixtures. Whether you\'re entertaining guests or enjoying a quiet evening, this apartment is designed for both relaxation and sophistication, making it perfect for families or discerning investors.<br><br>Nestled in a vibrant community, Harbour Gate offers unparalleled access to stunning waterfront promenades, parks, and an array of dining and retail options, enhancing the luxurious lifestyle you deserve.<br><br>For further details or to schedule a viewing, please contact Signature Homes today. Your dream home awaits!';
+                document.querySelector('.description-text').innerHTML = 'AED 2,800,000<br>Own this from just 11,517 AED/month<br>Full Park View | High Floor | Lowest | Furnished<br><br>Apartment for sale in Harbour Gate Tower 1, Harbour Gate<br><br>Introducing a stunning 2-bedroom apartment in Harbour Gate Tower 1, located in the highly sought-after Dubai Creek Harbour (The Lagoons). This exquisite residence spans 1,149 sq.ft and offers a perfect blend of luxury and comfort with breathtaking views of the serene waterfront.<br><br>Key Highlights:<br>- 2 spacious bedrooms and 2 modern bathrooms<br>- Generous built-up area of 1,149 sq.ft<br>- Fully furnished with built-in kitchen appliances and wardrobes<br>- Enjoy a private balcony with captivating views<br>- Exclusive access to a shared pool, gym, and spa<br>- Ample parking in a covered facility<br>- Pet-friendly environment with children\'s play areas<br>- Ideal for both end-users and investment opportunities<br><br>Nearby Facilities:<br>Nearest school: The International School of Choueifat �?5 km<br>Nearest restaurant: The Lighthouse �?1 km<br>Nearest airport: Dubai International Airport �?15 km<br><br>Step inside to discover an open-concept layout that maximizes natural light, complemented by lavish finishes and premium fixtures. Whether you\'re entertaining guests or enjoying a quiet evening, this apartment is designed for both relaxation and sophistication, making it perfect for families or discerning investors.<br><br>Nestled in a vibrant community, Harbour Gate offers unparalleled access to stunning waterfront promenades, parks, and an array of dining and retail options, enhancing the luxurious lifestyle you deserve.<br><br>For further details or to schedule a viewing, please contact Signature Homes today. Your dream home awaits!';
                 
                 // 更新关键信息卡片
                 const keyInfoCards = document.querySelectorAll('.key-info-card');
@@ -1144,13 +1144,13 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
-                // 生成从1.png到25.png的图片URL列表
+                // 生成�?.png�?5.png的图片URL列表
                 for (let i = 1; i <= 25; i++) {
                     currentImages.push(`/images_new/buy-new/1/${i}.png`);
                 }
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/1/${i + 2}.png`;
                 }
@@ -1183,7 +1183,7 @@
                 // 更新设施列表
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '💆', name: 'Shared Spa' },
                     { icon: '🔒', name: 'Security' },
@@ -1214,7 +1214,7 @@
                 
                 // 更新描述区域
                 document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
-                document.querySelector('.description-text').innerHTML = 'AED 2,040,000<br>Own this from just 8,391 AED/month<br>Pool View | Vacant | Agents Welcome<br><br>Apartment for sale in Burj Crown, Downtown Dubai<br><br>Discover the luxurious Burj Crown, a premium one-bedroom apartment nestled in the heart of Downtown Dubai. With a built-up area of 578 sq.ft., this stunning residence features breathtaking views of the iconic skyline and shimmering waters. Enjoy an abundance of amenities that promise a lifestyle of comfort and convenience.<br><br>Key Highlights:<br>- 1 Bedroom, 1 Bathroom<br>- 578 sq.ft built-up area<br>- Modern finishes with built-in kitchen appliances<br>- Spectacular views of city and pool<br>- Central A/C & heating, walk-in closet, and balcony<br>- Shared pool, gym, spa, and barbecue area<br>- Covered parking and 24/7 concierge service<br>- Vastu-compliant for enhanced living<br><br>Nearby Facilities:<br>Nearest school: Dubai International School – 2 km<br>Nearest restaurant: The Dubai Mall Food Court – 1 km<br>Nearest airport: Dubai International Airport – 12 km<br><br>Experience refined living in Burj Crown with its carefully designed layout and premium features that enhance your everyday lifestyle. Perfect for both end-users and investors, this property is surrounded by lifestyle attractions and offers unmatched convenience.<br><br>For further details or to schedule a viewing, please contact Signature Homes. Your dream home awaits!';
+                document.querySelector('.description-text').innerHTML = 'AED 2,040,000<br>Own this from just 8,391 AED/month<br>Pool View | Vacant | Agents Welcome<br><br>Apartment for sale in Burj Crown, Downtown Dubai<br><br>Discover the luxurious Burj Crown, a premium one-bedroom apartment nestled in the heart of Downtown Dubai. With a built-up area of 578 sq.ft., this stunning residence features breathtaking views of the iconic skyline and shimmering waters. Enjoy an abundance of amenities that promise a lifestyle of comfort and convenience.<br><br>Key Highlights:<br>- 1 Bedroom, 1 Bathroom<br>- 578 sq.ft built-up area<br>- Modern finishes with built-in kitchen appliances<br>- Spectacular views of city and pool<br>- Central A/C & heating, walk-in closet, and balcony<br>- Shared pool, gym, spa, and barbecue area<br>- Covered parking and 24/7 concierge service<br>- Vastu-compliant for enhanced living<br><br>Nearby Facilities:<br>Nearest school: Dubai International School �?2 km<br>Nearest restaurant: The Dubai Mall Food Court �?1 km<br>Nearest airport: Dubai International Airport �?12 km<br><br>Experience refined living in Burj Crown with its carefully designed layout and premium features that enhance your everyday lifestyle. Perfect for both end-users and investors, this property is surrounded by lifestyle attractions and offers unmatched convenience.<br><br>For further details or to schedule a viewing, please contact Signature Homes. Your dream home awaits!';
                 
                 // 更新关键信息卡片
                 const keyInfoCards = document.querySelectorAll('.key-info-card');
@@ -1232,41 +1232,41 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImageFiles = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImageFiles.forEach(file => {
                     currentImages.push(`/images_new/buy-new/2/${file}`);
                 });
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 const displayImageFiles = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/2/${displayImageFiles[i] || 'image.png'}`;
@@ -1297,11 +1297,11 @@
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
                     { icon: '❄️', name: 'Central A/C' },
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '💆', name: 'Shared Spa' },
                     { icon: '🔒', name: 'Security' },
-                    { icon: '👨‍💼', name: 'Concierge' },
+                    { icon: '👨‍�?, name: 'Concierge' },
                     { icon: '🚗', name: 'Covered Parking' },
                     { icon: '📦', name: 'Built in Wardrobes' },
                     { icon: '👗', name: 'Walk-in Closet' },
@@ -1311,7 +1311,7 @@
                     { icon: '🐶', name: 'Pets Allowed' },
                     { icon: '💪', name: 'Shared Gym' },
                     { icon: '🏢', name: 'Lobby in Building' },
-                    { icon: '🕉️', name: 'Vastu-compliant' }
+                    { icon: '🕉�?, name: 'Vastu-compliant' }
                 ];
                 
                 amenitiesContainer.innerHTML = amenities.map(amenity => `
@@ -1349,41 +1349,41 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImageFiles = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImageFiles.forEach(file => {
                     currentImages.push(`/images_new/buy-new/3/${file}`);
                 });
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 const displayImageFiles = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/3/${displayImageFiles[i] || 'image.png'}`;
@@ -1414,7 +1414,7 @@
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
                     { icon: '❄️', name: 'Central A/C' },
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '💆', name: 'Shared Spa' },
                     { icon: '🔒', name: 'Security' },
@@ -1463,41 +1463,41 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImageFiles = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImageFiles.forEach(file => {
                     currentImages.push(`/images_new/buy-new/4/${file}`);
                 });
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 const displayImageFiles = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/4/${displayImageFiles[i] || 'image.png'}`;
@@ -1531,11 +1531,11 @@
                 // 更新设施列表
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '💆', name: 'Shared Spa' },
                     { icon: '🔒', name: 'Security' },
-                    { icon: '👨‍💼', name: 'Concierge' },
+                    { icon: '👨‍�?, name: 'Concierge' },
                     { icon: '🚗', name: 'Covered Parking' },
                     { icon: '📦', name: 'Built in Wardrobes' },
                     { icon: '👗', name: 'Walk-in Closet' },
@@ -1546,7 +1546,7 @@
                     { icon: '💪', name: 'Shared Gym' },
                     { icon: '🏢', name: 'Lobby in Building' },
                     { icon: '👶', name: 'Children\'s Pool' },
-                    { icon: '🕉️', name: 'Vastu-compliant' }
+                    { icon: '🕉�?, name: 'Vastu-compliant' }
                 ];
                 
                 amenitiesContainer.innerHTML = amenities.map(amenity => `
@@ -1566,7 +1566,7 @@
                 
                 // 更新描述区域
                 document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
-                document.querySelector('.description-text').innerHTML = 'AED 4,100,000<br>Own this from just 16,864 AED/month<br>Burj Khalifa View | High Floor | Lowest in Market<br><br>Apartment for sale in Burj Crown, Downtown Dubai<br><br>Discover elevated living in this stunning 3-bedroom apartment located in the prestigious Burj Crown, Downtown Dubai. This elegant residence offers captivating views and an array of premium amenities, exemplifying modern luxury.<br><br>Key Highlights:<br>- Layout: 3 bedrooms, 4 bathrooms<br>- Built-up area: 1356 Sq.ft<br>- Furnishings: Central A/C & Heating<br>- Views: Iconic Landmark and Burj Khalifa views<br>- Amenities: Shared pool, spa, gym, barbecue area, pets allowed<br>- Parking: Covered parking available<br><br>Nearby Facilities:<br>Nearest school: International School of Arts & Sciences – 1.2 km<br>Nearest restaurant: At.mosphere – 800 m<br>Nearest airport: Dubai International Airport – 12 km<br><br>With its thoughtfully designed layout, this apartment boasts spacious living areas, built-in wardrobes, and a balcony perfect for soaking in the vibrant atmosphere of Downtown. Perfect for both end-users and savvy investors, Burj Crown elevates lifestyle to new heights.<br><br>Explore exceptional living at Burj Crown. Contact Signature Homes today to learn more or to schedule your private viewing.';
+                document.querySelector('.description-text').innerHTML = 'AED 4,100,000<br>Own this from just 16,864 AED/month<br>Burj Khalifa View | High Floor | Lowest in Market<br><br>Apartment for sale in Burj Crown, Downtown Dubai<br><br>Discover elevated living in this stunning 3-bedroom apartment located in the prestigious Burj Crown, Downtown Dubai. This elegant residence offers captivating views and an array of premium amenities, exemplifying modern luxury.<br><br>Key Highlights:<br>- Layout: 3 bedrooms, 4 bathrooms<br>- Built-up area: 1356 Sq.ft<br>- Furnishings: Central A/C & Heating<br>- Views: Iconic Landmark and Burj Khalifa views<br>- Amenities: Shared pool, spa, gym, barbecue area, pets allowed<br>- Parking: Covered parking available<br><br>Nearby Facilities:<br>Nearest school: International School of Arts & Sciences �?1.2 km<br>Nearest restaurant: At.mosphere �?800 m<br>Nearest airport: Dubai International Airport �?12 km<br><br>With its thoughtfully designed layout, this apartment boasts spacious living areas, built-in wardrobes, and a balcony perfect for soaking in the vibrant atmosphere of Downtown. Perfect for both end-users and savvy investors, Burj Crown elevates lifestyle to new heights.<br><br>Explore exceptional living at Burj Crown. Contact Signature Homes today to learn more or to schedule your private viewing.';
                 
                 // 更新关键信息卡片
                 const keyInfoCards = document.querySelectorAll('.key-info-card');
@@ -1584,41 +1584,41 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImageFiles = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImageFiles.forEach(file => {
                     currentImages.push(`/images_new/buy-new/5/${file}`);
                 });
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 const displayImageFiles = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/5/${displayImageFiles[i] || 'image.png'}`;
@@ -1649,7 +1649,7 @@
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
                     { icon: '❄️', name: 'Central A/C' },
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '💆', name: 'Shared Spa' },
                     { icon: '🔒', name: 'Security' },
@@ -1663,7 +1663,7 @@
                     { icon: '💪', name: 'Shared Gym' },
                     { icon: '🏢', name: 'Lobby in Building' },
                     { icon: '👶', name: 'Children\'s Pool' },
-                    { icon: '🕉️', name: 'Vastu-compliant' }
+                    { icon: '🕉�?, name: 'Vastu-compliant' }
                 ];
                 
                 amenitiesContainer.innerHTML = amenities.map(amenity => `
@@ -1701,41 +1701,41 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImageFiles = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImageFiles.forEach(file => {
                     currentImages.push(`/images_new/buy-new/6/${file}`);
                 });
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 const displayImageFiles = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/6/${displayImageFiles[i] || 'image.png'}`;
@@ -1769,10 +1769,10 @@
                 // 更新设施列表
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '🔒', name: 'Security' },
-                    { icon: '👨‍💼', name: 'Concierge' },
+                    { icon: '👨‍�?, name: 'Concierge' },
                     { icon: '🚗', name: 'Covered Parking' },
                     { icon: '📦', name: 'Built in Wardrobes' },
                     { icon: '👗', name: 'Walk-in Closet' },
@@ -1817,41 +1817,41 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImageFiles = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImageFiles.forEach(file => {
                     currentImages.push(`/images_new/buy-new/7/${file}`);
                 });
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 const displayImageFiles = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/7/${displayImageFiles[i] || 'image.png'}`;
@@ -1901,7 +1901,7 @@
                 
                 // 更新描述区域
                 document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
-                document.querySelector('.description-text').innerHTML = 'AED 8,000,000<br>Own this from just 28,791 AED/month<br>Large 2BR | Jumeirah Residences | Skyline Luxury<br><br>Apartment for sale in Jumeirah Emirates Tower, Emirates Towers<br><br>Welcome to the Jumeirah Emirates Tower, an exquisite two-bedroom apartment located on the prestigious Sheikh Zayed Road. This stunning residence boasts an expansive built-up area of 1484.02 sq. ft., featuring a blend of modern elegance and comfort with breathtaking views of the iconic skyline.<br><br>Key Highlights:<br>- 2 spacious bedrooms, 2 contemporary bathrooms<br>- Expansive 1484.02 sq. ft. layout<br>- Elegant built-in kitchen appliances<br>- Inviting balcony with landmark views<br>- Private pool and gym facilities<br>- Shared pool and gym access<br>- Children\'s pool for added family enjoyment<br>- Secure, welcoming lobby<br><br>Nearby Facilities:<br>Nearest school: Emirates International School – 3 km<br>Nearest restaurant: Zuma – 2 km<br>Nearest airport: Dubai International Airport – 10 km<br><br>This apartment offers a remarkable lifestyle, complete with premium amenities that cater to both relaxation and active living. The Jumeirah Emirates Tower community surrounds you with a wealth of attractions and facilities, ensuring convenience for resident life or a lucrative investment opportunity.<br><br>Contact Signature Homes today to arrange a viewing and explore this unparalleled living experience.';
+                document.querySelector('.description-text').innerHTML = 'AED 8,000,000<br>Own this from just 28,791 AED/month<br>Large 2BR | Jumeirah Residences | Skyline Luxury<br><br>Apartment for sale in Jumeirah Emirates Tower, Emirates Towers<br><br>Welcome to the Jumeirah Emirates Tower, an exquisite two-bedroom apartment located on the prestigious Sheikh Zayed Road. This stunning residence boasts an expansive built-up area of 1484.02 sq. ft., featuring a blend of modern elegance and comfort with breathtaking views of the iconic skyline.<br><br>Key Highlights:<br>- 2 spacious bedrooms, 2 contemporary bathrooms<br>- Expansive 1484.02 sq. ft. layout<br>- Elegant built-in kitchen appliances<br>- Inviting balcony with landmark views<br>- Private pool and gym facilities<br>- Shared pool and gym access<br>- Children\'s pool for added family enjoyment<br>- Secure, welcoming lobby<br><br>Nearby Facilities:<br>Nearest school: Emirates International School �?3 km<br>Nearest restaurant: Zuma �?2 km<br>Nearest airport: Dubai International Airport �?10 km<br><br>This apartment offers a remarkable lifestyle, complete with premium amenities that cater to both relaxation and active living. The Jumeirah Emirates Tower community surrounds you with a wealth of attractions and facilities, ensuring convenience for resident life or a lucrative investment opportunity.<br><br>Contact Signature Homes today to arrange a viewing and explore this unparalleled living experience.';
                 
                 // 更新关键信息卡片
                 const keyInfoCards = document.querySelectorAll('.key-info-card');
@@ -1919,41 +1919,41 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImageFiles = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImageFiles.forEach(file => {
                     currentImages.push(`/images_new/buy-new/8/${file}`);
                 });
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 const displayImageFiles = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/8/${displayImageFiles[i] || 'image.png'}`;
@@ -1983,7 +1983,7 @@
                 // 更新设施列表
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '💪', name: 'Private Gym' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '🔒', name: 'Security' },
@@ -2010,7 +2010,7 @@
                 
                 // 更新描述区域
                 document.querySelector('.description-section h2').textContent = 'Discover This Luxury Apartment';
-                document.querySelector('.description-text').innerHTML = 'AED 1,900,000<br>Own this from just 7,815 AED/month<br>Creek Beach | Spacious 1BR | Tenanted<br><br>Apartment for sale in Orchid at Creek Beach Building 1, Orchid at Creek Beach<br><br>Welcome to Orchid, a captivating 1-bedroom apartment nestled in the serene Dubai Creek Harbour (The Lagoons) community. This exquisite residence spans 690.4 sq.ft and boasts a blend of contemporary design and luxurious amenities, offering an exceptional living experience.<br><br>Key Highlights:<br>- 1 spacious bedroom, 1 modern bathroom<br>- Built-up area of 690 sq.ft<br>- Stylish balcony with views<br>- Built-in wardrobes for ample storage<br>- Access to exclusive amenities including shared pool, gym, and children\'s play area<br>- Covered parking available<br>- Pet-friendly community<br>- Ideal for end-users or investors seeking value<br><br>Nearby Facilities:<br>Nearest school: Dubai International School – 10 mins<br>Nearest restaurant: The Lighthouse – 5 mins<br>Nearest airport: Dubai International Airport – 20 mins<br><br>This apartment\'s intelligent layout maximizes space and natural light, complemented by high-end finishes and sleek fixtures. The surrounding community offers picturesque waterfront views and a host of leisure options, making it perfect for those seeking a vibrant lifestyle.<br><br>Don\’t miss out on this unique opportunity! Contact Signature Homes today to schedule your viewing and explore the possibilities at Orchid.';
+                document.querySelector('.description-text').innerHTML = 'AED 1,900,000<br>Own this from just 7,815 AED/month<br>Creek Beach | Spacious 1BR | Tenanted<br><br>Apartment for sale in Orchid at Creek Beach Building 1, Orchid at Creek Beach<br><br>Welcome to Orchid, a captivating 1-bedroom apartment nestled in the serene Dubai Creek Harbour (The Lagoons) community. This exquisite residence spans 690.4 sq.ft and boasts a blend of contemporary design and luxurious amenities, offering an exceptional living experience.<br><br>Key Highlights:<br>- 1 spacious bedroom, 1 modern bathroom<br>- Built-up area of 690 sq.ft<br>- Stylish balcony with views<br>- Built-in wardrobes for ample storage<br>- Access to exclusive amenities including shared pool, gym, and children\'s play area<br>- Covered parking available<br>- Pet-friendly community<br>- Ideal for end-users or investors seeking value<br><br>Nearby Facilities:<br>Nearest school: Dubai International School �?10 mins<br>Nearest restaurant: The Lighthouse �?5 mins<br>Nearest airport: Dubai International Airport �?20 mins<br><br>This apartment\'s intelligent layout maximizes space and natural light, complemented by high-end finishes and sleek fixtures. The surrounding community offers picturesque waterfront views and a host of leisure options, making it perfect for those seeking a vibrant lifestyle.<br><br>Don\’t miss out on this unique opportunity! Contact Signature Homes today to schedule your viewing and explore the possibilities at Orchid.';
                 
                 // 更新关键信息卡片
                 const keyInfoCards = document.querySelectorAll('.key-info-card');
@@ -2028,41 +2028,41 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImageFiles = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImageFiles.forEach(file => {
                     currentImages.push(`/images_new/buy-new/9/${file}`);
                 });
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 const displayImageFiles = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/9/${displayImageFiles[i] || 'image.png'}`;
@@ -2092,10 +2092,10 @@
                 // 更新设施列表
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '🔒', name: 'Security' },
-                    { icon: '👨‍💼', name: 'Concierge' },
+                    { icon: '👨‍�?, name: 'Concierge' },
                     { icon: '🚗', name: 'Covered Parking' },
                     { icon: '📦', name: 'Built in Wardrobes' },
                     { icon: '🐶', name: 'Pets Allowed' },
@@ -2139,41 +2139,41 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImageFiles = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImageFiles.forEach(file => {
                     currentImages.push(`/images_new/buy-new/10/${file}`);
                 });
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 const displayImageFiles = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png'
                 ];
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/10/${displayImageFiles[i] || 'image.png'}`;
@@ -2203,16 +2203,16 @@
                 // 更新设施列表
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
-                    { icon: '👩‍🏭', name: 'Maids Room' },
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '👩‍�?, name: 'Maids Room' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🌳', name: 'Private Garden' },
                     { icon: '💪', name: 'Private Gym' },
                     { icon: '🛁', name: 'Private Jacuzzi' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '💆', name: 'Shared Spa' },
                     { icon: '🔒', name: 'Security' },
-                    { icon: '👨‍💼', name: 'Concierge' },
-                    { icon: '👩‍🍳', name: 'Maid Service' },
+                    { icon: '👨‍�?, name: 'Concierge' },
+                    { icon: '👩‍�?, name: 'Maid Service' },
                     { icon: '🚗', name: 'Covered Parking' },
                     { icon: '📦', name: 'Built in Wardrobes' },
                     { icon: '👗', name: 'Walk-in Closet' },
@@ -2223,7 +2223,7 @@
                     { icon: '💪', name: 'Shared Gym' },
                     { icon: '🏢', name: 'Lobby in Building' },
                     { icon: '👶', name: 'Children\'s Pool' },
-                    { icon: '🕉️', name: 'Vastu-compliant' }
+                    { icon: '🕉�?, name: 'Vastu-compliant' }
                 ];
                 
                 amenitiesContainer.innerHTML = amenities.map(amenity => `
@@ -2261,28 +2261,28 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImages = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImages.forEach(image => {
@@ -2292,16 +2292,16 @@
                 const displayImages = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png'
                 ];
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/11/${displayImages[i % displayImages.length]}`;
                 }
@@ -2332,14 +2332,14 @@
                 const amenities = [
                     { icon: '👩', name: 'Maids Room' },
                     { icon: '📚', name: 'Study' },
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🌳', name: 'Private Garden' },
                     { icon: '🏊', name: 'Private Pool' },
                     { icon: '💪', name: 'Private Gym' },
                     { icon: '🛁', name: 'Private Jacuzzi' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '🔒', name: 'Security' },
-                    { icon: '👩‍🍳', name: 'Maid Service' },
+                    { icon: '👩‍�?, name: 'Maid Service' },
                     { icon: '🚗', name: 'Covered Parking' },
                     { icon: '📦', name: 'Built in Wardrobes' },
                     { icon: '👗', name: 'Walk-in Closet' },
@@ -2350,7 +2350,7 @@
                     { icon: '💪', name: 'Shared Gym' },
                     { icon: '🏢', name: 'Lobby in Building' },
                     { icon: '👶', name: 'Children\'s Pool' },
-                    { icon: '🕉️', name: 'Vastu-compliant' }
+                    { icon: '🕉�?, name: 'Vastu-compliant' }
                 ];
                 
                 amenitiesContainer.innerHTML = amenities.map(amenity => `
@@ -2388,28 +2388,28 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImages = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImages.forEach(image => {
@@ -2419,13 +2419,13 @@
                 const displayImages = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png'
                 ];
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/12/${displayImages[i % displayImages.length]}`;
                 }
@@ -2454,7 +2454,7 @@
                 // 更新设施列表
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '💆', name: 'Shared Spa' },
                     { icon: '🔒', name: 'Security' },
@@ -2505,28 +2505,28 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImages = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImages.forEach(image => {
@@ -2536,23 +2536,23 @@
                 const displayImages = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/13/${displayImages[i % displayImages.length]}`;
                 }
@@ -2581,7 +2581,7 @@
                 // 更新设施列表
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '💆', name: 'Shared Spa' },
                     { icon: '🔒', name: 'Security' },
@@ -2631,28 +2631,28 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImages = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImages.forEach(image => {
@@ -2662,15 +2662,15 @@
                 const displayImages = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png'
                 ];
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/14/${displayImages[i % displayImages.length]}`;
                 }
@@ -2699,11 +2699,11 @@
                 // 更新设施列表
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '💆', name: 'Shared Spa' },
                     { icon: '🔒', name: 'Security' },
-                    { icon: '👨‍💼', name: 'Concierge' },
+                    { icon: '👨‍�?, name: 'Concierge' },
                     { icon: '🚗', name: 'Covered Parking' },
                     { icon: '📦', name: 'Built in Wardrobes' },
                     { icon: '👗', name: 'Walk-in Closet' },
@@ -2714,7 +2714,7 @@
                     { icon: '💪', name: 'Shared Gym' },
                     { icon: '🏢', name: 'Lobby in Building' },
                     { icon: '👶', name: 'Children\'s Pool' },
-                    { icon: '🕉️', name: 'Vastu-compliant' }
+                    { icon: '🕉�?, name: 'Vastu-compliant' }
                 ];
                 
                 amenitiesContainer.innerHTML = amenities.map(amenity => `
@@ -2734,7 +2734,7 @@
                 
                 // 更新描述区域
                 document.querySelector('.description-section h2').textContent = 'Discover This Luxury Penthouse';
-                document.querySelector('.description-text').innerHTML = 'AED 9,625,000<br>Own this from just34,640 AED/month<br>Unique Penthouse| Panoramic View | Spacious Layout<br><br>Apartment for sale in The Cove II Building 5, The Cove ll<br><br>Signature Homes Real Estate Broker is pleased to offer you this exquisite ready to move in Four Bedrooms Penthouse in Cove II Buildings 5 in Dubai Creek Harbour to the market.<br><br>Property Details:<br>Property is OFF PLAN and expected handover in Q4 2026<br>• 4 en-suite bedrooms<br>• Maid\'s Room<br>• Storage Rooms<br>•Two Entry Doors<br>• Prep and show kitchen<br>• Large open plan apartment<br><br>Large internal layout of Four spacious bedrooms all en-suite, a large living and dining areas that open to the large terrace over looking the Creek and Dubai Skyline view.<br><br>Community Highlights:<br>- Breathtaking Sunset Views<br>- Creek Marina Yacht Club<br>- Licensed Bars & Restaurants<br>- Dining at The Creek Promenade<br>- 3 Hotels in the Vicinity<br>- Swimming and Gym facilities<br>- BBQ and kids play areas<br><br>The Cove Building 5 is a world-class waterfront community in Dubai and among the best Creek Harbour units with uninterrupted views of Downtown Dubai, the Creek and Ras Al Khor wildlife sanctuary. Each living space is designed with floor-to-ceiling windows, allowing an abundance of natural light in this brand new, vacant home.Surround yourself with family and friends on the fully landscaped podium deck, or spend the day by one of the pools as the yachts float lazily by below. With fully-equipped modern gyms, children\'s play areas, multi-purpose family rooms, and more, The Cove seamlessly brings together an active living with resort-style relaxation.';
+                document.querySelector('.description-text').innerHTML = 'AED 9,625,000<br>Own this from just34,640 AED/month<br>Unique Penthouse| Panoramic View | Spacious Layout<br><br>Apartment for sale in The Cove II Building 5, The Cove ll<br><br>Signature Homes Real Estate Broker is pleased to offer you this exquisite ready to move in Four Bedrooms Penthouse in Cove II Buildings 5 in Dubai Creek Harbour to the market.<br><br>Property Details:<br>Property is OFF PLAN and expected handover in Q4 2026<br>�?4 en-suite bedrooms<br>�?Maid\'s Room<br>�?Storage Rooms<br>•Two Entry Doors<br>�?Prep and show kitchen<br>�?Large open plan apartment<br><br>Large internal layout of Four spacious bedrooms all en-suite, a large living and dining areas that open to the large terrace over looking the Creek and Dubai Skyline view.<br><br>Community Highlights:<br>- Breathtaking Sunset Views<br>- Creek Marina Yacht Club<br>- Licensed Bars & Restaurants<br>- Dining at The Creek Promenade<br>- 3 Hotels in the Vicinity<br>- Swimming and Gym facilities<br>- BBQ and kids play areas<br><br>The Cove Building 5 is a world-class waterfront community in Dubai and among the best Creek Harbour units with uninterrupted views of Downtown Dubai, the Creek and Ras Al Khor wildlife sanctuary. Each living space is designed with floor-to-ceiling windows, allowing an abundance of natural light in this brand new, vacant home.Surround yourself with family and friends on the fully landscaped podium deck, or spend the day by one of the pools as the yachts float lazily by below. With fully-equipped modern gyms, children\'s play areas, multi-purpose family rooms, and more, The Cove seamlessly brings together an active living with resort-style relaxation.';
                 
                 // 更新关键信息卡片
                 const keyInfoCards = document.querySelectorAll('.key-info-card');
@@ -2752,28 +2752,28 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImages = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImages.forEach(image => {
@@ -2783,20 +2783,20 @@
                 const displayImages = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png'
                 ];
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/15/${displayImages[i % displayImages.length]}`;
                 }
@@ -2825,7 +2825,7 @@
                 // 更新设施列表
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '🔒', name: 'Security' },
                     { icon: '🚗', name: 'Covered Parking' },
@@ -2873,28 +2873,28 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImages = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImages.forEach(image => {
@@ -2904,23 +2904,23 @@
                 const displayImages = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/16/${displayImages[i % displayImages.length]}`;
                 }
@@ -2953,10 +2953,10 @@
                 // 更新设施列表
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '🔒', name: 'Security' },
-                    { icon: '👨‍💼', name: 'Concierge' },
+                    { icon: '👨‍�?, name: 'Concierge' },
                     { icon: '🚗', name: 'Covered Parking' },
                     { icon: '📦', name: 'Built in Wardrobes' },
                     { icon: '👗', name: 'Walk-in Closet' },
@@ -2965,7 +2965,7 @@
                     { icon: '💪', name: 'Shared Gym' },
                     { icon: '🏢', name: 'Lobby in Building' },
                     { icon: '👶', name: 'Children\'s Pool' },
-                    { icon: '🕉️', name: 'Vastu-compliant' }
+                    { icon: '🕉�?, name: 'Vastu-compliant' }
                 ];
                 
                 amenitiesContainer.innerHTML = amenities.map(amenity => `
@@ -3003,28 +3003,28 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImages = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImages.forEach(image => {
@@ -3034,19 +3034,19 @@
                 const displayImages = [
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png'
                 ];
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/17/${displayImages[i % displayImages.length]}`;
                 }
@@ -3075,7 +3075,7 @@
                 // 更新设施列表
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '🔒', name: 'Security' },
                     { icon: '🚗', name: 'Covered Parking' },
@@ -3106,7 +3106,7 @@
                 
                 // 更新描述区域
                 document.querySelector('.description-section h2').textContent = 'Discover This Luxury Studio';
-                document.querySelector('.description-text').innerHTML = 'AED 800,000<br>Own this from just3,290 AED/month<br>Luxurious Studio | Brand New | Prime Location<br><br>Apartment for sale in Golf Views Seven City, Jumeirah Lake Towers<br><br>Introducing a captivating studio apartment at Golf Views Seven City, located in the vibrant community of Jumeirah Lake Towers. This thoughtfully designed apartment embodies modern living and offers a perfect blend of comfort and elegance, ideal for both investors and end-users.<br><br>Priced at just AED 800,000, this brand new, off-plan studio offers stunning golf course views and a contemporary lifestyle ideal for modern urban living.<br><br>Property Details:<br>- Built-in wardrobes<br>- Kitchen appliances<br>- Balcony<br>- Unfurnished layout<br>- Pool and Gym<br><br>Nearby Facilities:<br>Nearest school: International School of Arts and Sciences – 1.5 km<br>Nearest restaurant: The Noodle House – 0.5 km<br>Nearest airport: Dubai International Airport – 30 km<br><br>This studio boasts a functional layout that maximizes space while providing an inviting atmosphere. With chic finishes and modern appliances, it is perfectly suited for a dynamic lifestyle. Jumeirah Lake Towers offers an array of dining, shopping, and leisure options, making it an enviable location to call home.<br><br>Don\'t miss your chance to own this exceptional property. Contact Signature Homes today for more details or to schedule a viewing!';
+                document.querySelector('.description-text').innerHTML = 'AED 800,000<br>Own this from just3,290 AED/month<br>Luxurious Studio | Brand New | Prime Location<br><br>Apartment for sale in Golf Views Seven City, Jumeirah Lake Towers<br><br>Introducing a captivating studio apartment at Golf Views Seven City, located in the vibrant community of Jumeirah Lake Towers. This thoughtfully designed apartment embodies modern living and offers a perfect blend of comfort and elegance, ideal for both investors and end-users.<br><br>Priced at just AED 800,000, this brand new, off-plan studio offers stunning golf course views and a contemporary lifestyle ideal for modern urban living.<br><br>Property Details:<br>- Built-in wardrobes<br>- Kitchen appliances<br>- Balcony<br>- Unfurnished layout<br>- Pool and Gym<br><br>Nearby Facilities:<br>Nearest school: International School of Arts and Sciences �?1.5 km<br>Nearest restaurant: The Noodle House �?0.5 km<br>Nearest airport: Dubai International Airport �?30 km<br><br>This studio boasts a functional layout that maximizes space while providing an inviting atmosphere. With chic finishes and modern appliances, it is perfectly suited for a dynamic lifestyle. Jumeirah Lake Towers offers an array of dining, shopping, and leisure options, making it an enviable location to call home.<br><br>Don\'t miss your chance to own this exceptional property. Contact Signature Homes today for more details or to schedule a viewing!';
                 
                 // 更新关键信息卡片
                 const keyInfoCards = document.querySelectorAll('.key-info-card');
@@ -3124,28 +3124,28 @@
                 
                 // 更新照片画廊
                 const galleryImages = document.querySelectorAll('.gallery-item img');
-                // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+                // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
                 currentImages = [];
                 // 所有图片文件名列表
                 const allImages = [
                     '1.png',
                     'image.png',
                     'image-copy.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png',
-                    'image-copy 16.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png',
+                    'image-copy-16.png'
                 ];
                 // 添加所有图片到currentImages数组
                 allImages.forEach(image => {
@@ -3154,22 +3154,22 @@
                 // 页面上显示的图片数组
                 const displayImages = [
                     'image.png',
-                    'image-copy 2.png',
-                    'image-copy 3.png',
-                    'image-copy 4.png',
-                    'image-copy 5.png',
-                    'image-copy 6.png',
-                    'image-copy 7.png',
-                    'image-copy 8.png',
-                    'image-copy 9.png',
-                    'image-copy 10.png',
-                    'image-copy 11.png',
-                    'image-copy 12.png',
-                    'image-copy 13.png',
-                    'image-copy 14.png',
-                    'image-copy 15.png'
+                    'image-copy-2.png',
+                    'image-copy-3.png',
+                    'image-copy-4.png',
+                    'image-copy-5.png',
+                    'image-copy-6.png',
+                    'image-copy-7.png',
+                    'image-copy-8.png',
+                    'image-copy-9.png',
+                    'image-copy-10.png',
+                    'image-copy-11.png',
+                    'image-copy-12.png',
+                    'image-copy-13.png',
+                    'image-copy-14.png',
+                    'image-copy-15.png'
                 ];
-                // 更新页面上显示的6个图片
+                // 更新页面上显示的6个图�?
                 for (let i = 0; i < galleryImages.length; i++) {
                     galleryImages[i].src = `/images_new/buy-new/18/${displayImages[i % displayImages.length]}`;
                 }
@@ -3198,7 +3198,7 @@
                 // 更新设施列表
                 const amenitiesContainer = document.getElementById('amenities-container');
                 const amenities = [
-                    { icon: '🏙️', name: 'Balcony' },
+                    { icon: '🏙�?, name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '🔒', name: 'Security' },
                     { icon: '🚗', name: 'Covered Parking' },
@@ -3349,14 +3349,14 @@
                 }
             });
             
-            // 上一张图片
+            // 上一张图�?
             prevBtn.addEventListener('click', () => {
                 currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
                 modalImg.src = currentImages[currentImageIndex];
                 currentIndexSpan.textContent = currentImageIndex + 1;
             });
             
-            // 下一张图片
+            // 下一张图�?
             nextBtn.addEventListener('click', () => {
                 currentImageIndex = (currentImageIndex + 1) % currentImages.length;
                 modalImg.src = currentImages[currentImageIndex];

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>轮播图修复验证</title>
+    <title>轮播图修复验�?/title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -194,12 +194,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>轮播图修复验证</h1>
+        <h1>轮播图修复验�?/h1>
         
         <div class="status-box status-info">
             <p>此页面用于验证轮播图修复后的功能，特别关注：</p>
             <ul>
-                <li>轮播图是否能正确地从第三张图片回到第一张图片</li>
+                <li>轮播图是否能正确地从第三张图片回到第一张图�?/li>
                 <li>循环逻辑是否按照修复后的代码正确执行</li>
             </ul>
         </div>
@@ -210,15 +210,15 @@
 function startCarousel() {
   // 自动轮播
   let intervalId = setInterval(() => {
-    console.log(`当前索引: ${currentIndex}, 幻灯片数量: ${slides.length}`);
+    console.log(`当前索引: ${currentIndex}, 幻灯片数�? ${slides.length}`);
     // 直接计算下一个索引，确保循环逻辑正确
     let nextIndex = (currentIndex + 1) % slides.length;
-    console.log(`计算下一张索引: (${currentIndex} + 1) % ${slides.length} = ${nextIndex}`);
+    console.log(`计算下一张索�? (${currentIndex} + 1) % ${slides.length} = ${nextIndex}`);
     
     // 特别检查从最后一张到第一张的循环
     if (currentIndex === slides.length - 1) {
-      console.log(`检测到循环点: 从第${slides.length}张到第1张`);
-      // 确保从最后一张回到第一张
+      console.log(`检测到循环�? 从第${slides.length}张到�?张`);
+      // 确保从最后一张回到第一�?
       nextIndex = 0;
     }
     
@@ -228,12 +228,12 @@ function startCarousel() {
 }
         </div>
         
-        <h2>轮播图演示</h2>
+        <h2>轮播图演�?/h2>
         <div class="carousel-container" id="carouselContainer">
             <div class="carousel-slide active">
                 <div class="carousel-placeholder">
                     <h2>图片 1</h2>
-                    <p>轮播图第一张</p>
+                    <p>轮播图第一�?/p>
                 </div>
             </div>
             <div class="carousel-slide">
@@ -256,7 +256,7 @@ function startCarousel() {
         </div>
         
         <div class="controls">
-            <button id="startBtn" class="btn btn-primary">开始轮播</button>
+            <button id="startBtn" class="btn btn-primary">开始轮�?/button>
             <button id="stopBtn" class="btn btn-danger">停止轮播</button>
             <button id="resetBtn" class="btn btn-primary">重置轮播</button>
         </div>
@@ -267,25 +267,25 @@ function startCarousel() {
                 <span id="currentIndex">0</span>
             </div>
             <div class="debug-item">
-                <span class="debug-label">幻灯片数量: </span>
+                <span class="debug-label">幻灯片数�? </span>
                 <span id="slidesCount">3</span>
             </div>
             <div class="debug-item">
-                <span class="debug-label">轮播状态: </span>
-                <span id="carouselStatus">未启动</span>
+                <span class="debug-label">轮播状�? </span>
+                <span id="carouselStatus">未启�?/span>
             </div>
             <div class="debug-item">
-                <span class="debug-label">已完成循环次数: </span>
+                <span class="debug-label">已完成循环次�? </span>
                 <span id="cycleCount">0</span>
             </div>
         </div>
         
-        <h2>轮播图验证步骤</h2>
+        <h2>轮播图验证步�?/h2>
         <ol>
-            <li>初始状态显示第一张图片</li>
+            <li>初始状态显示第一张图�?/li>
             <li>5秒后自动切换到第二张图片</li>
-            <li>再经过5秒后自动切换到第三张图片</li>
-            <li>再经过5秒后，应该从第三张图片正确回到第一张图片（关键验证点）</li>
+            <li>再经�?秒后自动切换到第三张图片</li>
+            <li>再经�?秒后，应该从第三张图片正确回到第一张图片（关键验证点）</li>
             <li>继续循环切换</li>
         </ol>
         
@@ -293,13 +293,13 @@ function startCarousel() {
         <div class="log-container" id="logContainer">
             <div class="log-entry">
                 <span class="log-time">[${new Date().toLocaleTimeString()}]</span>
-                <span class="log-info">页面加载完成，等待开始轮播...</span>
+                <span class="log-info">页面加载完成，等待开始轮�?..</span>
             </div>
         </div>
         
         <h2>验证结果</h2>
         <div id="verificationResult" class="status-box status-info">
-            <p>验证尚未开始。点击"开始轮播"按钮启动轮播图并观察从第三张图片到第一张图片的切换。</p>
+            <p>验证尚未开始。点�?开始轮�?按钮启动轮播图并观察从第三张图片到第一张图片的切换�?/p>
         </div>
     </div>
 
@@ -318,13 +318,13 @@ function startCarousel() {
         const cycleCountElement = document.getElementById('cycleCount');
         const verificationResultElement = document.getElementById('verificationResult');
         
-        // 初始化变量
+        // 初始化变�?
         let currentIndex = 0;
         let intervalId = null;
         let cycleCount = 0;
         let verificationPassed = false;
         
-        // 设置幻灯片样式
+        // 设置幻灯片样�?
         slides.forEach((slide, index) => {
             slide.style.position = 'absolute';
             slide.style.top = '0';
@@ -337,7 +337,7 @@ function startCarousel() {
             slide.style.display = 'block';
         });
         
-        // 更新指示器样式
+        // 更新指示器样�?
         indicators.forEach((indicator, index) => {
             indicator.style.width = '12px';
             indicator.style.height = '12px';
@@ -350,7 +350,7 @@ function startCarousel() {
             indicator.style.padding = '0';
         });
         
-        // 显示指定幻灯片
+        // 显示指定幻灯�?
         function showSlide(index) {
             log(`切换到幻灯片 ${index + 1}`);
             
@@ -361,7 +361,7 @@ function startCarousel() {
                 slide.style.zIndex = i === index ? '2' : '1';
             });
             
-            // 更新指示器
+            // 更新指示�?
             indicators.forEach((indicator, i) => {
                 if (i === index) {
                     indicator.classList.add('active');
@@ -376,7 +376,7 @@ function startCarousel() {
             currentIndex = index;
             currentIndexElement.textContent = currentIndex;
             
-            // 检查是否完成循环
+            // 检查是否完成循�?
             if (index === 0 && cycleCount > 0) {
                 log(`成功: 轮播图从第三张正确回到了第一张图片！`, 'success');
                 verificationPassed = true;
@@ -385,31 +385,31 @@ function startCarousel() {
             
             // 增加循环计数
             if (index === 2) {
-                log(`重要: 已到达第三张图片，5秒后应该回到第一张图片`);
+                log(`重要: 已到达第三张图片�?秒后应该回到第一张图片`);
             }
         }
         
-        // 开始自动轮播
+        // 开始自动轮�?
         function startCarousel() {
             if (intervalId) {
                 clearInterval(intervalId);
             }
             
-            log('开始轮播图（5秒间隔）');
-            carouselStatusElement.textContent = '运行中';
+            log('开始轮播图�?秒间隔）');
+            carouselStatusElement.textContent = '运行�?;
             
             // 自动轮播 - 使用修复后的循环逻辑
             intervalId = setInterval(() => {
-                console.log(`当前索引: ${currentIndex}, 幻灯片数量: ${slides.length}`);
+                console.log(`当前索引: ${currentIndex}, 幻灯片数�? ${slides.length}`);
                 // 直接计算下一个索引，确保循环逻辑正确
                 let nextIndex = (currentIndex + 1) % slides.length;
-                console.log(`计算下一张索引: (${currentIndex} + 1) % ${slides.length} = ${nextIndex}`);
+                console.log(`计算下一张索�? (${currentIndex} + 1) % ${slides.length} = ${nextIndex}`);
                 
                 // 特别检查从最后一张到第一张的循环
                 if (currentIndex === slides.length - 1) {
-                    console.log(`检测到循环点: 从第${slides.length}张到第1张`);
-                    log(`检测到循环点: 从第${slides.length}张到第1张`);
-                    // 确保从最后一张回到第一张
+                    console.log(`检测到循环�? 从第${slides.length}张到�?张`);
+                    log(`检测到循环�? 从第${slides.length}张到�?张`);
+                    // 确保从最后一张回到第一�?
                     nextIndex = 0;
                     // 增加循环计数
                     cycleCount++;
@@ -426,8 +426,8 @@ function startCarousel() {
             if (intervalId) {
                 clearInterval(intervalId);
                 intervalId = null;
-                log('停止轮播图');
-                carouselStatusElement.textContent = '已停止';
+                log('停止轮播�?);
+                carouselStatusElement.textContent = '已停�?;
             }
         }
         
@@ -445,9 +445,9 @@ function startCarousel() {
             
             // 重置验证结果
             verificationResultElement.className = 'status-box status-info';
-            verificationResultElement.innerHTML = '<p>轮播已重置。点击"开始轮播"按钮重新开始验证。</p>';
+            verificationResultElement.innerHTML = '<p>轮播已重置。点�?开始轮�?按钮重新开始验证�?/p>';
             
-            log('重置轮播图');
+            log('重置轮播�?);
         }
         
         // 添加日志
@@ -475,7 +475,7 @@ function startCarousel() {
                 log('验证完成 - 轮播图循环功能正常工作！', 'success');
             } else {
                 verificationResultElement.className = 'status-box status-info';
-                verificationResultElement.innerHTML = '<p>验证进行中... 请等待轮播图从第三张图片切换到第一张图片。</p>';
+                verificationResultElement.innerHTML = '<p>验证进行�?.. 请等待轮播图从第三张图片切换到第一张图片�?/p>';
             }
         }
         
@@ -487,24 +487,24 @@ function startCarousel() {
         // 为指示器添加点击事件
         indicators.forEach((indicator, index) => {
             indicator.addEventListener('click', () => {
-                log(`点击指示器 ${index + 1}`);
+                log(`点击指示�?${index + 1}`);
                 currentIndex = index;
                 showSlide(currentIndex);
                 
-                // 重置自动轮播计时器
+                // 重置自动轮播计时�?
                 if (intervalId) {
                     clearInterval(intervalId);
                     intervalId = setInterval(() => {
-                        console.log(`当前索引: ${currentIndex}, 幻灯片数量: ${slides.length}`);
+                        console.log(`当前索引: ${currentIndex}, 幻灯片数�? ${slides.length}`);
                         // 直接计算下一个索引，确保循环逻辑正确
                         let nextIndex = (currentIndex + 1) % slides.length;
-                        console.log(`计算下一张索引: (${currentIndex} + 1) % ${slides.length} = ${nextIndex}`);
+                        console.log(`计算下一张索�? (${currentIndex} + 1) % ${slides.length} = ${nextIndex}`);
                         
                         // 特别检查从最后一张到第一张的循环
                         if (currentIndex === slides.length - 1) {
-                            console.log(`检测到循环点: 从第${slides.length}张到第1张`);
-                            log(`检测到循环点: 从第${slides.length}张到第1张`);
-                            // 确保从最后一张回到第一张
+                            console.log(`检测到循环�? 从第${slides.length}张到�?张`);
+                            log(`检测到循环�? 从第${slides.length}张到�?张`);
+                            // 确保从最后一张回到第一�?
                             nextIndex = 0;
                             // 增加循环计数
                             cycleCount++;
@@ -518,10 +518,10 @@ function startCarousel() {
             });
         });
         
-        // 初始化
+        // 初始�?
         slidesCountElement.textContent = slides.length;
-        log('点击"开始轮播"按钮启动轮播图验证');
-        log('特别关注：第三张图片5秒后是否能正确回到第一张图片');
+        log('点击"开始轮�?按钮启动轮播图验�?);
+        log('特别关注：第三张图片5秒后是否能正确回到第一张图�?);
     </script>
 </body>
 </html>

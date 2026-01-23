@@ -6,7 +6,7 @@
     <title>Dropdown Test</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 导航栏样式 */
+        /* 导航栏样�?*/
         nav {
             display: flex;
             align-items: center;
@@ -79,7 +79,7 @@
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
+    <!-- 导航�?-->
     <nav>
         <div>
             <a href="/" style="display: flex; align-items: center;">
@@ -112,8 +112,7 @@
     </div>
 
     <script>
-        // 完整的下拉菜单实现
-        function initDropdowns() {
+        // 完整的下拉菜单实�?        function initDropdowns() {
             console.log('Dropdowns initialization started');
             const dropdowns = document.querySelectorAll('.dropdown');
             
@@ -133,8 +132,7 @@
                         e.preventDefault();
                         e.stopPropagation();
                         
-                        // 关闭所有其他下拉菜单
-                        dropdowns.forEach(otherDropdown => {
+                        // 关闭所有其他下拉菜�?                        dropdowns.forEach(otherDropdown => {
                             if (otherDropdown !== dropdown) {
                                 const otherContent = otherDropdown.querySelector('.dropdown-content');
                                 if (otherContent) {

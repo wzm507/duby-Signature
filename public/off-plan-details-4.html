@@ -13,7 +13,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* 导航栏样式 */
+        /* 导航栏样�?*/
         .navbar {
             position: fixed;
             top: 0;
@@ -334,7 +334,7 @@
             display: block;
         }
 
-        /* 照片画廊 - 现代化网格设计 */
+        /* 照片画廊 - 现代化网格设�?*/
         .gallery-section {
             padding: 2rem;
             background-color: #f8f9fa;
@@ -537,7 +537,7 @@
             color: #6c63ff;
         }
 
-        /* 响应式设计 */
+        /* 响应式设�?*/
         @media (max-width: 1024px) {
             .description-content,
             .about-content {
@@ -648,7 +648,7 @@
     </style>
 </head>
 <body>
-    <div id="app"></div>    <!-- 统一导航栏 -->
+    <div id="app"></div>    <!-- 统一导航�?-->
     <div id="header-placeholder"></div>
     
     <script>
@@ -739,19 +739,19 @@
                         <img src="/off/4/image-copy.png" alt="Property Image 1">
                     </div>
                     <div class="gallery-item">
-                        <img src="/off/4/image-copy 2.png" alt="Property Image 2">
+                        <img src="/off/4/image-copy-2.png" alt="Property Image 2">
                     </div>
                     <div class="gallery-item">
-                        <img src="/off/4/image-copy 3.png" alt="Property Image 3">
+                        <img src="/off/4/image-copy-3.png" alt="Property Image 3">
                     </div>
                     <div class="gallery-item">
-                        <img src="/off/1/image-copy 4.png" alt="Property Image 4">
+                        <img src="/off/1/image-copy-4.png" alt="Property Image 4">
                     </div>
                     <div class="gallery-item">
-                        <img src="/off/1/image-copy 5.png" alt="Property Image 5">
+                        <img src="/off/1/image-copy-5.png" alt="Property Image 5">
                     </div>
                     <div class="gallery-item">
-                        <img src="/off/1/image-copy 6.png" alt="Property Image 6">
+                        <img src="/off/1/image-copy-6.png" alt="Property Image 6">
                     </div>
                 </div>
             </div>
@@ -762,7 +762,7 @@
             <h2 class="section-title">About This Development</h2>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="/off/1/image-copy 7.png" alt="Development">
+                    <img src="/off/1/image-copy-7.png" alt="Development">
                 </div>
                 <div class="about-text">
                     <p>This off-plan development is crafted to be a masterpiece of modern living. Located in one of Dubai's most sought-after areas, it offers unparalleled access to amenities, transportation, and entertainment options.</p>
@@ -898,16 +898,16 @@
                 </div>
             </div>
             
-            <!-- 中间简化链接区域 -->
+            <!-- 中间简化链接区�?-->
             <div class="footer-simple-links">
                 <span><a href="/featured-properties.html">Buy</a></span>
-                <span>•</span>
+                <span>�?/span>
                 <span><a href="/communities.html">Communities</a></span>
-                <span>•</span>
+                <span>�?/span>
                 <span><a href="/developers.html">Developers</a></span>
-                <span>•</span>
+                <span>�?/span>
                 <span><a href="/services.html">Services</a></span>
-                <span>•</span>
+                <span>�?/span>
                 <span><a href="/about.html">About Us</a></span>
             </div>
         </div>
@@ -1040,13 +1040,13 @@
     </style>
 
     <script>
-        // 页面加载时，初始化页面内容
+        // 页面加载时，初始化页面内�?
         document.addEventListener('DOMContentLoaded', function() {
-            // 存储当前页面的图片数组
+            // 存储当前页面的图片数�?
             let currentImages = [];
             let currentImageIndex = 0;
             
-            // 更新页面内容为 Bay Residences
+            // 更新页面内容�?Bay Residences
             
             // 更新页面标题
             document.title = 'Apartment for Sale in Bay Residences, Dubai Islands - AED 7,745,084';
@@ -1078,25 +1078,25 @@
             // 更新关于区域
             document.querySelector('.about-section h2').textContent = 'About Bay Residences';
             document.querySelector('.about-text').innerHTML = 'Nestled in one of Dubai\'s most sought-after waterfront communities, Bay Residences redefines elegance and coastal living. With breathtaking views, modern design, and world-class amenities, it is the perfect retreat for those seeking a serene yet luxurious lifestyle.<br><br>This premium development offers an exclusive coastal lifestyle with beautifully landscaped gardens and parks, along with outdoor dining areas designed for social gatherings and relaxation. The residence features thoughtfully designed layouts that maximize space and natural light, with high-quality finishes throughout.<br><br>Prime Location Benefits:<br>- Exclusive community with resort-style living<br>- Close to retail, dining & entertainment hubs<br>- Seamless access to key Dubai destinations<br>- Breathtaking sea views<br>- State-of-the-art fitness center';
-            document.querySelector('.about-image img').src = '/off/4/image-copy 7.png';
+            document.querySelector('.about-image img').src = '/off/4/image-copy-7.png';
             
             // 更新照片画廊
             const galleryImages = document.querySelectorAll('.gallery-item img');
-            // 填充当前页面的图片数组 - 包含文件夹中的所有图片
+            // 填充当前页面的图片数�?- 包含文件夹中的所有图�?
             currentImages = [];
-            // 添加第一张图片
+            // 添加第一张图�?
             currentImages.push('/off/4/image.png');
-            // 添加从image-copy.png到image-copy 14.png的图片
+            // 添加从image-copy.png到image-copy 14.png的图�?
             for (let i = 1; i <= 14; i++) {
                 currentImages.push(`/off/4/image copy${i === 1 ? '' : ` ${i}`}.png`);
             }
-            // 更新页面上显示的6个图片
-            const displayImages = [1, 2, 3, 4, 5, 6]; // 使用第2到第7张图片（索引1到6）
+            // 更新页面上显示的6个图�?
+            const displayImages = [1, 2, 3, 4, 5, 6]; // 使用�?到第7张图片（索引1�?�?
             for (let i = 0; i < galleryImages.length; i++) {
                 galleryImages[i].src = currentImages[displayImages[i]];
             }
             
-            // 更新物业详情（仅在元素存在时执行）
+            // 更新物业详情（仅在元素存在时执行�?
             const propertyDetailsContainer = document.getElementById('property-details-container');
             if (propertyDetailsContainer) {
                 propertyDetailsContainer.innerHTML = `
@@ -1123,11 +1123,11 @@
                 `;
             }
             
-            // 更新设施列表（仅在元素存在时执行）
+            // 更新设施列表（仅在元素存在时执行�?
             const amenitiesContainer = document.getElementById('amenities-container');
             if (amenitiesContainer) {
                 const amenities = [
-                    { icon: '👩‍🦰', name: 'Maids Room' },
+                    { icon: '👩‍�?, name: 'Maids Room' },
                     { icon: '🌅', name: 'Balcony' },
                     { icon: '🏊', name: 'Shared Pool' },
                     { icon: '💆', name: 'Shared Spa' },
@@ -1136,7 +1136,7 @@
                     { icon: '📦', name: 'Built in Wardrobes' },
                     { icon: '👗', name: 'Walk-in Closet' },
                     { icon: '🌊', name: 'View of Water' },
-                    { icon: '🏛️', name: 'View of Landmark' },
+                    { icon: '🏛�?, name: 'View of Landmark' },
                     { icon: '🐶', name: 'Pets Allowed' },
                     { icon: '💪', name: 'Shared Gym' },
                     { icon: '👶', name: 'Children\'s Pool' },
@@ -1184,7 +1184,7 @@
                 }
             });
             
-            // 上一张图片
+            // 上一张图�?
             const prevBtn = document.querySelector('.gallery-prev');
             prevBtn.addEventListener('click', () => {
                 const modalImg = document.getElementById('gallery-modal-img');
@@ -1195,7 +1195,7 @@
                 currentIndexSpan.textContent = currentImageIndex + 1;
             });
             
-            // 下一张图片
+            // 下一张图�?
             const nextBtn = document.querySelector('.gallery-next');
             nextBtn.addEventListener('click', () => {
                 const modalImg = document.getElementById('gallery-modal-img');
@@ -1206,7 +1206,7 @@
                 currentIndexSpan.textContent = currentImageIndex + 1;
             });
             
-            // 电话按钮和弹窗功能
+            // 电话按钮和弹窗功�?
             const phoneBtn = document.querySelector('.phone-btn');
             const phonePopup = document.getElementById('phone-popup');
             const phoneCloseBtn = document.querySelector('.phone-popup-close');

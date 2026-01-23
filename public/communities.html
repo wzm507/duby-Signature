@@ -7,7 +7,7 @@
   <link rel="icon" href="/img/logo2.jpg" type="image/jpeg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-        /* 确保全局变量与主页完全一致 */
+        /* 确保全局变量与主页完全一�?*/
         :root {
             --primary-color: #333;
             --secondary-color: #6c63ff;
@@ -63,7 +63,7 @@
       color: var(--primary-color);
     }
 
-    /* 导航栏 */
+    /* 导航�?*/
     .navbar {
       position: fixed;
       top: 0;
@@ -292,7 +292,7 @@
       color: var(--secondary-color);
     }
 
-    /* 响应式设计 */
+    /* 响应式设�?*/
     @media (max-width: 768px) {
       .navbar {
         padding: 1rem 2rem;
@@ -459,7 +459,7 @@
        background-color: #000;
      }
 
-    /* 响应式弹窗 */
+    /* 响应式弹�?*/
     @media (max-width: 768px) {
       .modal-container {
         position: fixed !important;
@@ -600,7 +600,7 @@
       }
 </style>
 </head>
-  <body>    <!-- 统一导航栏 -->
+  <body>    <!-- 统一导航�?-->
     <div id="header-placeholder"></div>
     
     <script>
@@ -617,18 +617,15 @@
 
         // 页面跳转功能实现
         document.addEventListener('DOMContentLoaded', function() {
-            // 获取所有页面链接元素
-            const pageLinks = document.querySelectorAll('[data-page-link]');
+            // 获取所有页面链接元�?            const pageLinks = document.querySelectorAll('[data-page-link]');
             
-            // 为每个页面链接元素添加点击事件
-            pageLinks.forEach(link => {
+            // 为每个页面链接元素添加点击事�?            pageLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     // 阻止默认行为
                     e.preventDefault();
                     // 获取页面链接
                     const pageUrl = this.getAttribute('data-page-link');
-                    // 跳转到指定页面
-                    window.location.href = pageUrl;
+                    // 跳转到指定页�?                    window.location.href = pageUrl;
                 });
             });
         });
@@ -663,7 +660,7 @@
                 <!-- 位置标签 -->
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Al Furjan</div>
               </div>
-              <!-- 右下角箭头按钮 -->
+              <!-- 右下角箭头按�?-->
               <button data-page-link="/community-al-furjan.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -685,7 +682,7 @@
                 <!-- 位置标签 -->
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Al Jaddaf</div>
               </div>
-              <!-- 右下角箭头按钮 -->
+              <!-- 右下角箭头按�?-->
               <button data-page-link="/community-al-jaddaf.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -707,7 +704,7 @@
                 <!-- 位置标签 -->
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Arjan</div>
               </div>
-              <!-- 右下角箭头按钮 -->
+              <!-- 右下角箭头按�?-->
               <button data-page-link="/community-arjan.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -729,7 +726,7 @@
                 <!-- 位置标签 -->
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Business Bay</div>
               </div>
-              <!-- 右下角箭头按钮 -->
+              <!-- 右下角箭头按�?-->
               <button data-page-link="/community-business-bay.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -751,7 +748,7 @@
                 <!-- 位置标签 -->
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">City Walk</div>
               </div>
-              <!-- 右下角箭头按钮 -->
+              <!-- 右下角箭头按�?-->
               <button data-page-link="/community-city-walk.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -773,7 +770,7 @@
                 <!-- 位置标签 -->
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">DAMAC Hills</div>
               </div>
-              <!-- 右下角箭头按钮 -->
+              <!-- 右下角箭头按�?-->
               <button data-page-link="/community-damac-hills.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -795,7 +792,7 @@
                 <!-- 位置标签 -->
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Damac Hills 2</div>
               </div>
-              <!-- 右下角箭头按钮 -->
+              <!-- 右下角箭头按�?-->
               <button data-page-link="/community-damac-hills-2.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -817,7 +814,7 @@
                 <!-- 位置标签 -->
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Damac Lagoons</div>
               </div>
-              <!-- 右下角箭头按钮 -->
+              <!-- 右下角箭头按�?-->
               <button data-page-link="/community-damac-lagoons.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -839,7 +836,7 @@
                 <!-- 位置标签 -->
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Creek Harbour The Lagoon</div>
               </div>
-              <!-- 右下角箭头按钮 -->
+              <!-- 右下角箭头按�?-->
               <button data-page-link="/community-dubai-creek-harbour-lagoon.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -861,7 +858,7 @@
                 <!-- 位置标签 -->
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Creek Harbour</div>
               </div>
-              <!-- 右下角箭头按钮 -->
+              <!-- 右下角箭头按�?-->
               <button data-page-link="/community-dubai-creek-harbour.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -883,7 +880,7 @@
                 <!-- 位置标签 -->
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Design District</div>
               </div>
-              <!-- 右下角箭头按钮 -->
+              <!-- 右下角箭头按�?-->
               <button data-page-link="/community-dubai-design-district.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -905,7 +902,7 @@
                 <!-- 位置标签 -->
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Downtown</div>
               </div>
-              <!-- 右下角箭头按钮 -->
+              <!-- 右下角箭头按�?-->
               <button data-page-link="/community-dubai-downtown.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -927,7 +924,7 @@
                 <!-- 位置标签 -->
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Hills Estate</div>
               </div>
-              <!-- 右下角箭头按钮 -->
+              <!-- 右下角箭头按�?-->
               <button data-page-link="/community-dubai-hills-estate.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -949,7 +946,7 @@
                 <!-- 位置标签 -->
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Marina</div>
               </div>
-              <!-- 右下角箭头按钮 -->
+              <!-- 右下角箭头按�?-->
               <button data-page-link="/community-dubai-marina.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -971,7 +968,7 @@
                 <!-- 位置标签 -->
                 <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 6px 12px; border-radius: 20px; color: white; font-size: 13px; font-weight: 500; margin-bottom: 16px; transition: all 0.3s ease;">Dubai Science Park</div>
               </div>
-              <!-- 右下角箭头按钮 -->
+              <!-- 右下角箭头按�?-->
               <button data-page-link="/community-dubai-science-park.html" style="position: absolute; right: 24px; bottom: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -1205,8 +1202,8 @@
         </div>
         <div class="modal-body">
           <p>Live by the Water, Stay Close to the City</p>
-          <p>Dubai Creek Harbour is one of Dubai’s most exciting new waterfront communities, blending natural beauty, smart design, and modern living. With stunning views of Downtown Dubai, the Burj Khalifa, and the Dubai Creek Tower site, this future-forward district offers a lifestyle like no other — elegant, connected, and full of opportunity.</p>
-          <p>Located just 10 minutes from Downtown Dubai, Dubai Creek Harbour provides the perfect balance between urban energy and serene surroundings. Residents enjoy easy access to Ras Al Khor Wildlife Sanctuary, pristine walkways, cycling trails, and a vibrant marina promenade — all set against breathtaking skyline views.</p>
+          <p>Dubai Creek Harbour is one of Dubai’s most exciting new waterfront communities, blending natural beauty, smart design, and modern living. With stunning views of Downtown Dubai, the Burj Khalifa, and the Dubai Creek Tower site, this future-forward district offers a lifestyle like no other �?elegant, connected, and full of opportunity.</p>
+          <p>Located just 10 minutes from Downtown Dubai, Dubai Creek Harbour provides the perfect balance between urban energy and serene surroundings. Residents enjoy easy access to Ras Al Khor Wildlife Sanctuary, pristine walkways, cycling trails, and a vibrant marina promenade �?all set against breathtaking skyline views.</p>
         </div>
       </div>
     </div>
@@ -1319,8 +1316,7 @@
     </div>
 
     <script>
-      // 导航栏滚动效果
-      window.addEventListener('scroll', function() {
+      // 导航栏滚动效�?      window.addEventListener('scroll', function() {
         const navbar = document.querySelector('.navbar');
         if (window.scrollY > 50) {
           navbar.style.padding = '1rem 4rem';
@@ -1331,12 +1327,9 @@
 
       // 弹窗功能实现
       document.addEventListener('DOMContentLoaded', function() {
-        // 获取所有弹窗按钮
-        const modalButtons = document.querySelectorAll('[data-modal-id]');
-        // 获取所有关闭按钮
-        const closeButtons = document.querySelectorAll('[data-modal-close]');
-        // 获取所有弹窗
-        const modals = document.querySelectorAll('.modal');
+        // 获取所有弹窗按�?        const modalButtons = document.querySelectorAll('[data-modal-id]');
+        // 获取所有关闭按�?        const closeButtons = document.querySelectorAll('[data-modal-close]');
+        // 获取所有弹�?        const modals = document.querySelectorAll('.modal');
 
         // 显示弹窗函数
         function showModal(modalId, triggerElement) {
@@ -1353,10 +1346,8 @@
             }
             
             if (card) {
-              // 获取卡片的背景图片
-              const backgroundImage = card.style.backgroundImage;
-              // 设置到弹窗的overlay上
-              const overlay = modal.querySelector('.modal-overlay');
+              // 获取卡片的背景图�?              const backgroundImage = card.style.backgroundImage;
+              // 设置到弹窗的overlay�?              const overlay = modal.querySelector('.modal-overlay');
               if (overlay) {
                 overlay.style.backgroundImage = backgroundImage;
               }
@@ -1370,7 +1361,7 @@
               const viewportHeight = window.innerHeight;
               const viewportWidth = window.innerWidth;
               
-              // 动态设置弹窗尺寸 - 基于视口大小
+              // 动态设置弹窗尺�?- 基于视口大小
               const modalHeight = Math.min(viewportHeight * 0.85, 700);
               const modalWidth = Math.min(viewportWidth * 0.85, 900);
               
@@ -1402,8 +1393,7 @@
           }
         }
 
-        // 隐藏所有弹窗函数
-        function hideAllModals() {
+        // 隐藏所有弹窗函�?        function hideAllModals() {
           modals.forEach(modal => {
             modal.style.display = 'none';
           });
@@ -1411,16 +1401,14 @@
           document.body.style.overflow = 'auto';
         }
 
-        // 为每个弹窗按钮添加点击事件
-        modalButtons.forEach(button => {
+        // 为每个弹窗按钮添加点击事�?        modalButtons.forEach(button => {
           button.addEventListener('click', function(e) {
             const modalId = this.getAttribute('data-modal-id');
             showModal(modalId, this);
           });
         });
 
-        // 为每个关闭按钮添加点击事件
-        closeButtons.forEach(button => {
+        // 为每个关闭按钮添加点击事�?        closeButtons.forEach(button => {
           button.addEventListener('click', function(e) {
             e.stopPropagation();
             const modalId = this.getAttribute('data-modal-close');
@@ -1437,8 +1425,7 @@
           });
         });
 
-        // 按ESC键关闭弹窗
-        document.addEventListener('keydown', function(e) {
+        // 按ESC键关闭弹�?        document.addEventListener('keydown', function(e) {
           if (e.key === 'Escape') {
             hideAllModals();
           }
@@ -1456,16 +1443,16 @@
         </div>
       </div>
       
-      <!-- 中间简化链接区域 -->
+      <!-- 中间简化链接区�?-->
       <div class="footer-simple-links">
         <span><a href="/featured-properties.html">Buy</a></span>
-        <span>•</span>
+        <span>�?/span>
         <span><a href="/communities.html">Communities</a></span>
-        <span>•</span>
+        <span>�?/span>
         <span><a href="/developers.html">Developers</a></span>
-        <span>•</span>
+        <span>�?/span>
         <span><a href="/services.html">Services</a></span>
-        <span>•</span>
+        <span>�?/span>
         <span><a href="/about.html">About Us</a></span>
       </div>
     </div>

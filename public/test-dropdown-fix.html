@@ -10,7 +10,7 @@
     <h1>Dropdown Fix Test</h1>
     <p>Testing the Buy button dropdown functionality...</p>
     
-    <!-- 直接复制header.html的内容进行测试 -->
+    <!-- 直接复制header.html的内容进行测�?-->
     <nav style="display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 2rem; background-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; top: 0; left: 0; right: 0; z-index: 9999;">
       <style>
         /* 确保下拉菜单样式正确 */
@@ -65,15 +65,14 @@
     <div style="padding: 100px; text-align: center;">
         <h2>Test Results:</h2>
         <ul id="test-results" style="list-style: none; padding: 0; margin: 0 auto; max-width: 500px; text-align: left;">
-            <li style="padding: 10px; border-bottom: 1px solid #eee;"><strong>✅</strong> Header loaded correctly</li>
-            <li style="padding: 10px; border-bottom: 1px solid #eee;"><strong>⏳</strong> Testing dropdown functionality...</li>
+            <li style="padding: 10px; border-bottom: 1px solid #eee;"><strong>�?/strong> Header loaded correctly</li>
+            <li style="padding: 10px; border-bottom: 1px solid #eee;"><strong>�?/strong> Testing dropdown functionality...</li>
         </ul>
     </div>
 
     <!-- 下拉菜单JavaScript代码 -->
     <script>
-    // 从main.js整合的完整下拉菜单实现
-    window.initDropdowns = function() {
+    // 从main.js整合的完整下拉菜单实�?    window.initDropdowns = function() {
       console.log('Dropdowns initialization started');
       const dropdowns = document.querySelectorAll('.dropdown');
       
@@ -87,7 +86,7 @@
           // 更新测试结果
           const testResults = document.getElementById('test-results');
           const dropdownTest = testResults.children[1];
-          dropdownTest.innerHTML = '<strong>✅</strong> Dropdown found and initialized';
+          dropdownTest.innerHTML = '<strong>�?/strong> Dropdown found and initialized';
           
           // 确保下拉菜单初始状态为隐藏
           content.style.display = 'none';
@@ -98,8 +97,7 @@
             e.preventDefault();
             e.stopPropagation();
             
-            // 关闭所有其他下拉菜单
-            dropdowns.forEach(otherDropdown => {
+            // 关闭所有其他下拉菜�?            dropdowns.forEach(otherDropdown => {
               if (otherDropdown !== dropdown) {
                 const otherContent = otherDropdown.querySelector('.dropdown-content');
                 if (otherContent) {

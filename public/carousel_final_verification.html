@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>轮播图功能最终验证</title>
+    <title>轮播图功能最终验�?/title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -230,38 +230,38 @@
 </head>
 <body>
     <div class="container">
-        <h1>轮播图功能最终验证</h1>
+        <h1>轮播图功能最终验�?/h1>
         
         <div class="status-box status-info">
-            <p>此页面用于最终验证轮播图的完整功能，包括：</p>
+            <p>此页面用于最终验证轮播图的完整功能，包括�?/p>
             <ul>
-                <li>每5秒自动切换到下一张图片</li>
-                <li>第三张图片显示5秒后正确回到第一张图片</li>
-                <li>指示器点击功能正常工作</li>
-                <li>图片正确加载和显示</li>
+                <li>�?秒自动切换到下一张图�?/li>
+                <li>第三张图片显�?秒后正确回到第一张图�?/li>
+                <li>指示器点击功能正常工�?/li>
+                <li>图片正确加载和显�?/li>
             </ul>
         </div>
         
-        <h2>1. 轮播图演示</h2>
+        <h2>1. 轮播图演�?/h2>
         <div class="carousel-container" id="carouselContainer">
             <div class="carousel-slide">
                 <div class="carousel-placeholder" id="placeholder1">
                     <div class="loading-spinner"></div>
-                    <p>加载中...</p>
+                    <p>加载�?..</p>
                 </div>
                 <img src="" data-src="/images_new/lunbotu/4141ab88-6dc1-4253-94d8-f4692ab7272f.png" alt="轮播图片1" class="carousel-image">
             </div>
             <div class="carousel-slide">
                 <div class="carousel-placeholder" id="placeholder2">
                     <div class="loading-spinner"></div>
-                    <p>加载中...</p>
+                    <p>加载�?..</p>
                 </div>
                 <img src="" data-src="/images_new/lunbotu/4c97ca9f-75a1-48b3-a48a-b1c609933793.webp" alt="轮播图片2" class="carousel-image">
             </div>
             <div class="carousel-slide">
                 <div class="carousel-placeholder" id="placeholder3">
                     <div class="loading-spinner"></div>
-                    <p>加载中...</p>
+                    <p>加载�?..</p>
                 </div>
                 <img src="" data-src="/images_new/lunbotu/微信图片_20250825105422.png" alt="轮播图片3" class="carousel-image">
             </div>
@@ -273,28 +273,28 @@
         </div>
         
         <div class="image-status">
-            <p>图片加载状态将显示在这里...</p>
+            <p>图片加载状态将显示在这�?..</p>
         </div>
         
         <div class="test-controls">
-            <button id="startBtn" class="btn btn-primary">开始轮播</button>
+            <button id="startBtn" class="btn btn-primary">开始轮�?/button>
             <button id="stopBtn" class="btn btn-danger">停止轮播</button>
             <button id="resetBtn" class="btn btn-primary">重置轮播</button>
         </div>
         
-        <h2>2. 轮播图核心代码</h2>
+        <h2>2. 轮播图核心代�?/h2>
         <div class="code-section">
-// 轮播图循环逻辑 (修复后)
+// 轮播图循环逻辑 (修复�?
 function startCarousel() {
   // 自动轮播
   let intervalId = setInterval(() => {
-    console.log(`当前索引: ${currentIndex}, 幻灯片数量: ${slides.length}`);
+    console.log(`当前索引: ${currentIndex}, 幻灯片数�? ${slides.length}`);
     const nextIndex = (currentIndex + 1) % slides.length;
-    console.log(`计算下一张索引: (${currentIndex} + 1) % ${slides.length} = ${nextIndex}`);
+    console.log(`计算下一张索�? (${currentIndex} + 1) % ${slides.length} = ${nextIndex}`);
     
     // 特别检查从最后一张到第一张的循环
     if (currentIndex === slides.length - 1) {
-      console.log(`检测到循环点: 从第${slides.length}张到第1张`);
+      console.log(`检测到循环�? 从第${slides.length}张到�?张`);
     }
     
     currentIndex = nextIndex;
@@ -308,19 +308,19 @@ function startCarousel() {
         <h2>3. 验证步骤</h2>
         <div class="verification-steps">
             <div class="verification-step" id="step1">
-                <strong>步骤 1:</strong> 页面加载后，第一张图片应该显示，并且轮播应该自动开始
+                <strong>步骤 1:</strong> 页面加载后，第一张图片应该显示，并且轮播应该自动开�?
             </div>
             <div class="verification-step" id="step2">
-                <strong>步骤 2:</strong> 5秒后，应该自动切换到第二张图片
+                <strong>步骤 2:</strong> 5秒后，应该自动切换到第二张图�?
             </div>
             <div class="verification-step" id="step3">
-                <strong>步骤 3:</strong> 再经过5秒后，应该自动切换到第三张图片
+                <strong>步骤 3:</strong> 再经�?秒后，应该自动切换到第三张图�?
             </div>
             <div class="verification-step" id="step4">
-                <strong>步骤 4 (关键):</strong> 再经过5秒后，应该从第三张图片正确切换回第一张图片，完成一个完整循环
+                <strong>步骤 4 (关键):</strong> 再经�?秒后，应该从第三张图片正确切换回第一张图片，完成一个完整循�?
             </div>
             <div class="verification-step" id="step5">
-                <strong>步骤 5:</strong> 点击指示器应该能手动切换到对应的图片，并且自动轮播应该继续从新的位置开始
+                <strong>步骤 5:</strong> 点击指示器应该能手动切换到对应的图片，并且自动轮播应该继续从新的位置开�?
             </div>
         </div>
         
@@ -333,10 +333,10 @@ function startCarousel() {
                 <strong>currentIndex:</strong> <span id="currentIndex">0</span>
             </div>
             <div class="debug-var">
-                <strong>轮播状态:</strong> <span id="carouselStatus">未启动</span>
+                <strong>轮播状�?</strong> <span id="carouselStatus">未启�?/span>
             </div>
             <div class="debug-var">
-                <strong>已完成循环次数:</strong> <span id="cycleCount">0</span>
+                <strong>已完成循环次�?</strong> <span id="cycleCount">0</span>
             </div>
         </div>
         
@@ -350,12 +350,12 @@ function startCarousel() {
         
         <h2>6. 验证结果</h2>
         <div id="verificationResult" class="status-box status-info">
-            <p>验证尚未开始。轮播将在页面加载后自动开始，或者点击"开始轮播"按钮手动启动。</p>
+            <p>验证尚未开始。轮播将在页面加载后自动开始，或者点�?开始轮�?按钮手动启动�?/p>
         </div>
     </div>
 
     <script>
-        // 初始化变量
+        // 初始化变�?
         let currentIndex = 0;
         let intervalId = null;
         let cycleCount = 0;
@@ -382,7 +382,7 @@ function startCarousel() {
         const verificationResultElement = document.getElementById('verificationResult');
         const imageStatusElement = document.querySelector('.image-status');
         
-        // 初始化步骤元素
+        // 初始化步骤元�?
         const stepElements = {
             step1: document.getElementById('step1'),
             step2: document.getElementById('step2'),
@@ -391,7 +391,7 @@ function startCarousel() {
             step5: document.getElementById('step5')
         };
         
-        // 预加载图片函数
+        // 预加载图片函�?
         function preloadImages() {
             log('开始预加载轮播图片...');
             const imagePromises = Array.from({ length: 3 }, (_, index) => {
@@ -403,9 +403,9 @@ function startCarousel() {
                     
                     if (img && placeholder) {
                         const imgSrc = img.getAttribute('data-src');
-                        log(`预加载图片 ${imgId}: ${imgSrc}`);
+                        log(`预加载图�?${imgId}: ${imgSrc}`);
                         
-                        // 创建新的Image对象进行预加载
+                        // 创建新的Image对象进行预加�?
                         const tempImg = new Image();
                         tempImg.onload = function() {
                             log(`成功: 图片 ${imgId} 预加载完成`, 'success');
@@ -414,14 +414,14 @@ function startCarousel() {
                             img.src = imgSrc;
                             img.style.display = 'block';
                             
-                            // 隐藏占位符
+                            // 隐藏占位�?
                             placeholder.style.display = 'none';
                             
                             resolve(img);
                         };
                         
                         tempImg.onerror = function() {
-                            log(`错误: 图片 ${imgId} 预加载失败: ${imgSrc}`, 'error');
+                            log(`错误: 图片 ${imgId} 预加载失�? ${imgSrc}`, 'error');
                             placeholder.textContent = `图片加载失败`;
                             placeholder.style.backgroundColor = '#ffebee';
                             placeholder.style.color = '#c62828';
@@ -431,8 +431,8 @@ function startCarousel() {
                         
                         tempImg.src = imgSrc;
                     } else {
-                        log(`错误: 未找到图片元素或占位符 ${imgId}`, 'error');
-                        reject(new Error(`未找到图片元素或占位符 ${imgId}`));
+                        log(`错误: 未找到图片元素或占位�?${imgId}`, 'error');
+                        reject(new Error(`未找到图片元素或占位�?${imgId}`));
                     }
                 });
             });
@@ -441,7 +441,7 @@ function startCarousel() {
             Promise.allSettled(imagePromises).then(results => {
                 log('所有图片预加载完成');
                 
-                // 显示图片加载状态
+                // 显示图片加载状�?
                 let loadedCount = 0;
                 results.forEach((result, index) => {
                     if (result.status === 'fulfilled') {
@@ -449,16 +449,16 @@ function startCarousel() {
                     }
                 });
                 
-                imageStatusElement.textContent = `图片加载状态: ${loadedCount}/${results.length} 张图片成功加载`;
+                imageStatusElement.textContent = `图片加载状�? ${loadedCount}/${results.length} 张图片成功加载`;
                 
-                // 初始化轮播
+                // 初始化轮�?
                 initCarousel();
             });
         }
         
-        // 初始化轮播
+        // 初始化轮�?
         function initCarousel() {
-            // 设置幻灯片样式
+            // 设置幻灯片样�?
             slides.forEach((slide, index) => {
                 slide.style.position = 'absolute';
                 slide.style.top = '0';
@@ -478,11 +478,11 @@ function startCarousel() {
             verificationSteps.step1 = true;
             updateStepStatus('step1');
             
-            // 自动开始轮播
+            // 自动开始轮�?
             startCarousel();
         }
         
-        // 显示指定幻灯片
+        // 显示指定幻灯�?
         function showSlide(index) {
             // 确保索引在有效范围内
             index = Math.max(0, Math.min(index, slides.length - 1));
@@ -495,7 +495,7 @@ function startCarousel() {
                 slide.style.zIndex = i === index ? '2' : '1';
             });
             
-            // 更新指示器
+            // 更新指示�?
             indicators.forEach((indicator, i) => {
                 indicator.classList.toggle('active', i === index);
                 indicator.style.backgroundColor = i === index ? '#333' : '#ccc';
@@ -507,7 +507,7 @@ function startCarousel() {
             // 记录日志
             log(`切换到幻灯片 ${index + 1}`);
             
-            // 根据当前索引更新验证步骤状态
+            // 根据当前索引更新验证步骤状�?
             if (index === 1 && !verificationSteps.step2) {
                 verificationSteps.step2 = true;
                 updateStepStatus('step2');
@@ -521,37 +521,37 @@ function startCarousel() {
                 log(`成功: 轮播图从第三张正确回到了第一张图片！`, 'success');
             }
             
-            // 如果是第三张图片，增加循环计数
+            // 如果是第三张图片，增加循环计�?
             if (index === slides.length - 1) {
-                log(`到达最后一张图片 (第${index + 1}张)，5秒后应该回到第一张图片`);
+                log(`到达最后一张图�?(�?{index + 1}�?�?秒后应该回到第一张图片`);
             } else if (index === 0 && cycleCount > 0) {
-                // 完成一个循环
+                // 完成一个循�?
                 cycleCount++;
                 cycleCountElement.textContent = cycleCount;
-                log(`完成第 ${cycleCount} 次循环`, 'success');
+                log(`完成�?${cycleCount} 次循环`, 'success');
             }
             
-            // 检查是否所有验证步骤都已完成
+            // 检查是否所有验证步骤都已完�?
             checkVerificationComplete();
         }
         
-        // 开始轮播
+        // 开始轮�?
         function startCarousel() {
             if (intervalId) {
                 clearInterval(intervalId);
             }
             
-            // 自动轮播 - 每5秒切换一次
+            // 自动轮播 - �?秒切换一�?
             intervalId = setInterval(() => {
-                console.log(`当前索引: ${currentIndex}, 幻灯片数量: ${slides.length}`);
+                console.log(`当前索引: ${currentIndex}, 幻灯片数�? ${slides.length}`);
                 const nextIndex = (currentIndex + 1) % slides.length;
-                console.log(`计算下一张索引: (${currentIndex} + 1) % ${slides.length} = ${nextIndex}`);
+                console.log(`计算下一张索�? (${currentIndex} + 1) % ${slides.length} = ${nextIndex}`);
                 
                 // 特别检查从最后一张到第一张的循环
                 if (currentIndex === slides.length - 1) {
-                    console.log(`检测到循环点: 从第${slides.length}张到第1张`);
-                    log(`检测到循环点: 从第${slides.length}张到第1张`);
-                    // 标记进入循环点
+                    console.log(`检测到循环�? 从第${slides.length}张到�?张`);
+                    log(`检测到循环�? 从第${slides.length}张到�?张`);
+                    // 标记进入循环�?
                     if (cycleCount === 0) {
                         cycleCount = 1;
                         cycleCountElement.textContent = cycleCount;
@@ -562,8 +562,8 @@ function startCarousel() {
                 showSlide(currentIndex);
             }, 5000);
             
-            log('启动自动轮播 (5秒间隔)');
-            carouselStatusElement.textContent = '运行中';
+            log('启动自动轮播 (5秒间�?');
+            carouselStatusElement.textContent = '运行�?;
         }
         
         // 停止轮播
@@ -572,7 +572,7 @@ function startCarousel() {
                 clearInterval(intervalId);
                 intervalId = null;
                 log('停止自动轮播');
-                carouselStatusElement.textContent = '已停止';
+                carouselStatusElement.textContent = '已停�?;
             }
         }
         
@@ -591,7 +591,7 @@ function startCarousel() {
                 step5: false
             };
             
-            // 重置步骤状态显示
+            // 重置步骤状态显�?
             for (const step in stepElements) {
                 updateStepStatus(step);
             }
@@ -604,7 +604,7 @@ function startCarousel() {
             cycleCountElement.textContent = cycleCount;
             
             verificationResultElement.className = 'status-box status-info';
-            verificationResultElement.innerHTML = '<p>轮播已重置。点击"开始轮播"按钮重新开始验证。</p>';
+            verificationResultElement.innerHTML = '<p>轮播已重置。点�?开始轮�?按钮重新开始验证�?/p>';
         }
         
         // 添加日志
@@ -624,21 +624,21 @@ function startCarousel() {
             logContainer.scrollTop = logContainer.scrollHeight;
         }
         
-        // 更新验证步骤状态
+        // 更新验证步骤状�?
         function updateStepStatus(stepName) {
             if (stepElements[stepName]) {
                 if (verificationSteps[stepName]) {
                     stepElements[stepName].className = 'verification-step passed';
-                    stepElements[stepName].innerHTML = stepElements[stepName].innerHTML + ' <strong>✓ 通过</strong>';
+                    stepElements[stepName].innerHTML = stepElements[stepName].innerHTML + ' <strong>�?通过</strong>';
                 } else {
                     stepElements[stepName].className = 'verification-step';
                 }
             }
         }
         
-        // 检查验证是否完成
+        // 检查验证是否完�?
         function checkVerificationComplete() {
-            // 检查关键步骤是否通过（步骤1-4）
+            // 检查关键步骤是否通过（步�?-4�?
             const criticalStepsPassed = verificationSteps.step1 && 
                                       verificationSteps.step2 && 
                                       verificationSteps.step3 && 
@@ -646,8 +646,8 @@ function startCarousel() {
             
             if (criticalStepsPassed) {
                 verificationResultElement.className = 'status-box status-success';
-                verificationResultElement.innerHTML = '<p>验证成功: 轮播图功能正常工作！特别是第三张图片5秒后能正确回到第一张图片。</p>';
-                log('验证完成 - 所有关键功能测试通过！', 'success');
+                verificationResultElement.innerHTML = '<p>验证成功: 轮播图功能正常工作！特别是第三张图片5秒后能正确回到第一张图片�?/p>';
+                log('验证完成 - 所有关键功能测试通过�?, 'success');
             }
         }
         
@@ -670,7 +670,7 @@ function startCarousel() {
             indicator.style.padding = '0';
             
             indicator.addEventListener('click', () => {
-                log(`点击指示器 ${index + 1}`);
+                log(`点击指示�?${index + 1}`);
                 currentIndex = index;
                 showSlide(currentIndex);
                 
@@ -678,17 +678,17 @@ function startCarousel() {
                 verificationSteps.step5 = true;
                 updateStepStatus('step5');
                 
-                // 重置自动轮播计时器
+                // 重置自动轮播计时�?
                 clearInterval(intervalId);
                 intervalId = setInterval(() => {
-                    console.log(`当前索引: ${currentIndex}, 幻灯片数量: ${slides.length}`);
+                    console.log(`当前索引: ${currentIndex}, 幻灯片数�? ${slides.length}`);
                     const nextIndex = (currentIndex + 1) % slides.length;
-                    console.log(`计算下一张索引: (${currentIndex} + 1) % ${slides.length} = ${nextIndex}`);
+                    console.log(`计算下一张索�? (${currentIndex} + 1) % ${slides.length} = ${nextIndex}`);
                     
                     // 特别检查从最后一张到第一张的循环
                     if (currentIndex === slides.length - 1) {
-                        console.log(`检测到循环点: 从第${slides.length}张到第1张`);
-                        log(`检测到循环点: 从第${slides.length}张到第1张`);
+                        console.log(`检测到循环�? 从第${slides.length}张到�?张`);
+                        log(`检测到循环�? 从第${slides.length}张到�?张`);
                     }
                     
                     currentIndex = nextIndex;
@@ -697,7 +697,7 @@ function startCarousel() {
             });
         });
         
-        // 初始化
+        // 初始�?
         slidesLengthElement.textContent = slides.length;
         
         // 页面加载完成后开始预加载图片

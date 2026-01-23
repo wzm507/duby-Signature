@@ -55,14 +55,14 @@
             z-index: 1;
         }
         
-        /* 轮播指示器样式 - 已移除 */
+        /* 轮播指示器样�?- 已移�?*/
         .carousel-indicators {
             display: none;
         }
         
-        /* 响应式设计 */
+        /* 响应式设�?*/
         @media (max-width: 768px) {
-            /* 响应式样式 */
+            /* 响应式样�?*/
         }
         
         .hero-content {
@@ -75,7 +75,7 @@
             max-width: 800px;
             padding: 2rem;
             background-color: rgba(0, 0, 0, 0.4); /* 半透明黑色背景遮罩 */
-            border-radius: 12px; /* 添加圆角，增强视觉效果 */
+            border-radius: 12px; /* 添加圆角，增强视觉效�?*/
         }
         
         .hero-content h1 {
@@ -85,16 +85,16 @@
             white-space: normal;
             line-height: 1.2;
             font-weight: bold; /* 增加字体粗细 */
-            color: white; /* 明确设置白色文本，确保在深色背景上清晰可见 */
+            color: white; /* 明确设置白色文本，确保在深色背景上清晰可�?*/
         }
         
-        /* 响应式字体大小 */
+        /* 响应式字体大�?*/
         @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 2.5rem;
             }
             
-            /* 响应式筛选按钮 */
+            /* 响应式筛选按�?*/
             .filter-container {
                 margin-top: 0.5rem !important;
             }
@@ -120,7 +120,7 @@
             }
         }
         
-        /* 导航栏样式 */
+        /* 导航栏样�?*/
         .navbar {
             position: fixed;
             top: 0;
@@ -167,7 +167,7 @@
             color: #6c63ff;
         }
         
-        /* 响应式设计 */
+        /* 响应式设�?*/
         @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 2.5rem;
@@ -229,7 +229,7 @@
             text-align: center;
         }
         
-        /* 响应式弹窗 */
+        /* 响应式弹�?*/
         @media (max-width: 768px) {
             .modal-content {
                 margin: 30% auto;
@@ -279,7 +279,7 @@
       </style>
 </head>
 <body>
-    <div id="app"></div>    <!-- 统一导航栏 -->
+    <div id="app"></div>    <!-- 统一导航�?-->
     <div id="header-placeholder"></div>
     
     <script>
@@ -295,7 +295,7 @@
             });
     </script>
     
-    <!-- 英雄区域，使用视频背景 -->
+    <!-- 英雄区域，使用视频背�?-->
     <section class="hero">
         <!-- 视频背景 -->
         <video autoplay muted loop playsinline preload="auto" class="hero-video" id="heroVideo" poster="/img/banner/1.png">
@@ -304,7 +304,7 @@
         <div class="hero-overlay"></div>
         <div id="hero-content" class="hero-content">
             <h1>Your Real Estate <br>Expert is Here.<br>Now you can find more than 200+ property choices with our professional agents! Contact us today to find your dream property.</h1>
-            <!-- 筛选按钮区域 -->
+            <!-- 筛选按钮区�?-->
             <div class="filter-container" style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem;">
                 <button class="filter-btn active" data-filter="buy" 
                         style="background-color: #6c63ff; border: 2px solid #6c63ff; color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.4s ease; min-width: 130px; text-align: center; box-shadow: 0 8px 20px rgba(108,99,255,0.35); transform: translateY(-3px);">
@@ -326,7 +326,7 @@
             </div>
             
             <script>
-                // 筛选按钮切换功能
+                // 筛选按钮切换功�?
                 document.addEventListener('DOMContentLoaded', function() {
                     const filterBtns = document.querySelectorAll('.filter-btn');
                     const searchInput = document.querySelector('.search-input');
@@ -336,7 +336,7 @@
                     filterBtns.forEach(btn => {
                         // 点击事件处理
                         btn.addEventListener('click', function() {
-                            // 移除所有按钮的active类
+                            // 移除所有按钮的active�?
                             filterBtns.forEach(b => {
                                 b.classList.remove('active');
                                 b.style.backgroundColor = 'rgba(255,255,255,0.1)';
@@ -347,7 +347,7 @@
                                 b.style.transform = 'none';
                             });
                             
-                            // 添加当前按钮的active类
+                            // 添加当前按钮的active�?
                             this.classList.add('active');
                             this.style.backgroundColor = '#6c63ff';
                             this.style.borderColor = '#6c63ff';
@@ -373,11 +373,11 @@
                         // 离开悬停效果
                         btn.addEventListener('mouseleave', function() {
                             if (this.classList.contains('active')) {
-                                // active状态恢复
+                                // active状态恢�?
                                 this.style.boxShadow = '0 8px 20px rgba(108,99,255,0.35)';
                                 this.style.transform = 'translateY(-3px) scale(1)';
                             } else {
-                                // 非active状态恢复
+                                // 非active状态恢�?
                                 this.style.backgroundColor = 'rgba(255,255,255,0.1)';
                                 this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
                             }
@@ -386,12 +386,12 @@
                     
                     // 搜索功能
                     function handleSearch() {
-                        // 获取当前选中的筛选条件
+                        // 获取当前选中的筛选条�?
                         const selectedFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
-                        // 获取搜索关键词
+                        // 获取搜索关键�?
                         const searchTerm = searchInput.value.trim();
                         
-                        // 根据筛选条件跳转到对应的页面
+                        // 根据筛选条件跳转到对应的页�?
                         if (selectedFilter === 'buy') {
                             if (searchTerm) {
                                 window.location.href = `featured-properties.html?search=${encodeURIComponent(searchTerm)}`;
@@ -410,7 +410,7 @@
                     // 搜索按钮点击事件
                     searchButton.addEventListener('click', handleSearch);
                     
-                    // 回车键搜索
+                    // 回车键搜�?
                     searchInput.addEventListener('keypress', function(e) {
                         if (e.key === 'Enter') {
                             handleSearch();
@@ -445,7 +445,7 @@
             const heroVideo = document.getElementById('heroVideo');
             if (heroVideo) {
                 heroVideo.play().catch(function(e) {
-                    console.log('视频播放被阻止:', e);
+                    console.log('视频播放被阻�?', e);
                 });
             }
         });
@@ -490,7 +490,7 @@
                 }
             });
 
-            // ESC键关闭弹窗
+            // ESC键关闭弹�?
             document.addEventListener('keydown', function(event) {
                 if (event.key === 'Escape' && modal.style.display === 'block') {
                     closeCallUsModal();

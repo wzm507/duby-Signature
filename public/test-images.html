@@ -69,7 +69,7 @@
 </head>
 <body>
     <h1>图片路径测试页面</h1>
-    <p>此页面用于测试所有图片路径是否可以正常加载</p>
+    <p>此页面用于测试所有图片路径是否可以正常加�?/p>
 
     <div class="test-section">
         <h2>测试 1: /img 目录</h2>
@@ -112,7 +112,7 @@
             off: [
                 '/off/1/image.png',
                 '/off/1/image-copy.png',
-                '/off/1/image-copy 2.png',
+                '/off/1/image-copy-2.png',
                 '/off/2/image.png',
                 '/off/2/image-copy.png'
             ],
@@ -155,16 +155,16 @@
 
             const status = document.createElement('span');
             status.className = 'status loading';
-            status.textContent = '加载中...';
+            status.textContent = '加载�?..';
 
             img.onload = () => {
                 status.className = 'status success';
-                status.textContent = '✓ 成功';
+                status.textContent = '�?成功';
             };
 
             img.onerror = () => {
                 status.className = 'status error';
-                status.textContent = '✗ 失败';
+                status.textContent = '�?失败';
                 console.error('Failed to load:', src);
             };
 
