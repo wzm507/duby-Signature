@@ -76,7 +76,19 @@ export default defineConfig({
           dest: 'images_new'
         },
         {
-          src: 'public/aboutus/**/*',
+          src: 'public/aboutus/ryuan/**/*',
+          dest: 'aboutus/ryuan'
+        },
+        {
+          src: 'public/aboutus/hero/**/*',
+          dest: 'aboutus/hero'
+        },
+        {
+          src: 'public/aboutus/team-awards/**/*',
+          dest: 'aboutus/team-awards'
+        },
+        {
+          src: 'public/aboutus/*.png',
           dest: 'aboutus'
         },
         {
