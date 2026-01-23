@@ -4724,7 +4724,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="company-intro-text">
         <h2 data-translate="companyIntroTitle">Stay up to date on the latest off-plan launches.</h2>
         <div class="company-stats" style="display: flex; flex-wrap: nowrap; gap: 16px; padding: 16px 0; margin: 0 20px;">
-          <div class="company-stat" onclick="window.location.href='/off-plan-details-1.html'" style="background-image: url('/off/1/image copy 4.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
+          <div class="company-stat" onclick="window.location.href='/off-plan-details-1.html'" style="background-image: url('/off/1/image-copy-4.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
             <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">St Regis The Residences</div>
             <div style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border: 2px solid white; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 999;">
               <i class="fas fa-arrow-right" style="color: white; font-size: 14px;"></i>
@@ -4738,7 +4738,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
             </div>
           </div>
-          <div class="company-stat" onclick="window.location.href='/off-plan-details-2.html'" style="background-image: url('/off/2/image copy 4.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
+          <div class="company-stat" onclick="window.location.href='/off-plan-details-2.html'" style="background-image: url('/off/2/image-copy-4.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
             <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">AEON</div>
             <div style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border: 2px solid white; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 999;">
               <i class="fas fa-arrow-right" style="color: white; font-size: 14px;"></i>
@@ -4752,7 +4752,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
             </div>
           </div>
-          <div class="company-stat" onclick="window.location.href='/off-plan-details-3.html'" style="background-image: url('/off/3/image copy 4.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
+          <div class="company-stat" onclick="window.location.href='/off-plan-details-3.html'" style="background-image: url('/off/3/image-copy-4.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
             <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">Club Drive Tower A</div>
             <div style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border: 2px solid white; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 999;">
               <i class="fas fa-arrow-right" style="color: white; font-size: 14px;"></i>
@@ -4766,7 +4766,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
             </div>
           </div>
-          <div class="company-stat" onclick="window.location.href='/off-plan-details-4.html'" style="background-image: url('/off/4/image copy 5.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
+          <div class="company-stat" onclick="window.location.href='/off-plan-details-4.html'" style="background-image: url('/off/4/image-copy-5.png'); background-size: cover; background-position: center; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; flex: 1; border-radius: 8px; overflow: hidden; cursor: pointer;">
             <div style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px; margin-left: 16px; margin-right: 16px; z-index: 999; position: relative; text-align: left;">Bay Residences</div>
             <div style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border: 2px solid white; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 999;">
               <i class="fas fa-arrow-right" style="color: white; font-size: 14px;"></i>
