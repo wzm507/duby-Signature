@@ -17,7 +17,8 @@ function copyAndUpdateStaticHTML() {
         'about.html',
         'services.html',
         'communities.html',
-        'developers.html'
+        'developers.html',
+        'all-news.html'
       ];
 
       staticHTMLFiles.forEach(file => {
