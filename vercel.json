@@ -64,6 +64,26 @@
       "dest": "/images_new/$1"
     },
     {
+      "src": "/Terra Gardens/(.*)",
+      "dest": "/Terra Gardens/$1"
+    },
+    {
+      "src": "/Lyvia by Palace/(.*)",
+      "dest": "/Lyvia by Palace/$1"
+    },
+    {
+      "src": "/DAMAC Islands/(.*)",
+      "dest": "/DAMAC Islands/$1"
+    },
+    {
+      "src": "/Greenridge/(.*)",
+      "dest": "/Greenridge/$1"
+    },
+    {
+      "src": "/Services/(.*)",
+      "dest": "/Services/$1"
+    },
+    {
       "src": "/sp/(.*)",
       "dest": "/sp/$1"
     },
