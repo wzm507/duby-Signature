@@ -72,6 +72,10 @@ export default defineConfig({
           dest: 'images_new'
         },
         {
+          src: 'public/images_new/**/*',
+          dest: 'images_new'
+        },
+        {
           src: 'public/aboutus/ryuan/**/*',
           dest: 'aboutus/ryuan'
         },
