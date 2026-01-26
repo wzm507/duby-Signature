@@ -56,6 +56,14 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
+          src: 'images_new/**/*',
+          dest: 'images_new'
+        },
+        {
+          src: 'public/images_new/**/*',
+          dest: 'images_new'
+        },
+        {
           src: 'public/img/**/*',
           dest: 'img'
         },
@@ -66,14 +74,6 @@ export default defineConfig({
         {
           src: 'public/ewm/**/*',
           dest: 'ewm'
-        },
-        {
-          src: 'images_new/**/*',
-          dest: 'images_new'
-        },
-        {
-          src: 'public/images_new/**/*',
-          dest: 'images_new'
         },
         {
           src: 'public/aboutus/ryuan/**/*',
