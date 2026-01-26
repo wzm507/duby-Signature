@@ -1,4 +1,4 @@
-﻿﻿﻿﻿import './style.css'
+﻿﻿﻿﻿﻿﻿﻿import './style.css'
 
 // 页面加载动画
 function initLoadingAnimation() {
@@ -3518,19 +3518,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
-                            <img src="/images_new/image/5/img1001.jpg" alt="Montiva by Vida" />
+                            <img src="/images_new/buy-new/4/image.png" alt="Montiva by Vida" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/5/img1481.jpg" alt="Montiva by Vida" />
+                            <img src="/images_new/buy-new/4/image-copy-2.png" alt="Montiva by Vida" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/5/img1531.jpg" alt="Montiva by Vida" />
+                            <img src="/images_new/buy-new/4/image-copy-3.png" alt="Montiva by Vida" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/5/img691.jpg" alt="Montiva by Vida" />
+                            <img src="/images_new/buy-new/4/image-copy-4.png" alt="Montiva by Vida" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/image/5/img741.jpg" alt="Montiva by Vida" />
+                            <img src="/images_new/buy-new/4/image-copy-5.png" alt="Montiva by Vida" />
                         </div>
                     </div>
                     <div class="carousel-indicators">
@@ -4196,7 +4196,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="news-grid" style="display: flex; overflow-x: auto; overflow-y: hidden; scroll-behavior: smooth; white-space: nowrap; padding: 10px 0; width: calc(100% + 20px); margin-left: -10px;">
       <div class="news-card" style="aspect-ratio: 1/1; overflow: hidden; max-width: 200px; max-height: 200px; margin: 0 10px; display: inline-block; flex-shrink: 0;">
         <div class="news-image-container" style="width: 100%; height: 100%; position: relative;">
-          <img src="/img/news/news1.png" alt="Lyvia By Palace Project" style="width: 100%; height: 100%; object-fit: cover;" />
+          <img src="/images_new/news/news-1/微信图片_2025-10-11_152316_267.jpg" alt="Lyvia By Palace Project" style="width: 100%; height: 100%; object-fit: cover;" />
           <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: white; border-radius: 30px; padding: 8px 20px; font-size: 14px; color: #2c2c54; text-align: center; white-space: nowrap;">Ready-to-Move-1</div>
         </div>
       </div>
@@ -4231,7 +4231,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       <div class="news-card" style="aspect-ratio: 1/1; overflow: hidden; max-width: 200px; max-height: 200px; margin: 0 10px; display: inline-block; flex-shrink: 0; background-color: white;">
         <div class="news-image-container" style="width: 100%; height: 100%; position: relative;">
-          <img src="/img/news/news6.png" alt="Dubai's Population Growth" style="width: 100%; height: 100%; object-fit: cover;" />
+          <img src="/images_new/news/news-6/微信图片_2025-10-11_170037_484.png" alt="Dubai's Population Growth" style="width: 100%; height: 100%; object-fit: cover;" />
           <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: white; border-radius: 30px; padding: 8px 20px; font-size: 14px; color: #2c2c54; text-align: center; white-space: nowrap;">Ready-to-Move-6</div>
         </div>
     </div>
