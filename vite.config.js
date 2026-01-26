@@ -134,6 +134,10 @@ export default defineConfig({
         {
           src: 'public/js/**/*',
           dest: 'js'
+        },
+        {
+          src: 'public/img/news/**/*',
+          dest: 'img/news'
         }
       ]
     }),
