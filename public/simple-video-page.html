@@ -45,7 +45,7 @@
     <section class="hero">
         <!-- 直接在HTML中添加视频标签，使用相对路径 -->
         <video class="hero-video" autoplay muted loop playsinline>
-            <source src="videos/2.mp4" type="video/mp4">
+            <source src="/sp/hero-video.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-content">
@@ -55,7 +55,7 @@
     </section>
     
     <script>
-        console.log('简单HTML页面已加�?);
+        console.log('简单HTML页面已加�?);
         const video = document.querySelector('.hero-video');
         
         video.addEventListener('error', (e) => {
@@ -64,7 +64,7 @@
         });
         
         video.addEventListener('canplay', () => {
-            console.log('视频可以播放�?');
+            console.log('视频可以播放�?');
         });
     </script>
 </body>
