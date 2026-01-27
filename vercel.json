@@ -14,75 +14,129 @@
     },
     {
       "src": "/assets/(.*)",
-      "dest": "/assets/$1"
+      "dest": "/assets/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/img/(.*)",
-      "dest": "/img/$1"
+      "dest": "/img/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/off/(.*)",
-      "dest": "/off/$1"
+      "dest": "/off/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/Developers/(.*)",
-      "dest": "/Developers/$1"
+      "dest": "/Developers/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/Communities/(.*)",
-      "dest": "/Communities/$1"
+      "dest": "/Communities/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/aboutus/(.*)",
-      "dest": "/aboutus/$1"
+      "dest": "/aboutus/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/banner/(.*)",
-      "dest": "/banner/$1"
+      "dest": "/banner/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/ewm/(.*)",
-      "dest": "/ewm/$1"
+      "dest": "/ewm/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/icons/(.*)",
-      "dest": "/icons/$1"
+      "dest": "/icons/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/images_new/(.*)",
-      "dest": "/images_new/$1"
+      "dest": "/images_new/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/Terra Gardens/(.*)",
-      "dest": "/Terra Gardens/$1"
+      "dest": "/Terra Gardens/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/Lyvia by Palace/(.*)",
-      "dest": "/Lyvia by Palace/$1"
+      "dest": "/Lyvia by Palace/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/DAMAC Islands/(.*)",
-      "dest": "/DAMAC Islands/$1"
+      "dest": "/DAMAC Islands/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/Greenridge/(.*)",
-      "dest": "/Greenridge/$1"
+      "dest": "/Greenridge/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/Services/(.*)",
-      "dest": "/Services/$1"
+      "dest": "/Services/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/sp/(.*)",
-      "dest": "/sp/$1"
+      "dest": "/sp/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/js/(.*)",
-      "dest": "/js/$1"
+      "dest": "/js/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/common/(.*)",
-      "dest": "/common/$1"
+      "dest": "/common/$1",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/(.*)",
