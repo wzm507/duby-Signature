@@ -12,6 +12,8 @@ jobs:
     permissions:
       contents: read
       deployments: write
+      pull-requests: write  # 新增：允许操作PR/提交的评论
+      issues: write          # 兼容：避免部分Action版本的权限兼容问题
     steps:
       - name: Checkout repository with sparse checkout
         uses: actions/checkout@v4
@@ -40,13 +42,11 @@ jobs:
 
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
-        # 新增：官方禁用构建缓存的环境变量（替代--no-cache）
         env:
           VERCEL_IGNORE_BUILD_CACHE: true
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          # 修改：移除无效的--no-cache参数，仅保留合法的--prod --yes
           vercel-args: '--prod --yes'
           vercel-org-id: ${{ secrets.ORG_ID }}
           vercel-project-id: ${{ secrets.PROJECT_ID }}
