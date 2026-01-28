@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career - Signature Homes</title>
+  <link rel="icon" href="/img/logo2.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #6366f1;
+            --accent-color: #f59e0b;
+            --light-color: #f8fafc;
+            --dark-color: #1e293b;
+            --light-text: #64748b;
+            --medium-text: #475569;
+            --border-color: #e2e8f0;
+            --border-radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.12);
+            --shadow-deep: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+    body {
+      line-height: 1.7;
+      color: var(--primary-color);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--light-color);
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 1.5rem 2rem !important;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: transparent;
+      backdrop-filter: blur(10px);
+      box-shadow: none;
+      z-index: 1000;
+      box-sizing: border-box !important;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary-color);
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      color: var(--primary-color);
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0.5rem 0;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      border-radius: 8px;
+      padding: 0.5rem 0;
+      min-width: 180px;
+      z-index: 1001;
+      margin-top: 0.5rem;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.75rem 1.25rem;
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .dropdown-content a:hover {
+      background-color: var(--light-color);
+      color: var(--secondary-color);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      cursor: pointer;
+    }
+
+    .bar {
+      height: 3px;
+      width: 100%;
+      background-color: var(--primary-color);
+      border-radius: 3px;
+      transition: var(--transition);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: flex;
+      }
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      padding: 2rem;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--gradient-primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: 60vh;
+        min-height: 400px;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+    }
+
+    .career-section {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .career-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .career-title {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .career-subtitle {
+      font-size: 1.2rem;
+      color: var(--light-text);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .jobs-count {
+      color: var(--secondary-color);
+      font-weight: 600;
+    }
+
+    .career-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .career-card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .career-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card-icon {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-icon img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .card-description {
+      color: var(--light-text);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      background: var(--gradient-primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      align-self: flex-start;
+    }
+
+    .card-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    @media (max-width: 768px) {
+      .career-section {
+        padding: 4rem 1.5rem;
+      }
+
+      .career-title {
+        font-size: 2.2rem;
+      }
+
+      .career-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .career-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .career-card {
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .career-title {
+        font-size: 1.8rem;
+      }
+
+      .career-subtitle {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <script>
+    fetch('/common/header.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('header-placeholder').innerHTML = html;
+        if (typeof window.initDropdowns === 'function') {
+          window.initDropdowns();
+        }
+      });
+  </script>
+
+  <section class="hero">
+    <img src="/aboutus/2.png" alt="Career" class="hero-image">
+    <div class="hero-overlay"></div>
+  </section>
+
+  <section class="career-section">
+    <div class="career-header">
+      <h1 class="career-title">Discover a World of Opportunities <span class="jobs-count">(1 Jobs)</span></h1>
+      <p class="career-subtitle">With nearly a decade's experience in UAE Real Estate market, Signature Homes is an acclaimed, award-winning firm and one of leading brokerage companies in Dubai. We invite you to be a part of our success story today!</p>
+    </div>
+
+    <div class="career-cards">
+      <div class="career-card">
+        <h3 class="card-title">Property Consultant</h3>
+        <p class="card-description">Drive your real estate career forward by working with Dubai's top-tier properties and exclusive inventory. Earn up to 90% commission while closing high-value deals. Leverage complete marketing support to generate leads, showcase properties, and achieve stronger results. Engage with clients, manage inquiries, negotiate terms, and guide buyers through full sales process. Build long-term relationships, deliver exceptional customer service, and grow your success with Signature Homes.</p>
+        <a href="#" class="card-cta">
+          Apply Now
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

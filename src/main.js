@@ -2352,6 +2352,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <a href="/communities.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Communities</a>
         <a href="developers.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Developers</a>
         <a href="/services.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Services</a>
+        <a href="/career.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Career</a>
         <a href="/about.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">About Us</a>
       </div>
       <button class="mobile-menu-btn" style="display: none; flex-direction: column; justify-content: space-between; width: 30px; height: 21px; cursor: pointer;">

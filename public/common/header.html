@@ -32,7 +32,7 @@
       transition-delay: 0s !important;
     }
     
-    /* 添加直接的CSS hover实现，确保下拉菜单在鼠标悬浮时显�?*/
+    /* 添加直接的CSS hover实现，确保下拉菜单在鼠标悬浮时显�?*/
     .dropdown:hover .dropdown-content {
       display: block !important;
       opacity: 1 !important;
@@ -52,7 +52,7 @@
       color: #6c63ff !important;
     }
     
-    /* 下拉菜单项样�?*/
+    /* 下拉菜单项样�?*/
     .dropdown-content a {
       display: block !important;
       padding: 0.75rem 1.25rem !important;
@@ -87,6 +87,7 @@
     <a href="/communities.html" style="color: #333; text-decoration: none; font-weight: 500;">Communities</a>
     <a href="/developers.html" style="color: #333; text-decoration: none; font-weight: 500;">Developers</a>
     <a href="/services.html" style="color: #333; text-decoration: none; font-weight: 500;">Services</a>
+    <a href="/career.html" style="color: #333; text-decoration: none; font-weight: 500;">Career</a>
     <a href="/about.html" style="color: #333; text-decoration: none; font-weight: 500;">About Us</a>
   </div>
 </nav>
@@ -107,12 +108,12 @@ window.initDropdowns = function() {
       // 确保下拉菜单初始状态为隐藏
       content.classList.remove('show');
       
-      // 点击事件处理 - 主要用于移动�?      toggle.addEventListener('click', (e) => {
+      // 点击事件处理 - 主要用于移动�?      toggle.addEventListener('click', (e) => {
         console.log('Dropdown toggle clicked');
         e.preventDefault();
         e.stopPropagation();
         
-        // 关闭所有其他下拉菜�?        dropdowns.forEach(otherDropdown => {
+        // 关闭所有其他下拉菜�?        dropdowns.forEach(otherDropdown => {
           if (otherDropdown !== dropdown) {
             const otherContent = otherDropdown.querySelector('.dropdown-content');
             if (otherContent) {
@@ -126,7 +127,7 @@ window.initDropdowns = function() {
       });
       
       // 简化的悬停事件处理 - 仅在需要时使用JavaScript控制
-      // 主要依赖CSS�?hover规则来处理鼠标悬�?      toggle.addEventListener('mouseenter', () => {
+      // 主要依赖CSS�?hover规则来处理鼠标悬�?      toggle.addEventListener('mouseenter', () => {
         content.classList.add('show');
       });
       
