@@ -98,7 +98,7 @@ export default defineConfig({
           dest: 'aboutus/team-awards'
         },
         {
-          src: 'public/aboutus/*.png',
+          src: 'public/aboutus/*.*',
           dest: 'aboutus'
         },
         {
