@@ -70,8 +70,8 @@ export default defineConfig({
           dest: 'images_new/about'
         },
         {
-          src: 'public/images_new/**/*',
-          dest: 'images_new'
+          src: 'public/images_new/buy-new/**/*',
+          dest: 'images_new/buy-new'
         },
         {
           src: 'public/img/**/*',
