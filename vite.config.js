@@ -97,7 +97,15 @@ export default defineConfig({
         // 固定 JS 文件名，避免哈希变化导致引用问题
         entryFileNames: 'assets/[name].js',
         chunkFileNames: 'assets/[name].js',
-        assetFileNames: 'assets/[name].[ext]'
+        // 保持静态资源的原始路径结构
+        assetFileNames: (assetInfo) => {
+          // 对于public目录下的静态资源，保持原始路径
+          if (assetInfo.name && assetInfo.name.startsWith('public/')) {
+            return assetInfo.name.replace('public/', '');
+          }
+          // 对于其他资源，放在assets目录
+          return 'assets/[name].[ext]';
+        }
       }
     }
   },
