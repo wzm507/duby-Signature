@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node compress-images.js && node copy-compressed-images.js",
-    "build:verbose": "vite build --verbose && node copy-images.js",
+    "copy-images": "node copy-images-to-public.js",
+    "build": "npm run copy-images && vite build",
+    "build:verbose": "npm run copy-images && vite build --verbose",
     "verify-build": "node verify-build.js",
     "preview": "vite preview"
   },

@@ -37,7 +37,7 @@ function copyAndUpdateStaticHTML() {
         }
       });
 
-      // 复制 public 目录下的所有静态资源（排除 images_new，因为它会在构建后单独处理）
+      // 复制 public 目录下的所有静态资源
       const publicDirPath = path.resolve(__dirname, 'public');
       const publicSubDirs = [
         'img',
@@ -55,7 +55,8 @@ function copyAndUpdateStaticHTML() {
         'Terra Gardens',
         'sp',
         'png',
-        'js'
+        'js',
+        'images_new' // 现在包含 images_new，因为它已被复制到 public 目录
       ];
 
       // 复制目录函数
@@ -100,6 +101,8 @@ export default defineConfig({
       }
     }
   },
+  // 配置静态资源目录
+  publicDir: 'public',
   plugins: [
     copyAndUpdateStaticHTML()
   ],
