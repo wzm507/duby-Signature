@@ -37,7 +37,7 @@ function copyAndUpdateStaticHTML() {
         }
       });
 
-      // 复制 public 目录下的所有静态资源
+      // 复制 public 目录下的所有静态资源（排除 images_new，因为它会在构建后单独处理）
       const publicDirPath = path.resolve(__dirname, 'public');
       const publicSubDirs = [
         'img',
