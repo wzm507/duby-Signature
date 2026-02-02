@@ -40,7 +40,6 @@ function copyAndUpdateStaticHTML() {
       // 复制 public 目录下的所有静态资源
       const publicDirPath = path.resolve(__dirname, 'public');
       const publicSubDirs = [
-        'img',
         'off',
         'ewm',
         'aboutus',
@@ -58,6 +57,14 @@ function copyAndUpdateStaticHTML() {
         'js',
         'images_new' // 现在包含 images_new，因为它已被复制到 public 目录
       ];
+      
+      // 复制根目录的 img 文件夹
+      const rootImgDir = path.resolve(__dirname, 'img');
+      const distImgDir = path.resolve(__dirname, 'dist', 'img');
+      if (fs.existsSync(rootImgDir)) {
+        copyDirectory(rootImgDir, distImgDir);
+        console.log('Copied root img directory to dist');
+      }
 
       // 复制目录函数
       function copyDirectory(source, destination) {
