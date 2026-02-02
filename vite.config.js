@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 import fs from 'fs';
 import path from 'path';
 
@@ -37,6 +36,53 @@ function copyAndUpdateStaticHTML() {
           console.log(`Copied and updated: ${file}`);
         }
       });
+
+      // 复制 public 目录下的所有静态资源
+      const publicDirPath = path.resolve(__dirname, 'public');
+      const publicSubDirs = [
+        'img',
+        'off',
+        'ewm',
+        'aboutus',
+        'banner',
+        'Communities',
+        'DAMAC Islands',
+        'Developers',
+        'Greenridge',
+        'icons',
+        'Lyvia by Palace',
+        'Services',
+        'Terra Gardens',
+        'sp',
+        'png',
+        'js'
+      ];
+
+      // 复制目录函数
+      function copyDirectory(source, destination) {
+        if (!fs.existsSync(destination)) {
+          fs.mkdirSync(destination, { recursive: true });
+        }
+        const files = fs.readdirSync(source);
+        files.forEach(file => {
+          const sourcePath = path.join(source, file);
+          const destPath = path.join(destination, file);
+          if (fs.statSync(sourcePath).isDirectory()) {
+            copyDirectory(sourcePath, destPath);
+          } else {
+            fs.copyFileSync(sourcePath, destPath);
+          }
+        });
+      }
+
+      publicSubDirs.forEach(subDir => {
+        const sourceSubDirPath = path.join(publicDirPath, subDir);
+        const destSubDirPath = path.join(__dirname, 'dist', subDir);
+        if (fs.existsSync(sourceSubDirPath)) {
+          copyDirectory(sourceSubDirPath, destSubDirPath);
+          console.log(`Copied public/${subDir} directory manually`);
+        }
+      });
     }
   };
 }
@@ -55,106 +101,6 @@ export default defineConfig({
     }
   },
   plugins: [
-    viteStaticCopy({
-      targets: [
-        {
-          src: 'images_new/buy-new/**/*',
-          dest: 'images_new/buy-new'
-        },
-        {
-          src: 'images_new/Awards/**/*',
-          dest: 'images_new/Awards'
-        },
-        {
-          src: 'images_new/about/**/*',
-          dest: 'images_new/about'
-        },
-        {
-          src: 'public/images_new/buy-new/**/*',
-          dest: 'images_new/buy-new'
-        },
-        {
-          src: 'public/img/**/*',
-          dest: 'img'
-        },
-        {
-          src: 'public/off/**/*',
-          dest: 'off'
-        },
-        {
-          src: 'public/ewm/**/*',
-          dest: 'ewm'
-        },
-        {
-          src: 'public/aboutus/ryuan/**/*',
-          dest: 'aboutus/ryuan'
-        },
-        {
-          src: 'public/aboutus/hero/**/*',
-          dest: 'aboutus/hero'
-        },
-        {
-          src: 'public/aboutus/team-awards/**/*',
-          dest: 'aboutus/team-awards'
-        },
-        {
-          src: 'public/aboutus/*.*',
-          dest: 'aboutus'
-        },
-        {
-          src: 'public/banner/**/*',
-          dest: 'banner'
-        },
-        {
-          src: 'public/Communities/**/*',
-          dest: 'Communities'
-        },
-        {
-          src: 'public/DAMAC Islands/**/*',
-          dest: 'DAMAC Islands'
-        },
-        {
-          src: 'public/Developers/**/*',
-          dest: 'Developers'
-        },
-        {
-          src: 'public/Greenridge/**/*',
-          dest: 'Greenridge'
-        },
-        {
-          src: 'public/icons/**/*',
-          dest: 'icons'
-        },
-        {
-          src: 'public/Lyvia by Palace/**/*',
-          dest: 'Lyvia by Palace'
-        },
-        {
-          src: 'public/Services/**/*',
-          dest: 'Services'
-        },
-        {
-          src: 'public/Terra Gardens/**/*',
-          dest: 'Terra Gardens'
-        },
-        {
-          src: 'public/sp/**/*',
-          dest: 'sp'
-        },
-        {
-          src: 'public/png/**/*',
-          dest: 'png'
-        },
-        {
-          src: 'public/js/**/*',
-          dest: 'js'
-        },
-        {
-          src: 'public/img/news/**/*',
-          dest: 'img/news'
-        }
-      ]
-    }),
     copyAndUpdateStaticHTML()
   ],
   // 配置路由，确保静态HTML文件能被正确访问
