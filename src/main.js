@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿import './style.css'
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿import './style.css'
 
 // 页面加载动画
 function initLoadingAnimation() {
@@ -2329,7 +2329,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 9999; overflow: visible;">
       <div class="logo" style="display: flex; align-items: center;">
         <a href="/" style="display: flex; align-items: center;">
-          <img src="/img/logo.png" alt="Logo" class="logo-image" style="width: 100px; height: auto;">
+          <img src="img/logo.png" alt="Logo" class="logo-image" style="width: 100px; height: auto;">
         </a>
       </div>
       <div class="nav-links" style="display: flex; gap: 3rem; align-items: center;">
@@ -3265,22 +3265,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="property-carousel">
                     <div class="carousel-slides">
                         <div class="carousel-slide">
-                            <img src="/images_new/buy-new/6/1.png" alt="Property Image 1" />
+                            <img src="images_new/buy-new/6/1.png" alt="Property Image 1" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/buy-new/6/image.png" alt="Property Image 2" />
+                            <img src="images_new/buy-new/6/image.png" alt="Property Image 2" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/buy-new/6/image-copy.png" alt="Property Image 3" />
+                            <img src="images_new/buy-new/6/image-copy.png" alt="Property Image 3" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/buy-new/6/image-copy-2.png" alt="Property Image 4" />
+                            <img src="images_new/buy-new/6/image-copy-2.png" alt="Property Image 4" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/buy-new/6/image-copy-3.png" alt="Property Image 5" />
+                            <img src="images_new/buy-new/6/image-copy-3.png" alt="Property Image 5" />
                         </div>
                         <div class="carousel-slide">
-                            <img src="/images_new/buy-new/6/image-copy-4.png" alt="Property Image 6" />
+                            <img src="images_new/buy-new/6/image-copy-4.png" alt="Property Image 6" />
                         </div>
                     </div>
                     <div class="carousel-indicators">
