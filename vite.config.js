@@ -36,61 +36,6 @@ function copyAndUpdateStaticHTML() {
           console.log(`Copied and updated: ${file}`);
         }
       });
-
-      // 复制 public 目录下的所有静态资源
-      const publicDirPath = path.resolve(__dirname, 'public');
-      const publicSubDirs = [
-        'off',
-        'ewm',
-        'aboutus',
-        'banner',
-        'Communities',
-        'DAMAC Islands',
-        'Developers',
-        'Greenridge',
-        'icons',
-        'Lyvia by Palace',
-        'Services',
-        'Terra Gardens',
-        'sp',
-        'png',
-        'js',
-        'images_new' // 现在包含 images_new，因为它已被复制到 public 目录
-      ];
-      
-      // 复制 public 目录下的 img 文件夹
-      const publicImgDir = path.resolve(__dirname, 'public', 'img');
-      const distImgDir = path.resolve(__dirname, 'dist', 'img');
-      if (fs.existsSync(publicImgDir)) {
-        copyDirectory(publicImgDir, distImgDir);
-        console.log('Copied public img directory to dist');
-      }
-
-      // 复制目录函数
-      function copyDirectory(source, destination) {
-        if (!fs.existsSync(destination)) {
-          fs.mkdirSync(destination, { recursive: true });
-        }
-        const files = fs.readdirSync(source);
-        files.forEach(file => {
-          const sourcePath = path.join(source, file);
-          const destPath = path.join(destination, file);
-          if (fs.statSync(sourcePath).isDirectory()) {
-            copyDirectory(sourcePath, destPath);
-          } else {
-            fs.copyFileSync(sourcePath, destPath);
-          }
-        });
-      }
-
-      publicSubDirs.forEach(subDir => {
-        const sourceSubDirPath = path.join(publicDirPath, subDir);
-        const destSubDirPath = path.join(__dirname, 'dist', subDir);
-        if (fs.existsSync(sourceSubDirPath)) {
-          copyDirectory(sourceSubDirPath, destSubDirPath);
-          console.log(`Copied public/${subDir} directory manually`);
-        }
-      });
     }
   };
 }
@@ -104,15 +49,8 @@ export default defineConfig({
         // 固定 JS 文件名，避免哈希变化导致引用问题
         entryFileNames: 'assets/[name].js',
         chunkFileNames: 'assets/[name].js',
-        // 保持静态资源的原始路径结构
-        assetFileNames: (assetInfo) => {
-          // 对于public目录下的静态资源，保持原始路径
-          if (assetInfo.name && assetInfo.name.startsWith('public/')) {
-            return assetInfo.name.replace('public/', '');
-          }
-          // 对于其他资源，放在assets目录
-          return 'assets/[name].[ext]';
-        }
+        // 对于其他资源，放在assets目录
+        assetFileNames: 'assets/[name].[ext]'
       }
     }
   },
