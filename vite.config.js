@@ -72,6 +72,24 @@ function copyAndUpdateStaticHTML() {
           console.log(`Copied image directory: ${dir}`);
         }
       });
+
+      // 复制public目录中的图片文件夹到dist根目录，以匹配代码中的路径引用
+      const publicImageDirs = ['Terra Gardens', 'Greenridge', 'DAMAC Islands', 'Lyvia by Palace', 'off'];
+      publicImageDirs.forEach(dir => {
+        const sourcePath = path.resolve(__dirname, 'public', dir);
+        const destPath = path.resolve(__dirname, 'dist', dir);
+
+        if (fs.existsSync(sourcePath)) {
+          // 确保目标目录不存在，避免覆盖问题
+          if (fs.existsSync(destPath)) {
+            fs.rmSync(destPath, { recursive: true, force: true });
+          }
+          copyDirectory(sourcePath, destPath);
+          console.log(`Copied public directory: ${dir}`);
+        } else {
+          console.log(`Source directory not found: ${sourcePath}`);
+        }
+      });
     }
   };
 }
