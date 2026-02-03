@@ -57,23 +57,12 @@ function copyAndUpdateStaticHTML() {
         }
       });
 
-      // 直接从根目录复制图片文件夹到dist目录
-      const imageDirectories = [
-        'images_new',
-        'img'
-      ];
+      // 注意：Vite会自动将public目录中的所有内容复制到dist目录中
+      // 因此不需要手动复制图片目录
+      console.log('Vite will automatically copy public directory contents to dist');
+      console.log('Image directories (images_new, img) are already in public and will be copied automatically');
 
-      imageDirectories.forEach(dir => {
-        const sourcePath = path.resolve(__dirname, dir);
-        const destPath = path.resolve(__dirname, 'dist', dir);
-
-        if (fs.existsSync(sourcePath)) {
-          copyDirectory(sourcePath, destPath);
-          console.log(`Copied image directory: ${dir}`);
-        }
-      });
-
-      // 复制public目录中的图片文件夹到dist根目录，以匹配代码中的路径引用
+      // 复制public目录中的特定图片文件夹到dist根目录，以匹配代码中的路径引用
       const publicImageDirs = ['Terra Gardens', 'Greenridge', 'DAMAC Islands', 'Lyvia by Palace', 'off'];
       publicImageDirs.forEach(dir => {
         const sourcePath = path.resolve(__dirname, 'public', dir);

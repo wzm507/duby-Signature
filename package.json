@@ -11,6 +11,10 @@
     "verify-build": "node verify-build.js",
     "preview": "vite preview"
   },
+  "vercel": {
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist"
+  },
   "devDependencies": {
     "sharp": "^0.34.5",
     "vite": "5.4.21",
