@@ -3,6 +3,26 @@ import { resolve } from 'path';
 import fs from 'fs';
 import path from 'path';
 
+// 复制目录函数
+function copyDirectory(source, destination) {
+  if (!fs.existsSync(destination)) {
+    fs.mkdirSync(destination, { recursive: true });
+  }
+  
+  const files = fs.readdirSync(source);
+  
+  files.forEach(file => {
+    const sourcePath = path.join(source, file);
+    const destPath = path.join(destination, file);
+    
+    if (fs.statSync(sourcePath).isDirectory()) {
+      copyDirectory(sourcePath, destPath);
+    } else {
+      fs.copyFileSync(sourcePath, destPath);
+    }
+  });
+}
+
 // 插件：复制并更新静态 HTML 文件
 function copyAndUpdateStaticHTML() {
   return {
@@ -34,6 +54,22 @@ function copyAndUpdateStaticHTML() {
           );
           fs.writeFileSync(destPath, content);
           console.log(`Copied and updated: ${file}`);
+        }
+      });
+
+      // 直接从根目录复制图片文件夹到dist目录
+      const imageDirectories = [
+        'images_new',
+        'img'
+      ];
+
+      imageDirectories.forEach(dir => {
+        const sourcePath = path.resolve(__dirname, dir);
+        const destPath = path.resolve(__dirname, 'dist', dir);
+
+        if (fs.existsSync(sourcePath)) {
+          copyDirectory(sourcePath, destPath);
+          console.log(`Copied image directory: ${dir}`);
         }
       });
     }
