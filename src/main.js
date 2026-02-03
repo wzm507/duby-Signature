@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿import './style.css'
+﻿﻿﻿﻿﻿﻿import './style.css'
 
 // 页面加载动画
 function initLoadingAnimation() {
@@ -4103,7 +4103,7 @@ document.addEventListener('DOMContentLoaded', () => {
           track.style.transform = "translateX(" + (baseOffset + dragOffset) + "px)";
         }
         
-        function endDrag() {
+        function endDrag(e) {
           if (!isDragging) return;
           isDragging = false;
           
@@ -4111,7 +4111,7 @@ document.addEventListener('DOMContentLoaded', () => {
           track.style.transition = "transform 0.5s ease";
           
           // 计算拖拽距离
-          const currentX = e.type.includes('mouse') ? e.clientX : (e.changedTouches && e.changedTouches[0] ? e.changedTouches[0].clientX : startX);
+          const currentX = e && e.type ? (e.type.includes('mouse') ? e.clientX : (e.changedTouches && e.changedTouches[0] ? e.changedTouches[0].clientX : startX)) : startX;
           const diff = currentX - startX;
           const threshold = slideWidth * 0.3; // 30% 的阈值
           

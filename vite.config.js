@@ -58,12 +58,12 @@ function copyAndUpdateStaticHTML() {
         'images_new' // 现在包含 images_new，因为它已被复制到 public 目录
       ];
       
-      // 复制根目录的 img 文件夹
-      const rootImgDir = path.resolve(__dirname, 'img');
+      // 复制 public 目录下的 img 文件夹
+      const publicImgDir = path.resolve(__dirname, 'public', 'img');
       const distImgDir = path.resolve(__dirname, 'dist', 'img');
-      if (fs.existsSync(rootImgDir)) {
-        copyDirectory(rootImgDir, distImgDir);
-        console.log('Copied root img directory to dist');
+      if (fs.existsSync(publicImgDir)) {
+        copyDirectory(publicImgDir, distImgDir);
+        console.log('Copied public img directory to dist');
       }
 
       // 复制目录函数
